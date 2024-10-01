@@ -1,8 +1,3 @@
-export const authRoutes = [
-    ...commonRoute,
-    {path:"", element:<></> },
-    {path:"", element:<></> },
-    {path:"", element:<></> },
-    {path:"", element:<></> },
-    {path:"", element:<></> },
-]
+import { commonRoutes } from "./common.router";
+
+export const authRoutes = [...commonRoutes];
