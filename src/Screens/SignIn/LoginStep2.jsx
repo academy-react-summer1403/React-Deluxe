@@ -4,7 +4,7 @@ import LeftPanel from './LeftPanel'
 const LoginStep2 = () => {
   return (
     <div>
-
+      
       <LeftPanel />
     </div>
   )
