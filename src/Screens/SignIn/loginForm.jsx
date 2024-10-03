@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 
+const handleSubmit = (event) => {
+  event.preventDefault();
+  
+  console.log(inputValue);
+};
+
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="w-full max-w-sm text-right">
+    <div className="w-full max-w-sm text-right" onSubmit={handleSubmit}>
       <h2 className="text-2xl font-bold mb-6">!خوش برگشتی</h2>
 
       <form>

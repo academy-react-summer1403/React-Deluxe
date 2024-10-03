@@ -1,4 +1,5 @@
 import React from 'react';
+import laptopImage from '../../assets/laptop.png';
 
 const LeftPanel = () => {
   return (
@@ -11,7 +12,7 @@ const LeftPanel = () => {
 
       {/* Image area */}
       <div className="flex items-center">
-        <img src="../../assets/laptop.png" className="w-80 mx-auto mt-24" />
+        <img src={laptopImage}  className="w-80 mx-auto mt-24" />
       </div>
     </div>
   );
