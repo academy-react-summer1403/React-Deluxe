@@ -1,0 +1,22 @@
+
+import React from 'react';
+
+const LeftPanel = () => {
+  return (
+    <div>
+      <h2 className="text-blue-500 text-xl mb-4">آکادمی کد نویسی بحر</h2>
+      <h1 className="text-3xl font-bold mb-4">شروع یک ماجراجویی</h1>
+      <p className="text-gray-600 mb-8">
+        هر دوره ای که بخوای رو به راحتی پیدا کن و یاد بگیر
+      </p>
+
+      {/* Image area */}
+      <div className="flex items-center">
+        <img src="../../assets/laptop.png" className="w-80" />
+      </div>
+    </div>
+  );
+};
+
+export default LeftPanel;
+

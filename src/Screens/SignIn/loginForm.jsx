@@ -1,83 +1,67 @@
-import React, { useState } from "react";
+
+import React, { useState } from 'react';
 
 const LoginForm = () => {
-  const [email, setEmail] = useState("شماره همراه یا ایمیل خود را وارد کنید");
-  const [password, setPassword] = useState("رمز عبور خود را وارد کنید");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className=" max-w-md">
+    <div className="w-full max-w-sm">
       <h2 className="text-2xl font-bold mb-6">خوش برگشتی!</h2>
-      <p className="text-right font:[DanaFaNum] text-[16px] font-medium leading-[22.88px] text-gray-800">
-      لطفا شماره همراه یا ایمیل و رمزعبور خود را برای ورود به حساب کاربری را وارد کنید
-      </p>
 
-      <form onSubmit={handleSubmit}>
+      <form>
         <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm mb-2 text-right font-bold"
-            htmlFor="email"
-          >
+          <label className="block mb-2 text-sm font-medium text-gray-700">
             شماره همراه یا ایمیل
           </label>
           <input
             type="text"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-5 py-3 border text-right border-gray-200 rounded-3xl focus:outline-none focus:ring focus:ring-blue-200 text-gray-600 text-xs"
+            placeholder="شماره همراه یا ایمیل خود را وارد کنید"
+            className="w-full px-3 py-2 border rounded-lg text-right"
           />
         </div>
 
         <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm mb-2 text-right font-bold"
-            htmlFor="password"
-          >
-            رمز عبور
-          </label>
-          <input
-            type="text"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-5 py-3 border text-right border-gray-200 rounded-3xl focus:outline-none focus:ring focus:ring-blue-200 text-gray-600 text-xs"
-          />
+          <label className="block mb-2 text-sm font-medium text-gray-700">رمز عبور</label>
+          <div className="relative">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              placeholder="رمزور خود را وارد کنید"
+              className="w-full px-3 py-2 border rounded-lg text-right"
+            />
+            <button
+              type="button"
+              className="absolute inset-y-0 left-0 flex items-center px-3"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              👁️
+            </button>
+          </div>
         </div>
 
-        <div className="mb-4 flex items-center">
-          <a href="#" className="text-blue-500 text-sm hover:underline">
-            رمزعبور را فراموش کردید؟
-          </a>
-          <input type="checkbox" id="remember" className="mr-2" />
-          <label htmlFor="remember" className="text-sm text-gray-600">
-            مرا به خاطر بسپار
+        <div className="mb-4 flex items-center justify-between">
+          <label className="flex items-center">
+            <input type="checkbox" className="mr-2" />
+            <span className="text-sm">مرا به خاطر بسپار</span>
           </label>
+          <a href="#" className="text-blue-500 text-sm">رمز عبور را فراموش کردید؟</a>
         </div>
 
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white py-2 rounded-3xl hover:bg-blue-600 transition duration-200"
+          className="w-full bg-blue-500 text-white py-2 rounded-lg"
         >
           ورود به حساب
         </button>
-
-        <div className="mt-4 text-center"></div>
       </form>
 
-      <div className="mt-6 text-center">
-        <p className="text-sm text-gray-600">
-          حساب کاربری ندارید؟
-          <a href="#" className="text-blue-500 hover:underline ml-1">
-            ایجاد حساب کاربری
-          </a>
+      <div className="mt-4 text-center">
+        <p className="text-sm">
+          حساب کاربری ندارید؟ <a href="#" className="text-blue-500">ایجاد حساب کاربری</a>
         </p>
       </div>
     </div>
   );
 };
 
-export { LoginForm };
+export default LoginForm;
+
