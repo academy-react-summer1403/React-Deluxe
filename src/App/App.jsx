@@ -5,6 +5,7 @@ import "./App.css";
 import { authRoutes } from "../config/router/auth.router";
 import { RouterProvider } from "react-router-dom";
 import { commonRoutes } from "../config/router/common.router";
+import { Landing } from "../Screens/Landing";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -12,6 +13,7 @@ function App() {
   return (
     <>
       <RouterProvider routes={isLoggedIn ? authRoutes : publicRoutes} />
+      <Landing />
     </>
   );
 }

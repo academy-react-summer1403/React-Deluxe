@@ -1,7 +1,11 @@
 import React from "react";
-
+import { Header } from "../../Components/Common/Header/Header";
 const Landing = () => {
-  return <div>Landing</div>;
+  return (
+    <>
+      <Header />
+    </>
+  );
 };
 
 export { Landing };
