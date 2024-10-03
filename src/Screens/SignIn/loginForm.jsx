@@ -40,7 +40,7 @@ const LoginForm = () => {
 
         <div className="mb-4 flex items-center justify-between">
           <label className="flex items-center">
-          <a href="#" className="text-blue-500 text-sm">رمز عبور را فراموش کردید؟</a>
+          <a href="#" className="text-blue-500 text-sm hover:underline">رمز عبور را فراموش کردید؟</a>
 
           </label>
           <span className="text-sm">مرا به خاطر بسپار</span>
@@ -59,7 +59,7 @@ const LoginForm = () => {
 
       <div className="mt-4 text-center">
         <p className="text-sm">
-          حساب کاربری ندارید؟ <a href="#" className="text-blue-500">ایجاد حساب کاربری</a>
+          حساب کاربری ندارید؟ <a href="#" className="text-blue-500 hover:underline">ایجاد حساب کاربری</a>
         </p>
       </div>
     </div>
