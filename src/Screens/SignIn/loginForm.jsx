@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const handleSubmit = (event) => {
   event.preventDefault();
   
-  console.log(inputValue);
+  // console.log(inputValue);
 };
 
 const LoginForm = () => {
@@ -73,6 +73,7 @@ const LoginForm = () => {
           صفحه اصلی
         </button>
       </div>
+      
     </div>
   );
 };
