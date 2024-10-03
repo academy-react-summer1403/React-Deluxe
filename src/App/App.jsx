@@ -1,20 +1,15 @@
 import { useState } from "react";
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
 import "./App.css";
-import { authRoutes } from "../config/router/auth.router";
+// import { authRoutes } from "../config/router/auth.router";
 import { RouterProvider } from "react-router-dom";
 import { commonRoutes } from "../config/router/common.router";
-import { Landing } from "../Screens/Landing";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState();
   const publicRoutes = commonRoutes;
   return (
-    <>
-      <RouterProvider routes={isLoggedIn ? authRoutes : publicRoutes} />
-      <Landing />
-    </>
+    <RouterProvider router={publicRoutes} />
+    // Can use: router={isLoggedIn ? authRoutes : publicRoutes} instead
   );
 }
 
