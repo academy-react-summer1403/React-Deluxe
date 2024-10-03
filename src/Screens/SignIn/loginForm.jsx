@@ -49,7 +49,7 @@ const LoginForm = () => {
           <input type="checkbox" className="mr-2" />
         </div>
 
-        <button
+        <button to="/signIn"
           type="submit"
           className="w-full bg-blue-500 text-white py-2 rounded-3xl"
         >
@@ -63,7 +63,7 @@ const LoginForm = () => {
         </p>
       </div>
 
-      <div to="/signIn" className="flex justify-center mt-8">
+      <div to="/" className="flex justify-center mt-8">
         <button
           type="button"
           className="w-[141px] border-solid border border-gray-300 text-blue-500 py-2 px-4 rounded-3xl"
