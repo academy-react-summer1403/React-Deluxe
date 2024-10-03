@@ -5,7 +5,7 @@ const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="w-full max-w-sm text-right" >
+    <div className="w-full max-w-sm text-right"  >
       <h2 className="text-2xl font-bold mb-6">!خوش برگشتی</h2>
 
       <form>

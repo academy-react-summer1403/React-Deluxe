@@ -12,7 +12,7 @@ const handleSubmit = (event) => {
 
 const LandingPage = () => {
   return (
-    <div className="flex w-1024 h-full text-right">
+    <div className="flex w-1024 h-full text-right" onSubmit={handleSubmit}>
       {/* Left Panel */}
       <div className="w-1/2 flex items-center justify-center bg-gray-100 p-10 text-right">
         <LeftPanel />
