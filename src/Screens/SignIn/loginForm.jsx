@@ -1,11 +1,10 @@
-
 import React, { useState } from 'react';
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="w-full max-w-sm text-right"  >
+    <div className="w-full max-w-sm text-right">
       <h2 className="text-2xl font-bold mb-6">!خوش برگشتی</h2>
 
       <form>
@@ -40,13 +39,10 @@ const LoginForm = () => {
 
         <div className="mb-4 flex items-center justify-between">
           <label className="flex items-center">
-          <a href="#" className="text-blue-500 text-sm hover:underline">رمز عبور را فراموش کردید؟</a>
-
+            <a href="#" className="text-blue-500 text-sm hover:underline">رمز عبور را فراموش کردید؟</a>
           </label>
           <span className="text-sm">مرا به خاطر بسپار</span>
-
           <input type="checkbox" className="mr-2" />
-
         </div>
 
         <button
@@ -62,9 +58,17 @@ const LoginForm = () => {
           حساب کاربری ندارید؟ <a href="#" className="text-blue-500 hover:underline">ایجاد حساب کاربری</a>
         </p>
       </div>
+
+      <div className="flex justify-center mt-8">
+        <button
+          type="button"
+          className="w-[141px] border-solid border border-gray-300 text-blue-500 py-2 px-4 rounded-3xl"
+        >
+          صفحه اصلی
+        </button>
+      </div>
     </div>
   );
 };
 
 export default LoginForm;
-
