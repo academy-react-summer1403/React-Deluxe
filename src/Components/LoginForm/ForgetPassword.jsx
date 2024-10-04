@@ -1,8 +1,6 @@
 import React from "react";
 import { Button, Input } from "antd";
 import "antd/dist/reset.css";
-import laptopImage from "../../assets/laptop.png";
-import logo from "../../assets/logo.png";
 import { LoginPanel } from "./LoginPanel";
 
 const ForgotPassword = ({ onBack }) => {
