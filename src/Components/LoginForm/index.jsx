@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Input, Tabs } from "antd";
 import "antd/dist/reset.css";
-import {ForgotPassword} from "./ForgetPassword"
+import { ForgotPassword } from "./ForgetPassword";
 import { LoginPanel } from "./LoginPanel";
 import { Register } from "./Register";
 
@@ -9,12 +9,13 @@ const { TabPane } = Tabs;
 
 const LoginPage = () => {
   const [currentTab, setCurrentTab] = useState("1");
-  const [showForgotPassword, setShowForgotPassword] = useState(false); 
-  const [showRegister, setShowRegister] = useState(false); 
-  
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
+
   if (showRegister) {
-      return <Register onBack={() => setShowRegister(false)} />; 
-    }
+    return <Register onBack={() => setShowRegister(false)} />;
+  }
+
   const changeTab = (key) => {
     setCurrentTab(key);
   };
@@ -22,13 +23,16 @@ const LoginPage = () => {
   if (showForgotPassword) {
     return <ForgotPassword onBack={() => setShowForgotPassword(false)} />;
   }
-  
 
   return (
-    <div className="flex justify-center h-screen">
+    <div className="flex flex-col md:flex-row h-screen justify-center items-center">
       {/* بخش سمت راست تب ها و فرم لاگین */}
-      <div className="w-1/2 flex flex-col justify-center items-center p-10 ">
-        <Tabs activeKey={currentTab} onChange={changeTab} className="w-full flex justify-center ">
+      <div className="flex flex-col w-full md:w-1/2 justify-center items-center p-10">
+        <Tabs
+          activeKey={currentTab}
+          onChange={changeTab}
+          className="w-full flex justify-center"
+        >
           {/* تب وارد کردن شماره همراه */}
           <TabPane tab="وارد کردن شماره همراه" key="1" className="pr-2 ">
             <h2 className="text-2xl font-bold text-right">خوش برگشتی!</h2>
@@ -56,11 +60,10 @@ const LoginPage = () => {
                 مرا به خاطر بسپار
               </label>
               <label className="flex items-center">
-                {/* وقتی کاربر روی لینک کلیک می‌کند، حالت فراموشی رمز عبور فعال می‌شود */}
                 <a
                   href="#"
                   className="text-blue-500 hover:underline mr-14 text-xs font-bold"
-                  onClick={() => setShowForgotPassword(true)} // تغییر حالت به فراموشی رمز عبور
+                  onClick={() => setShowForgotPassword(true)}
                 >
                   رمز عبور را فراموش کردید؟
                 </a>
@@ -127,7 +130,9 @@ const LoginPage = () => {
       </div>
 
       {/* بخش سمت چپ ثابت */}
-     <LoginPanel />
+      {/* <div className="hidden md:block md:w-1/2 bg-gray-100  h-full "> */}
+        <LoginPanel />
+      {/* </div> */}
     </div>
   );
 };

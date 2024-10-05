@@ -91,7 +91,10 @@ const ForgotPassword = ({ onBack }) => {
       </div>
 
       {/* بخش سمت چپ ثابت */}
-      <LoginPanel />
+      
+       {/* <div className="hidden md:block md:w-1/2 bg-gray-100  h-full "> */}
+       <LoginPanel />
+      {/* </div> */}
     </div>
   );
 };
