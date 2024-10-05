@@ -12,7 +12,7 @@ const LoginPage = () => {
   const [showForgotPassword, setShowForgotPassword] = useState(false); 
   const [showRegister, setShowRegister] = useState(false); 
   
-    if (showRegister) {
+  if (showRegister) {
       return <Register onBack={() => setShowRegister(false)} />; 
     }
   const changeTab = (key) => {
