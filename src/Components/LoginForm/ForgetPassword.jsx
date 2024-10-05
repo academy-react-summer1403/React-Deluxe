@@ -16,7 +16,7 @@ const ForgotPassword = ({ onBack }) => {
     <div className="flex justify-center h-screen">
       {/* بخش فرم فراموشی رمز عبور */}
       <div className="w-1/2 flex flex-col justify-center items-center p-10">
-        <Tabs className="flex gap-3" activeKey={currentTab} onChange={changeTab} className="w-full">
+        <Tabs activeKey={currentTab} onChange={changeTab} className="w-full">
           {/* تب وارد کردن ایمیل */}
           <TabPane  tab="وارد کردن ایمیل" key="1">
             <div className="w-full max-w-md text-center">
