@@ -9,8 +9,12 @@ export default {
       colors: {
         customGray: '#DCDCDC',
       },
+     
     },
+
   },
-  plugins: [],
+  
+ 
+  plugins: [ require('daisyui') ],
 }
 

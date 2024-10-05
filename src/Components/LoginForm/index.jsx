@@ -27,14 +27,14 @@ const LoginPage = () => {
   return (
     <div className="flex flex-col md:flex-row h-screen justify-center items-center">
       {/* بخش سمت راست تب ها و فرم لاگین */}
-      <div className="flex flex-col w-full md:w-1/2 justify-center items-center p-10">
+      <div className="flex flex-col w-full md:w-1/2 justify-center items-center p-10 ">
         <Tabs
           activeKey={currentTab}
           onChange={changeTab}
-          className="w-full flex justify-center"
+          className="w-full flex justify-center "
         >
           {/* تب وارد کردن شماره همراه */}
-          <TabPane tab="وارد کردن شماره همراه" key="1" className="pr-2 ">
+          <TabPane  tab="وارد کردن شماره همراه" key="1" className="pr-2" >
             <h2 className="text-2xl font-bold text-right">خوش برگشتی!</h2>
             <p className="text-gray-600 text-xs text-right mt-3 w-80">
               لطفا شماره همراه یا ایمیل و رمز عبور خود را برای ورود به حساب
@@ -130,9 +130,9 @@ const LoginPage = () => {
       </div>
 
       {/* بخش سمت چپ ثابت */}
-      {/* <div className="hidden md:block md:w-1/2 bg-gray-100  h-full "> */}
+      <div className="hidden md:flex w-full bg-gray-100  h-full ">
         <LoginPanel />
-      {/* </div> */}
+      </div>
     </div>
   );
 };
