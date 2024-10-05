@@ -1,25 +1,28 @@
 import React, { useState } from "react";
 import { Button, Input, Tabs } from "antd";
 import "antd/dist/reset.css";
-import laptopImage from "../../assets/laptop.png";
-import logo from "../../assets/logo.png";
 import {ForgotPassword} from "./ForgetPassword"
 import { LoginPanel } from "./LoginPanel";
+import { Register } from "./Register";
 
 const { TabPane } = Tabs;
 
 const LoginPage = () => {
   const [currentTab, setCurrentTab] = useState("1");
-  const [showForgotPassword, setShowForgotPassword] = useState(false); // اضافه کردن state برای نمایش فراموشی رمز عبور
-
+  const [showForgotPassword, setShowForgotPassword] = useState(false); 
+  const [showRegister, setShowRegister] = useState(false); 
+  
+    if (showRegister) {
+      return <Register onBack={() => setShowRegister(false)} />; 
+    }
   const changeTab = (key) => {
     setCurrentTab(key);
   };
 
   if (showForgotPassword) {
-    // اگر کاربر روی لینک فراموشی رمز عبور کلیک کرده باشد، صفحه فراموشی رمز عبور نمایش داده می‌شود
     return <ForgotPassword onBack={() => setShowForgotPassword(false)} />;
   }
+  
 
   return (
     <div className="flex justify-center h-screen">
@@ -76,6 +79,7 @@ const LoginPage = () => {
                 <a
                   href="#"
                   className="text-blue-500 hover:underline font-bold text-xs"
+                  onClick={() => setShowRegister(true)}
                 >
                   ایجاد حساب کاربری
                 </a>
