@@ -2,12 +2,12 @@ import React from "react";
 
 const teachersData = [
   {
-    name: "محمدحسین شایانپور",
+    name: "محمدحسین خلیل پور",
     rating: "۴.۷",
     icon: "/path-to-teacher1.png",
   },
   {
-    name: "محمدحسین راستگار",
+    name: "محمدحسین بهرالعلومی",
     rating: "۴.۸",
     icon: "/path-to-teacher2.png",
   },
@@ -30,11 +30,11 @@ const TopTeachers = () => {
             آماده ارائه جلسات مشاوره، فضایی پویا و کارآموزش با بازده یادگیری
             بالا هستند.
           </p>
-          <div className="flex justify-center space-x-8 rtl:space-x-reverse">
+          <div className="flex flex-wrap justify-center gap-8">
             {teachersData.map((teacher, index) => (
               <div
                 key={index}
-                className="p-6 bg-white rounded-lg shadow-lg text-center"
+                className="p-6 bg-white rounded-full shadow-lg text-center flex-1 min-w-[250px] max-w-[350px]"
               >
                 <img
                   src={teacher.icon}
@@ -46,7 +46,9 @@ const TopTeachers = () => {
               </div>
             ))}
           </div>
-          <button className="bg-blue-500 text-white px-6 py-3 rounded-full mt-8">
+
+          <button className="bg-gray-900 text-white px-5 py-1.5 rounded-full mt-8">
+            {" "}
             صفحه اساتید
           </button>
         </div>

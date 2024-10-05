@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="bg-black text-white py-12">
       <div className="container mx-auto text-center">
-        <div className="flex justify-center space-x-4 rtl:space-x-reverse mb-8">
+        <div className="flex flex-wrap justify-center space-x-4 rtl:space-x-reverse mb-8">
           <a href="/" className="text-gray-400 hover:text-white">
             خانه
           </a>
