@@ -28,7 +28,7 @@ const Services = () => {
   return (
     <section className="py-16">
       <div className="container mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-8">خدماتی که ما در طی دوره‌ها</h2>
+        <h2 className="text-3xl font-bold ">خدماتی که ما در طی دوره‌ها</h2>
         <h2 className="text-3xl font-bold mb-8">به شما ارائه می‌دهیم</h2>
 
         {/* First Row */}
@@ -40,7 +40,11 @@ const Services = () => {
                flex-1`}
             >
               <div className="flex-shrink-0 mx-2">
-                <img src={service.icon} alt="" className="h-10 w-10" />
+                <img
+                  src={service.icon}
+                  alt=""
+                  className="size-10 rounded-full"
+                />
               </div>
               <div className="text-right">
                 <h3 className="text-xl font-semibold mb-1">{service.title}</h3>
@@ -59,7 +63,11 @@ const Services = () => {
                flex-1`}
             >
               <div className="flex-shrink-0 mx-2">
-                <img src={service.icon} alt="" className="h-10 w-10" />
+                <img
+                  src={service.icon}
+                  alt=""
+                  className="size-10 rounded-full"
+                />
               </div>
               <div className="text-right">
                 <h3 className="text-xl font-semibold mb-1">{service.title}</h3>
