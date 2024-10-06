@@ -23,7 +23,9 @@ const Register = ({ onBack }) => {
           tabBarStyle={{ marginBottom: "40px" }} // فاصله بین تب‌ها
         >
           {/* تب وارد کردن شماره همراه */}
-          <TabPane tab="واردکردن شماره همراه" key="1" className="pb-6"> {/* افزایش فاصله با padding-bottom */}
+          <TabPane tab="واردکردن شماره همراه" key="1" className="pb-6">
+            {" "}
+            {/* افزایش فاصله با padding-bottom */}
             <div className="w-full max-w-md text-center">
               <h2 className="text-2xl font-bold mb-2 text-right">خوش آمدید!</h2>
               <p className="text-gray-500 text-xs mb-6 w-80 text-right">
@@ -69,7 +71,9 @@ const Register = ({ onBack }) => {
           </TabPane>
 
           {/* تب تایید کد ارسال شده */}
-          <TabPane tab="تایید کد ارسال شده" key="2" className="pb-6"> {/* افزایش فاصله با padding-bottom */}
+          <TabPane tab="تایید کد ارسال شده" key="2" className="pb-6">
+            {" "}
+            {/* افزایش فاصله با padding-bottom */}
             <div className="w-full max-w-md text-center">
               <h2 className="text-2xl font-bold mb-2 text-right">
                 تایید کد ارسال شده
