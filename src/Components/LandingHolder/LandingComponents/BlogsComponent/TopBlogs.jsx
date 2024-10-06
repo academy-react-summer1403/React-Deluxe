@@ -9,7 +9,7 @@ const blogsData = [
     author: "محمدحسین بحرالعلومی",
     date: "۲۳ فروردین ۱۴۰۳",
     views: "۳۰۴",
-    color: "bg-blue-500",
+    color: "bg-cyan-200",
   },
   {
     title: "فیگما یا ادوبی ایکس‌دی؟",
@@ -17,7 +17,7 @@ const blogsData = [
     author: "محمدحسین خلیل پور",
     date: "۳۰ اردیبهشت ۱۴۰۳",
     views: "۲۴۰",
-    color: "bg-red-500",
+    color: "bg-red-400",
   },
   {
     title: "فرق ری‌اکت با نکست جی‌اس چیست؟",
@@ -25,7 +25,7 @@ const blogsData = [
     author: "محسن اسفندیاری",
     date: "۲۷ اردیبهشت ۱۴۰۳",
     views: "۳۱۲",
-    color: "bg-yellow-500",
+    color: "bg-yellow-300",
   },
 ];
 
@@ -38,21 +38,27 @@ const TopBlogs = () => {
           {blogsData.map((blog, index) => (
             <div
               key={index}
-              className="p-6 bg-white rounded-lg  flex-1 min-w-[250px] max-w-[350px]"
+              className=" bg-white rounded-lg  flex-1 min-w-[370px] max-w-[450px]"
             >
               <div
                 className={`h-72 mx-auto mb-4 rounded-xl ${blog.color}`}
               ></div>
-              <h3 className="text-2xl font-semibold mb-2">{blog.title}</h3>
+              <h3 className="flex text-l font-bold mb-2">{blog.title}</h3>
               <div className="flex justify-between mt-4 text-gray-500 space-x-2 rtl:space-x-reverse">
-                <p className="text-gray-400 text-sm">{blog.author}</p>
-                <span className={`inline-flex items-center gap-2 `}>
-                  <i /> {blog.date}
-                  <BsCalendar4Week />
-                </span>
-                <span className="inline-flex items-center gap-2">
-                  <i /> {blog.views} <BsEye />
-                </span>
+                <p className="flex text-gray-400 text-sm items-center ">
+                  {blog.author}
+                </p>
+                <div>
+                  <span
+                    className={`inline-flex items-center text-xs gap-2 w-32 `}
+                  >
+                    <i /> {blog.date}
+                    <BsCalendar4Week />
+                  </span>
+                  <span className="inline-flex items-center text-xs gap-2">
+                    <i /> {blog.views} <BsEye />
+                  </span>
+                </div>
               </div>
             </div>
           ))}
