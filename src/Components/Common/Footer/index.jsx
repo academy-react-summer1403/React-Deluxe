@@ -12,7 +12,7 @@ const Footer = () => {
         <img src="" alt="" className="size-10" />
         <h1 className="text-xl font-bold text-cyan-500">آکادمی کد نویسی بحر</h1>
       </div>
-      <ul className="flex justify-between gap-10 text-black w-auto">
+      <ul className="flex justify-between gap-10 mt-3 text-black w-auto">
         <FooterItems Item="خانه" />
         <FooterItems Item="دوره" />
         <FooterItems Item="بلاگ ها" />
@@ -21,7 +21,7 @@ const Footer = () => {
         <FooterItems Item="ارتباط باما" />
         <FooterItems Item="خدمات ما" />
       </ul>
-      <div className="flex gap-4">
+      <div className="flex gap-4 mt-4">
         <i>
           <CiTwitter />
         </i>
