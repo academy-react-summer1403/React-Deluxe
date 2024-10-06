@@ -20,10 +20,10 @@ const Register = ({ onBack }) => {
           activeKey={currentTab}
           onChange={setCurrentTab}
           className="w-full"
-          tabBarStyle={{ marginBottom: '80px'}} // فاصله بین تب‌ها
+          tabBarStyle={{ marginBottom: "40px" }} // فاصله بین تب‌ها
         >
           {/* تب وارد کردن شماره همراه */}
-          <TabPane tab="واردکردن شماره همراه" key="1" className="text-8">
+          <TabPane tab="واردکردن شماره همراه" key="1" className="pb-6"> {/* افزایش فاصله با padding-bottom */}
             <div className="w-full max-w-md text-center">
               <h2 className="text-2xl font-bold mb-2 text-right">خوش آمدید!</h2>
               <p className="text-gray-500 text-xs mb-6 w-80 text-right">
@@ -40,7 +40,7 @@ const Register = ({ onBack }) => {
               <Button
                 type="primary"
                 className="ml-28 w-80 h-10 bg-blue-500 text-white rounded-3xl font-bold"
-                onClick={nextTab} 
+                onClick={nextTab}
               >
                 ارسال کد تایید
               </Button>
@@ -69,9 +69,11 @@ const Register = ({ onBack }) => {
           </TabPane>
 
           {/* تب تایید کد ارسال شده */}
-          <TabPane tab="تایید کد ارسال شده" key="2">
+          <TabPane tab="تایید کد ارسال شده" key="2" className="pb-6"> {/* افزایش فاصله با padding-bottom */}
             <div className="w-full max-w-md text-center">
-              <h2 className="text-2xl font-bold mb-2 text-right">تایید کد ارسال شده</h2>
+              <h2 className="text-2xl font-bold mb-2 text-right">
+                تایید کد ارسال شده
+              </h2>
               <p className="text-gray-500 text-xs mb-6 w-80 text-right">
                 کد تایید ارسال‌شده به شماره همراه خود را وارد کنید.
               </p>
@@ -101,7 +103,9 @@ const Register = ({ onBack }) => {
           {/* تب وارد کردن اطلاعات شخصی */}
           <TabPane tab="واردکردن اطلاعات شخصی" key="3">
             <div className="w-full max-w-md text-center">
-              <h2 className="text-2xl font-bold mb-2 text-right">وارد کردن اطلاعات شخصی</h2>
+              <h2 className="text-2xl font-bold mb-2 text-right">
+                وارد کردن اطلاعات شخصی
+              </h2>
               <p className="text-gray-500 text-xs mb-6 w-80 text-right">
                 لطفا اطلاعات شخصی خود را وارد کنید.
               </p>
@@ -131,7 +135,9 @@ const Register = ({ onBack }) => {
       </div>
 
       {/* بخش سمت چپ ثابت */}
-      <LoginPanel />
+      <div className="hidden md:flex w-full bg-gray-100  h-full">
+        <LoginPanel />
+      </div>
     </div>
   );
 };
