@@ -15,14 +15,15 @@ const Register = ({ onBack }) => {
   return (
     <div className="flex justify-center h-screen ">
       {/* بخش فرم ثبت‌نام */}
-      <div className="w-1/2 flex flex-col justify-center items-center p-10">
+      <div className="w-1/2 flex flex-col justify-center items-center p-4">
         <Tabs
           activeKey={currentTab}
           onChange={setCurrentTab}
           className="w-full"
+          tabBarStyle={{ marginBottom: '80px'}} // فاصله بین تب‌ها
         >
           {/* تب وارد کردن شماره همراه */}
-          <TabPane tab="واردکردن شماره همراه" key="1">
+          <TabPane tab="واردکردن شماره همراه" key="1" className="text-8">
             <div className="w-full max-w-md text-center">
               <h2 className="text-2xl font-bold mb-2 text-right">خوش آمدید!</h2>
               <p className="text-gray-500 text-xs mb-6 w-80 text-right">
@@ -38,8 +39,8 @@ const Register = ({ onBack }) => {
               />
               <Button
                 type="primary"
-                className=" ml-28 w-80 h-10 bg-blue-500 text-white rounded-3xl font-bold"
-                onClick={nextTab} // رفتن به تب بعدی
+                className="ml-28 w-80 h-10 bg-blue-500 text-white rounded-3xl font-bold"
+                onClick={nextTab} 
               >
                 ارسال کد تایید
               </Button>
@@ -70,9 +71,7 @@ const Register = ({ onBack }) => {
           {/* تب تایید کد ارسال شده */}
           <TabPane tab="تایید کد ارسال شده" key="2">
             <div className="w-full max-w-md text-center">
-              <h2 className="text-2xl font-bold mb-2 text-right">
-                تایید کد ارسال شده
-              </h2>
+              <h2 className="text-2xl font-bold mb-2 text-right">تایید کد ارسال شده</h2>
               <p className="text-gray-500 text-xs mb-6 w-80 text-right">
                 کد تایید ارسال‌شده به شماره همراه خود را وارد کنید.
               </p>
@@ -85,7 +84,7 @@ const Register = ({ onBack }) => {
               />
               <Button
                 type="primary"
-                className=" ml-28 w-80 h-10 bg-blue-500 text-white rounded-3xl font-bold"
+                className="ml-28 w-80 h-10 bg-blue-500 text-white rounded-3xl font-bold"
                 onClick={nextTab} // رفتن به تب بعدی
               >
                 تایید
@@ -102,9 +101,7 @@ const Register = ({ onBack }) => {
           {/* تب وارد کردن اطلاعات شخصی */}
           <TabPane tab="واردکردن اطلاعات شخصی" key="3">
             <div className="w-full max-w-md text-center">
-              <h2 className="text-2xl font-bold mb-2 text-right">
-                وارد کردن اطلاعات شخصی
-              </h2>
+              <h2 className="text-2xl font-bold mb-2 text-right">وارد کردن اطلاعات شخصی</h2>
               <p className="text-gray-500 text-xs mb-6 w-80 text-right">
                 لطفا اطلاعات شخصی خود را وارد کنید.
               </p>
@@ -120,11 +117,11 @@ const Register = ({ onBack }) => {
               </label>
               <Input
                 className="rounded-3xl mb-4 ml-28 w-80"
-                placeholder=" رمز عبور جدید خود را وارد کنید"
+                placeholder="رمز عبور جدید خود را وارد کنید"
               />
               <Button
                 type="primary"
-                className=" ml-28 w-80 h-10 bg-blue-500 text-white rounded-3xl font-bold"
+                className="ml-28 w-80 h-10 bg-blue-500 text-white rounded-3xl font-bold"
               >
                 تایید
               </Button>
@@ -134,9 +131,7 @@ const Register = ({ onBack }) => {
       </div>
 
       {/* بخش سمت چپ ثابت */}
-      {/* <div className="hidden md:block md:w-1/2 bg-gray-100  h-full "> */}
       <LoginPanel />
-      {/* </div> */}
     </div>
   );
 };
