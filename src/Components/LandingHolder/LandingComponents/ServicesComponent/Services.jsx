@@ -2,26 +2,25 @@ import React from "react";
 
 const servicesData = [
   {
+    title: "مدرک معتبر",
+    description: "با مدرک ما میتوانید به راحتی در همه جا استخدام بشید",
+    icon: "/path-to-service-icon-2.png",
+  },
+  {
     title: "آزمون ها",
     description: "با آزمون های تعیین سطح میتوانید سطح دانش خودتون رو بسنجید",
     icon: "/path-to-service-icon-1.png",
   },
   {
-    title: "مدرک معتبر",
-    description: "با مدرک ما میتوانید به راحتی در همه جا استخدام بشید",
-    icon: "/path-to-service-icon-2.png",
-    isSpecial: true, // Marking this service for special styling
+    title: "مشاوره ۲۴ ساعته",
+    description: "مشاورین ما ۲۴ ساعته جوابگوی سوال های شما هستند",
+    icon: "/path-to-service-icon-4.png",
   },
   {
     title: "فرصت‌های شغلی",
     description:
       "با توجه به سطح توانایی شما فرصت های شغلی به شما پیشنهاد داده میشه",
     icon: "/path-to-service-icon-3.png",
-  },
-  {
-    title: "مشاوره ۲۴ ساعته",
-    description: "مشاورین ما ۲۴ ساعته جوابگوی سوال های شما هستند",
-    icon: "/path-to-service-icon-4.png",
   },
 ];
 
@@ -38,11 +37,10 @@ const Services = () => {
           {servicesData.slice(0, 2).map((service, index) => (
             <div
               key={index}
-              className={`flex items-center p-4 border rounded-lg ${
-                service.isSpecial ? "border-blue-500" : "border-gray-300"
-              } flex-1`}
+              className={`flex items-center p-4 border rounded-lg bg-gray-100  border-gray-300 hover:border-blue-500
+               flex-1`}
             >
-              <div className="flex-shrink-0 mr-4">
+              <div className="flex-shrink-0 mx-2">
                 <img src={service.icon} alt="" className="h-10 w-10" />
               </div>
               <div className="text-right">
@@ -58,11 +56,10 @@ const Services = () => {
           {servicesData.slice(2, 4).map((service, index) => (
             <div
               key={index}
-              className={`flex items-center p-4 border rounded-lg ${
-                service.isSpecial ? "border-blue-500" : "border-gray-300"
-              } flex-1`}
+              className={`flex items-center p-4 border rounded-lg  bg-gray-100 border-gray-300 hover:border-blue-500
+               flex-1`}
             >
-              <div className="flex-shrink-0 mr-4">
+              <div className="flex-shrink-0 mx-2">
                 <img src={service.icon} alt="" className="h-10 w-10" />
               </div>
               <div className="text-right">

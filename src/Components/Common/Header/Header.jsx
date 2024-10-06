@@ -7,10 +7,12 @@ const Header = () => {
     <header className="bg-white p-4 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center space-x-4">
-          <img src="" alt="Logo" className="h-10" />
-          <h1 className="text-xl font-bold">آکادمی کد نویسی بحر</h1>
+          <img src="" alt="" className="size-10" />
+          <h1 className="text-xl font-bold text-cyan-500">
+            آکادمی کد نویسی بحر
+          </h1>
         </div>
-        <div className="hideen md:flex flex-nowrap items-center rounded-full bg-black p-1 pr-4">
+        <div className="hidden md:flex flex-nowrap items-center ml-10 rounded-full bg-black p-1 pr-4">
           <nav>
             <ul className="flex  justify-between text-white w-72">
               <HeaderItems Item="خانه" />

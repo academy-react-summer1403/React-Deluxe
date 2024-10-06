@@ -33,14 +33,14 @@ const coursesData = [
 
 const TopCourses = () => {
   return (
-    <section className="py-16 bg bg-gray-100">
+    <section className="py-16 ">
       <div className="container mx-auto text-center">
         <h2 className="text-3xl font-bold mb-8">دوره های برتر هفته</h2>
         <div className="flex flex-wrap justify-center gap-8">
           {coursesData.map((course, index) => (
             <div
               key={index}
-              className="p-6 bg-white relative  rounded-lg shadow-lg flex-1 min-w-[250px] max-w-[350px]"
+              className="p-6 bg-white relative  rounded-lg flex-1 min-w-[250px] max-w-[350px]"
             >
               <img
                 src={course.icon}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Avatar } from "antd";
+import { Avatar } from "antd";
 
 // // Images (Replace with actual image paths)
 // import HTMLIcon from "/path-to-html-icon.png";
@@ -12,16 +12,15 @@ import { Button, Avatar } from "antd";
 const HeroSection = () => {
   return (
     <section className="py-16 bg-white">
-      <div className="container mx-auto text-center">
-        <div className="flex items-center justify-between space mb-10">
+      <div className="container mx-auto text-center mx-3">
+        <div className="flex items-center justify-evenly ml-20  mb-10">
           {/* Stats Section */}
-          <div className="w-96  flex flex-wrap justify-start mb-4">
+          <div className="w-80  flex flex-wrap justify-start mb-4">
             <div className="flex items-center mx-4">
               <Avatar.Group>
                 <Avatar src="/path-to-student-avatar-1.png" />
                 <Avatar src="/path-to-student-avatar-2.png" />
                 <Avatar src="/path-to-student-avatar-3.png" />
-                <Avatar src="/path-to-student-avatar-4.png" />
               </Avatar.Group>
               <span className="">+100 دانشجوی فعال در دوره</span>
             </div>
@@ -30,37 +29,31 @@ const HeroSection = () => {
                 <Avatar src="/path-to-teacher-avatar-1.png" />
                 <Avatar src="/path-to-teacher-avatar-2.png" />
                 <Avatar src="/path-to-teacher-avatar-3.png" />
-                <Avatar src="/path-to-teacher-avatar-4.png" />
               </Avatar.Group>
               <span className="">+50 اساتید برتر جهان</span>
             </div>
           </div>
-          <div className="w-64 justify-center flex flex-wrap">
+          <div className="w-72 justify-center flex flex-wrap">
             <div>
               <div className=" text-4xl font-bold mb-4">آموزش مدرن</div>
               <h1 className=" text-4xl font-bold mb-4">پیشرفت سریع</h1>
             </div>
             <div>
-              <p className=" text-base mb-6">
+              <p className=" text-base  ">
                 آکادمی آموزش تخصصی برنامه نویسی بحر
               </p>
               <p className=" text-base mb-6">از کودکان تا بزرگسال</p>
             </div>
           </div>
-          <div className="flex  flex-wrap">
+          <div className="flex  flex-wrap flex-col">
             <div>
               <h3 className="flex  mr-2">همین حالا </h3>
               <h3 className="mr-2">شروع کن به یادگیری!</h3>
             </div>
 
-            <Button
-              type="primary"
-              shape="round"
-              size="large"
-              className="mb-8 mt-2 bg-gray-900 px-5 py-1.5"
-            >
+            <button className="mb-8 mt-2 text-white rounded-full bg-gray-900 px-5 py-1.5">
               جدیدترین دوره‌ها
-            </Button>
+            </button>
           </div>
         </div>
 
