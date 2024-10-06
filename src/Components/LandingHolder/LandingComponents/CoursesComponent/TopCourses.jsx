@@ -6,6 +6,8 @@ const coursesData = [
     price: "۱,۲۰۰,۰۰۰ تومان",
     icon: "/path-to-course-icon-4.png",
     tag: "برنامه نویسی",
+    tag2: "مقدماتی",
+    teacher: "محسن اسفندیاری",
     color: "bg-cyan-200",
   },
   {
@@ -13,6 +15,8 @@ const coursesData = [
     price: "۴۵۰,۰۰۰ تومان",
     icon: "/path-to-course-icon-3.png",
     tag: "طراحی",
+    tag2: "پیشرفته",
+    teacher: "محمدحسین خلیل پور",
     color: "bg-red-400",
   },
   {
@@ -20,6 +24,8 @@ const coursesData = [
     price: "۱,۰۰۰,۰۰۰ تومان",
     icon: "/path-to-course-icon-2.png",
     tag: "برنامه نویسی",
+    tag2: "پیشرفته",
+    teacher: "محمدحسین بحرالعلومی",
     color: "bg-yellow-300",
   },
   {
@@ -27,6 +33,8 @@ const coursesData = [
     price: "۵۰۰,۰۰۰ تومان",
     icon: "/path-to-course-icon-1.png",
     tag: "برنامه نویسی",
+    tag2: "پیشرفته",
+    teacher: "محمدحسین بحرالعلومی",
     color: "bg-blue-600",
   },
 ];
@@ -47,11 +55,23 @@ const TopCourses = () => {
                 alt={""}
                 className={`h-56 rounded-3xl w-72 mx-auto mb-4 ${course.color}`}
               />
-              <h3 className="text-xl font-semibold mb-2">{course.title}</h3>
-              <span className="text-gray-500 mb-4">{course.price}</span>
+              <h3 className="flex text-xl font-semibold mb-2">
+                {course.title}
+              </h3>
+              <div className="flex flex-nowrap gap-7">
+                <p className=" text-gray-400 text-xs items-center ">
+                  {course.teacher}
+                </p>
+                <span className="text-gray-500 text-sm font-semibold mb-4">
+                  {course.price}
+                </span>
+              </div>
               <div className="mt-4">
-                <span className="px-3 py-0  absolute top-8 right-8 bg-blue-500 text-white rounded-full">
+                <span className="px-3 py-0  text-xs absolute top-8 right-24 bg-blue-500 text-white rounded-full">
                   {course.tag}
+                </span>
+                <span className="px-3 py-0 text-xs  absolute top-8 right-8 bg-pink-500 text-white rounded-full">
+                  {course.tag2}
                 </span>
               </div>
             </div>

@@ -1,50 +1,39 @@
 import React from "react";
+import { FooterItems } from "./FooterItems";
+import { CiTwitter } from "react-icons/ci";
+import { PiYoutubeLogoThin } from "react-icons/pi";
+import { PiTelegramLogoThin } from "react-icons/pi";
+import { PiInstagramLogoLight } from "react-icons/pi";
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white py-12">
-      <div className="container mx-auto text-center">
-        <div className="flex flex-wrap justify-center space-x-4 rtl:space-x-reverse mb-8">
-          <a href="/" className="text-gray-400 hover:text-white">
-            خانه
-          </a>
-          <a href="/about" className="text-gray-400 hover:text-white">
-            درباره ما
-          </a>
-          <a href="/courses" className="text-gray-400 hover:text-white">
-            دوره ها
-          </a>
-          <a href="/teachers" className="text-gray-400 hover:text-white">
-            اساتید
-          </a>
-          <a href="/contact" className="text-gray-400 hover:text-white">
-            ارتباط با ما
-          </a>
-        </div>
-        <div className="flex justify-center space-x-6 rtl:space-x-reverse mb-8">
-          <a
-            href="https://www.instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <i className="icon-instagram text-gray-400 hover:text-white text-2xl" />
-          </a>
-          <a
-            href="https://www.twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <i className="icon-twitter text-gray-400 hover:text-white text-2xl" />
-          </a>
-          <a
-            href="https://www.facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <i className="icon-facebook text-gray-400 hover:text-white text-2xl" />
-          </a>
-        </div>
-        <div className="text-gray-400">آکادمی کد نویسی بحر © ۱۴۰۳</div>
+    <footer className="flex justify-center gap-36   border-t-2 py-12">
+      <div className="flex items-center space-x-4">
+        <img src="" alt="" className="size-10" />
+        <h1 className="text-xl font-bold text-cyan-500">آکادمی کد نویسی بحر</h1>
+      </div>
+      <ul className="flex justify-between gap-10 text-black w-auto">
+        <FooterItems Item="خانه" />
+        <FooterItems Item="دوره" />
+        <FooterItems Item="بلاگ ها" />
+        <FooterItems Item="اساتید" />
+        <FooterItems Item="درباره ما" />
+        <FooterItems Item="ارتباط باما" />
+        <FooterItems Item="خدمات ما" />
+      </ul>
+      <div className="flex gap-4">
+        <i>
+          <CiTwitter />
+        </i>
+        <i>
+          <PiYoutubeLogoThin />
+        </i>
+        <i>
+          <PiTelegramLogoThin />
+        </i>
+        <i>
+          <PiInstagramLogoLight />
+        </i>
       </div>
     </footer>
   );
