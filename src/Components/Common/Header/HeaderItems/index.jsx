@@ -1,10 +1,9 @@
 import React from "react";
 
 const HeaderItems = ({ Item }) => {
-  console.log(Item);
   return (
     <li>
-      <a href="#courses" className="hover:text-blue-600">
+      <a href="#courses" className="hover:text-white">
         {Item}
       </a>
     </li>
