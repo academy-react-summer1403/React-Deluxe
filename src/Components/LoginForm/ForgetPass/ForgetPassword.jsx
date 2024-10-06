@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Input, Tabs } from "antd";
 import "antd/dist/reset.css";
-import { LoginPanel } from "./LoginPanel";
+import { LoginPanel } from "../LoginPanel";
 
 const { TabPane } = Tabs;
 
@@ -18,7 +18,7 @@ const ForgotPassword = ({ onBack }) => {
       <div className="w-1/2 flex flex-col justify-center items-center p-10">
         <Tabs activeKey={currentTab} onChange={changeTab} className="w-full">
           {/* تب وارد کردن ایمیل */}
-          <TabPane  tab="وارد کردن ایمیل" key="1">
+          <TabPane tab="وارد کردن ایمیل" key="1">
             <div className="w-full max-w-md text-center">
               <h2 className="text-2xl font-bold mb-2 text-right">
                 فراموشی رمزعبور!
@@ -91,9 +91,9 @@ const ForgotPassword = ({ onBack }) => {
       </div>
 
       {/* بخش سمت چپ ثابت */}
-      
-       {/* <div className="hidden md:block md:w-1/2 bg-gray-100  h-full "> */}
-       <LoginPanel />
+
+      {/* <div className="hidden md:block md:w-1/2 bg-gray-100  h-full "> */}
+      <LoginPanel />
       {/* </div> */}
     </div>
   );

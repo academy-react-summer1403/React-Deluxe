@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Input, Tabs } from "antd";
 import "antd/dist/reset.css";
-import { ForgotPassword } from "./ForgetPassword";
+import { ForgotPassword } from "./ForgetPass/ForgetPassword";
 import { LoginPanel } from "./LoginPanel";
 import { Register } from "./Register";
 
@@ -34,7 +34,7 @@ const LoginPage = () => {
           className="w-full flex justify-center "
         >
           {/* تب وارد کردن شماره همراه */}
-          <TabPane  tab="وارد کردن شماره همراه" key="1" className="pr-2" >
+          <TabPane tab="وارد کردن شماره همراه" key="1" className="pr-2">
             <h2 className="text-2xl font-bold text-right">خوش برگشتی!</h2>
             <p className="text-gray-600 text-xs text-right mt-3 w-80">
               لطفا شماره همراه یا ایمیل و رمز عبور خود را برای ورود به حساب

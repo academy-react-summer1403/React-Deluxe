@@ -1,7 +1,10 @@
 import React from "react";
+import {Register} from "././Components/Register.jsx"
 
 const SignUp = () => {
-  return <div>SignUp</div>;
+  return 
+  <Register />
+  ;
 };
 
 export { SignUp };
