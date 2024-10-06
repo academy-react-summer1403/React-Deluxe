@@ -33,7 +33,7 @@ const CopyLink = () => {
     <div className="mt-4">
       <button
         onClick={copyToClipboard}
-        className="border-2 border-[#3772FF] text-[#3772FF] font-serif text-lg/4 line-heith px-4 py-2 rounded-full"
+        className="border-2 border-[#3772FF] text-[#3772FF] text-lg/4 line-heith px-4 py-2 rounded-full"
       >
         {copied ? "کپی شد!" : "کپی کردن لینک صفحه"}
       </button>
