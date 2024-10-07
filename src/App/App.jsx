@@ -1,38 +1,15 @@
-
-// import React from 'react';
-// import LeftPanel from '../Screens/SignIn/LeftPanel.jsx';
-// import LoginForm from '../Screens/SignIn/LoginForm.jsx';
-// // import LandingPage from '../Screens/SignIn/LandingPage.jsx';
-
-// const App = () => {
-//   return (
-//     <div className="flex h-screen">
-//       {/* Left Panel */}
-//       <div className="w-1/2 bg-gray-100 p-10 flex items-center">
-//         <LeftPanel />
-//       </div>
-
-//       {/* Right Panel (Login Form) */}
-//       <div className="w-1/2 p-10 flex items-center justify-center">
-//         <LoginForm />
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default App;
-
-
-// App.jsx
-import React from 'react';
-import './App.css';
-import { LoginPage } from '../Components/LoginForm';
+import { useState } from "react";
+import "./App.css";
+// import { authRoutes } from "../config/router/auth.router";
+import { RouterProvider } from "react-router-dom";
+import { commonRoutes } from "../config/router/common.router";
 
 function App() {
+  // const [isLoggedIn, setIsLoggedIn] = useState();
+  const publicRoutes = commonRoutes;
   return (
-    <div className="App">
-      <LoginPage />
-    </div>
+    <RouterProvider router={publicRoutes} />
+    // Can use: router={isLoggedIn ? authRoutes : publicRoutes} instead
   );
 }
 

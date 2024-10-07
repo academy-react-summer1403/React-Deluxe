@@ -1,7 +1,55 @@
+@font-face {
+  font-family: "vazirmatn";
+  src: url(../public/Vazirmatn/Vazirmatn-VariableFont_wght.ttf);
+  font-weight: 400;
+}
+@font-face {
+  font-family: "vazirmatn";
+  src: url(../public/Vazirmatn/static/Vazirmatn-Bold.ttf);
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "vazirmatn";
+  src: url(../public/Vazirmatn/static/Vazirmatn-ExtraBold.ttf);
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: "vazirmatn";
+  src: url(../public/Vazirmatn/static/Vazirmatn-ExtraLight.ttf);
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: "vazirmatn";
+  src: url(../public/Vazirmatn/static/Vazirmatn-Light.ttf);
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "vazirmatn";
+  src: url(../public/Vazirmatn/static/Vazirmatn-Medium.ttf);
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "vazirmatn";
+  src: url(../public/Vazirmatn/static/Vazirmatn-SemiBold.ttf);
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "vazirmatn";
+  src: url(../public/Vazirmatn/static/Vazirmatn-Thin.ttf);
+  font-weight: 100;
+}
+
 :root {
   margin: 0;
   padding: 0;
   direction: rtl;
+  font-family: "vazirmatn";
 }
 
 a {
@@ -57,7 +105,6 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

@@ -1,7 +1,7 @@
 import React from "react";
-
+import { LandingHolder } from "../../Components/LandingHolder/LandingHolder";
 const Landing = () => {
-  return <div>Landing</div>;
+  return <LandingHolder />;
 };
 
 export { Landing };
