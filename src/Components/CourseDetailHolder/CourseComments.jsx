@@ -36,6 +36,7 @@ const CourseComment = () => {
       title: "دوره جاوااسکریپت",
       comment:
         "واقعا عالی بود. هم استادش و هم کلاس ها منظم برگزار شدن و اصلا از مباحث عقب نموندم و تونستم به مقدار ثابتی پیشرفت کنم توی کدنویسی جاوا اسکریپت. ممنون از آکادمی بحر که این دوره رو گذاشتن ",
+      profilePic: "public/vite.svg",
       name: "امیر امیری",
       date: "29 اردیبهشت 1403",
       likes: 90,
@@ -45,6 +46,7 @@ const CourseComment = () => {
       title: "جاوااسکریپت",
       comment:
         "واقعا عالی بود. هم استادش و هم کلاس ها منظم برگزار شدن و اصلا از مباحث عقب نموندم و تونستم به مقدار ثابتی پیشرفت کنم توی کدنویسی جاوا اسکریپت. ممنون از آکادمی بحر که این دوره رو گذاشتن ",
+      profilePic: "public/vite.svg",
       name: "حسین سهرابی",
       date: "29 اردیبهشت 1403",
       likes: 18,
@@ -54,6 +56,7 @@ const CourseComment = () => {
       title: "دوره جاوا",
       comment:
         "واقعا عالی بود. هم استادش و هم کلاس ها منظم برگزار شدن و اصلا از مباحث عقب نموندم و تونستم به مقدار ثابتی پیشرفت کنم توی کدنویسی جاوا اسکریپت. ممنون از آکادمی بحر که این دوره رو گذاشتن ",
+      profilePic: "public/vite.svg",
       name: "یاسین کوچولو",
       date: "29 اردیبهشت 1403",
       likes: 1000,
@@ -61,8 +64,16 @@ const CourseComment = () => {
     },
   ];
 
-  const Comment = ({ title, comment, name, date, likes, dislikes }) => (
-    <div className="bg-gray-100 pt-4 px-4 rounded-3xl shadow-md mb-4 basis-[24%] h-64 flex flex-col justify-between">
+  const Comment = ({
+    title,
+    comment,
+    profilePic,
+    name,
+    date,
+    likes,
+    dislikes,
+  }) => (
+    <div className="bg-gray-100 pt-4 px-4 rounded-3xl shadow-md mb-6 basis-full lg:basis-[24%] h-64 flex flex-col justify-between">
       <div>
         <p className="font-bold text-[#1B1B1B] mb-2">{title}</p>
         <p className="text-[#7C7C7C] text-sm">{comment}</p>
@@ -72,10 +83,10 @@ const CourseComment = () => {
         {/* Right Section - User Info */}
         <div className="flex items-center">
           {/* Avatar */}
-          <div className="w-10 h-10 bg-green-500 rounded-full">
+          <div className="w-10 h-10 bg-fuchsia-700 rounded-full">
             {/* Placeholder for avatar, you can replace with img tag */}
             <img
-              src="https://via.placeholder.com/40"
+              src={profilePic}
               alt="Avatar"
               className="rounded-full w-full h-full object-cover"
             />
@@ -115,12 +126,12 @@ const CourseComment = () => {
     //     مشاهده بیشتر
     //   </button>
     // </div>
-    <div className="mb-6">
+    <div className="mb-6 p-6">
       <h3 className="text-xl font-bold mb-4 text-gray-500">
         نظرات دانشجو ها و اساتید
       </h3>
       <div className="flex flex-wrap justify-between">
-        <div className="bg-[#3772FF] p-4 rounded-3xl shadow-md mb-4 basis-[24%] h-64 flex flex-col justify-center items-center">
+        <div className="bg-[#3772FF] p-4 rounded-3xl shadow-md mb-4 basis-full mx-4 lg:mx-0 lg:basis-[24%] h-64 flex flex-col justify-center items-center">
           <TbMessagePlus className="size-8 mb-3" color="white" />
           <p className="font-bold text-white mb-5">نظر شما</p>
           <p className="text-white">برای نظر دادن کلیک کنید</p>
@@ -130,6 +141,7 @@ const CourseComment = () => {
             key={index}
             title={item.title}
             comment={item.comment}
+            profilePic={item.profilePic}
             name={item.name}
             date={item.date}
             likes={item.likes}
