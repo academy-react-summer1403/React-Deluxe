@@ -1,4 +1,4 @@
-import {Register} from "../../Components/SignUp/index.jsx"
+import { Register } from "../../Components/LoginForm/Register";
 
 const SignUp = () => {
   return <Register />
