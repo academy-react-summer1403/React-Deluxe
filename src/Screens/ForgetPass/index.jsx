@@ -1,9 +1,7 @@
-import React from "react";
-import {ForgotPassword} from "../../Components/ForgetPass/ForgetPassword"
+import {ForgotPassword} from "../../Components/LoginForm/ForgetPass/ForgetPassword.jsx"
 
 const ForgetPass = () => {
-  return 
-  <ForgotPassword />
+  return   <ForgotPassword />
 };
 
 export { ForgetPass };

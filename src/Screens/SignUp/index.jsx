@@ -1,9 +1,7 @@
-import React from "react";
-import {Register} from "././Components/Register.jsx"
+import {Register} from "../../Components/SignUp/index.jsx"
 
 const SignUp = () => {
-  return 
-  <Register />
+  return <Register />
   ;
 };
 

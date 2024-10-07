@@ -1,10 +1,10 @@
-import React from "react";
-import {LoginPage}  from "../../Components/index.jsx"
+// import React from "react";
+import {LoginPage } from "../../Components/LoginForm/index.jsx"
 
 const SignIn = () => {
-  return;
+  return <LoginPage />
   
-    <LoginPage />
+   
  
 };
 
