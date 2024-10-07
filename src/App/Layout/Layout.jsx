@@ -7,9 +7,9 @@ const Layout = () => {
   return (
     <div className="max-w-[393px] lg:max-w-[1440px]">
       {/* <Header className={ p-3 w-1 } /> */}
-      <Header />
+      {/* <Header /> */}
       <Outlet />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
