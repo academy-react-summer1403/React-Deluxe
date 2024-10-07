@@ -92,10 +92,12 @@ const CourseDesc = () => {
         <br />
         <br />
       </p>
-      <div className="flex justify-start gap-3 mt-5">
+      <div className="flex flex-col lg:flex-row justify-start gap-3 mt-5">
         {/* <StarRating rating={4} /> */}
-        <span className="">امتیاز بدهید</span>
-        <Rate className="" defaultValue={3} />
+        <div className="mb-6 lg:mb-0">
+          <span className="">امتیاز بدید</span>
+          <Rate className="mr-4" defaultValue={3} />
+        </div>
         <CopyLink />
       </div>
     </div>
