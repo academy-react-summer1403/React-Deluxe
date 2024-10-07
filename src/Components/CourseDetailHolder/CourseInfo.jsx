@@ -1,13 +1,17 @@
 // CourseInfo.jsx
 import { Rate } from "antd";
 import React, { useState } from "react";
+import { FaBook } from "react-icons/fa6";
+import { PiShoppingBagOpen } from "react-icons/pi";
+import { AiOutlineLike } from "react-icons/ai";
+import { AiOutlineDislike } from "react-icons/ai";
 
 const CourseInfo = () => {
   const [starValue, setStarValue] = useState(1);
   return (
     <div
       dir="rtl"
-      className="flex flex-col lg:flex-row bg-white p-6 rounded-lg shadow-md"
+      className="flex flex-col lg:flex-row bg-white p-6 rounded-lg"
     >
       {/* Right Section: Course Image */}
       <div className="flex justify-center lg:w-1/2 lg:h-[25rem] bg-slate-700 rounded-[1.8rem]">
@@ -26,49 +30,55 @@ const CourseInfo = () => {
         </h1>
 
         {/* 2nd Row: Course Info Section */}
-        <div className="flex flex-wrap justify-between mb-4">
-          <div className="basis-1/4 border border-gray-400 w-32 h-20 p-2">
-            <span className="text-gray-500 text-sm">وضعیت</span> <br />
-            <span className="text-white bg-[#ff5353] rounded-full px-2 text-lg/[2.5rem] font-light">
-              در حال برگزاری
-            </span>
+        <div className="mb-4 ">
+          <div className="flex flex-wrap justify-between mb-4 rounded-3xl border border-gray-400 overflow-hidden">
+            <div className="basis-[22%] border-l border-gray-400 w-32 h-20 p-2">
+              <span className="text-gray-400 text-sm">وضعیت</span> <br />
+              <span className="text-white bg-[#ff5353] rounded-full px-2 text-base/[2.5rem] font-light whitespace-nowrap">
+                درحال برگزاری
+              </span>
+            </div>
+            <div className="basis-[22%] border-l border-gray-400 w-32 h-20 p-2">
+              <span className="text-gray-400 text-sm">دسته بندی</span> <br />
+              <span className="text-white bg-[#3772ff] rounded-full px-2 text-base/[2.5rem] font-light">
+                برنامه نویسی
+              </span>
+            </div>
+            <div className="basis-[22%] border-l border-gray-400 w-32 h-20 p-2">
+              <span className="text-gray-400 text-sm">سطح آموزشی</span> <br />
+              <span className="text-white bg-[#ff37f5] rounded-full px-2 text-base/[2.5rem] font-light">
+                پیشرفته
+              </span>
+            </div>
+            <div className="basis-[34%] w-32 h-20 p-2">
+              <span className="text-gray-400 text-sm">مدرس</span> <br />
+              <span className="text-base/[2.5rem] font-light whitespace-nowrap">
+                محمدحسین بحرالعلومی
+              </span>
+            </div>
           </div>
-          <div className="basis-1/4 border border-gray-400 w-32 h-20 p-2">
-            <span className="text-gray-500 text-sm">دسته بندی</span> <br />
-            <span className="text-white bg-[#3772ff] rounded-full px-2 text-lg/[2.5rem] font-light">
-              برنامه نویسی
-            </span>
-          </div>
-          <div className="basis-1/4 border border-gray-400 w-32 h-20 p-2">
-            <span className="text-gray-500 text-sm">سطح آموزشی</span> <br />
-            <span className="text-white bg-[#ff37f5] rounded-full px-2 text-lg/[2.5rem] font-light">
-              پیشرفته
-            </span>
-          </div>
-          <div className="basis-1/4 border border-gray-400 w-32 h-20 p-2">
-            <span className="text-gray-500 text-sm">مدرس</span> <br />
-            <span className="text-lg/[2.5rem] font-light whitespace-nowrap">
-              محمد برزگرزاده
-            </span>
-          </div>
-
           {/* 3rd Row: Additional Info Section */}
-
-          <div className="basis-1/4 border border-gray-400 w-32 h-20 p-2">
-            <span className="text-gray-500 text-sm">تاریخ برگزاری</span> <br />
-            <span className="text-lg/[2.5rem] font-light">۳۱ خرداد ۱۴۰۲</span>
-          </div>
-          <div className="basis-1/4 border border-gray-400 w-32 h-20 p-2">
-            <span className="text-gray-500 text-sm">تاریخ اتمام</span> <br />
-            <span className="text-lg/[2.5rem] font-light">۳۱ تیر ۱۴۰۲</span>
-          </div>
-          <div className="basis-1/4 border border-gray-400 w-32 h-20 p-2">
-            <span className="text-gray-500 text-sm">تعداد لایک</span> <br />
-            <span className="text-lg/[2.5rem] font-light">۲۴</span>
-          </div>
-          <div className="basis-1/4 border border-gray-400 w-32 h-20 p-2">
-            <span className="text-gray-500 text-sm">تعداد دیسلایک</span> <br />
-            <span className="text-lg/[2.5rem] font-light">۵</span>
+          <div className="flex flex-wrap justify-between rounded-3xl border border-gray-400 overflow-hidden">
+            <div className="basis-1/4 border-l border-gray-400 w-32 h-20 p-2">
+              <span className="text-gray-400 text-sm">تاریخ برگزاری</span>{" "}
+              <br />
+              <span className="text-base/[2.5rem] font-light">
+                ۳۱ خرداد ۱۴۰۲
+              </span>
+            </div>
+            <div className="basis-1/4 border-l border-gray-400 w-32 h-20 p-2">
+              <span className="text-gray-400 text-sm">تاریخ اتمام</span> <br />
+              <span className="text-base/[2.5rem] font-light">۳۱ تیر ۱۴۰۲</span>
+            </div>
+            <div className="basis-1/4 border-l border-gray-400 w-32 h-20 p-2">
+              <span className="text-gray-400 text-sm">تعداد لایک</span> <br />
+              <span className="text-base/[2.5rem] font-light">۲۴ نفر</span>
+            </div>
+            <div className="basis-1/4 w-32 h-20 p-2">
+              <span className="text-gray-400 text-sm">تعداد دیسلایک</span>{" "}
+              <br />
+              <span className="text-base/[2.5rem] font-light">۵ نفر</span>
+            </div>
           </div>
         </div>
 
@@ -89,21 +99,23 @@ const CourseInfo = () => {
         </div>
 
         {/* 5th Row: Action Buttons */}
-        <div className="flex flex-row-reverse justify-between">
-          <div className="flex">
-            <button className="bg-[#3772ff] text-white w-12 h-12 rounded-full mr-2">
-              👍
-            </button>
-            <button className="bg-white text-[#1B1B1B] border border-gray-200 w-12 h-12 rounded-full">
-              👎
-            </button>
-          </div>
-          <button className="bg-[#2f2f2f] text-white px-4 py-2 rounded-full mx-auto">
-            اضافه به لیست مورد علاقه
-          </button>
-          <button className="bg-[#3772FF] text-white px-4 py-2 rounded-full mr-2">
+        <div className="flex flex-row justify-between">
+          <button className="bg-[#3772FF] text-white px-8 py-2 rounded-full mr-2 flex items-center">
+            <FaBook className="mx-2" />
             رزرو دوره
           </button>
+          <button className="bg-[#2f2f2f] text-white px-8 py-2 rounded-full mx-auto flex items-center">
+            <PiShoppingBagOpen className="size-5 mx-2" />
+            اضافه به لیست مورد علاقه
+          </button>
+          <div className="flex gap-3">
+            <button className="bg-[#3772ff] text-white w-12 h-12 rounded-full flex justify-center items-center">
+              <AiOutlineLike className="size-5" />
+            </button>
+            <button className="bg-white text-[#1B1B1B] border border-gray-200 w-12 h-12 rounded-full flex justify-center items-center">
+              <AiOutlineDislike className="size-5" />
+            </button>
+          </div>
         </div>
       </div>
     </div>
