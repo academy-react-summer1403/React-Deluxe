@@ -17,7 +17,7 @@ const InputField = ({ label, placeholder, darkMode }) => (
 
 const ForgotPassword = ({ onBack }) => {
   const [currentTab, setCurrentTab] = useState("1");
-  const [darkMode, setDarkMode] = useState(false); // حالت دارک
+  const [darkMode, setDarkMode] = useState(false); 
 
   const changeTab = (key) => {
     setCurrentTab(key);
