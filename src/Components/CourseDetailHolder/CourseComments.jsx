@@ -6,8 +6,8 @@ import { AiOutlineLike } from "react-icons/ai";
 import { AiOutlineDislike } from "react-icons/ai";
 
 // const Comment = ({ name, comment }) => (
-//   <div className="p-4 mb-4 bg-gray-100 rounded-lg shadow-md">
-//     <p className="mb-2 font-bold">{name}</p>
+//   <div className="bg-gray-100 p-4 rounded-lg shadow-md mb-4">
+//     <p className="font-bold mb-2">{name}</p>
 //     <p>{comment}</p>
 //   </div>
 // );
@@ -20,11 +20,11 @@ import { AiOutlineDislike } from "react-icons/ai";
 
 //   return (
 //     <div className="mb-6">
-//       <h3 className="mb-4 text-xl font-bold">نظرات دانشجویان</h3>
+//       <h3 className="text-xl font-bold mb-4">نظرات دانشجویان</h3>
 //       {commentsData.map((item, index) => (
 //         <Comment key={index} name={item.name} comment={item.comment} />
 //       ))}
-//       <button className="px-4 py-2 mt-4 text-white bg-blue-500 rounded-md">
+//       <button className="bg-blue-500 text-white px-4 py-2 mt-4 rounded-md">
 //         مشاهده بیشتر
 //       </button>
 //     </div>
@@ -73,78 +73,33 @@ const CourseComment = () => {
     likes,
     dislikes,
   }) => (
-    // <div className="bg-gray-100 pt-4 px-4 rounded-3xl shadow-md mb-6 basis-full lg:basis-[24%] h-64 flex flex-col justify-between">
-    //   <div>
-    //     <p className="font-bold text-[#1B1B1B] mb-2">{title}</p>
-    //     <p className="text-[#7C7C7C] text-sm">{comment}</p>
-    //   </div>
-
-    //   <div className="flex items-center justify-between w-full mb-2 rounded-lg">
-    //     {/* Right Section - User Info */}
-    //     <div className="flex items-center">
-    //       {/* Avatar */}
-    //       <div className="w-10 h-10 rounded-full bg-fuchsia-700">
-    //         {/* Placeholder for avatar, you can replace with img tag */}
-    //         <img
-    //           src={profilePic}
-    //           alt="Avatar"
-    //           className="object-cover w-full h-full rounded-full"
-    //         />
-    //       </div>
-    //       {/* User Name and Date */}
-    //       <div className="flex flex-col gap-1 mr-2">
-    //         <span className="text-xs font-bold text-gray-700">{name}</span>
-    //         <span className="text-xs text-gray-500">{date}</span>
-    //       </div>
-    //     </div>
-
-    //     {/* Left Section - Like/Dislike Buttons */}
-    //     <div className="flex items-center gap-2 text-gray-700">
-    //       {/* Like Button */}
-    //       <div className="flex items-center gap-1 text-lg">
-    //         <AiOutlineLike className="text-xl cursor-pointer" />
-    //         <span className="text-xs font-medium">{likes}</span>
-    //       </div>
-
-    //       {/* Dislike Button */}
-    //       <div className="flex items-center gap-1 text-lg">
-    //         <AiOutlineDislike className="text-xl cursor-pointer" />
-    //         <span className="text-xs font-medium">{dislikes}</span>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
-    <div className="bg-gray-100 dark:bg-indigo-900 pt-4 px-4 rounded-3xl shadow-md mb-6 basis-full lg:basis-[24%] h-64 flex flex-col justify-between">
+    <div className="bg-gray-100 pt-4 px-4 rounded-3xl shadow-md mb-6 basis-full lg:basis-[24%] h-64 flex flex-col justify-between">
       <div>
-        <p className="font-bold text-[#1B1B1B] dark:text-white mb-2">{title}</p>
-        <p className="text-[#7C7C7C] dark:text-gray-300 text-sm">{comment}</p>
+        <p className="font-bold text-[#1B1B1B] mb-2">{title}</p>
+        <p className="text-[#7C7C7C] text-sm">{comment}</p>
       </div>
 
-      <div className="flex items-center justify-between w-full mb-2 rounded-lg">
+      <div className="flex justify-between items-center mb-2 rounded-lg w-full">
         {/* Right Section - User Info */}
         <div className="flex items-center">
           {/* Avatar */}
-          <div className="w-10 h-10 rounded-full bg-fuchsia-700">
+          <div className="w-10 h-10 bg-fuchsia-700 rounded-full">
             {/* Placeholder for avatar, you can replace with img tag */}
             <img
               src={profilePic}
               alt="Avatar"
-              className="object-cover w-full h-full rounded-full"
+              className="rounded-full w-full h-full object-cover"
             />
           </div>
           {/* User Name and Date */}
           <div className="flex flex-col gap-1 mr-2">
-            <span className="text-xs font-bold text-gray-700 dark:text-gray-300">
-              {name}
-            </span>
-            <span className="text-xs text-gray-500 dark:text-gray-400">
-              {date}
-            </span>
+            <span className="text-xs font-bold text-gray-700">{name}</span>
+            <span className="text-xs text-gray-500">{date}</span>
           </div>
         </div>
 
         {/* Left Section - Like/Dislike Buttons */}
-        <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
+        <div className="flex items-center gap-2 text-gray-700">
           {/* Like Button */}
           <div className="flex items-center gap-1 text-lg">
             <AiOutlineLike className="text-xl cursor-pointer" />
@@ -162,7 +117,7 @@ const CourseComment = () => {
   );
 
   return (
-    // <div className="flex mb-6">
+    // <div className="mb-6 flex">
     //   <h3 className="text-xl font-bold mb-4 text-[#1B1B1B]">نظرات دانشجویان</h3>
     //   {commentsData.map((item, index) => (
     //     <Comment key={index} name={item.name} comment={item.comment} />
@@ -171,48 +126,15 @@ const CourseComment = () => {
     //     مشاهده بیشتر
     //   </button>
     // </div>
-    // <div className="p-6 mb-6">
-    //   <h3 className="mb-4 text-xl font-bold text-gray-500">
-    //     نظرات دانشجو ها و اساتید
-    //   </h3>
-    //   <div className="flex flex-wrap justify-between">
-    //     <div className="bg-[#3772FF] p-4 rounded-3xl shadow-md mb-4 basis-full lg:basis-[24%] h-64 flex flex-col justify-center items-center">
-    //       <TbMessagePlus className="mb-3 size-8" color="white" />
-    //       <p className="mb-5 font-bold text-white">نظر شما</p>
-    //       <p className="text-white">برای نظر دادن کلیک کنید</p>
-    //     </div>
-    //     {commentsData.map((item, index) => (
-    //       <Comment
-    //         key={index}
-    //         title={item.title}
-    //         comment={item.comment}
-    //         profilePic={item.profilePic}
-    //         name={item.name}
-    //         date={item.date}
-    //         likes={item.likes}
-    //         dislikes={item.dislikes}
-    //       />
-    //     ))}
-    //   </div>
-    //   <div className="flex justify-center">
-    //     <button className="bg-[#2F2F2F] text-white px-4 py-2 mt-4 rounded-full">
-    //       مشاهده بیشتر
-    //     </button>
-    //   </div>
-    // </div>
-    <div className="p-6 mb-6 bg-white dark:bg-indigo-950">
-      <h3 className="mb-4 text-xl font-bold text-gray-500 dark:text-gray-300">
+    <div className="mb-6 p-6">
+      <h3 className="text-xl font-bold mb-4 text-gray-500">
         نظرات دانشجو ها و اساتید
       </h3>
       <div className="flex flex-wrap justify-between">
-        <div className="bg-[#3772FF] dark:bg-indigo-900 p-4 rounded-3xl shadow-md mb-4 basis-full lg:basis-[24%] h-64 flex flex-col justify-center items-center">
-          <TbMessagePlus className="mb-3 size-8" color="white" />
-          <p className="mb-5 font-bold text-white dark:text-gray-100">
-            نظر شما
-          </p>
-          <p className="text-white dark:text-gray-300">
-            برای نظر دادن کلیک کنید
-          </p>
+        <div className="bg-[#3772FF] p-4 rounded-3xl shadow-md mb-4 basis-full mx-4 lg:mx-0 lg:basis-[24%] h-64 flex flex-col justify-center items-center">
+          <TbMessagePlus className="size-8 mb-3" color="white" />
+          <p className="font-bold text-white mb-5">نظر شما</p>
+          <p className="text-white">برای نظر دادن کلیک کنید</p>
         </div>
         {commentsData.map((item, index) => (
           <Comment
@@ -228,7 +150,7 @@ const CourseComment = () => {
         ))}
       </div>
       <div className="flex justify-center">
-        <button className="bg-[#2F2F2F] dark:bg-gray-700 text-white dark:text-gray-200 px-4 py-2 mt-4 rounded-full">
+        <button className="bg-[#2F2F2F] text-white px-4 py-2 mt-4 rounded-full">
           مشاهده بیشتر
         </button>
       </div>
