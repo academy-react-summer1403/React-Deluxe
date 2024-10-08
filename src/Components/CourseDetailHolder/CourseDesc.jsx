@@ -12,7 +12,7 @@ const StarRating = ({ rating }) => {
           xmlns="http://www.w3.org/2000/svg"
           fill={index < rating ? "#FFB700" : "#E4E4E4"}
           viewBox="0 0 24 24"
-          className="h-6 w-6"
+          className="w-6 h-6"
         >
           <path d="M12 .587l3.668 7.431 8.24 1.198-5.954 5.426 1.405 8.21L12 18.897l-7.359 3.88 1.405-8.21-5.954-5.426 8.24-1.198L12 .587z" />
         </svg>
@@ -32,7 +32,7 @@ const CopyLink = () => {
   };
 
   return (
-    <div className="-mt-1 mr-5">
+    <div className="mr-5 -mt-1">
       <button
         onClick={copyToClipboard}
         className="border-2 border-[#3772FF] text-[#3772FF] text-lg/4 line-heith px-4 py-2 rounded-full"
@@ -52,9 +52,9 @@ const CopyLink = () => {
 
 const CourseDesc = () => {
   return (
-    <div className="bg-white p-6 rounded-lg mb-6">
-      <h3 className="text-xl text-gray-500 font-bold mb-4">توضیحات دوره</h3>
-      <p className="text-gray-800 leading-relaxed">
+    <div className="p-6 mb-6 bg-white rounded-lg">
+      <h3 className="mb-4 text-xl font-bold text-gray-500">توضیحات دوره</h3>
+      <p className="leading-relaxed text-gray-800">
         لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده
         از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و
         سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای
@@ -92,10 +92,12 @@ const CourseDesc = () => {
         <br />
         <br />
       </p>
-      <div className="flex justify-start gap-3 mt-5">
+      <div className="flex flex-col justify-start gap-3 mt-5 lg:flex-row ">
         {/* <StarRating rating={4} /> */}
-        <span className="">امتیاز بدهید</span>
-        <Rate className="" defaultValue={3} />
+        <div className="mb-6 lg:mb-0">
+          <span className="">امتیاز بدید</span>
+          <Rate className="mr-4" defaultValue={3} />
+        </div>
         <CopyLink />
       </div>
     </div>

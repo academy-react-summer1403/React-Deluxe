@@ -131,7 +131,7 @@ const CourseComment = () => {
         نظرات دانشجو ها و اساتید
       </h3>
       <div className="flex flex-wrap justify-between">
-        <div className="bg-[#3772FF] p-4 rounded-3xl shadow-md mb-4 basis-full mx-4 lg:mx-0 lg:basis-[24%] h-64 flex flex-col justify-center items-center">
+        <div className="bg-[#3772FF] p-4 rounded-3xl shadow-md mb-4 basis-full lg:basis-[24%] h-64 flex flex-col justify-center items-center">
           <TbMessagePlus className="size-8 mb-3" color="white" />
           <p className="font-bold text-white mb-5">نظر شما</p>
           <p className="text-white">برای نظر دادن کلیک کنید</p>
