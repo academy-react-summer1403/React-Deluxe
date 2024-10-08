@@ -35,7 +35,7 @@ const GoalsSection = () => {
         <h3 className="text-3xl font-bold mb-6 dark:text-white">
           اهداف ما در آکادمی
         </h3>
-        <div className="grid grid-cols-1 place-items-center md:grid-cols-2 xl:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 place-items-center lg:grid-cols-2 xl:grid-cols-4 gap-8">
           {Goals.map((Item, Index) => (
             <GoalItems key={Index} Item={Item} />
           ))}

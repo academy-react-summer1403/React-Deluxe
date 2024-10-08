@@ -3,7 +3,7 @@ import HeaderItems from "./HeaderItems";
 import { PiBellThin } from "react-icons/pi";
 import DarkModeToggle from "../DarkMode";
 import { MenuWithToggle } from "./HeaderItems/MenuToggle";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <header className="bg-white dark:bg-indigo-950  p-4 ">
@@ -31,8 +31,7 @@ const Header = () => {
               <HeaderItems Item="درباره ما" />
             </ul>
           </nav>
-          <Link to="/signup" className="space-x-2">
-
+          <Link to={"/signup"} className="space-x-2">
             <button className="bg-blue-600 text-white py-2 px-4 rounded-full mr-10">
               ثبت نام یا ورود
             </button>
