@@ -17,8 +17,8 @@ const Footer = () => {
         <h1 className="text-xl font-bold text-cyan-500">آکادمی کد نویسی بحر</h1>
       </div>
       <ul className="flex flex-wrap justify-between gap-10 mt-3 text-black dark:text-white w-auto mx-5">
-        <FooterItems Item="خانه" />
-        <FooterItems Item="دوره" />
+        <FooterItems Item="خانه" link="/" />
+        <FooterItems Item="دوره" link="/courses" />
         <FooterItems Item="بلاگ ها" />
         <FooterItems Item="اساتید" />
         <FooterItems Item="درباره ما" />
