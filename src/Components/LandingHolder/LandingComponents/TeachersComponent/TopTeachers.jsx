@@ -24,7 +24,7 @@ const teachersData = [
 
 const TopTeachers = () => {
   return (
-    <section className="py-16 bg-gray-950 dark:bg-slate-800 mb-5 rounded-3xl  h-auto place-items-center ">
+    <section className="py-16 bg-gray-950 dark:bg-slate-800 mb-1 rounded-3xl  h-auto place-items-center ">
       <div className="container mx-auto text-center">
         <div className="flex flex-col xl:flex-row justify-between ">
           <div className="flex flex-col items-start text-justify  xl:w-2/5 mx-10">

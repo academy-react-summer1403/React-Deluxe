@@ -30,11 +30,11 @@ const HeroSection = () => {
   //   },
   // ];
   return (
-    <section className="py-16 ">
-      <div className="container mx-auto text-center ">
-        <div className="flex flex-col md:flex-row items-center justify-start md:justify-evenly md:ml-20  mb-10">
+    <section className="py-16">
+      <div className="container mx-auto text-center w-full ">
+        <div className="flex flex-col lg:flex-row items-center justify-start lg:justify-evenly   mb-10">
           {/* Stats Section */}
-          <div className="w-80 order-2 md:order-1 flex flex-wrap justify-start mb-5">
+          <div className="w-80 order-2 lg:order-1 flex flex-wrap justify-start mb-5">
             <div className="flex items-center mx-4">
               <Avatar.Group>
                 <Avatar src="https://s3-alpha-sig.figma.com/img/555c/b373/5701db8d4318f0d93edd1f4b64493b37?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=gbNRux8srZxwElhth9ojNNhAqLL73X0Tf3-7jteE~gFNDjm9aquaEfH7MEXxcZx4reT-P~~lQrYvhkFk1NzgB6CRBCXYi~5bS9xZxyXlfbWxX8--p8VRuDyBTOMRpzlsWP8KBtwrYYmw1aIJXrGB37PEQOUNNGPU~9URImIUvrQCfG1JM9PBHbSnd93PTGFErAp-6ajHzaruNUsJqbf1xvjBezbdZvRAJVvyncpmwTfL76Qy5auh8SsE2Owzdj7yzFubADQYBT8S2nPpIujx2B6PuZRxywMivGs7KtPwclW4FllDHxGXPYdWW36oaE0abNqmAE7Rw~HMZYsN08hC4Q__" />
@@ -52,7 +52,7 @@ const HeroSection = () => {
               <span className="dark:text-white">+50 اساتید برتر جهان</span>
             </div>
           </div>
-          <div className="w-72 order-1 md:order-2 justify-center flex flex-wrap my-5">
+          <div className="w-72 order-1 lg:order-2 justify-center flex flex-wrap my-5">
             <div>
               <div className=" text-4xl font-bold mb-4 dark:text-white">
                 آموزش مدرن
@@ -72,7 +72,7 @@ const HeroSection = () => {
           </div>
           <div className="flex order-3 flex-wrap flex-col">
             <div>
-              <h3 className="md:flex  mr-2 dark:text-white">همین حالا </h3>
+              <h3 className="lg:flex  mr-2 dark:text-white">همین حالا </h3>
               <h3 className="mr-2 dark:text-white">شروع کن به یادگیری!</h3>
             </div>
             <Link to={"/courses"}>
