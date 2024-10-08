@@ -27,16 +27,20 @@ const servicesData = [
 const Services = () => {
   return (
     <section className="py-16">
-      <div className="container mx-auto text-center">
-        <h2 className="text-3xl font-bold ">خدماتی که ما در طی دوره‌ها</h2>
-        <h2 className="text-3xl font-bold mb-8">به شما ارائه می‌دهیم</h2>
+      <div className="container mx-auto text-center ">
+        <h2 className="text-3xl font-bold dark:text-white">
+          خدماتی که ما در طی دوره‌ها
+        </h2>
+        <h2 className="text-3xl font-bold mb-8 dark:text-white">
+          به شما ارائه می‌دهیم
+        </h2>
 
         {/* First Row */}
         <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-8">
           {servicesData.slice(0, 2).map((service, index) => (
             <div
               key={index}
-              className={`flex items-center p-4 border rounded-lg bg-gray-100  border-gray-300 hover:border-blue-500
+              className={`flex flex-col md:flex-row flex-shrink-0 mditems-center p-4 border rounded-3xl bg-gray-100 dark:bg-gray-700 border-gray-300 hover:border-blue-500
                flex-1`}
             >
               <div className="flex-shrink-0 mx-2">
@@ -47,8 +51,12 @@ const Services = () => {
                 />
               </div>
               <div className="text-right">
-                <h3 className="text-xl font-semibold mb-1">{service.title}</h3>
-                <p className="text-gray-500">{service.description}</p>
+                <h3 className="text-xl font-semibold mb-1 dark:text-white">
+                  {service.title}
+                </h3>
+                <p className="text-gray-500 dark:text-gray-100">
+                  {service.description}
+                </p>
               </div>
             </div>
           ))}
@@ -59,7 +67,7 @@ const Services = () => {
           {servicesData.slice(2, 4).map((service, index) => (
             <div
               key={index}
-              className={`flex items-center p-4 border rounded-lg  bg-gray-100 border-gray-300 hover:border-blue-500
+              className={`flex flex-col md:flex-row md:items-center p-4 border rounded-3xl  bg-gray-100 dark:bg-gray-700 border-gray-300 hover:border-blue-500
                flex-1`}
             >
               <div className="flex-shrink-0 mx-2">
@@ -70,8 +78,12 @@ const Services = () => {
                 />
               </div>
               <div className="text-right">
-                <h3 className="text-xl font-semibold mb-1">{service.title}</h3>
-                <p className="text-gray-500">{service.description}</p>
+                <h3 className="text-xl font-semibold mb-1 dark:text-white">
+                  {service.title}
+                </h3>
+                <p className="text-gray-500 dark:text-gray-100">
+                  {service.description}
+                </p>
               </div>
             </div>
           ))}
