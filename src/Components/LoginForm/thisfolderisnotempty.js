@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
-const thisfolderisnotempty = () => {
-  return (
-    <div>thisfolderisnotempty</div>
-  )
-}
+const LogIn = () => {
+  return <div>thisfolderisnotempty</div>;
+};
 
-export default thisfolderisnotempty
+export default LogIn;
