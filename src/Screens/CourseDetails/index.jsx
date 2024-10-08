@@ -1,7 +1,16 @@
-// import React from "react";
+import React from "react";
+import { CourseDetailHolder } from "../../Components/CourseDetailHolder/CourseDetailHolder";
+import { Header } from "../../Components/Common/Header/Header";
+import { Footer } from "../../Components/Common/Footer";
 
 const CourseDetails = () => {
-  return <div>CourseDetails</div>;
+  return (
+    <>
+      <Header />
+      <CourseDetailHolder />
+      <Footer />
+    </>
+  );
 };
 
 export { CourseDetails };

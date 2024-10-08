@@ -7,14 +7,12 @@ import { TopCourses } from "./LandingComponents/CoursesComponent/TopCourses";
 import { TopBlogs } from "./LandingComponents/BlogsComponent/TopBlogs";
 import { TopTeachers } from "./LandingComponents/TeachersComponent/TopTeachers";
 import { Footer } from "../Common/Footer";
-import { Steps } from "antd";
 
 const LandingHolder = () => {
   return (
-    <div>
+    <div className="w-full relative dark:bg-indigo-950">
       <Header />
       <HeroSection />
-      <Steps labelPlacement="horizontal" size="defalt" />
       <GoalsSection />
       <Services />
       <TopCourses />
