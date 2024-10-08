@@ -21,10 +21,10 @@ const DarkModeToggle = () => {
     const root = window.document.documentElement;
     if (isDarkMode) {
       root.classList.remove("dark");
-      // localStorage.setItem("theme", "light");
+      localStorage.setItem("theme", "light");
     } else {
       root.classList.add("dark");
-      // localStorage.setItem("theme", "dark");
+      localStorage.setItem("theme", "dark");
     }
     setIsDarkMode(!isDarkMode);
   };

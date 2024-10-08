@@ -1,6 +1,7 @@
 import React from "react";
 import { Avatar } from "antd";
 import { HeroItem } from "./HeroSectionItems";
+import { Link } from "react-router-dom";
 
 // // Images (Replace with actual image paths)
 // import HTMLIcon from "/path-to-html-icon.png";
@@ -74,10 +75,11 @@ const HeroSection = () => {
               <h3 className="md:flex  mr-2 dark:text-white">همین حالا </h3>
               <h3 className="mr-2 dark:text-white">شروع کن به یادگیری!</h3>
             </div>
-
-            <button className="mb-8 mt-2 text-white rounded-full bg-gray-900 dark:bg-blue-500 px-5 py-1.5">
-              جدیدترین دوره‌ها
-            </button>
+            <Link to={"/courses"}>
+              <button className="mb-8 mt-2 text-white rounded-full bg-gray-900 dark:bg-blue-500 px-5 py-1.5">
+                جدیدترین دوره‌ها
+              </button>
+            </Link>
           </div>
         </div>
 
@@ -87,7 +89,7 @@ const HeroSection = () => {
           <div className="relative w-full">
             {" "}
             <div className="absolute bottom-1 w-full h-0.5 bg-gray-300"></div>
-            <div className="flex justify-between items-center relative">
+            <div className="flex justify-around  items-center relative">
               {/* <div className="flex justify-between items-center relative">
                 {pics.map((Item, Index) => (
                   <HeroItem key={Index} Item={Item} />

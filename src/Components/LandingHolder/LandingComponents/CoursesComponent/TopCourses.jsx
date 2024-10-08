@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const coursesData = [
   {
@@ -52,14 +53,19 @@ const TopCourses = () => {
               key={index}
               className="p-6 bg-white flex flex-col dark:bg-indigo-900 relative  rounded-lg justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
             >
-              <div
-                className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${course.color}`}
-              >
-                <img src={course.icon} alt={""} className={`size-48 `} />
-              </div>
-              <h3 className="flex text-xl dark:text-white font-semibold mb-2">
-                {course.title}
-              </h3>
+              <Link to={"/courseDetails"}>
+                <div
+                  className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${course.color}`}
+                >
+                  <img src={course.icon} alt={""} className={`size-48 `} />
+                </div>
+              </Link>
+
+              <Link to={"/courseDetails"}>
+                <h3 className="flex text-xl dark:text-white font-semibold mb-2 ">
+                  {course.title}
+                </h3>
+              </Link>
               <div className="flex flex-nowrap gap-7">
                 <p className=" text-gray-400 dark:text-white text-xs items-center ">
                   {course.teacher}

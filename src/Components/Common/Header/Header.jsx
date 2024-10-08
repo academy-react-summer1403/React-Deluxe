@@ -3,6 +3,7 @@ import HeaderItems from "./HeaderItems";
 import { PiBellThin } from "react-icons/pi";
 import DarkModeToggle from "../DarkMode";
 import { MenuWithToggle } from "./HeaderItems/MenuToggle";
+import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <header className="bg-white dark:bg-indigo-950  p-4 ">
@@ -20,17 +21,21 @@ const Header = () => {
         <div className="hidden lg:flex flex-nowrap items-center ml-10 rounded-full bg-black dark:bg-white p-1 pr-4">
           <nav>
             <ul className="flex  justify-between text-white dark:text-black w-72">
-              <HeaderItems Item="خانه" />
-              <HeaderItems Item="دوره ها" />
+              {/* <Link to={"/"}> */}
+              <HeaderItems Item="خانه" link="/" />
+              {/* </Link> */}
+              {/* <Link to={"courses"}> */}
+              <HeaderItems Item="دوره ها" link="/courses" />
+              {/* </Link> */}
               <HeaderItems Item="بلاگ ها" />
               <HeaderItems Item="درباره ما" />
             </ul>
           </nav>
-          <div className="space-x-2">
+          <Link to={"/signup"} className="space-x-2">
             <button className="bg-blue-600 text-white py-2 px-4 rounded-full mr-10">
               ثبت نام یا ورود
             </button>
-          </div>
+          </Link>
         </div>
         <div className="flex">
           <div className="flex lg:hidden items-center space-x-2 p-2 rounded-full border border-gray-300 w-15 h-11">
