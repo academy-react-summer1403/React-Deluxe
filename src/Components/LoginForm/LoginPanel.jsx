@@ -4,7 +4,7 @@ import logo from "../../assets/logo.png";
 
 const LoginPanel = () => {
   return (
-    <div className="flex bg-gray-100 p-10 flex-col justify-center rounded-3xl ml-6 h-[880px]" >
+    <div className="flex bg-gray-100 p-10 flex-col justify-center rounded-3xl ml-6 h-[880px]">
       <div className="flex items-center mb-8">
         <img src={logo} alt="Logo" className="w-12 h-12" />
         <h2 className="text-blue-500 text-xl text-right">
@@ -19,6 +19,6 @@ const LoginPanel = () => {
       <img src={laptopImage} className="w-3/4 mx-auto mt-10" />
     </div>
   );
-}
+};
 
 export { LoginPanel };
