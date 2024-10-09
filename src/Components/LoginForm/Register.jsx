@@ -13,13 +13,14 @@ const Register = ({ onBack }) => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row justify-center h-screen bg-white">
+    <div className="flex flex-col md:flex-row h-screen justify-center items-center bg-white">
+    
       {/* بخش فرم ثبت‌نام */}
       <div className="w-full md:w-2/3 lg:w-1/2 flex flex-col justify-center items-center p-4 text-black">
         <Tabs
           activeKey={currentTab}
           onChange={setCurrentTab}
-          className="w-full"
+          className="w-full h-screen"
           tabBarStyle={{ marginBottom: "30px", backgroundColor: "#fff" }} // تب‌ها
           tabBarExtraContent={{ left: null, right: null }} // تنظیمات اضافی تب
         >
@@ -108,7 +109,7 @@ const Register = ({ onBack }) => {
       </div>
 
       {/* بخش سمت چپ ثابت */}
-      <div className="hidden md:flex w-full lg:w-1/2 bg-gray-100 h-full">
+      <div className="hidden md:flex w-full lg:w-1/2">
         <LoginPanel />
       </div>
     </div>

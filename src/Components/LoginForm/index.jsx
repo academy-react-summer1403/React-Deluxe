@@ -27,20 +27,20 @@ const LoginPage = () => {
   return (
     <div className="flex flex-col md:flex-row h-screen justify-center items-center bg-white">
       {/* Right side with tabs and login form */}
-      <div className="flex flex-col w-full md:w-1/2 justify-center items-center p-5 md:p-10 text-black">
+      <div className="flex flex-col w-full md:w-1/2 justify-center items-center p-5 md:p-10 text-black ">
         <Tabs
           activeKey={currentTab}
           onChange={changeTab}
-          className="w-full flex justify-center"
+          className="w-full flex justify-center h-screen"
           tabBarGutter={40}
           tabBarStyle={{
             borderBottom: 'none',
-            marginBottom: '50px', // کاهش marginBottom
+            marginBottom: '50px',
             background: "white",
           }}
         >
           {/* Blue line */}
-          <div style={{ height: '8px', backgroundColor: '#1890ff', marginBottom: '-8px' }} />
+          <div style={{ height: '8px', backgroundColor: '#1890ff', marginBottom: '-8px'}} />
 
           <TabPane
             tab={<span className="px-4" style={{ paddingBottom: '8px' }}>وارد کردن شماره همراه</span>}
