@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { Button, Input, Tabs } from "antd";
 import "antd/dist/reset.css";
 import { LoginPanel } from "./LoginPanel";
@@ -20,9 +20,12 @@ const Register = ({ onBack }) => {
         <Tabs
           activeKey={currentTab}
           onChange={setCurrentTab}
-          className="w-full h-screen"
-          tabBarStyle={{ marginBottom: "30px", backgroundColor: "#fff" }} // تب‌ها
-          tabBarExtraContent={{ left: null, right: null }} // تنظیمات اضافی تب
+          className="w-full flex justify-center h-screen mt-8"
+          tabBarStyle={{
+            borderBottom: 'none',
+            marginBottom: '50px',
+            background: "white",
+          }} // تب‌ها
         >
           {/* تب وارد کردن شماره همراه */}
           <TabPane tab="واردکردن شماره همراه" key="1" className="pb-6">
@@ -50,7 +53,7 @@ const Register = ({ onBack }) => {
 
           {/* تب تایید کد ارسال شده */}
           <TabPane tab="تایید کد ارسال شده" key="2" className="pb-6">
-            <div className="w-full max-w-xs sm:max-w-md lg:max-w-lg text-center">
+            <div className="w-full max-w-xs sm:max-w-md lg:max-w-lg text-center" style={{ marginTop: "30px" }}> {/* فاصله بالای این تب */}
               <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 text-right">
                 تایید کد ارسال شده
               </h2>

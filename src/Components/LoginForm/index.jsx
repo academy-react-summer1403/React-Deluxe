@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { Button, Input, Tabs } from "antd";
 import "antd/dist/reset.css";
 import { ForgotPassword } from "./ForgetPass/ForgetPassword";
@@ -31,7 +31,7 @@ const LoginPage = () => {
         <Tabs
           activeKey={currentTab}
           onChange={changeTab}
-          className="w-full flex justify-center h-screen"
+          className="w-full flex justify-center h-screen mt-8"
           tabBarGutter={40}
           tabBarStyle={{
             borderBottom: 'none',
@@ -113,10 +113,10 @@ const LoginPage = () => {
           {/* Two-factor code verification tab */}
           <TabPane tab={<span className="px-4" style={{ paddingBottom: '8px' }}>تایید کد دو مرحله‌ای</span>} key="2">
             <div className="w-full max-w-xs sm:max-w-md lg:max-w-lg text-center">
-              <h2 className="text-2xl font-bold text-center">
+              <h2 className="text-2xl font-bold text-right">
                 تایید کد دو مرحله‌ای!
               </h2>
-              <p className="text-gray-600 text-xs mt-3 pr-5">
+              <p className="text-gray-600 text-xs text-right mt-3 ">
                 کد دو مرحله‌ای به شماره همراه شما ارسال شد. لطفا کد را وارد کنید.
               </p>
               <label className="block mt-11 text-xs font-bold text-right text-gray-700">

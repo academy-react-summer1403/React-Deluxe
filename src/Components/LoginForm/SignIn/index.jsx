@@ -31,12 +31,12 @@ const LoginPage = () => {
         <Tabs
           activeKey={currentTab}
           onChange={changeTab}
-          className="w-full flex justify-center"
+          className="w-full flex justify-center mt-8"
           tabBarGutter={40}
           tabBarStyle={{
             borderBottom: "none",
             marginBottom: "75px",
-            background: "white",   
+            background: "white", 
           }}
         >
           <div
