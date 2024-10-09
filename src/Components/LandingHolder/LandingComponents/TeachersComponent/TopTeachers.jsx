@@ -44,7 +44,7 @@ const TopTeachers = () => {
             </button>
           </div>
           <div className="bg-gray-900 dark:bg-slate-600 rounded-2xl flex items-center justify-center  py-10 mx-10 h-80 flex-1 xl:w-3/5">
-            <div className="flex flex-col xl:flex-row ">
+            <div className="flex flex-col md:flex-row ">
               {teachersData.map((teacher, index) => (
                 <div
                   key={index}
