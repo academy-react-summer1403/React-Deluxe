@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { Button, Input, Tabs } from "antd";
 import "antd/dist/reset.css";
 import { LoginPanel } from "../LoginPanel";
@@ -23,9 +23,9 @@ const ForgotPassword = ({ onBack }) => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row justify-center h-screen bg-white">
+    <div className="flex flex-col sm:flex-col md:flex-row lg:flex-row xl:flex-row 2xl:flex-row justify-center h-screen bg-white">
       {/* بخش فرم فراموشی رمز عبور */}
-      <div className="w-full md:w-1/2 flex flex-col justify-center items-center p-5 md:p-10 text-black">
+      <div className="w-full sm:w-full md:w-2/3 lg:w-1/2 xl:w-1/2 2xl:w-1/2 flex flex-col justify-center items-center p-5 sm:p-5 md:p-10 lg:p-12 xl:p-14 2xl:p-16 text-black">
         <Tabs
           activeKey={currentTab}
           onChange={changeTab}
@@ -35,8 +35,10 @@ const ForgotPassword = ({ onBack }) => {
           {/* تب وارد کردن ایمیل */}
           <TabPane tab={<span className="mx-3">وارد کردن ایمیل</span>} key="1">
             <div className="w-full max-w-md text-center">
-              <h2 className="text-2xl font-bold mb-2 text-right">فراموشی رمزعبور!</h2>
-              <p className="text-xs mb-6 w-80 md:w-96 text-right text-gray-500">
+              <h2 className="text-2xl sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-4xl font-bold mb-2 text-right">
+                فراموشی رمزعبور!
+              </h2>
+              <p className="text-xs sm:text-xs md:text-sm lg:text-sm xl:text-base 2xl:text-lg mb-6 w-80 sm:w-72 md:w-80 lg:w-96 xl:w-[400px] 2xl:w-[500px] text-right text-gray-500">
                 اگر رمزعبور خود را فراموش کرده‌اید، ایمیل خود را وارد کنید تا
                 لینک تغییر رمزعبور برای شما ارسال شود.
               </p>
@@ -60,8 +62,10 @@ const ForgotPassword = ({ onBack }) => {
           {/* تب تایید کد دو مرحله‌ای */}
           <TabPane tab={<span className="mx-3">تایید کد ارسال شده</span>} key="2">
             <div className="w-full max-w-md text-center">
-              <h2 className="text-2xl font-bold mb-2 text-right">رمز عبور جدید!</h2>
-              <p className="text-xs mb-6 w-80 md:w-96 text-right text-gray-500">
+              <h2 className="text-2xl sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-4xl font-bold mb-2 text-right">
+                رمز عبور جدید!
+              </h2>
+              <p className="text-xs sm:text-xs md:text-sm lg:text-sm xl:text-base 2xl:text-lg mb-6 w-80 sm:w-72 md:w-80 lg:w-96 xl:w-[400px] 2xl:w-[500px] text-right text-gray-500">
                 رمز عبور جدید خود را وارد کنید
               </p>
               <InputField label="رمز عبور جدید" placeholder="رمز عبور خود را وارد کنید" />
@@ -84,7 +88,7 @@ const ForgotPassword = ({ onBack }) => {
       </div>
 
       {/* بخش سمت چپ ثابت */}
-      <div className="hidden md:flex w-full md:w-1/2 bg-gray-100 h-full">
+      <div className="hidden md:flex w-full">
         <LoginPanel />
       </div>
     </div>
