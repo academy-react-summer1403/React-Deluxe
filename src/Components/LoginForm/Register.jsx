@@ -7,35 +7,34 @@ const { TabPane } = Tabs;
 
 const Register = ({ onBack }) => {
   const [currentTab, setCurrentTab] = useState("1");
-  const [darkMode, setDarkMode] = useState(false); // اضافه کردن state برای حالت تاریک
 
   const nextTab = () => {
     setCurrentTab((prevTab) => (parseInt(prevTab) + 1).toString());
   };
 
   return (
-    <div className={`flex justify-center h-screen ${darkMode ? "bg-gray-900" : "bg-white"}`}>
+    <div className="flex justify-center h-screen bg-white">
       {/* بخش فرم ثبت‌نام */}
-      <div className={`w-1/2 flex flex-col justify-center items-center p-4 ${darkMode ? "text-white" : "text-black"}`}>
+      <div className="w-1/2 flex flex-col justify-center items-center p-4 text-black">
         <Tabs
           activeKey={currentTab}
           onChange={setCurrentTab}
           className="w-full"
-          tabBarStyle={{ marginBottom: "40px", backgroundColor: darkMode ? "#1F2937" : "#fff" }} // تب‌ها بر اساس حالت دارک یا روشن
+          tabBarStyle={{ marginBottom: "40px", backgroundColor: "#fff" }} // تب‌ها
         >
           {/* تب وارد کردن شماره همراه */}
           <TabPane tab="واردکردن شماره همراه" key="1" className="pb-6">
             <div className="w-full max-w-md text-center">
               <h2 className="text-2xl font-bold mb-2 text-right">خوش آمدید!</h2>
-              <p className={`text-xs mb-6 w-80 text-right ${darkMode ? "text-gray-400" : "text-gray-500"}`}>
+              <p className="text-xs mb-6 w-80 text-right text-gray-500">
                 لطفا شماره همراه خود را وارد کنید تا کد تایید برای شما ارسال
                 شود.
               </p>
-              <label className={`block text-xs font-bold text-right mb-2 ${darkMode ? "text-gray-300" : "text-gray-700"}`}>
+              <label className="block text-xs font-bold text-right mb-2 text-gray-700">
                 شماره همراه
               </label>
               <Input
-                className={`rounded-3xl mb-4 ml-28 w-80 ${darkMode ? "bg-gray-700 text-white" : "bg-white text-black"}`}
+                className="rounded-3xl mb-4 ml-28 w-80 bg-white text-black"
                 placeholder="شماره همراه خود را وارد کنید"
               />
               <Button
@@ -54,14 +53,14 @@ const Register = ({ onBack }) => {
               <h2 className="text-2xl font-bold mb-2 text-right">
                 تایید کد ارسال شده
               </h2>
-              <p className={`text-xs mb-6 w-80 text-right ${darkMode ? "text-gray-400" : "text-gray-500"}`}>
+              <p className="text-xs mb-6 w-80 text-right text-gray-500">
                 کد تایید ارسال‌شده به شماره همراه خود را وارد کنید.
               </p>
-              <label className={`block text-xs font-bold text-right mb-2 ${darkMode ? "text-gray-300" : "text-gray-700"}`}>
+              <label className="block text-xs font-bold text-right mb-2 text-gray-700">
                 کد تایید
               </label>
               <Input
-                className={`rounded-3xl mb-4 ml-28 w-80 ${darkMode ? "bg-gray-700 text-white" : "bg-white text-black"}`}
+                className="rounded-3xl mb-4 ml-28 w-80 bg-white text-black"
                 placeholder="کد تایید خود را وارد کنید"
               />
               <Button
@@ -80,21 +79,21 @@ const Register = ({ onBack }) => {
               <h2 className="text-2xl font-bold mb-2 text-right">
                 وارد کردن اطلاعات شخصی
               </h2>
-              <p className={`text-xs mb-6 w-80 text-right ${darkMode ? "text-gray-400" : "text-gray-500"}`}>
+              <p className="text-xs mb-6 w-80 text-right text-gray-500">
                 لطفا اطلاعات شخصی خود را وارد کنید.
               </p>
-              <label className={`block text-xs font-bold text-right mb-2 ${darkMode ? "text-gray-300" : "text-gray-700"}`}>
+              <label className="block text-xs font-bold text-right mb-2 text-gray-700">
                 ایمیل
               </label>
               <Input
-                className={`rounded-3xl mb-4 ml-28 w-80 ${darkMode ? "bg-gray-700 text-white" : "bg-white text-black"}`}
+                className="rounded-3xl mb-4 ml-28 w-80 bg-white text-black"
                 placeholder="ایمیل خود را وارد کنید"
               />
-              <label className={`block text-xs font-bold text-right mb-2 ${darkMode ? "text-gray-300" : "text-gray-700"}`}>
+              <label className="block text-xs font-bold text-right mb-2 text-gray-700">
                 رمز عبور جدید
               </label>
               <Input
-                className={`rounded-3xl mb-4 ml-28 w-80 ${darkMode ? "bg-gray-700 text-white" : "bg-white text-black"}`}
+                className="rounded-3xl mb-4 ml-28 w-80 bg-white text-black"
                 placeholder="رمز عبور جدید خود را وارد کنید"
               />
               <Button
@@ -106,19 +105,10 @@ const Register = ({ onBack }) => {
             </div>
           </TabPane>
         </Tabs>
-
-        {/* دکمه تغییر حالت تاریک */}
-        <Button
-          type="default"
-          className="mt-4 text-black bg-transparent ml-24"
-          onClick={() => setDarkMode(!darkMode)}
-        >
-          {darkMode ? "حالت روشن" : "حالت تاریک"}
-        </Button>
       </div>
 
       {/* بخش سمت چپ ثابت */}
-      <div className="hidden md:flex w-full bg-gray-100  h-full">
+      <div className="hidden md:flex w-full bg-gray-100 h-full">
         <LoginPanel />
       </div>
     </div>
@@ -126,3 +116,4 @@ const Register = ({ onBack }) => {
 };
 
 export { Register };
+
