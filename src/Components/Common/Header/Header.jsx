@@ -32,7 +32,7 @@ const Header = () => {
               <HeaderItems Item="درباره ما" />
             </ul>
           </nav>
-          <Link to={"/signup"} className="space-x-2">k
+          <Link to={"/signin"} className="space-x-2">k
             <button className="bg-blue-600 text-white py-2 px-4 rounded-full mr-10">
               ثبت نام یا ورود
             </button>
