@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import laptopImage from "../../assets/laptop.png";
 import logo from "../../assets/logo.png";
 
