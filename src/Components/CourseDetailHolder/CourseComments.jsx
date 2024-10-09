@@ -59,7 +59,7 @@ const CourseComment = () => {
       profilePic: "public/vite.svg",
       name: "یاسین کوچولو",
       date: "29 اردیبهشت 1403",
-      likes: 1000,
+      likes: "10k",
       dislikes: 0,
     },
   ];
@@ -137,7 +137,7 @@ const CourseComment = () => {
             <span className="text-xs font-bold text-gray-700 dark:text-gray-300">
               {name}
             </span>
-            <span className="text-xs text-gray-500 dark:text-gray-400">
+            <span className="text-xs text-gray-500 dark:text-gray-400 lg:text-[0.5rem]/[0.5rem]">
               {date}
             </span>
           </div>
