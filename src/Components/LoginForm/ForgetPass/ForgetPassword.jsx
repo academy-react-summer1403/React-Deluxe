@@ -30,7 +30,7 @@ const ForgotPassword = ({ onBack }) => {
         <Tabs
           activeKey={currentTab}
           onChange={changeTab}
-          className="w-full h-screen"
+          className="w-full h-screen mt-8"
           tabBarStyle={{ marginBottom: '60px', backgroundColor: "#fff" }}
         >
           {/* تب وارد کردن ایمیل */}
