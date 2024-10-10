@@ -40,7 +40,7 @@ const TopBlogs = () => {
           {blogsData.map((blog, index) => (
             <div
               key={index}
-              className=" bg-white dark:bg-indigo-900 rounded-lg  flex-1 "
+              className=" bg-white dark:bg-indigo-900 rounded-lg  flex-1 min-w-[370px] max-w-[450px]"
             >
               <div
                 className={`h-72 mx-auto flex justify-center items-center mb-4 rounded-xl ${blog.color}`}

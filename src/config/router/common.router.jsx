@@ -31,21 +31,21 @@ export const commonRoutes = createBrowserRouter([
         element: <CourseDetails />,
         //   errorElement: <ErrorPg />,
       },
+      {
+        path: "/signIn",
+        element: <SignIn />,
+        //   errorElement: <ErrorPg />,
+      },
+      {
+        path: "/signUp",
+        element: <SignUp />,
+        //   errorElement: <ErrorPg />,
+      },
+      {
+        path: "/forgetPass",
+        element: <ForgetPass />,
+        //   errorElement: <ErrorPg />,
+      },
     ],
-  },
-  {
-    path: "/signIn",
-    element: <SignIn />,
-    //   errorElement: <ErrorPg />,
-  },
-  {
-    path: "/signUp",
-    element: <SignUp />,
-    //   errorElement: <ErrorPg />,
-  },
-  {
-    path: "/forgetPass",
-    element: <ForgetPass />,
-    //   errorElement: <ErrorPg />,
   },
 ]);

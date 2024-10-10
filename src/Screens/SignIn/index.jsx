@@ -1,11 +1,7 @@
-// import React from "react";
-import {LoginPage } from "../../Components/LoginForm/index.jsx"
+import React from "react";
 
 const SignIn = () => {
-  return <LoginPage />
-  
-   
- 
+  return <div>SignIn</div>;
 };
 
 export { SignIn };

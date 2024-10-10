@@ -10,15 +10,15 @@ import { Footer } from "../Common/Footer";
 
 const LandingHolder = () => {
   return (
-    <div className=" relative dark:bg-indigo-950">
-      {/* <Header /> */}
+    <div className="w-full relative dark:bg-indigo-950">
+      <Header />
       <HeroSection />
       <GoalsSection />
       <Services />
       <TopCourses />
       <TopBlogs />
       <TopTeachers />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };
