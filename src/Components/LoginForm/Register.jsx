@@ -15,7 +15,7 @@ const Register = ({ onBack }) => {
   return (
     <div className="flex flex-col md:flex-row h-screen justify-center items-center bg-white">
       {/* بخش فرم ثبت‌نام */}
-      <div className="flex flex-col w-full md:w-1/2 justify-center items-center p-5 mt-auto md:p-10 text-black">
+      <div className="flex flex-col w-full md:w-1/2 justify-center items-center p-5  md:p-10 text-black">
         <Tabs
           activeKey={currentTab}
           onChange={setCurrentTab}
