@@ -34,7 +34,10 @@ const CopyLink = () => {
         className="border-2 border-[#3772FF] dark:border-indigo-800 text-[#3772FF] dark:text-indigo-300 text-lg/4 line-heith px-4 py-2 rounded-full"
       >
         {copied ? (
-          <span className="text-[#3772FF] dark:text-white">کپی شد!</span>
+          <div className="flex">
+            <IoIosLink className="-scale-x-[1] ml-2 text-[#3772FF] dark:text-white" />
+            <span className="text-[#3772FF] dark:text-white">کپی شد!</span>
+          </div>
         ) : (
           <div className="flex">
             <IoIosLink className="-scale-x-[1] ml-2 text-[#3772FF] dark:text-white" />

@@ -255,17 +255,18 @@ const CourseInfo = () => {
               </span>
             </div>
             <div className="hidden text-2xl font-bold text-black dark:text-white lg:block">
-              ۲۵,۰۰۰ تومان
+              ۲۵,۰۰۰
+              <span className="text-sm mr-1">تومان</span>
             </div>
           </div>
 
           {/* 5th Row: Action Buttons */}
           <div className="flex flex-row justify-evenly lg:justify-between md:gap-2 lg:gap-0 lg:text-ellipsis text-base lg:text-sm xl:text-base lg:overflow-hidden">
-            <button className="bg-[#3772FF] dark:bg-indigo-800 text-white px-2 lg:px-8 xl:px-8 xl:py-2 rounded-full mr-2 hidden lg:flex items-center">
+            <button className="bg-[#3772FF] dark:bg-indigo-800 text-white px-8 lg:px-4 xl:px-8 xl:py-2 sm:text-base rounded-full mr-2 hidden lg:flex items-center">
               <FaBook className="xl:mx-2" />
               رزرو دوره
             </button>
-            <button className="bg-[#2f2f2f] dark:bg-indigo-800 text-white px-2 xl:px-8 xl:py-2 rounded-full lg:mx-auto flex items-center">
+            <button className="bg-[#2f2f2f] dark:bg-indigo-800 text-white px-2 whitespace-nowrap text-sm sm:text-base lg:px-4 xl:px-8 xl:py-2 rounded-full lg:mx-auto flex items-center">
               <PiShoppingBagOpen className="mx-0 size-5 xl:mx-2" />
               اضافه به لیست مورد علاقه
             </button>
