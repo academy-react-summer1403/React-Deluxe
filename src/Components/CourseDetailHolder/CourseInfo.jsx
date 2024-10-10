@@ -287,7 +287,8 @@ const CourseInfo = () => {
           رزرو دوره
         </button>
         <div className="text-2xl font-bold text-black dark:text-white">
-          ۲۵,۰۰۰ تومان
+          ۲۵,۰۰۰
+          <span className="text-sm mr-1">تومان</span>
         </div>
       </div>
     </>
