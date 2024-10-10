@@ -75,10 +75,10 @@ const TopCourses = () => {
                 </span>
               </div>
               <div className="mt-4">
-                <span className="px-3 py-0  text-xs absolute top-8 right-28 bg-blue-500 text-white rounded-full">
+                <span className="px-3 py-0  text-xs absolute top-8 right-28 md:right-32 bg-blue-500 text-white rounded-full">
                   {course.tag}
                 </span>
-                <span className="px-3 py-0 text-xs  absolute top-8 right-10 bg-pink-500 text-white rounded-full">
+                <span className="px-3 py-0 text-xs  absolute top-8 right-10 md:right-14 bg-pink-500 text-white rounded-full">
                   {course.tag2}
                 </span>
               </div>

@@ -43,7 +43,7 @@ const HeroSection = () => {
               </Avatar.Group>
               <span className="dark:text-white">+100 دانشجوی فعال در دوره</span>
             </div>
-            <div className="flex items-center mx-4">
+            <div className="flex relative right-24 lg:right-0 items-center mx-4">
               <Avatar.Group>
                 <Avatar src="https://s3-alpha-sig.figma.com/img/c147/98cf/5293c57333d6b58c079ca634d833acf3?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=QjP~FD3J~~qRa60ljMW7RBJXO5fwNr5m1SRjWa9VkWZHIqmW7yq4M-ZUhsT0F~dTOqxVErIN2P2FhX4qeBiyrM10qEQ1EJe~bwzEkKZx3bBh1D1mpe5p57Gl4hfFLp278qER5YVKtGzfDVmTGgmCqREagMqMdm1P~lyxAmu93l~aFJGnp7uRMS6oHCrCKfS6nmp4u0YuhSYq3OIYuaytgIG7ixJoOw9D346IHw0G1qGD2io1hVChZD7hjyqsxb7UiW7ADkup98nWXQ-GwSGBKyANp2Mt2VsWWVBVDJQbZeyL192k0McNA52dCpc-MxJ0vuStH2Bql2YFbNaGiCVDvQ__" />
                 <Avatar src="https://s3-alpha-sig.figma.com/img/f8b5/1203/5a2e42c8ec0c92cd29eb940180f4d6b5?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=SOIypVdmAz8hvG-X1RhzzY1E6FnoVNtQ4bR75qAaADjHuBBFj~ChaPbZ19K2Aqkc2M9JFhg4JmQPkfMoM1mkNrH~KUExiMreCKkj6TsobggQlnc2Q3Z1hTVws52557AlrmbXbvkxab9gjjTZShbPmMLrzW1N1MkjRccnEiWbuLlIMKmfQVD3v2LlE2EKJTXFzqiWlyQNv1O33i0ExxrsPDW7HHnN8WEHAs8PfF20EK-BZdyukWXxuUn7zq7HffTEpfuii-oZf45He6EpPM8FhPEjcMGtToai6xjY2wrhrzlPap2s2heMDW3TO1siaGvel9r2M1QJ4zYzjeFgPtvLKg__" />
@@ -88,7 +88,9 @@ const HeroSection = () => {
         <div className="flex justify-center w-full items-center">
           <div className="relative w-full">
             {" "}
-            <div className="absolute bottom-1 w-full h-0.5 bg-gray-300"></div>
+            <div className="absolute bottom-1 w-full h-1 bg-gray-300 overflow-hidden">
+              <div className="absolute z-10 w-full h-1 right-[1300px] bg-blue-500"></div>
+            </div>
             <div className="flex justify-around  items-center relative">
               {/* <div className="flex justify-between items-center relative">
                 {pics.map((Item, Index) => (
@@ -141,7 +143,7 @@ const HeroSection = () => {
                   alt="HTML5"
                   className="size-20"
                 />
-                <div className="flex items-center justify-center size-3.5 rounded-full bg-gray-300 hover:bg-blue-500">
+                <div className="flex items-center justify-center size-3.5 z-20   rounded-full bg-blue-500">
                   <div className="size-1.5 rounded-full bg-white"></div>
                 </div>
               </div>

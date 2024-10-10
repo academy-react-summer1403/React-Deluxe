@@ -25,18 +25,18 @@ const LoginPage = () => {
   }
 
   return (
-    <div className="flex flex-col lg:flex-row h-screen justify-center items-center bg-white ">
+    <div className="flex flex-col md:flex-row h-screen justify-center items-center bg-white">
       {/* Right side with tabs and login form */}
       <div className="flex flex-col w-full lg:w-1/2 justify-center items-center p-5 lg:p-10 text-black">
         <Tabs
           activeKey={currentTab}
           onChange={changeTab}
-          className="w-full flex justify-center"
+          className="w-full flex justify-center mt-8"
           tabBarGutter={40}
           tabBarStyle={{
             borderBottom: "none",
             marginBottom: "75px",
-            background: "white",   
+            background: "white", 
           }}
         >
           <div
@@ -155,7 +155,7 @@ const LoginPage = () => {
       </div>
 
       {/* Left side fixed */}
-      <div className="hidden md:flex w-full">
+      <div className="hidden md:flex w-full lg:w-1/2">
         <LoginPanel />
       </div>
     </div>

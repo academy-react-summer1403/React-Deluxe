@@ -23,13 +23,14 @@ const ForgotPassword = ({ onBack }) => {
   };
 
   return (
-    <div className="flex flex-col sm:flex-col md:flex-row lg:flex-row xl:flex-row 2xl:flex-row justify-center h-screen bg-white">
+    <div className="flex flex-col md:flex-row h-screen justify-center items-center bg-white">
+    
       {/* بخش فرم فراموشی رمز عبور */}
       <div className="w-full sm:w-full md:w-2/3 lg:w-1/2 xl:w-1/2 2xl:w-1/2 flex flex-col justify-center items-center p-5 sm:p-5 md:p-10 lg:p-12 xl:p-14 2xl:p-16 text-black">
         <Tabs
           activeKey={currentTab}
           onChange={changeTab}
-          className="w-full"
+          className="w-full h-screen mt-8"
           tabBarStyle={{ marginBottom: '60px', backgroundColor: "#fff" }}
         >
           {/* تب وارد کردن ایمیل */}
@@ -88,7 +89,7 @@ const ForgotPassword = ({ onBack }) => {
       </div>
 
       {/* بخش سمت چپ ثابت */}
-      <div className="hidden md:flex w-full">
+      <div className="hidden md:flex w-full lg:w-1/2">
         <LoginPanel />
       </div>
     </div>

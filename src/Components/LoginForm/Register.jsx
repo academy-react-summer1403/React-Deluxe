@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button, Input, Tabs } from "antd";
 import "antd/dist/reset.css";
 import { LoginPanel } from "./LoginPanel";
@@ -13,22 +13,30 @@ const Register = ({ onBack }) => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row justify-center h-screen bg-white">
+    <div className="flex flex-col md:flex-row h-screen justify-center items-center bg-white">
       {/* بخش فرم ثبت‌نام */}
-      <div className="w-full md:w-2/3 lg:w-1/2 flex flex-col justify-center items-center p-4 text-black">
+      <div className="flex flex-col w-full md:w-1/2 justify-center items-center p-5  md:p-10 text-black">
         <Tabs
           activeKey={currentTab}
           onChange={setCurrentTab}
-          className="w-full"
-          tabBarStyle={{ marginBottom: "30px", backgroundColor: "#fff" }} // تب‌ها
-          tabBarExtraContent={{ left: null, right: null }} // تنظیمات اضافی تب
+          className="w-full flex justify-center h-screen mt-8"
+          tabBarStyle={{
+            borderBottom: "none",
+            marginBottom: "50px",
+            background: "white",
+          }} // تب‌ها
         >
           {/* تب وارد کردن شماره همراه */}
           <TabPane tab="واردکردن شماره همراه" key="1" className="pb-6">
-            <div className="w-full max-w-xs sm:max-w-md lg:max-w-lg text-center"> {/* حداکثر عرض مناسب برای موبایل */}
-              <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 text-right">خوش آمدید!</h2>
+            <div className="w-full max-w-xs sm:max-w-md lg:max-w-lg text-center">
+              {" "}
+              {/* حداکثر عرض مناسب برای موبایل */}
+              <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 text-right">
+                خوش آمدید!
+              </h2>
               <p className="text-xs sm:text-sm mb-4 w-full text-right text-gray-500">
-                لطفا شماره همراه خود را وارد کنید تا کد تایید برای شما ارسال شود.
+                لطفا شماره همراه خود را وارد کنید تا کد تایید برای شما ارسال
+                شود.
               </p>
               <label className="block text-xs sm:text-sm font-bold text-right mb-2 text-gray-700">
                 شماره همراه
@@ -49,7 +57,12 @@ const Register = ({ onBack }) => {
 
           {/* تب تایید کد ارسال شده */}
           <TabPane tab="تایید کد ارسال شده" key="2" className="pb-6">
-            <div className="w-full max-w-xs sm:max-w-md lg:max-w-lg text-center">
+            <div
+              className="w-full max-w-xs sm:max-w-md lg:max-w-lg text-center"
+              style={{ marginTop: "30px" }}
+            >
+              {" "}
+              {/* فاصله بالای این تب */}
               <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 text-right">
                 تایید کد ارسال شده
               </h2>
@@ -108,7 +121,7 @@ const Register = ({ onBack }) => {
       </div>
 
       {/* بخش سمت چپ ثابت */}
-      <div className="hidden md:flex w-full lg:w-1/2 bg-gray-100 h-full">
+      <div className="hidden md:flex w-full lg:w-1/2">
         <LoginPanel />
       </div>
     </div>

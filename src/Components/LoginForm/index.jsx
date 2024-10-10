@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import React, { useState } from "react";
 import { Button, Input, Tabs } from "antd";
 import "antd/dist/reset.css";
 import { ForgotPassword } from "./ForgetPass/ForgetPassword";
@@ -27,29 +27,36 @@ const LoginPage = () => {
   return (
     <div className="flex flex-col md:flex-row h-screen justify-center items-center bg-white">
       {/* Right side with tabs and login form */}
-      <div className="flex flex-col w-full md:w-1/2 justify-center items-center p-5 md:p-10 text-black ">
+      <div className="flex flex-col w-full md:w-1/2 justify-center items-center p-5 md:p-10 text-black">
         <Tabs
           activeKey={currentTab}
           onChange={changeTab}
-          className="w-full flex justify-center h-screen mt-8"
+          className="w-full flex justify-center"
           tabBarGutter={40}
           tabBarStyle={{
             borderBottom: 'none',
-            marginBottom: '50px',
+            marginBottom: '50px', // کاهش marginBottom
             background: "white",
           }}
         >
           {/* Blue line */}
-          <div style={{ height: '8px', backgroundColor: '#1890ff', marginBottom: '-8px'}} />
+          <div style={{ height: '8px', backgroundColor: '#1890ff', marginBottom: '-8px' }} />
 
           <TabPane
-            tab={<span className="px-4" style={{ paddingBottom: '8px' }}>وارد کردن شماره همراه</span>}
+            tab={
+              <span className="px-4" style={{ paddingBottom: "8px" }}>
+                وارد کردن شماره همراه
+              </span>
+            }
             key="1"
           >
-            <div className="w-full max-w-xs sm:max-w-md lg:max-w-lg text-center"> {/* تغییر اندازه و تنظیمات */}
+            <div className="w-full max-w-xs sm:max-w-md lg:max-w-lg text-center">
+              {" "}
+              {/* تغییر اندازه و تنظیمات */}
               <h2 className="text-2xl font-bold text-right">خوش برگشتی!</h2>
               <p className="text-gray-600 text-xs text-right mt-3 w-full md:w-96">
-                لطفا شماره همراه یا ایمیل و رمز عبور خود را برای ورود به حساب کاربری وارد کنید.
+                لطفا شماره همراه یا ایمیل و رمز عبور خود را برای ورود به حساب
+                کاربری وارد کنید.
               </p>
               <label className="block mt-5 text-xs font-bold text-right text-gray-700">
                 شماره همراه یا ایمیل
@@ -68,7 +75,10 @@ const LoginPage = () => {
               <div className="flex items-center mt-2 justify-between w-full">
                 <div className="flex items-center">
                   <input type="checkbox" id="rememberMe" className="mr-2" />
-                  <label htmlFor="rememberMe" className="text-xs font-bold text-black">
+                  <label
+                    htmlFor="rememberMe"
+                    className="text-xs font-bold text-black"
+                  >
                     مرا به خاطر بسپار
                   </label>
                 </div>
@@ -111,12 +121,19 @@ const LoginPage = () => {
           </TabPane>
 
           {/* Two-factor code verification tab */}
-          <TabPane tab={<span className="px-4" style={{ paddingBottom: '8px' }}>تایید کد دو مرحله‌ای</span>} key="2">
+          <TabPane
+            tab={
+              <span className="px-4" style={{ paddingBottom: "8px" }}>
+                تایید کد دو مرحله‌ای
+              </span>
+            }
+            key="2"
+          >
             <div className="w-full max-w-xs sm:max-w-md lg:max-w-lg text-center">
               <h2 className="text-2xl font-bold text-right">
                 تایید کد دو مرحله‌ای!
               </h2>
-              <p className="text-gray-600 text-xs text-right mt-3 ">
+              <p className="text-gray-600 text-xs mt-3 pr-5">
                 کد دو مرحله‌ای به شماره همراه شما ارسال شد. لطفا کد را وارد کنید.
               </p>
               <label className="block mt-11 text-xs font-bold text-right text-gray-700">
