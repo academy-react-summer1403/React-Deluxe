@@ -6,9 +6,10 @@ import { Footer } from "../../Components/Common/Footer";
 const Layout = () => {
   return (
     <div className="dark:bg-indigo-950">
-      <Header />
+      {/* <Header className={ p-3 w-1 } /> */}
+      {/* <Header /> */}
       <Outlet />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

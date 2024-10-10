@@ -1,12 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-const FooterItems = ({ Item, link }) => {
+const FooterItems = ({ Item }) => {
   return (
     <li>
-      <Link to={link} className="hover:text-black dark:hover:text-white">
+      <a href="#courses" className="hover:text-gray-300">
         {Item}
-      </Link>
+      </a>
     </li>
   );
 };
