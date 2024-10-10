@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const HeaderItems = ({ Item }) => {
+const HeaderItems = ({ Item, link }) => {
   return (
     <li>
-      <a href="#courses" className="hover:text-white">
+      <Link to={link} className="hover:text-white dark:hover:text-black">
         {Item}
-      </a>
+      </Link>
     </li>
   );
 };

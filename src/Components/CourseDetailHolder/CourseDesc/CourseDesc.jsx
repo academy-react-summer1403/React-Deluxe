@@ -3,6 +3,25 @@ import { Rate } from "antd";
 import React, { useState } from "react";
 import { IoIosLink } from "react-icons/io";
 
+const StarRating = ({ rating }) => {
+  return (
+    <div className="flex items-center mt-4">
+      {[...Array(5)].map((_, index) => (
+        <svg
+          key={index}
+          xmlns="http://www.w3.org/2000/svg"
+          fill={index < rating ? "#FFB700" : "#E4E4E4"}
+          viewBox="0 0 24 24"
+          className="h-6 w-6"
+        >
+          <path d="M12 .587l3.668 7.431 8.24 1.198-5.954 5.426 1.405 8.21L12 18.897l-7.359 3.88 1.405-8.21-5.954-5.426 8.24-1.198L12 .587z" />
+        </svg>
+      ))}
+      <span className="text-[#7C7C7C] ml-2">{rating} از ۵</span>
+    </div>
+  );
+};
+
 const CopyLink = () => {
   const [copied, setCopied] = useState(false);
 
@@ -16,7 +35,7 @@ const CopyLink = () => {
     <div className="mr-5 -mt-1">
       <button
         onClick={copyToClipboard}
-        className="border-2 border-[#3772FF] dark:border-indigo-800 text-[#3772FF] dark:text-indigo-300 text-lg/4 line-heith px-4 py-2 rounded-full"
+        className="border-2 border-[#3772FF] text-[#3772FF] text-lg/4 line-heith px-4 py-2 rounded-full"
       >
         {copied ? (
           <div className="flex">
@@ -25,10 +44,8 @@ const CopyLink = () => {
           </div>
         ) : (
           <div className="flex">
-            <IoIosLink className="-scale-x-[1] ml-2 text-[#3772FF] dark:text-white" />
-            <span className="text-[#3772FF] dark:text-white">
-              کپی کردن لینک صفحه
-            </span>
+            <IoIosLink className="-scale-x-[1] ml-2" />
+            کپی کردن لینک صفحه
           </div>
         )}
       </button>
@@ -38,11 +55,9 @@ const CopyLink = () => {
 
 const CourseDesc = () => {
   return (
-    <div className="p-6 mb-6 bg-white rounded-lg dark:bg-indigo-950">
-      <h3 className="mb-4 text-xl font-bold text-gray-500 dark:text-gray-300">
-        توضیحات دوره
-      </h3>
-      <p className="leading-relaxed text-gray-800 dark:text-gray-200">
+    <div className="bg-white p-6 rounded-lg mb-6">
+      <h3 className="text-xl text-gray-500 font-bold mb-4">توضیحات دوره</h3>
+      <p className="text-gray-800 leading-relaxed">
         لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده
         از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و
         سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای

@@ -5,6 +5,7 @@ import { CiTwitter } from "react-icons/ci";
 import { PiYoutubeLogoThin } from "react-icons/pi";
 import { PiTelegramLogoThin } from "react-icons/pi";
 import { PiInstagramLogoLight } from "react-icons/pi";
+import { Link } from "react-router-dom";
 const MenuWithToggle = () => {
   // State to manage menu visibility
   const [isMenuVisible, setIsMenuVisible] = useState(false);
@@ -51,18 +52,18 @@ const MenuWithToggle = () => {
           {/* Menu Links */}
           <div>
             <div className="space-y-6 w-auto mx-3">
-              <a
-                href="#"
+              <Link
+                to={"/"}
                 className="text-white text-right text-2xl block border-b font-extrabold border-gray-400 pb-2 hover:text-white"
               >
                 خانه
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                to={"/courses"}
                 className="text-white text-right text-2xl block border-b font-extrabold border-gray-400 pb-2 hover:text-white"
               >
                 دوره ها
-              </a>
+              </Link>
               <a
                 href="#"
                 className="text-white text-right text-2xl block border-b font-extrabold border-gray-400 pb-2 hover:text-white"
