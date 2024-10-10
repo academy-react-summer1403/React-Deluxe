@@ -33,8 +33,8 @@ const CourseInfo = () => {
 
           {/* 2nd Row: Course Info Section */}
           <div className="flex flex-wrap justify-between mb-4 text-center lg:text-right">
-            <div className=" basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-r-3xl lg:basis-[50%] xl:basis-[44%] border lg:border-0 lg:border-t lg:border-r lg:border-b border-gray-400 dark:border-gray-700 overflow-hidden">
-              <div className="basis-[50%] border-l border-gray-400 dark:border-gray-700 w-32 h-20 p-2">
+            <div className=" basis-full  flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-r-3xl lg:basis-[50%] xl:basis-[44%] border lg:border-0 lg:border-t lg:border-r lg:border-b border-gray-400 dark:border-gray-500 overflow-hidden dark:bg-indigo-900">
+              <div className="basis-[50%] border-l border-gray-400 dark:border-gray-500 w-32 h-20 p-2">
                 <span className="text-sm text-gray-400 dark:text-gray-300">
                   وضعیت
                 </span>{" "}
@@ -53,8 +53,8 @@ const CourseInfo = () => {
                 </span>
               </div>
             </div>
-            <div className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-l-3xl lg:basis-[50%] xl:basis-[56%] border border-gray-400 dark:border-gray-700 overflow-hidden">
-              <div className="basis-[40%] border-l border-gray-400 dark:border-gray-700 w-32 h-20 p-2">
+            <div className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-l-3xl lg:basis-[50%] xl:basis-[56%] border border-gray-400 dark:border-gray-500 overflow-hidden dark:bg-indigo-900">
+              <div className="basis-[40%] border-l border-gray-400 dark:border-gray-500 w-32 h-20 p-2">
                 <span className="text-sm text-gray-400 dark:text-gray-300">
                   سطح آموزشی
                 </span>{" "}
@@ -75,8 +75,8 @@ const CourseInfo = () => {
             </div>
 
             {/* 3rd Row: Additional Info Section */}
-            <div className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-r-3xl lg:basis-[50%] border lg:border-0 lg:border-t lg:border-r lg:border-b border-gray-400 dark:border-gray-700 overflow-hidden">
-              <div className="basis-[50%] border-l border-gray-400 dark:border-gray-700 w-32 h-20 p-2">
+            <div className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-r-3xl lg:basis-[50%] border lg:border-0 lg:border-t lg:border-r lg:border-b border-gray-400 dark:border-gray-500 overflow-hidden dark:bg-indigo-900">
+              <div className="basis-[50%] border-l border-gray-400 dark:border-gray-500 w-32 h-20 p-2">
                 <span className="text-sm text-gray-400 dark:text-gray-300">
                   تاریخ برگزاری
                 </span>{" "}
@@ -95,8 +95,8 @@ const CourseInfo = () => {
                 </span>
               </div>
             </div>
-            <div className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-l-3xl lg:basis-[50%] border border-gray-400 dark:border-gray-700 overflow-hidden">
-              <div className="basis-[50%] border-l border-gray-400 dark:border-gray-700 w-32 h-20 p-2">
+            <div className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-l-3xl lg:basis-[50%] border border-gray-400 dark:border-gray-500 overflow-hidden dark:bg-indigo-900">
+              <div className="basis-[50%] border-l border-gray-400 dark:border-gray-500 w-32 h-20 p-2">
                 <span className="text-sm text-gray-400 dark:text-gray-300">
                   تعداد لایک
                 </span>{" "}
