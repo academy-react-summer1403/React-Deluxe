@@ -31,7 +31,7 @@ const LoginPage = () => {
         <Tabs
           activeKey={currentTab}
           onChange={changeTab}
-          className="w-full flex justify-center"
+          className="w-full flex justify-center h-screen"
           tabBarGutter={40}
           tabBarStyle={{
             borderBottom: 'none',
