@@ -5,8 +5,6 @@ import { CourseHolder } from "./CoursesComponents/CourseHolder/CourseHolder";
 
 
 
-
-
 const MainPage = () => {
     return (
       <div className="bg-white min-h-screen p-10">
