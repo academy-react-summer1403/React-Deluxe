@@ -1,7 +1,9 @@
-import React from "react";
+// import React from "react";
+// import { Course } from "../../Components/Courses/Course";
+import { MainPage } from "../../Components/Courses/MainPage";
 
 const Courses = () => {
-  return <div>Courses</div>;
+  return <MainPage />
 };
 
 export { Courses };
