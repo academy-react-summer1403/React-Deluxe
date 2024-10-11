@@ -5,7 +5,7 @@ import { Footer } from "../../Components/Common/Footer";
 
 const Layout = () => {
   return (
-    <div className="dark:bg-indigo-950">
+    <div className=" ">
       <Header />
       <Outlet />
       <Footer />

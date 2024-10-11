@@ -1,8 +1,8 @@
 import React from "react";
-import { CourseInfo } from "./CourseInfo/CourseInfo";
-import { CourseDesc } from "./CourseDesc/CourseDesc";
-import { CourseComment } from "./CourseComments/CourseComments";
-import { CourseRelated } from "./CourseRelated/CourseRelated";
+import { CourseInfo } from "./CourseInfo";
+import { CourseDesc } from "./CourseDesc";
+import { CourseComment } from "./CourseComments";
+import { CourseRelated } from "./CourseRelated";
 
 const CourseDetailHolder = () => {
   return (
