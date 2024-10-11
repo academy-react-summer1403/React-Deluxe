@@ -15,7 +15,6 @@ const LoginPage = () => {
   if (showRegister) {
     return <Register onBack={() => setShowRegister(false)} />;
   }
-
   const changeTab = (key) => {
     setCurrentTab(key);
   };
