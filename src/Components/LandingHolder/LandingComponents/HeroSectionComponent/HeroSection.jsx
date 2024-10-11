@@ -86,8 +86,10 @@ const HeroSection = () => {
         <div className="flex justify-center w-full items-center">
           <div className="relative w-full">
             {" "}
-            <div className="absolute bottom-1 w-full h-0.5 bg-gray-300"></div>
-            <div className="flex justify-between items-center relative">
+            <div className="absolute bottom-1 w-full h-1 bg-gray-300 overflow-hidden">
+              <div className="absolute z-10 w-full h-1 right-3/4 bg-blue-500"></div>
+            </div>
+            <div className="flex justify-around  items-center relative">
               {/* <div className="flex justify-between items-center relative">
                 {pics.map((Item, Index) => (
                   <HeroItem key={Index} Item={Item} />
