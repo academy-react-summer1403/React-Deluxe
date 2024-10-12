@@ -29,7 +29,7 @@ const Header = () => {
               <HeaderItems Item="درباره ما" />
             </ul>
           </nav>
-          <Link to={"/signup"} className="space-x-2">
+          <Link to={"/auth/signup"} className="space-x-2">
             <button className="bg-blue-600 text-white py-2 px-4 rounded-full mr-10">
               ثبت نام یا ورود
             </button>
