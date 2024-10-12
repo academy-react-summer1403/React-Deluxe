@@ -7,13 +7,14 @@ import { createBrowserRouter } from "react-router-dom";
 import { SignIn } from "../../Screens/SignIn";
 import { SignUp } from "../../Screens/SignUp";
 import { ForgetPass } from "../../Screens/ForgetPass";
+import { ErrorRoutes } from "../../Screens/Errors/ErrorRoutes/ErrorRoutes";
 
 // routes that are available both as public and auth
 export const commonRoutes = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    //   errorElement: <ErrorPg />,
+    errorElement: <ErrorRoutes />,
     children: [
       {
         index: true,
@@ -32,7 +33,7 @@ export const commonRoutes = createBrowserRouter([
   },
   {
     path: "/auth",
-    //   errorElement: <ErrorPg />,
+    errorElement: <ErrorRoutes />,
     children: [
       {
         path: "/auth/signIn",
