@@ -19,33 +19,33 @@ export const commonRoutes = createBrowserRouter([
         index: true,
         path: "/",
         element: <Landing />,
-        //   errorElement: <ErrorPg />,
       },
       {
         path: "/courses",
         element: <Courses />,
-        //   errorElement: <ErrorPg />,
       },
       {
         path: "/courseDetails",
         element: <CourseDetails />,
-        //   errorElement: <ErrorPg />,
       },
     ],
   },
   {
-    path: "/signIn",
-    element: <SignIn />,
+    path: "/auth",
     //   errorElement: <ErrorPg />,
-  },
-  {
-    path: "/signUp",
-    element: <SignUp />,
-    //   errorElement: <ErrorPg />,
-  },
-  {
-    path: "/forgetPass",
-    element: <ForgetPass />,
-    //   errorElement: <ErrorPg />,
+    children: [
+      {
+        path: "/auth/signIn",
+        element: <SignIn />,
+      },
+      {
+        path: "/auth/signUp",
+        element: <SignUp />,
+      },
+      {
+        path: "/auth/forgetPass",
+        element: <ForgetPass />,
+      },
+    ],
   },
 ]);
