@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 
 const Filter = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -6,7 +6,6 @@ const Filter = () => {
   const [level, setLevel] = useState("");
   const [teacher, setTeacher] = useState("");
 
-  // این تابع برای نمایش نتایج در کنسول است
   const handleSearch = () => {
     const filters = {
       searchTerm,
@@ -15,25 +14,27 @@ const Filter = () => {
       teacher,
     };
     console.log("Searching with filters:", filters);
-    // اینجا می‌توانید نتایج را بر اساس فیلترها به روز کنید
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-xs">
+    <div className="bg-white rounded-lg  p-8 w-full max-w-xs text-right border-4 mt-20  relative dark:bg-indigo-950">
       {/* Header */}
       <h2 className="text-xl font-semibold mb-4">فیلتر</h2>
 
       {/* Search Box */}
+      <label className="text-gray-700 mb-2 block"> جستجو </label>
+      
+
       <div className="relative mb-4">
         <input
           type="text"
-          className="w-full pr-4 pl-12 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="w-full pr-4 pl-12 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 text-right bg-slate-200 text-gray-500"
           placeholder="دوره مورد نظر را جستجو کنید..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         <button
-          className="absolute right-3 top-3 text-blue-600"
+          className="absolute left-3 top-3 text-blue-600"
           onClick={handleSearch}
         >
           🔍
@@ -51,6 +52,8 @@ const Filter = () => {
           <option value="">دسته مورد نظر را انتخاب کنید</option>
           <option value="طراحی سایت">طراحی سایت</option>
           <option value="برنامه‌نویسی">برنامه‌نویسی</option>
+          <option value="دوره طراحی UX">دوره طراحی UX</option>
+
         </select>
       </div>
 
@@ -80,6 +83,8 @@ const Filter = () => {
           <option value="محمدحسین ">محمدحسین </option>
           <option value="محمدامین شالبیافر">محمدامین شالبیافر</option>
           <option value="محمدحسین خیراندیش">محمدحسین خیراندیش</option>
+          <option value=" فاطمه نیکوکار">فاطمه نیکوکار </option>
+
         </select>
       </div>
 
@@ -95,11 +100,13 @@ const Filter = () => {
 
       {/* Date Range */}
       <div className="mb-4">
-        <label className="text-gray-700 mb-2 block">تاریخ برگزاری - اتمام</label>
+        <label className="text-gray-700 mb-2 block">
+          تاریخ برگزاری - اتمام
+        </label>
         <p className="text-sm text-gray-500">۲۹ اردیبهشت ۱۴۰۳ - ۵ خرداد ۱۴۰۳</p>
       </div>
     </div>
   );
 };
 
-export  {Filter};
+export { Filter };

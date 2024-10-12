@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { CourseList } from "./CourseList"; // فرض بر اینکه CourseList در همان پوشه است
+import  { useState } from "react";
+import { CourseList } from "./CourseList"; 
 
 const CategoryMenu = () => {
   const [activeCategory, setActiveCategory] = useState("جدیدترین");
@@ -9,14 +9,15 @@ const CategoryMenu = () => {
   };
 
   return (
-    <div className="flex flex-col items-start mb-6">
+    <div className="flex flex-col items-start mb-6 mr-8">
       <div className="flex justify-start space-x-4 mb-4">
+        <p className="font-bold text-lg p-2">ترتیب</p>
         <button
           onClick={() => handleCategoryClick("جدیدترین")}
           className={`px-4 py-2 rounded-full border border-transparent ${
             activeCategory === "جدیدترین"
               ? "bg-red-500 text-white"
-              : "bg-gray-200 text-gray-800 hover:border-red-500 hover:text-red-500"
+              : " border-gray-600 text-gray-800 hover:border-red-500 hover:text-red-500"
           }`}
         >
           جدیدترین
@@ -26,7 +27,7 @@ const CategoryMenu = () => {
           className={`px-4 py-2 rounded-full border border-transparent ${
             activeCategory === "محبوب‌ترین"
               ? "bg-red-500 text-white"
-              : "bg-gray-200 text-gray-800 hover:border-red-500 hover:text-red-500"
+              : "bg-white  border-gray-600  text-gray-800  hover:border-red-500 hover:text-red-500"
           }`}
         >
           محبوب‌ترین
@@ -36,26 +37,24 @@ const CategoryMenu = () => {
           className={`px-4 py-2 rounded-full border border-transparent ${
             activeCategory === "گران‌ترین"
               ? "bg-red-500 text-white"
-              : "bg-gray-200 text-gray-800 hover:border-red-500 hover:text-red-500"
+              : "bg-white  border-gray-600 text-gray-800  hover:border-red-500 hover:text-red-500"
+
           }`}
         >
           گران‌ترین
         </button>
         <button
           onClick={() => handleCategoryClick("ارزان‌ترین")}
-          className={`px-4 py-2 rounded-full border border-transparent ${
+          className={` px-4 py-2 rounded-full border border-transparent ${
             activeCategory === "ارزان‌ترین"
               ? "bg-red-500 text-white"
-              : "bg-gray-200 text-gray-800 hover:border-red-500 hover:text-red-500"
+              : "bg-white  border-gray-600  text-gray-800 hover:border-red-500 hover:text-red-500"
           }`}
         >
           ارزان‌ترین
         </button>
       </div>
-      <div className="text-lg font-semibold">
-        دسته‌بندی فعال: <span className="text-red-500">{activeCategory}</span>
-      </div>
-      {/* نمایش دوره‌های مربوط به دسته‌بندی فعال */}
+     
       <CourseList category={activeCategory} />
     </div>
   );
