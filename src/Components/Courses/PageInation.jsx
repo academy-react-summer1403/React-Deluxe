@@ -3,7 +3,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
 const Pagination = () => {
   return (
     <div className="flex flex-col items-center mr-96 justify-center  bg-white px-4 py-3 sm:px-6 rounded-5xl   dark:bg-indigo-950">
-      <div className="flex flex-1 justify-between sm:hidden rounded-20  ">
+      <div className="flex flex-1 justify-between sm:hidden rounded-20">
         <a
           href="#"
           className="relative inline-flex items-center rounded-md  bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-blue-700" // Changed background color to light gray
