@@ -2,12 +2,13 @@ import { Filter } from "./Filter";
 import { CategoryMenu } from "./CategoryMenu";
 import { CourseList } from "./CourseList";
 import { CourseHolder } from "./CoursesComponents/CourseHolder/CourseHolder";
+import { Pagination } from "./PageInation";
 
 
 
 const MainPage = () => {
     return (
-      <div className="bg-white min-h-screen p-10">
+      <div className="bg-white  w-full min-h-screen p-10  relative dark:bg-indigo-950">
         <CourseHolder />
         <div className="flex">
           {/* بخش فیلتر */}
@@ -21,6 +22,7 @@ const MainPage = () => {
             <CourseList />
           </div>
         </div>
+        <Pagination />
       </div>
     );
   };
