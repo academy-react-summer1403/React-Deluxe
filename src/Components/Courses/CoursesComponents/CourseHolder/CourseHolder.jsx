@@ -6,7 +6,7 @@ const CourseHolder = () => {
       <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-3 md:mb-4">
         شروع ماجراجویی جدید
       </h1>
-      <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-500 leading-relaxed break-words">
+      <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-500 leading-relaxed break-words ">
         یک شروع قوی برای یادگیری یک مسئله
       </p>
       <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-500">
