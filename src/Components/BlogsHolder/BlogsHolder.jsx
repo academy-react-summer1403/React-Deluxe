@@ -6,11 +6,9 @@ const BlogsHolder = () => {
   return (
     <>
       <BlogsHeroSection />
-      <div className="flex p-6">
+      <div className="flex justify-evenly">
         <BlogsFilter />
-        <div className="flex flex-col w-full pl-8">
-          <BlogsCards />
-        </div>
+        <BlogsCards />
       </div>
     </>
   );

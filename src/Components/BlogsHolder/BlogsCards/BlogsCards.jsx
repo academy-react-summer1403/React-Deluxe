@@ -2,51 +2,160 @@ import React from "react";
 
 const cardsData = [
   {
-    title: "فیگما یا ادوبی ایکس‌دی؟",
-    author: "محمدحسین علیپور",
+    title: "فرق ری‌اکت با نکست جی‌اس چیست؟",
+    author: "محسن اسفندیاری",
     date: "17 اردیبهشت 1403",
     views: 290,
-    imgUrl: "https://via.placeholder.com/300x150?text=Figma",
-    bgColor: "bg-red-400",
+    imgUrl:
+      "https://s3-alpha-sig.figma.com/img/e186/5b86/bca1c8cd3132e2639f0ded1c76c11d46?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=muFxYD2fdDTghyT3akyfQRGLCXbK5cs8xGUHKkZBUrsmRNfzuCQOuiIPk0Msp2WUV-UzndCzpzBWLyinFXJiNutEDil5SvTT7rFNwFJC83ue1cYKFMxewp-I8szWezADhT0F1RGZjQAwxXSmaANjCcJoYRQxjw-lSgO4N-m9fpQ~t~urlMfcClORI9m-AFltZsKO6uawoGuVxWPrHUWu2hTNlzVE9-4-W75e-MLX0G1Eh9tzRqZ5nsocQBZ-eW68Gta4f01ZznlkulJS3z6pKmo8PcAQUHbvsZBndS8CpoBuJuYP4j-XPnrV0P7~GFBXsZNILbR1jZXVDpQ4C0dt7A__",
+    bgColor: "bg-[#87DFFF]",
+  },
+  {
+    title: "فیگما یا ادوبی ایکس‌دی؟",
+    author: "محمدحسین خلیل‌پور",
+    date: "17 اردیبهشت 1403",
+    views: 318,
+    imgUrl:
+      "https://s3-alpha-sig.figma.com/img/72eb/0bda/c649ce20dfb0409d36134908c7d16a53?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=VKvXDw8XmMqPX-avBXZ3r-CHzU9Gajrp1YuONERMXpFwVwsZ621ROUvmGg0l0M5Uk3WLvvw2rJNVCzHrcBZFnMZ7223KYF1zthqjB~agrpfX1me4Htn4sYgPWzfOwWcoeMc-8Ft~KokEaEwmlvGatv8eiEtEq7qJdFYL2XiYwSwyu6q6HpeqpSxry78jz0IRAoiTvIYk2P9IFUBoe0ld3XB~XIPFhnHivN8S7q7uvba6q8faq91bBMcoe6dbzjhSVpBQOyKyOeSw4CO4ds4OMV-PV~7gwlyWBn85CIdU5oudgmBhTkRo5lytZ9g8DyzRqkHuWOr7Wez3jdvHYkD02g__",
+    bgColor: "bg-[#FF6C6C]",
+  },
+  {
+    title: "زبان جاوا اسکریپت در چه حوزه ای به کار میره؟",
+    author: "محمدحسین بحرالعلومی",
+    date: "17 اردیبهشت 1403",
+    views: 318,
+    imgUrl:
+      "https://s3-alpha-sig.figma.com/img/6405/b314/68db8ea561a27064e67d06d024404030?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=plAdFIOKijEfsSeU-9aihHOhbNcP~sosS5W~X9aELB0u5HdlmsEYjQJA0UZKFCv4HrgNvN-D9t0Fv1RljNjHNzddGL9qXbdEHeaIQzWWpB26CmVXACneoTk1yKtsimn4L4yZhz6t6lPtw9Jd19zX6DDtsMiZrU-y0ZWBBEO0cqb7XRfqedjRCrGmx6ikEc6UkdA-rXiQySoEWqOIoOl0sW4OPKqvAmB1QwR0PxNrpGUUu5I0QylRgUaK~DtnPFEHb8plnrfz5R~HiFU8gphiEYknrYA6fRqPJQDE5T0RA2kwOq0gU3rUwjfjqk1wnmVhND~4LDaQR-8KDA63SebBxg__",
+    bgColor: "bg-[#F0DB4F]",
   },
   {
     title: "فرق ری‌اکت با نکست جی‌اس چیست؟",
-    author: "محسن اسکندری",
+    author: "محسن اسفندیاری",
+    date: "17 اردیبهشت 1403",
+    views: 290,
+    imgUrl:
+      "https://s3-alpha-sig.figma.com/img/e186/5b86/bca1c8cd3132e2639f0ded1c76c11d46?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=muFxYD2fdDTghyT3akyfQRGLCXbK5cs8xGUHKkZBUrsmRNfzuCQOuiIPk0Msp2WUV-UzndCzpzBWLyinFXJiNutEDil5SvTT7rFNwFJC83ue1cYKFMxewp-I8szWezADhT0F1RGZjQAwxXSmaANjCcJoYRQxjw-lSgO4N-m9fpQ~t~urlMfcClORI9m-AFltZsKO6uawoGuVxWPrHUWu2hTNlzVE9-4-W75e-MLX0G1Eh9tzRqZ5nsocQBZ-eW68Gta4f01ZznlkulJS3z6pKmo8PcAQUHbvsZBndS8CpoBuJuYP4j-XPnrV0P7~GFBXsZNILbR1jZXVDpQ4C0dt7A__",
+    bgColor: "bg-[#87DFFF]",
+  },
+  {
+    title: "فیگما یا ادوبی ایکس‌دی؟",
+    author: "محمدحسین خلیل‌پور",
     date: "17 اردیبهشت 1403",
     views: 318,
-    imgUrl: "https://via.placeholder.com/300x150?text=React",
-    bgColor: "bg-blue-400",
+    imgUrl:
+      "https://s3-alpha-sig.figma.com/img/72eb/0bda/c649ce20dfb0409d36134908c7d16a53?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=VKvXDw8XmMqPX-avBXZ3r-CHzU9Gajrp1YuONERMXpFwVwsZ621ROUvmGg0l0M5Uk3WLvvw2rJNVCzHrcBZFnMZ7223KYF1zthqjB~agrpfX1me4Htn4sYgPWzfOwWcoeMc-8Ft~KokEaEwmlvGatv8eiEtEq7qJdFYL2XiYwSwyu6q6HpeqpSxry78jz0IRAoiTvIYk2P9IFUBoe0ld3XB~XIPFhnHivN8S7q7uvba6q8faq91bBMcoe6dbzjhSVpBQOyKyOeSw4CO4ds4OMV-PV~7gwlyWBn85CIdU5oudgmBhTkRo5lytZ9g8DyzRqkHuWOr7Wez3jdvHYkD02g__",
+    bgColor: "bg-[#FF6C6C]",
   },
-  // Add more card objects here
+  {
+    title: "زبان جاوا اسکریپت در چه حوزه ای به کار میره؟",
+    author: "محمدحسین بحرالعلومی",
+    date: "17 اردیبهشت 1403",
+    views: 318,
+    imgUrl:
+      "https://s3-alpha-sig.figma.com/img/6405/b314/68db8ea561a27064e67d06d024404030?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=plAdFIOKijEfsSeU-9aihHOhbNcP~sosS5W~X9aELB0u5HdlmsEYjQJA0UZKFCv4HrgNvN-D9t0Fv1RljNjHNzddGL9qXbdEHeaIQzWWpB26CmVXACneoTk1yKtsimn4L4yZhz6t6lPtw9Jd19zX6DDtsMiZrU-y0ZWBBEO0cqb7XRfqedjRCrGmx6ikEc6UkdA-rXiQySoEWqOIoOl0sW4OPKqvAmB1QwR0PxNrpGUUu5I0QylRgUaK~DtnPFEHb8plnrfz5R~HiFU8gphiEYknrYA6fRqPJQDE5T0RA2kwOq0gU3rUwjfjqk1wnmVhND~4LDaQR-8KDA63SebBxg__",
+    bgColor: "bg-[#F0DB4F]",
+  },
 ];
 
 const BlogsCards = () => {
   return (
-    <div className="mb-8">
-      <div className="flex justify-end items-center gap-4 mb-4">
-        <button className="text-blue-500 border border-blue-500 py-2 px-4 rounded-full">
-          مرتب‌ترین
+    <div className="mb-8 w-[72rem]">
+      <div className="flex justify-start items-center gap-2 mb-4 mr-7">
+        <span className="text-xl ml-2">ترتیب </span>
+        <button className=" text-white bg-blue-500 py-2 px-4 rounded-full">
+          محبوب ترین
         </button>
-        <button className="text-white bg-blue-500 py-2 px-4 rounded-full">
+        <button className="text-blue-500 border border-blue-500 py-2 px-4 rounded-full">
           جدیدترین
         </button>
       </div>
-      <div className="flex flex-wrap justify-between gap-6">
+      <div className="flex flex-wrap justify-around">
         {cardsData.map((card, index) => (
           <div
             key={index}
-            className={`w-full lg:w-[calc(50%-12px)] p-4 rounded-2xl shadow-md ${card.bgColor}`}
+            className={`lg:basis-[47%] sm:basis-[90%] rounded-3xl mb-7`}
           >
-            <img
-              src={card.imgUrl}
-              alt={card.title}
-              className="mb-4 w-full h-40 rounded-lg object-cover"
-            />
-            <h3 className="text-lg font-bold mb-2">{card.title}</h3>
-            <div className="text-gray-600">
-              <p>{card.author}</p>
-              <p>{card.date}</p>
-              <p>{card.views} بازدید</p>
+            <div
+              className={`mb-4 w-full h-[22rem] rounded-[2.5rem] object-cover ${card.bgColor} flex justify-center items-center`}
+            >
+              <img
+                src={card.imgUrl}
+                alt={card.title}
+                className={`w-60 h-60 object-contain`}
+              />
+            </div>
+            <h3 className="text-2xl font-bold mb-2">{card.title}</h3>
+            <div className="text-gray-600 flex flex-row justify-between">
+              <p className="text-sm/[1.3rem]">{card.author}</p>
+              <div className="flex flex-row gap-4">
+                <p className="flex text-sm/[1.3rem] gap-1">
+                  {card.date}
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M15 1.66663V3.33329M5 1.66663V3.33329"
+                      stroke="#707070"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M9.99658 10.8334H10.0041M9.99658 14.1667H10.0041M13.3262 10.8334H13.3337M6.66699 10.8334H6.67447M6.66699 14.1667H6.67447"
+                      stroke="#707070"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M2.91699 6.66663H17.0837"
+                      stroke="#707070"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M2.08301 10.2027C2.08301 6.57162 2.08301 4.75607 3.12644 3.62803C4.16987 2.5 5.84925 2.5 9.20801 2.5H10.7913C14.1501 2.5 15.8295 2.5 16.8729 3.62803C17.9163 4.75607 17.9163 6.57162 17.9163 10.2027V10.6307C17.9163 14.2617 17.9163 16.0773 16.8729 17.2053C15.8295 18.3333 14.1501 18.3333 10.7913 18.3333H9.20801C5.84925 18.3333 4.16987 18.3333 3.12644 17.2053C2.08301 16.0773 2.08301 14.2617 2.08301 10.6307V10.2027Z"
+                      stroke="#707070"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M2.5 6.66663H17.5"
+                      stroke="#707070"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </p>
+                <p className="flex text-sm/[1.3rem] gap-1">
+                  {card.views}
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M17.9537 9.20413C18.207 9.55938 18.3337 9.73704 18.3337 9.99996C18.3337 10.2629 18.207 10.4405 17.9537 10.7958C16.8152 12.3921 13.908 15.8333 10.0003 15.8333C6.09264 15.8333 3.18541 12.3921 2.04703 10.7958C1.79367 10.4405 1.66699 10.2629 1.66699 9.99996C1.66699 9.73704 1.79367 9.55938 2.04703 9.20413C3.18541 7.60783 6.09264 4.16663 10.0003 4.16663C13.908 4.16663 16.8152 7.60783 17.9537 9.20413Z"
+                      stroke="#707070"
+                      stroke-width="1.5"
+                    />
+                    <path
+                      d="M12.5 10C12.5 8.61925 11.3807 7.5 10 7.5C8.61925 7.5 7.5 8.61925 7.5 10C7.5 11.3807 8.61925 12.5 10 12.5C11.3807 12.5 12.5 11.3807 12.5 10Z"
+                      stroke="#707070"
+                      stroke-width="1.5"
+                    />
+                  </svg>
+                </p>
+              </div>
             </div>
           </div>
         ))}
