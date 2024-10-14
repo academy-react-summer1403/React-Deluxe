@@ -1,4 +1,5 @@
-import React from "react";
+import { Modal } from "antd";
+import React, { useState } from "react";
 
 const cardsData = [
   {
@@ -56,19 +57,82 @@ const cardsData = [
     bgColor: "bg-[#F0DB4F]",
   },
 ];
-
 const BlogsCards = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false); // For controlling slide effect
+
+  const openModal = () => {
+    setIsModalOpen(true);
+    // Add a slight delay before triggering the slide-up animation
+    setTimeout(() => {
+      setIsAnimating(true);
+    }, 10); // Delay for the transition to trigger properly
+  };
+
+  const closeModal = () => {
+    setIsAnimating(false);
+    // Delay closing modal until the slide-down animation finishes
+    setTimeout(() => {
+      setIsModalOpen(false);
+    }, 300); // Match the transition duration (300ms)
+  };
+
   return (
     <div className="mb-8 w-[72rem]">
-      <div className="flex justify-start items-center gap-2 mb-4 mr-7">
+      <div className="hidden lg:flex justify-start items-center gap-2 mb-4 mr-7">
         <span className="text-xl ml-2">ترتیب </span>
         <button className=" text-white bg-blue-500 py-2 px-4 rounded-full">
-          محبوب ترین
-        </button>
-        <button className="text-blue-500 border border-blue-500 py-2 px-4 rounded-full">
           جدیدترین
         </button>
+        <button className="text-blue-500 border border-blue-500 py-2 px-4 rounded-full">
+          محبوب‌ترین
+        </button>
       </div>
+
+      {/* On smaller screens, we show a single button to trigger the modal */}
+      <div className="lg:hidden flex justify-start items-center gap-2 mb-4 mr-7">
+        <button
+          className="text-white bg-blue-500 py-2 px-4 rounded-full"
+          onClick={openModal}
+        >
+          مرتب سازی
+        </button>
+      </div>
+
+      {/* Modal Background */}
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-end"
+          onClick={closeModal} // Close modal when background is clicked
+        >
+          {/* Modal Content (Slide-up effect) */}
+          <div
+            className={`w-full bg-white rounded-t-lg p-4 transform transition-transform duration-300 ${
+              isAnimating ? "translate-y-0" : "translate-y-full"
+            }`}
+            onClick={(e) => e.stopPropagation()} // Prevent modal close on content click
+          >
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-lg font-bold mr-4">ترتیب</h2>
+              <button
+                className="text-red-500 border border-[#FF5353] rounded-full py-2 px-4"
+                onClick={closeModal}
+              >
+                ✕ بستن
+              </button>
+            </div>
+            <div className="flex justify-start items-center gap-2 mb-4 mr-4">
+              <button className=" text-red-500 border border-red-500 py-2 px-4 rounded-full">
+                جدیدترین
+              </button>
+              <button className="text-gray-800 border border-gray-800 py-2 px-4 rounded-full">
+                محبوب‌ترین
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="flex flex-wrap justify-around">
         {cardsData.map((card, index) => (
           <div

@@ -140,9 +140,9 @@ const BlogsFilter = () => {
 
     // GHONCHE CODE!!!!!!!!!!!!!!!! vvvvvvvv
 
-    <div className="relative flex w-[20rem]">
+    <div className="relative w-0 flex lg:w-[20rem]">
       {/* Button to show filters only on small screens */}
-      <div className="mb-4 lg:hidden md:hidden md:min-w-8">
+      <div className="mb-4 lg:hidden">
         <button
           onClick={toggleModal}
           className="px-6 py-2 mx-auto bg-red-500 text-white rounded-full"
@@ -152,7 +152,7 @@ const BlogsFilter = () => {
       </div>
 
       {/* Filter form hidden on small screens */}
-      <div className="hidden md:block bg-white rounded-3xl p-4 w-80 h-fit text-right border-2 mt-20 dark:bg-indigo-950 ">
+      <div className="hidden lg:block bg-white rounded-3xl p-4 w-80 text-right border-2 mt-20 dark:bg-indigo-950 ">
         <h2 className="text-xl font-semibold mb-4 dark:text-white">فیلتر</h2>
 
         {/* Search */}
