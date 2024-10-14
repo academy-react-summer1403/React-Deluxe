@@ -8,6 +8,7 @@ import { SignIn } from "../../Screens/SignIn";
 import { SignUp } from "../../Screens/SignUp";
 import { ForgetPass } from "../../Screens/ForgetPass";
 import { ErrorRoutes } from "../../Screens/Errors/ErrorRoutes/ErrorRoutes";
+import Blogs from "../../Screens/Blogs";
 
 // routes that are available both as public and auth
 export const commonRoutes = createBrowserRouter([
@@ -28,6 +29,10 @@ export const commonRoutes = createBrowserRouter([
       {
         path: "/courseDetails",
         element: <CourseDetails />,
+      },
+      {
+        path: "/Blogs",
+        element: <Blogs />,
       },
     ],
   },
