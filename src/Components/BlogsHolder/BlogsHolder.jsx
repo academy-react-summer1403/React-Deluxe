@@ -5,7 +5,6 @@ import { BlogsHeroSection } from "./BlogsHeroSection/BlogsHeroSection";
 const BlogsHolder = () => {
   return (
     <>
-      {" "}
       <BlogsHeroSection />
       <div className="flex p-6">
         <BlogsFilter />
