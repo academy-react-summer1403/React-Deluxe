@@ -1,9 +1,7 @@
-import  { useState } from "react";
-import { Button, Input, Tabs } from "antd";
+import { useState } from "react";
+import { Button, Input } from "antd";
 import "antd/dist/reset.css";
 import { LoginPanel } from "../LoginPanel";
-
-const { TabPane } = Tabs;
 
 const InputField = ({ label, placeholder }) => (
   <div className="mb-4">
@@ -18,74 +16,93 @@ const InputField = ({ label, placeholder }) => (
 const ForgotPassword = ({ onBack }) => {
   const [currentTab, setCurrentTab] = useState("1");
 
-  const changeTab = (key) => {
-    setCurrentTab(key);
-  };
-
   return (
-    <div className="flex flex-col md:flex-row h-screen justify-center items-center bg-white">
+    <div className="flex flex-col md:flex-row h-screen justify-center items-start bg-white mt-8">
     
       {/* بخش فرم فراموشی رمز عبور */}
       <div className="w-full sm:w-full md:w-2/3 lg:w-1/2 xl:w-1/2 2xl:w-1/2 flex flex-col justify-center items-center p-5 sm:p-5 md:p-10 lg:p-12 xl:p-14 2xl:p-16 text-black">
-        <Tabs
-          activeKey={currentTab}
-          onChange={changeTab}
-          className="w-full h-screen mt-8"
-          tabBarStyle={{ marginBottom: '60px', backgroundColor: "#fff" }}
-        >
-          {/* تب وارد کردن ایمیل */}
-          <TabPane tab={<span className="mx-3">وارد کردن ایمیل</span>} key="1">
-            <div className="w-full max-w-md text-center">
-              <h2 className="text-2xl sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-4xl font-bold mb-2 text-right">
-                فراموشی رمزعبور!
-              </h2>
-              <p className="text-xs sm:text-xs md:text-sm lg:text-sm xl:text-base 2xl:text-lg mb-6 w-80 sm:w-72 md:w-80 lg:w-96 xl:w-[400px] 2xl:w-[500px] text-right text-gray-500">
-                اگر رمزعبور خود را فراموش کرده‌اید، ایمیل خود را وارد کنید تا
-                لینک تغییر رمزعبور برای شما ارسال شود.
-              </p>
-              <InputField label="ایمیل" placeholder="ایمیل خود را وارد کنید" />
-              <Button
-                type="primary"
-                className="w-full h-10 bg-blue-500 text-white rounded-3xl font-bold"
-                onClick={() => setCurrentTab("2")} // رفتن به تب بعدی
-              >
-                ارسال لینک
-              </Button>
-              <Button
-                className="w-32 h-9 mt-4 border border-solid border-gray-300 text-blue-500 rounded-3xl font-bold"
-                onClick={onBack}
-              >
-                بازگشت
-              </Button>
-            </div>
-          </TabPane>
+        {/* Tabs */}
+        <div className="flex justify-start gap-8 w-full max-w-lg mb-4">
+          {/* First tab */}
+          <div
+            className={`cursor-pointer text-center pb-1 w-1/4 flex flex-col items-center ${
+              currentTab === "1" ? "text-black font-bold" : "text-gray-400"
+            }`}
+            onClick={() => setCurrentTab("1")}
+          >
+            <div
+              className={`h-1 w-full ${currentTab === "1" ? "bg-blue-500" : "bg-transparent"}`}
+            />
+            <span className="mt-2 min-h-[30px] w-52">وارد کردن ایمیل</span>
+          </div>
 
-          {/* تب تایید کد دو مرحله‌ای */}
-          <TabPane tab={<span className="mx-3">تایید کد ارسال شده</span>} key="2">
-            <div className="w-full max-w-md text-center">
-              <h2 className="text-2xl sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-4xl font-bold mb-2 text-right">
-                رمز عبور جدید!
-              </h2>
-              <p className="text-xs sm:text-xs md:text-sm lg:text-sm xl:text-base 2xl:text-lg mb-6 w-80 sm:w-72 md:w-80 lg:w-96 xl:w-[400px] 2xl:w-[500px] text-right text-gray-500">
-                رمز عبور جدید خود را وارد کنید
-              </p>
-              <InputField label="رمز عبور جدید" placeholder="رمز عبور خود را وارد کنید" />
-              <InputField label="تکرار رمز عبور جدید" placeholder="تکرار رمز عبور خود را وارد کنید" />
-              <Button
-                type="primary"
-                className="w-full h-10 bg-blue-500 text-white rounded-3xl font-bold"
-              >
-                تایید رمز عبور
-              </Button>
-              <Button
-                className="w-32 h-9 mt-4 border border-solid border-gray-300 text-blue-500 rounded-3xl font-bold"
-                onClick={() => setCurrentTab("1")} // بازگشت به تب اول
-              >
-                بازگشت
-              </Button>
-            </div>
-          </TabPane>
-        </Tabs>
+          {/* Space between tabs */}
+          <div className="w-1.5" /> {/* فاصله 5 پیکسل */}
+
+          {/* Second tab */}
+          <div
+            className={`cursor-pointer text-center pb-1 w-1/4 flex flex-col items-center ${
+              currentTab === "2" ? "text-black font-bold" : "text-gray-400"
+            }`}
+            onClick={() => setCurrentTab("2")}
+          >
+            <div
+              className={`h-1 w-full ${currentTab === "2" ? "bg-blue-500" : "bg-transparent"}`}
+            />
+            <span className="mt-1 min-h-[30px]">تایید کد ارسال شده</span>
+          </div>
+        </div>
+
+        {/* محتوای تب‌ها */}
+        {currentTab === "1" && (
+          <div className="w-full max-w-lg text-center mt-14">
+            <h2 className="text-2xl sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-4xl font-bold mb-2 text-right">
+              فراموشی رمزعبور!
+            </h2>
+            <p className="text-xs sm:text-xs md:text-sm lg:text-sm xl:text-base 2xl:text-lg mb-6 w-80 sm:w-72 md:w-80 lg:w-96 xl:w-[400px] 2xl:w-[500px] text-right text-gray-500">
+              اگر رمزعبور خود را فراموش کرده‌اید، ایمیل خود را وارد کنید تا لینک تغییر رمزعبور برای شما ارسال شود.
+            </p>
+            <InputField label="ایمیل" placeholder="ایمیل خود را وارد کنید" />
+            <Button
+              type="primary"
+              className="w-full h-10 bg-blue-500 text-white rounded-3xl font-bold"
+              onClick={() => setCurrentTab("2")} // رفتن به تب بعدی
+            >
+              ارسال لینک
+            </Button>
+            <Button
+              className="w-32 h-9 mt-4 border border-solid border-gray-300 text-blue-500 rounded-3xl font-bold"
+              onClick={onBack}
+            >
+              بازگشت
+            </Button>
+          </div>
+        )}
+
+        {currentTab === "2" && (
+          <div className="w-full max-w-md text-center">
+            <h2 className="text-2xl sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-4xl font-bold mb-2 text-right">
+              رمز عبور جدید!
+            </h2>
+            <p className="text-xs sm:text-xs md:text-sm lg:text-sm xl:text-base 2xl:text-lg mb-6 w-80 sm:w-72 md:w-80 lg:w-96 xl:w-[400px] 2xl:w-[500px] text-right text-gray-500">
+              رمز عبور جدید خود را وارد کنید
+            </p>
+            <InputField label="رمز عبور جدید" placeholder="رمز عبور خود را وارد کنید" />
+            <InputField label="تکرار رمز عبور جدید" placeholder="تکرار رمز عبور خود را وارد کنید" />
+            <Button
+              type="primary"
+              className="w-full h-10 bg-blue-500 text-white rounded-3xl font-bold"
+            >
+              تایید رمز عبور
+            </Button>
+            <Button
+              className="w-32 h-9 mt-4 border border-solid border-gray-300 text-blue-500 rounded-3xl font-bold"
+              onClick={() => setCurrentTab("1")} // بازگشت به تب اول
+            >
+              بازگشت
+            </Button>
+          </div>
+        )}
       </div>
 
       {/* بخش سمت چپ ثابت */}
