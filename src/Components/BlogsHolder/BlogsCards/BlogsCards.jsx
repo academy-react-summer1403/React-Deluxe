@@ -1,4 +1,4 @@
-import { Modal } from "antd";
+import { ConfigProvider, Modal, Pagination } from "antd";
 import React, { useState } from "react";
 
 const cardsData = [
@@ -80,7 +80,7 @@ const BlogsCards = () => {
   return (
     <div className="mb-8 w-[72rem]">
       <div className="hidden lg:flex justify-start items-center gap-2 mb-4 mr-7">
-        <span className="text-xl ml-2">ترتیب </span>
+        <span className="text-xl ml-2 dark:text-white">ترتیب </span>
         <button className=" text-white bg-blue-500 py-2 px-4 rounded-full">
           جدیدترین
         </button>
@@ -90,12 +90,55 @@ const BlogsCards = () => {
       </div>
 
       {/* On smaller screens, we show a single button to trigger the modal */}
-      <div className="lg:hidden flex justify-start items-center gap-2 mb-4 mr-7">
+      <div className="lg:hidden flex justify-end items-center gap-2 mb-4 ml-12">
         <button
-          className="text-white bg-blue-500 py-2 px-4 rounded-full"
+          className="text-white bg-blue-500 py-3 px-4 rounded-full flex gap-2"
           onClick={openModal}
         >
-          مرتب سازی
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M11 8H20"
+              stroke="#FCFCFC"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12 12H18"
+              stroke="#FCFCFC"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M14 16H16"
+              stroke="#FCFCFC"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M10 4H21"
+              stroke="#FCFCFC"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M5.5 21V3M5.5 21C4.79977 21 3.49153 19.0057 3 18.5M5.5 21C6.20023 21 7.50847 19.0057 8 18.5"
+              stroke="#FCFCFC"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          ترتیب
         </button>
       </div>
 
@@ -107,15 +150,18 @@ const BlogsCards = () => {
         >
           {/* Modal Content (Slide-up effect) */}
           <div
-            className={`w-full bg-white rounded-t-lg p-4 transform transition-transform duration-300 ${
+            className={`w-full bg-white rounded-t-3xl p-4 transform transition-transform duration-300 flex flex-col ${
               isAnimating ? "translate-y-0" : "translate-y-full"
             }`}
             onClick={(e) => e.stopPropagation()} // Prevent modal close on content click
           >
+            <div className="flex justify-center">
+              <div className="bg-gray-300 rounded-3xl w-16 h-2 mb-6"></div>
+            </div>
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-lg font-bold mr-4">ترتیب</h2>
               <button
-                className="text-red-500 border border-[#FF5353] rounded-full py-2 px-4"
+                className="text-red-500 border border-[#FF5353] rounded-full py-2 px-4 ml-4"
                 onClick={closeModal}
               >
                 ✕ بستن
@@ -148,11 +194,15 @@ const BlogsCards = () => {
                 className={`w-60 h-60 object-contain`}
               />
             </div>
-            <h3 className="text-2xl font-bold mb-2">{card.title}</h3>
+            <h3 className="text-2xl font-bold mb-2 dark:text-slate-300">
+              {card.title}
+            </h3>
             <div className="text-gray-600 flex flex-row justify-between">
-              <p className="text-sm/[1.3rem]">{card.author}</p>
+              <p className="text-sm/[1.3rem] dark:text-slate-400">
+                {card.author}
+              </p>
               <div className="flex flex-row gap-4">
-                <p className="flex text-sm/[1.3rem] gap-1">
+                <p className="flex text-sm/[1.3rem] gap-1 dark:text-slate-400">
                   {card.date}
                   <svg
                     width="20"
@@ -198,7 +248,7 @@ const BlogsCards = () => {
                     />
                   </svg>
                 </p>
-                <p className="flex text-sm/[1.3rem] gap-1">
+                <p className="flex text-sm/[1.3rem] gap-1 dark:text-slate-400">
                   {card.views}
                   <svg
                     width="20"
@@ -224,17 +274,9 @@ const BlogsCards = () => {
           </div>
         ))}
       </div>
-      <div className="flex justify-center mt-6">
-        <button className="bg-gray-100 text-gray-700 py-2 px-4 rounded-full">
-          1
-        </button>
-        <button className="bg-white text-gray-700 py-2 px-4 rounded-full">
-          2
-        </button>
-        <button className="bg-white text-gray-700 py-2 px-4 rounded-full">
-          3
-        </button>
-      </div>
+      <ConfigProvider direction="rtl">
+        <Pagination align="center" defaultCurrent={1} total={50} />
+      </ConfigProvider>
     </div>
   );
 };
