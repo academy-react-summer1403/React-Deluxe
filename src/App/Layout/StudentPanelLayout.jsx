@@ -1,21 +1,25 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { Header } from "../../Components/Common/Header/Header";
-import { Footer } from "../../Components/Common/Footer";
-import { HeaderStudent } from "../../Components/Common/Header/HeaderStudent";
+import { StudentHeader } from "../../Components/Common/Header/StudentHeader";
+import { StudentMenu } from "../../Components/Common/StudentMenu/StudentMenu";
 
-const Layout = () => {
+const StudentPanelLayout = () => {
   return (
-    <div className="flex  dark:bg-indigo-950">
-      <div> menu </div>
-      <div className="flex-col flex">
+    <div className="flex justify-center h-[1024px] dark:bg-indigo-950">
+      <div>
+        {" "}
+        <StudentMenu />{" "}
+      </div>
+      <div className="flex-col p-0 flex">
         <div>
-          <HeaderStudent />
+          <StudentHeader />
         </div>
-        <div>outlet</div>
+        <div>
+          <Outlet />
+        </div>
       </div>
     </div>
   );
 };
 
-export { Layout };
+export { StudentPanelLayout };
