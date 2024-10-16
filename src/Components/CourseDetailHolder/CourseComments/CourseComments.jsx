@@ -1,11 +1,14 @@
 // Comments.jsx
-import React from "react";
+import React, { useState } from "react";
 import { TbMessagePlus } from "react-icons/tb";
 import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import { AiOutlineLike } from "react-icons/ai";
 import { AiOutlineDislike } from "react-icons/ai";
+import { CourseCommentsModal } from "./CourseCommentsModal";
 
 const CourseComment = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const commentsData = [
     {
       title: "دوره جاوااسکریپت",
@@ -124,10 +127,17 @@ const CourseComment = () => {
         ))}
       </div>
       <div className="flex justify-center">
-        <button className="bg-[#2F2F2F] dark:bg-gray-700 text-white dark:text-gray-200 px-4 py-2 mt-4 rounded-full">
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="bg-[#2F2F2F] dark:bg-gray-700 text-white dark:text-gray-200 px-4 py-2 mt-4 rounded-full"
+        >
           مشاهده بیشتر
         </button>
       </div>
+      <CourseCommentsModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   );
 };
