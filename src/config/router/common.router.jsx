@@ -16,6 +16,7 @@ import MyReserve from "../../Screens/MyReserve";
 
 import FavoriteCourse from "../../Screens/FavoriteCourse";
 import FavoriteBlog from "../../Screens/FavoriteBlog";
+import Blogs from "../../Screens/Blogs";
 
 // routes that are available both as public and auth
 export const commonRoutes = createBrowserRouter([
@@ -36,6 +37,10 @@ export const commonRoutes = createBrowserRouter([
       {
         path: "/courseDetails",
         element: <CourseDetails />,
+      },
+      {
+        path: "/Blogs",
+        element: <Blogs />,
       },
     ],
   },
