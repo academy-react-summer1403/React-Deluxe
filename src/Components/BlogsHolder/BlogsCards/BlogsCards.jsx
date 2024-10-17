@@ -183,7 +183,7 @@ const BlogsCards = () => {
         {cardsData.map((card, index) => (
           <div
             key={index}
-            className={`lg:basis-[47%] sm:basis-[90%] rounded-3xl mb-7`}
+            className={`lg:basis-[47%] basis-[90%] rounded-3xl mb-7`}
           >
             <div
               className={`mb-4 w-full h-[22rem] rounded-[2.5rem] object-cover ${card.bgColor} flex justify-center items-center`}
@@ -202,7 +202,7 @@ const BlogsCards = () => {
                 {card.author}
               </p>
               <div className="flex flex-row gap-4">
-                <p className="flex text-sm/[1.3rem] gap-1 dark:text-slate-400">
+                <p className="flex text-xs/[1.4rem] gap-2 dark:text-slate-400">
                   {card.date}
                   <svg
                     width="20"
@@ -248,7 +248,7 @@ const BlogsCards = () => {
                     />
                   </svg>
                 </p>
-                <p className="flex text-sm/[1.3rem] gap-1 dark:text-slate-400">
+                <p className="flex text-xs/[1.4rem] gap-2 dark:text-slate-400">
                   {card.views}
                   <svg
                     width="20"
