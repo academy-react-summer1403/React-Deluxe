@@ -8,6 +8,14 @@ import { SignIn } from "../../Screens/SignIn";
 import { SignUp } from "../../Screens/SignUp";
 import { ForgetPass } from "../../Screens/ForgetPass";
 import { ErrorRoutes } from "../../Screens/Errors/ErrorRoutes/ErrorRoutes";
+import { StudentPanelLayout } from "../../App/Layout/StudentPanelLayout";
+import Dashboard from "../../Screens/Dashboard";
+import MyCourses from "../../Screens/MyCourse";
+import MyProfile from "../../Screens/MyProfile";
+import MyReserve from "../../Screens/MyReserve";
+
+import FavoriteCourse from "../../Screens/FavoriteCourse";
+import FavoriteBlog from "../../Screens/FavoriteBlog";
 import Blogs from "../../Screens/Blogs";
 
 // routes that are available both as public and auth
@@ -51,6 +59,37 @@ export const commonRoutes = createBrowserRouter([
       {
         path: "/auth/forgetPass",
         element: <ForgetPass />,
+      },
+    ],
+  },
+  {
+    path: "/",
+    element: <StudentPanelLayout />,
+    errorElement: <ErrorRoutes />,
+    children: [
+      {
+        path: "/Dashboard",
+        element: <Dashboard />,
+      },
+      {
+        path: "/MyCourse",
+        element: <MyCourses />,
+      },
+      {
+        path: "/MyReserve",
+        element: <MyReserve />,
+      },
+      {
+        path: "/FavoriteCourses",
+        element: <FavoriteCourse />,
+      },
+      {
+        path: "/FavoriteBlogs",
+        element: <FavoriteBlog />,
+      },
+      {
+        path: "/MyProfile",
+        element: <MyProfile />,
       },
     ],
   },

@@ -21,7 +21,7 @@ const Header = () => {
         </div>
         <div className="hidden lg:flex flex-nowrap items-center ml-10 rounded-full bg-black dark:bg-white p-1 pr-4">
           <nav>
-            <ul className="flex  justify-between text-white dark:text-black w-72">
+            <ul className="flex  justify-between text-white mb-0 !items-center dark:text-black w-72">
               <HeaderItems Item="خانه" link="/" />
               <HeaderItems Item="دوره ها" link="/courses" />
 

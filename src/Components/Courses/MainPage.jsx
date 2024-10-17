@@ -2,6 +2,7 @@ import { Filter } from "./Filter";
 import { CategoryMenu } from "./CategoryMenu";
 import { CourseList } from "./CourseList";
 import { CourseHolder } from "./CoursesComponents/CourseHolder/CourseHolder";
+import { Pagination } from "./PageInation";
 
 
 
@@ -21,6 +22,7 @@ const MainPage = () => {
             <CourseList />
           </div>
         </div>
+        <Pagination />
       </div>
     );
   };
