@@ -17,9 +17,8 @@ const ForgotPassword = ({ onBack }) => {
   const [currentTab, setCurrentTab] = useState("1");
 
   return (
-    <div className="flex flex-col md:flex-row h-screen justify-center items-start bg-white mt-8">
+    <div className="flex flex-col md:flex-row h-screen justify-center items-start bg-white">
     
-      {/* بخش فرم فراموشی رمز عبور */}
       <div className="w-full sm:w-full md:w-2/3 lg:w-1/2 xl:w-1/2 2xl:w-1/2 flex flex-col justify-center items-center p-5 sm:p-5 md:p-10 lg:p-12 xl:p-14 2xl:p-16 text-black">
         {/* Tabs */}
         <div className="flex justify-start gap-8 w-full max-w-lg mb-4">
@@ -37,7 +36,7 @@ const ForgotPassword = ({ onBack }) => {
           </div>
 
           {/* Space between tabs */}
-          <div className="w-1.5" /> {/* فاصله 5 پیکسل */}
+          <div className="w-1.5" />  
 
           {/* Second tab */}
           <div
@@ -53,7 +52,6 @@ const ForgotPassword = ({ onBack }) => {
           </div>
         </div>
 
-        {/* محتوای تب‌ها */}
         {currentTab === "1" && (
           <div className="w-full max-w-lg text-center mt-14">
             <h2 className="text-2xl sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-4xl font-bold mb-2 text-right">
@@ -66,7 +64,7 @@ const ForgotPassword = ({ onBack }) => {
             <Button
               type="primary"
               className="w-full h-10 bg-blue-500 text-white rounded-3xl font-bold"
-              onClick={() => setCurrentTab("2")} // رفتن به تب بعدی
+              onClick={() => setCurrentTab("2")} 
             >
               ارسال لینک
             </Button>
@@ -97,7 +95,7 @@ const ForgotPassword = ({ onBack }) => {
             </Button>
             <Button
               className="w-32 h-9 mt-4 border border-solid border-gray-300 text-blue-500 rounded-3xl font-bold"
-              onClick={() => setCurrentTab("1")} // بازگشت به تب اول
+              onClick={() => setCurrentTab("1")}
             >
               بازگشت
             </Button>
@@ -105,8 +103,8 @@ const ForgotPassword = ({ onBack }) => {
         )}
       </div>
 
-      {/* بخش سمت چپ ثابت */}
-      <div className="hidden md:flex w-full lg:w-1/2">
+
+      <div className="hidden md:flex w-full lg:w-1/2 p-9">
         <LoginPanel />
       </div>
     </div>
