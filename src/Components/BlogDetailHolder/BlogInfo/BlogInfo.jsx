@@ -6,67 +6,81 @@ import { PiShoppingBagOpen } from "react-icons/pi";
 import { AiOutlineLike } from "react-icons/ai";
 import { AiOutlineDislike } from "react-icons/ai";
 import { InfoBlock } from "./Components/InfoBlock";
+import { IoIosLink } from "react-icons/io";
 
-const CourseInfo = () => {
+const CopyLink = () => {
+  const [copied, setCopied] = useState(false);
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(window.location.href);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
+  };
+
+  return (
+    <div className="mr-5 -mt-1">
+      <button
+        onClick={copyToClipboard}
+        className="border-2 border-[#3772FF] dark:border-indigo-800 text-[#3772FF] dark:text-indigo-300 text-lg/5 px-4 py-3 rounded-full mt-1"
+      >
+        {copied ? (
+          <div className="flex">
+            <IoIosLink className="-scale-x-[1] ml-2 text-[#3772FF] dark:text-white" />
+            <span className="text-[#3772FF] dark:text-white">کپی شد!</span>
+          </div>
+        ) : (
+          <div className="flex">
+            <IoIosLink className="-scale-x-[1] ml-2 text-[#3772FF] dark:text-white" />
+            <span className="text-[#3772FF] dark:text-white">
+              کپی کردن لینک صفحه
+            </span>
+          </div>
+        )}
+      </button>
+    </div>
+  );
+};
+
+const BlogInfo = () => {
   const [starValue, setStarValue] = useState(1);
 
   const infoBlock1Data = [
     {
       wrapperClasses:
-        "basis-[50%] border-l border-gray-400 dark:border-gray-500 w-32 h-20 p-2 flex flex-col items-center lg:block",
-      titleClasses: "text-sm text-gray-400 dark:text-gray-300",
-      title: "وضعیت",
-      statusClasses:
-        "text-white bg-[#ff5353] rounded-full px-2 text-base font-light whitespace-nowrap w-fit h-6 mt-2",
-      status: "درحال برگزاری",
-    },
-    {
-      wrapperClasses:
-        "basis-[50%] w-32 h-20 p-2 text-nowrap flex flex-col items-center lg:block",
+        "basis-[50%] border-l border-gray-400 dark:border-gray-500 w-32 h-20 p-2 text-nowrap flex flex-col items-center lg:block",
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
       title: "دسته بندی",
       statusClasses:
         "text-white bg-[#3772ff] rounded-full px-2 text-base font-light w-fit h-6 mt-2",
       status: "برنامه نویسی",
     },
+    {
+      wrapperClasses: "basis-[50%] w-32 h-20 p-2",
+      titleClasses: "text-sm text-gray-400 dark:text-gray-300",
+      title: "بازدیدکنندگان",
+      statusClasses: "text-base/[2.5rem] font-light dark:text-white",
+      status: "264 نفر",
+    },
   ];
   const infoBlock2Data = [
     {
       wrapperClasses:
-        "basis-[50%] lg:basis-[50%] border-l border-gray-400 dark:border-gray-500 w-32 h-20 p-2 flex flex-col items-center lg:block",
-      titleClasses: "text-sm text-gray-400 dark:text-gray-300",
-      title: "سطح آموزشی",
-      statusClasses:
-        "text-white bg-[#ff37f5] rounded-full px-2 text-base font-light w-fit h-6 mt-2",
-      status: "پیشرفته",
-    },
-    {
-      wrapperClasses: "basis-[50%] lg:basis-[50%] w-32 h-20 p-2",
-      titleClasses: "text-sm text-gray-400 dark:text-gray-300",
-      title: "مدرس",
-      statusClasses:
-        "text-base/[1.2rem] font-light whitespace-wrap dark:text-white mt-2",
-      status: "محمدحسین بحرالعلومی",
-    },
-  ];
-  const infoBlock3Data = [
-    {
-      wrapperClasses:
         "basis-[50%] border-l border-gray-400 dark:border-gray-500 w-32 h-20 p-2",
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
-      title: "تاریخ برگزاری",
+      title: "تاریخ انتشار",
       statusClasses: "text-base/[2.5rem] font-light dark:text-white",
       status: "29 اردیبهشت 1403",
     },
     {
-      wrapperClasses: "basis-[50%] w-32 h-20 p-2",
+      wrapperClasses: "basis-[50%] lg:basis-[50%] w-32 h-20 p-2",
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
-      title: "تاریخ اتمام",
-      statusClasses: "text-base/[2.5rem] font-light dark:text-white",
-      status: "29 خرداد 1403",
+      title: "منتشرکننده",
+      statusClasses:
+        "text-base/[1.2rem] font-light whitespace-wrap dark:text-white mt-2",
+      status: "محمدحسین خلیل‌پور",
     },
   ];
-  const infoBlock4Data = [
+  const infoBlock3Data = [
     {
       wrapperClasses:
         "basis-[50%] border-l border-gray-400 dark:border-gray-500 w-32 h-20 p-2",
@@ -134,20 +148,14 @@ const CourseInfo = () => {
             </div>
 
             {/* 3rd Row: Additional Info Section */}
-            <div className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-r-3xl lg:basis-[50%] border lg:border-0 lg:border-t lg:border-r lg:border-b border-gray-400 dark:border-gray-500 overflow-hidden dark:bg-indigo-900">
+            <div
+              className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl 
+              //lg:rounded-none lg:rounded-r-3xl 
+              lg:basis-[50%] 
+            border //lg:border-0 lg:border-t lg:border-r lg:border-b
+             border-gray-400 dark:border-gray-500 overflow-hidden dark:bg-indigo-900"
+            >
               {infoBlock3Data.map((item, index) => (
-                <InfoBlock
-                  key={index}
-                  wrapperClasses={item.wrapperClasses}
-                  titleClasses={item.titleClasses}
-                  title={item.title}
-                  statusClasses={item.statusClasses}
-                  status={item.status}
-                />
-              ))}
-            </div>
-            <div className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-l-3xl lg:basis-[50%] border border-gray-400 dark:border-gray-500 overflow-hidden dark:bg-indigo-900">
-              {infoBlock4Data.map((item, index) => (
                 <InfoBlock
                   key={index}
                   wrapperClasses={item.wrapperClasses}
@@ -180,10 +188,7 @@ const CourseInfo = () => {
 
           {/* 5th Row: Action Buttons */}
           <div className="flex flex-row justify-evenly lg:justify-between md:gap-2 lg:gap-0 lg:text-ellipsis text-base lg:text-sm xl:text-base lg:overflow-hidden">
-            <button className="bg-[#3772FF] dark:bg-indigo-800 text-white px-8 lg:px-4 xl:px-8 xl:py-2 sm:text-base rounded-full mr-2 hidden lg:flex items-center">
-              <FaBook className="xl:mx-2" />
-              رزرو دوره
-            </button>
+            <CopyLink />
             <button className="bg-[#2f2f2f] dark:bg-indigo-800 text-white px-2 whitespace-nowrap text-sm sm:text-base lg:px-4 xl:px-8 xl:py-2 rounded-full lg:mx-auto flex items-center">
               <PiShoppingBagOpen className="mx-0 size-5 xl:mx-2" />
               اضافه به لیست مورد علاقه
@@ -213,4 +218,4 @@ const CourseInfo = () => {
   );
 };
 
-export { CourseInfo };
+export { BlogInfo };
