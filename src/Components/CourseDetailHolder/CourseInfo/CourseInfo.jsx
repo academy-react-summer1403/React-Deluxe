@@ -33,7 +33,7 @@ const CourseInfo = () => {
 
           {/* 2nd Row: Course Info Section */}
           <div className="flex flex-wrap justify-between mb-4 text-center lg:text-right">
-            <div className=" basis-full  flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-r-3xl lg:basis-[50%] xl:basis-[44%] border lg:border-0 lg:border-t lg:border-r lg:border-b border-gray-400 dark:border-gray-500 overflow-hidden dark:bg-indigo-900">
+            <div className=" basis-full  flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-r-3xl lg:basis-[50%] xl:basis-[50%] border lg:border-0 lg:border-t lg:border-r lg:border-b border-gray-400 dark:border-gray-500 overflow-hidden dark:bg-indigo-900">
               <div className="basis-[50%] border-l border-gray-400 dark:border-gray-500 w-32 h-20 p-2">
                 <span className="text-sm text-gray-400 dark:text-gray-300">
                   وضعیت
@@ -53,8 +53,8 @@ const CourseInfo = () => {
                 </span>
               </div>
             </div>
-            <div className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-l-3xl lg:basis-[50%] xl:basis-[56%] border border-gray-400 dark:border-gray-500 overflow-hidden dark:bg-indigo-900">
-              <div className="basis-[50%] lg:basis-[40%] border-l border-gray-400 dark:border-gray-500 w-32 h-20 p-2">
+            <div className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-l-3xl lg:basis-[50%] xl:basis-[50%] border border-gray-400 dark:border-gray-500 overflow-hidden dark:bg-indigo-900">
+              <div className="basis-[50%] lg:basis-[50%] border-l border-gray-400 dark:border-gray-500 w-32 h-20 p-2">
                 <span className="text-sm text-gray-400 dark:text-gray-300">
                   سطح آموزشی
                 </span>{" "}
@@ -63,12 +63,12 @@ const CourseInfo = () => {
                   پیشرفته
                 </span>
               </div>
-              <div className="basis-[50%] lg:basis-[60%] w-32 h-20 p-2">
+              <div className="basis-[50%] lg:basis-[50%] w-32 h-20 p-2">
                 <span className="text-sm text-gray-400 dark:text-gray-300">
                   مدرس
                 </span>{" "}
                 <br />
-                <span className="text-base/[2.5rem] font-light whitespace-nowrap dark:text-white">
+                <span className="text-base/[0.5rem] font-light whitespace-wrap dark:text-white">
                   محمدحسین بحرالعلومی
                 </span>
               </div>
