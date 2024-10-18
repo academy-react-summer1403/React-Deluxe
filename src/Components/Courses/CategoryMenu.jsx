@@ -15,7 +15,6 @@ const CategoryMenu = () => {
 
   return (
     <div className="flex flex-col items-start mb-6 mr-8">
-      {/* در سایزهای بزرگتر، نمایش دسته‌بندی‌ها */}
       <div className="hidden md:flex justify-start space-x-4 mb-4">
         <p className="font-bold text-lg p-2 dark:text-white dark:bg-indigo-950">ترتیب</p>
         <button
@@ -60,7 +59,6 @@ const CategoryMenu = () => {
         </button>
       </div>
 
-      {/* دکمه در سایزهای کوچک‌تر (sm) */}
       <div className="md:hidden mb-4 lg:hidden flex justify-start">
         <button
           onClick={toggleModal}
@@ -72,7 +70,7 @@ const CategoryMenu = () => {
 
       {/* Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"> {/* اضافه کردن z-50 */}
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white dark:bg-indigo-950 p-8 rounded-lg">
             <h2 className="text-xl font-bold mb-4 dark:text-white">دسته‌بندی‌ها</h2>
             <button
@@ -117,7 +115,9 @@ const CategoryMenu = () => {
           </div>
         </div>
       )}
-      {/* لیست دوره‌ها */}
+
+
+
       <CourseList category={activeCategory} />
     </div>
   );

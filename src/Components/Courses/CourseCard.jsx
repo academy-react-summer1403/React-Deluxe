@@ -1,7 +1,6 @@
 const CourseCard = ({ title, image, category, level, price, teacher, background }) => {
   return (
     <div className="flex flex-col w-full max-w-sm mx-auto mb-5">
-      {/* دایو اصلی کارت که به آن استایل background می‌دهیم */}
       <div
         className="relative border rounded-3xl p-4 bg-white flex flex-col h-60 mt-5 shadow-md"
         style={{ backgroundColor: background }} 
@@ -22,13 +21,11 @@ const CourseCard = ({ title, image, category, level, price, teacher, background 
         />
       </div>
       
-      {/* عنوان دوره */}
       <h2 className="text-xl font-bold mb-2 text-right mt-2 dark:text-white">{title}</h2>
 
-      {/* اطلاعات مدرس و قیمت */}
       <div className="flex flex-col sm:flex-row justify-between">
         <p className="text-gray-600 text-sm dark:text-white">مدرس: {teacher}</p>
-        <p className="text-gray-800 font-semibold">{price} تومان</p>
+        <p className="text-gray-800 font-semibold dark:text-white">{price} تومان</p>
       </div>
     </div>
   );
