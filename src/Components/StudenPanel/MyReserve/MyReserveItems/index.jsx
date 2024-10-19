@@ -1,7 +1,8 @@
 import { ConfigProvider, Pagination } from "antd";
 import React from "react";
 import { BsEye } from "react-icons/bs";
-const coursesData = [
+import { RxCross1 } from "react-icons/rx";
+const ReserveData = [
   {
     title: " فیگما",
     price: "۴۵۰,۰۰۰ تومان",
@@ -12,6 +13,8 @@ const coursesData = [
     color: "bg-red-400",
     date: "۲۹ اردیبهشت ۱۴۰۳",
     enddate: "۲۹ شهریور ۱۴۰۳",
+    tagCol: "bg-blue-500",
+    status: "تایید شده",
   },
   {
     title: " جاوا اسکریپت",
@@ -23,6 +26,8 @@ const coursesData = [
     color: "bg-yellow-300",
     date: "۲۹ اردیبهشت ۱۴۰۳",
     enddate: "۲۹ شهریور ۱۴۰۳",
+    tagCol: "bg-red-500",
+    status: "تایید نشده",
   },
   {
     title: " ری‌اکت جی‌اس",
@@ -34,6 +39,8 @@ const coursesData = [
     color: "bg-cyan-200",
     date: "۲۹ اردیبهشت ۱۴۰۳",
     enddate: "۲۹ شهریور ۱۴۰۳",
+    tagCol: "bg-red-500",
+    status: "تایید نشده",
   },
   {
     title: " فیگما",
@@ -45,6 +52,9 @@ const coursesData = [
     color: "bg-red-400",
     date: "۲۹ اردیبهشت ۱۴۰۳",
     enddate: "۲۹ شهریور ۱۴۰۳",
+    tagCol: "bg-red-500",
+
+    status: "تایید نشده",
   },
   {
     title: " جاوااسکریپت",
@@ -56,6 +66,8 @@ const coursesData = [
     color: "bg-yellow-300",
     date: "۲۹ اردیبهشت ۱۴۰۳",
     enddate: "۲۹ شهریور ۱۴۰۳",
+    tagCol: "bg-red-500",
+    status: "تایید نشده",
   },
   {
     title: " طراحی سایت",
@@ -67,12 +79,14 @@ const coursesData = [
     color: "bg-blue-600",
     date: "۲۹ اردیبهشت ۱۴۰۳",
     enddate: "۲۹ شهریور ۱۴۰۳",
+    tagCol: "bg-red-500",
+    status: "تایید نشده",
   },
 ];
 
 const index = () => {
   return (
-    <div className="bg-gray-50 dark:bg-indigo-900 flex flex-col gap-24 p-2 rounded-3xl    ">
+    <div className="bg-gray-50 dark:bg-indigo-900  p-2 rounded-3xl flex flex-col gap-24   flex-1">
       <div>
         <ul className="flex p-2 rounded-xl text-sm text-gray-500  m-5 dark:bg-indigo-950 dark:text-white  bg-gray-100 gap-40 justify-start">
           <li>#</li>
@@ -83,39 +97,45 @@ const index = () => {
           <li>سطح</li>
         </ul>
         <div className="mt-4 mx-5 space-y-4">
-          {coursesData.map((course, index) => (
+          {ReserveData.map((Reserve, index) => (
             <div
               key={index}
               className="  flex flex-row  relative  items-center rounded-3xl justify-start gap-24    "
             >
               <div
-                className={`h-12 flex justify-center items-center rounded-xl w-20  mb-4 ${course.color}`}
+                className={`h-12 flex justify-center items-center rounded-xl w-20  mb-4 ${Reserve.color}`}
               >
-                <img src={course.icon} alt={""} className={`size-8 `} />
+                <img src={Reserve.icon} alt={""} className={`size-8 `} />
               </div>
 
               <h3 className=" text-xl dark:text-white font-semibold mb-2  truncate w-[111px]">
-                {course.title}
+                {Reserve.title}
               </h3>
 
               <p className="  dark:text-white text-[12px]  font-bold items-center w-[125px]  ">
-                {course.teacher}
+                {Reserve.teacher}
               </p>
               <span
                 className={`inline-flex items-center w-[125px] dark:text-white `}
               >
-                {course.date}
+                {Reserve.date}
               </span>
 
               <span
                 className={`inline-flex items-center w-[125px] dark:text-white `}
               >
-                {course.enddate}
+                {Reserve.enddate}
               </span>
-              <span className="px-3 py-0 text-base     bg-[#FF37F5] text-white rounded-full">
-                {course.tag2}
+              <span
+                className={`px-3 py-0 text-base ${Reserve.tagCol}     text-white rounded-full`}
+              >
+                {Reserve.status}
               </span>
-              <BsEye className="text-base" />
+              <div className="flex gap-2">
+                <BsEye className="text-base" />
+
+                <RxCross1 className="text-red-500" />
+              </div>
             </div>
           ))}
         </div>

@@ -2,14 +2,15 @@ import React from "react";
 import MyCoursesItems from "./MyCoursesItems";
 import { SearchInput } from "./MyCoursesItems/Search";
 import { DateRangePicker } from "./MyCoursesItems/DateRange";
+import { ConfigProvider, Pagination } from "antd";
 
 const index = () => {
   return (
-    <div className="container w-[1440px] h-screen  bg-gray-950 ">
-      <div className="bg-white dark:bg-indigo-950 p-8 mx-5 space-y-8 rounded-3xl ">
+    <div className="container w-[1440px] h-[921px]  bg-gray-950 ">
+      <div className="bg-white dark:bg-indigo-950 p-8 mx-5 dark:text-white space-y-8 rounded-3xl ">
         <h2>دوره من</h2>
         <div className="flex flex-col">
-          <div className="flex gap-4">
+          <div className="flex mb-6 gap-4">
             <div className="flex flex-col gap-2">
               <div className="flex gap-2 items-center ">
                 <svg

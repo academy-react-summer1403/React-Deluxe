@@ -27,22 +27,22 @@ const WelcomeHeader = () => {
   };
 
   return (
-    <div className="flex justify-between items-start  bg-white rounded-xl ">
+    <div className="flex justify-between items-start p-2 dark:bg-indigo-900 bg-white dark:text-white rounded-xl ">
       {/* Welcome and Date/Time Section */}
       <div className="flex flex-col items-start">
         <div className="flex gap-5 items-center space-x-2">
           <h2 className="text-2xl font-semibold"> سلام پارسا، روزت بخیر 👋</h2>{" "}
-          <p className="text-gray-500 text-sm mt-1">
+          <p className="text-gray-500 dark:text-gray-50 text-sm mt-1">
             امیدوارم امروز روز خوبی رو داشته باشید
           </p>
         </div>
 
         {/* Date and Time */}
-        <div className="flex mt-4 space-x-8 gap-20 leading-3 text-gray-500 text-lg">
+        <div className="flex mt-4 space-x-8 gap-20 leading-3 dark:text-gray-50 text-gray-500 text-lg">
           {" "}
           <div className="flex items-center gap-2  space-x-1">
             <svg
-              className="bg-gray-50 size-10 rounded-full p-2"
+              className="bg-gray-50 dark:bg-gray-400 size-10 rounded-full p-2"
               width="24"
               height="25"
               viewBox="0 0 24 25"
@@ -64,12 +64,14 @@ const WelcomeHeader = () => {
             </svg>
             <div>
               <p>ساعت </p>
-              <p className="font-bold text-black">{formatTime(currentTime)}</p>
+              <p className="font-bold text-black dark:text-gray-50">
+                {formatTime(currentTime)}
+              </p>
             </div>
           </div>
           <div className="flex items-center gap-2    space-x-1">
             <svg
-              className="bg-gray-50 size-10 rounded-full p-2 "
+              className="bg-gray-50 dark:bg-gray-400 size-10 rounded-full p-2 "
               width="24"
               height="25"
               viewBox="0 0 24 25"
@@ -114,15 +116,20 @@ const WelcomeHeader = () => {
             </svg>
             <div className="">
               <p>تاریخ</p>
-              <p className="font-bold text-black"> {formatDate(currentTime)}</p>
+              <p className="font-bold text-black dark:text-white">
+                {" "}
+                {formatDate(currentTime)}
+              </p>
             </div>
           </div>
         </div>
       </div>
       {/* Bio Section */}
       <div className="flex flex-col justify-center w-96">
-        <p className="text-gray-700 text-lg">سلام ، من پارسام</p>
-        <p className="text-sm text-gray-500">
+        <p className="text-gray-700 dark:text-gray-100 text-lg">
+          سلام ، من پارسام
+        </p>
+        <p className="text-sm text-gray-500 dark:text-gray-50">
           اینم بیو پروفایلمه واقعا نمیدونم چی بنویسم خودتون بیایید منو بشناسید
           حال ندارم بخدا خستم
         </p>

@@ -26,30 +26,34 @@ const coursesData = [
 
 const MyCourses = () => {
   return (
-    <div className="bg-gray-50 dark:bg-indigo-900  p-2 rounded-3xl  w-4/5 flex-1">
+    <div className="bg-gray-50 dark:bg-indigo-900 dark:text-white  p-2 rounded-3xl  w-4/5 flex-1">
       <div className="flex flex-row px-4 justify-between">
         <h2 className="text-base font-semibold">دوره من</h2>
-        <div className="flex-row flex gap-2">
-          <div className="text-blue-500">مشاهده بیشتر </div>
-          <svg
-            className="relative top-1"
-            width="8"
-            height="12"
-            viewBox="0 0 8 12"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M6.5 1C6.5 1 1.50001 4.68242 1.5 6C1.49999 7.31767 6.5 11 6.5 11"
-              stroke="#3772FF"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </div>
+        <Link to={"/MyCourse"}>
+          <div className="flex-row flex gap-2">
+            <div className="text-blue-500 dark:text-blue-400">
+              مشاهده بیشتر{" "}
+            </div>
+            <svg
+              className="relative top-1"
+              width="8"
+              height="12"
+              viewBox="0 0 8 12"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6.5 1C6.5 1 1.50001 4.68242 1.5 6C1.49999 7.31767 6.5 11 6.5 11"
+                stroke="#3772FF"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+        </Link>
       </div>
-      <ul className="flex p-2 rounded-xl text-sm text-gray-500  mx-5  bg-gray-100 gap-40 justify-start">
+      <ul className="flex p-2 rounded-xl text-sm text-gray-500  mx-5 dark:bg-indigo-950 dark:text-white bg-gray-100 gap-40 justify-start">
         <li>#</li>
         <li> نام دوره</li>
         <li className="w-[50px]">مدرس</li>
@@ -78,10 +82,10 @@ const MyCourses = () => {
             <span className={`inline-flex items-center dark:text-white `}>
               {course.date}
             </span>
-            <span className="px-3 py-0 text-base     bg-[#FF37F5] text-white rounded-full">
+            <span className="px-2 py-0 text-base   bg-[#FF37F5] text-white rounded-full">
               {course.tag2}
             </span>
-            <BsEye className="text-base" />
+            <BsEye className="text-base dark:text-white" />
           </div>
         ))}
       </div>

@@ -25,7 +25,7 @@ const Header = () => {
               <HeaderItems Item="خانه" link="/" />
               <HeaderItems Item="دوره ها" link="/courses" />
 
-              <HeaderItems Item="بلاگ ها" />
+              <HeaderItems Item="بلاگ ها" link="/blogs" />
               <HeaderItems Item="درباره ما" />
             </ul>
           </nav>
@@ -36,7 +36,7 @@ const Header = () => {
           </Link>
         </div>
         <div className="flex">
-          <div className="flex lg:hidden items-center justify-end space-x-2 pr-2 gap-1 rounded-full border border-gray-300  h-11">
+          <div className="flex  items-center justify-end space-x-2 pr-2 gap-1 rounded-full border border-gray-300  h-11">
             {/* Down Arrow Icon */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
