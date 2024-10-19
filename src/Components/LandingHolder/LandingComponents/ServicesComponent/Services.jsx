@@ -4,23 +4,23 @@ const servicesData = [
   {
     title: "مدرک معتبر",
     description: "با مدرک ما میتوانید به راحتی در همه جا استخدام بشید",
-    icon: "/path-to-service-icon-2.png",
+    icon: "src/assets/licence.png",
   },
   {
     title: "آزمون ها",
     description: "با آزمون های تعیین سطح میتوانید سطح دانش خودتون رو بسنجید",
-    icon: "/path-to-service-icon-1.png",
+    icon: "src/assets/tests.png",
   },
   {
     title: "مشاوره ۲۴ ساعته",
     description: "مشاورین ما ۲۴ ساعته جوابگوی سوال های شما هستند",
-    icon: "/path-to-service-icon-4.png",
+    icon: "src/assets/support.png",
   },
   {
     title: "فرصت‌های شغلی",
     description:
       "با توجه به سطح توانایی شما فرصت های شغلی به شما پیشنهاد داده میشه",
-    icon: "/path-to-service-icon-3.png",
+    icon: "src/assets/career.png",
   },
 ];
 
@@ -36,18 +36,17 @@ const Services = () => {
         </h2>
 
         {/* First Row */}
-        <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-8">
-          {servicesData.slice(0, 2).map((service, index) => (
+        <div className="flex flex-col md:flex-row justify-between flex-wrap gap-4 md:gap-8">
+          {servicesData.map((service, index) => (
             <div
               key={index}
-              className={`flex flex-col md:flex-row flex-shrink-0 mditems-center p-4 border rounded-3xl bg-gray-100 dark:bg-gray-700 border-gray-300 hover:border-blue-500
-               flex-1`}
+              className="flex flex-row flex-shrink-0 md:items-center p-4 border w-full md:w-1/2 rounded-3xl bg-gray-100 dark:bg-gray-700 border-gray-300 hover:border-blue-500 flex-1"
             >
-              <div className="flex-shrink-0 mx-2">
+              <div className="flex-shrink-0 border border-gray-300 bg-white rounded-full   mx-2">
                 <img
                   src={service.icon}
                   alt=""
-                  className="size-10 rounded-full"
+                  className="size-14 rounded-full"
                 />
               </div>
               <div className="text-right">
@@ -63,18 +62,18 @@ const Services = () => {
         </div>
 
         {/* Second Row */}
-        <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-8 mt-4">
+        {/* <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-8 mt-4">
           {servicesData.slice(2, 4).map((service, index) => (
             <div
               key={index}
-              className={`flex flex-col md:flex-row md:items-center p-4 border rounded-3xl  bg-gray-100 dark:bg-gray-700 border-gray-300 hover:border-blue-500
+              className={`flex flex-col md:flex-row md:items-center p-4 border rounded-3xl  bg-gray-100 dark:bg-gray-700 border-gray-300 group-hover:border-blue-500
                flex-1`}
             >
-              <div className="flex-shrink-0 mx-2">
+              <div className="flex-shrink-0 border group-hover:border-blue-500 border-gray-300 bg-white rounded-full mx-2">
                 <img
                   src={service.icon}
                   alt=""
-                  className="size-10 rounded-full"
+                  className="size-14 rounded-full"
                 />
               </div>
               <div className="text-right">
@@ -87,7 +86,7 @@ const Services = () => {
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
   );
