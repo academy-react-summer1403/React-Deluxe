@@ -7,13 +7,13 @@ const Register = ({ onBack }) => {
   const [currentTab, setCurrentTab] = useState("1");
 
   return (
-    <div className="  dark:bg-indigo-950 flex flex-col md:flex-row h-screen justify-center items-start bg-white">
-      <div className="flex flex-col w-full md:w-1/2 justify-start items-center p-5 md:p-10 text-black ">
+    <div className="dark:bg-indigo-950 flex flex-col md:flex-row h-screen justify-center items-start bg-white">
+      <div className="flex flex-col w-full md:w-1/2 justify-start items-center p-5 md:p-10 text-black">
         {/* Tabs */}
-        <div className="flex justify-between w-full max-w-xl h-20 mb-4  dark:bg-indigo-950">
+        <div className="flex flex-col md:flex-row justify-between w-full max-w-xl h-20 mb-4 dark:bg-indigo-950">
           {/* First tab */}
           <div
-            className={`cursor-pointer text-center pb-1 w-1/3 flex flex-col items-center ${
+            className={`cursor-pointer text-center pb-1 w-full md:w-1/3 flex flex-col items-center ${
               currentTab === "1" ? "text-black font-bold" : "text-gray-400"
             }`}
             onClick={() => setCurrentTab("1")}
@@ -21,31 +21,31 @@ const Register = ({ onBack }) => {
             <div
               className={`h-1 w-full ${currentTab === "1" ? "bg-blue-500" : "bg-transparent"}`}
             />
-            <span className="mt-2 min-h-[30px]  dark:text-white">وارد کردن شماره همراه</span>
+            <span className="mt-2 min-h-[30px] dark:text-white">وارد کردن شماره همراه</span>
           </div>
 
-          {/* Space between tabs */}
-          <div className="w-6" />
+          {/* Space between tabs (for larger screens) */}
+          <div className="hidden md:block w-6" />
 
           {/* Second tab */}
           <div
-            className={`cursor-pointer text-center pb-1 w-1/3 flex flex-col items-center  ${
-              currentTab === "2" ? "text-black font-bold" : "text-gray-400 "
+            className={`cursor-pointer text-center pb-1 w-full md:w-1/3 flex flex-col items-center ${
+              currentTab === "2" ? "text-black font-bold" : "text-gray-400"
             }`}
             onClick={() => setCurrentTab("2")}
           >
             <div
               className={`h-1 w-full ${currentTab === "2" ? "bg-blue-500" : "bg-transparent"}`}
             />
-            <span className="mt-2 min-h-[30px]  dark:text-white">تایید کد ارسال شده</span>
+            <span className="mt-2 min-h-[30px] dark:text-white">تایید کد ارسال شده</span>
           </div>
 
-          {/* Space between tabs */}
-          <div className="w-6" />
+          {/* Space between tabs (for larger screens) */}
+          <div className="hidden md:block w-6" />
 
           {/* Third tab */}
           <div
-            className={`cursor-pointer text-center pb-1 w-1/3 flex flex-col items-center ${
+            className={`cursor-pointer text-center pb-1 w-full md:w-1/3 flex flex-col items-center ${
               currentTab === "3" ? "text-black font-bold" : "text-gray-400"
             }`}
             onClick={() => setCurrentTab("3")}
@@ -57,6 +57,7 @@ const Register = ({ onBack }) => {
           </div>
         </div>
 
+        {/* محتویات تب‌ها */}
         {currentTab === "1" && (
           <div className="w-full max-w-xs sm:max-w-md lg:max-w-lg text-center">
             <h2 className="text-2xl font-bold mb-2 text-right dark:text-white">خوش آمدید!</h2>
@@ -105,7 +106,7 @@ const Register = ({ onBack }) => {
 
         {currentTab === "3" && (
           <div className="w-full max-w-xs sm:max-w-md lg:max-w-lg text-center ">
-            <h2 className="text-2xl font-bold mb-2  text-right dark:text-white">وارد کردن اطلاعات شخصی</h2>
+            <h2 className="text-2xl font-bold mb-2 text-right dark:text-white">وارد کردن اطلاعات شخصی</h2>
             <p className="text-xs sm:text-sm mb-4 w-full text-right text-gray-500 dark:text-white">
               لطفا اطلاعات شخصی خود را وارد کنید.
             </p>
@@ -134,7 +135,8 @@ const Register = ({ onBack }) => {
         )}
       </div>
 
-      <div className="hidden md:flex w-full lg:w-1/2 p-9  dark:bg-indigo-950">
+      {/* Hide left panel for tablet and smaller screens */}
+      <div className="hidden lg:flex w-full lg:w-1/2 p-9 dark:bg-indigo-950">
         <LoginPanel />
       </div>
     </div>

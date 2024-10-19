@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { ForgotPassword } from "./ForgetPass/ForgetPassword";
 import { LoginPanel } from "./LoginPanel";
 import { Register } from "./Register";
@@ -17,12 +17,12 @@ const LoginPage = () => {
   }
 
   return (
-    <div className="flex flex-col md:flex-row h-screen justify-center items-start bg-white  dark:bg-indigo-950">
-      <div className="flex flex-col w-full md:w-1/2 justify-start items-center p-5 md:p-10 text-black  dark:bg-indigo-950">
+    <div className="flex flex-col md:flex-row h-screen justify-center items-start bg-white dark:bg-indigo-950">
+      <div className="flex flex-col w-full md:w-1/2 justify-start items-center p-5 md:p-10 text-black dark:bg-indigo-950">
         {/* Tabs */}
-        <div className="flex justify-between w-full max-w-md mb-4  dark:bg-indigo-950">
+        <div className="flex flex-col md:flex-row justify-between w-full max-w-md mb-4 dark:bg-indigo-950">
           <div
-            className={`cursor-pointer text-center pb-1 w-1/2 flex flex-col items-center ${
+            className={`cursor-pointer text-center pb-1 w-full md:w-1/2 flex flex-col items-center ${
               currentTab === "1" ? "text-black font-bold" : "text-gray-400"
             }`}
             onClick={() => setCurrentTab("1")}
@@ -34,11 +34,11 @@ const LoginPage = () => {
           </div>
 
           {/* Space between tabs */}
-          <div className="w-6" />
+          <div className="h-2 md:h-0 md:w-6" />
 
           {/* Second tab */}
           <div
-            className={`cursor-pointer text-center pb-1 w-1/2 flex flex-col items-center ${
+            className={`cursor-pointer text-center pb-1 w-full md:w-1/2 flex flex-col items-center ${
               currentTab === "2" ? "text-black font-bold" : "text-gray-400"
             }`}
             onClick={() => setCurrentTab("2")}
@@ -119,23 +119,23 @@ const LoginPage = () => {
         {currentTab === "2" && (
           <div className="w-full max-w-xs sm:max-w-md lg:max-w-lg text-center mt-14">
             <h2 className="text-2xl font-bold text-right dark:text-white">تایید کد دو مرحله‌ای!</h2>
-            <p className="text-gray-600 text-sm mt-3  text-right  dark:text-white">
+            <p className="text-gray-600 text-sm mt-3 text-right dark:text-white">
               کد دو مرحله‌ای به شماره همراه شما ارسال شد. لطفا کد را وارد کنید.
             </p>
-            <label className="block mt-8 text-sm font-bold text-right text-gray-700  dark:text-white">
+            <label className="block mt-8 text-sm font-bold text-right text-gray-700 dark:text-white">
               کد دو مرحله ای
             </label>
             <input
-              className="mt-4 rounded-3xl h-9 w-full bg-white text-black px-4 py-2 border border-gray-300  dark:text-white"
+              className="mt-4 rounded-3xl h-9 w-full bg-white text-black px-4 py-2 border border-gray-300 dark:text-white"
               placeholder="کد دو مرحله‌ای خود را وارد کنید"
             />
             <button
-              className="  dark:text-white mt-4 flex items-center justify-center text-center h-10 bg-blue-500 text-white rounded-3xl w-full font-bold"
+              className="dark:text-white mt-4 flex items-center justify-center text-center h-10 bg-blue-500 text-white rounded-3xl w-full font-bold"
             >
               ورود به حساب
             </button>
             <button
-              className=" dark:text-white w-28 mt-4 text-sm border-solid border border-gray-300 text-blue-500 py-2 px-4 rounded-3xl h-10 font-bold"
+              className="dark:text-white w-28 mt-4 text-sm border-solid border border-gray-300 text-blue-500 py-2 px-4 rounded-3xl h-10 font-bold"
               onClick={() => setCurrentTab("1")}
             >
               بازگشت
@@ -144,8 +144,8 @@ const LoginPage = () => {
         )}
       </div>
 
-
-      <div className="hidden md:flex w-full lg:w-1/2 p-9">
+      {/* Hide the panel for tablet and below */}
+      <div className="hidden lg:flex w-full lg:w-1/2 p-9">
         <LoginPanel className="mt-0" />
       </div>
     </div>
