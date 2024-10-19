@@ -1,6 +1,7 @@
 import React from "react";
 import { BsCalendar4Week } from "react-icons/bs";
 import { BsEye } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const blogsData = [
   {
@@ -40,17 +41,17 @@ const TopBlogs = () => {
           {blogsData.map((blog, index) => (
             <div
               key={index}
-              className=" bg-white dark:bg-indigo-900 rounded-lg  flex-1 "
+              className=" bg-gray-50 dark:bg-indigo-900 rounded-3xl  flex-1 "
             >
               <div
                 className={`h-72 mx-auto flex justify-center items-center mb-4 rounded-xl ${blog.color}`}
               >
                 <img src={blog.icon} alt={""} className={`size-48 `} />
               </div>
-              <h3 className="flex text-l font-bold mb-2 dark:text-white">
+              <h3 className="flex text-l font-bold mb-2 px-2 dark:text-white">
                 {blog.title}
               </h3>
-              <div className="flex justify-between mt-4 text-gray-500 space-x-2 rtl:space-x-reverse mb-2">
+              <div className="flex justify-between mt-4 px-2 text-gray-500 space-x-2 rtl:space-x-reverse mb-2">
                 <p className="flex text-gray-400 dark:text-white text-sm items-center ">
                   {blog.author}
                 </p>
@@ -69,9 +70,11 @@ const TopBlogs = () => {
             </div>
           ))}
         </div>
-        <button className="bg-gray-900 dark:bg-blue-500 text-white px-5 py-1.5 rounded-full mt-8">
-          مشاهده بیشتر
-        </button>
+        <Link to={"/Blogs"}>
+          <button className="bg-gray-900 dark:bg-blue-500 text-white px-5 py-1.5 rounded-full mt-8">
+            مشاهده بیشتر
+          </button>
+        </Link>
       </div>
     </section>
   );

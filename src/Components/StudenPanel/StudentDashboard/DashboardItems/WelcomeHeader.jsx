@@ -42,7 +42,7 @@ const WelcomeHeader = () => {
           {" "}
           <div className="flex items-center gap-2  space-x-1">
             <svg
-              className="bg-gray-100 size-10 rounded-full p-2"
+              className="bg-gray-50 size-10 rounded-full p-2"
               width="24"
               height="25"
               viewBox="0 0 24 25"
@@ -69,7 +69,7 @@ const WelcomeHeader = () => {
           </div>
           <div className="flex items-center gap-2    space-x-1">
             <svg
-              className="bg-gray-100 size-10 rounded-full p-2 "
+              className="bg-gray-50 size-10 rounded-full p-2 "
               width="24"
               height="25"
               viewBox="0 0 24 25"
