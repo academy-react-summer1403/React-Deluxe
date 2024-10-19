@@ -1,6 +1,7 @@
 import { ConfigProvider, Pagination } from "antd";
 import React from "react";
 import { BsEye } from "react-icons/bs";
+import { RxCross1 } from "react-icons/rx";
 const coursesData = [
   {
     title: " فیگما",
@@ -93,11 +94,9 @@ const index = () => {
               >
                 <img src={course.icon} alt={""} className={`size-8 `} />
               </div>
-
               <h3 className=" text-xl dark:text-white font-semibold mb-2  truncate w-[111px]">
                 {course.title}
               </h3>
-
               <p className="  dark:text-white text-[12px]  font-bold items-center w-[125px]  ">
                 {course.teacher}
               </p>
@@ -106,7 +105,6 @@ const index = () => {
               >
                 {course.date}
               </span>
-
               <span
                 className={`inline-flex items-center w-[125px] dark:text-white `}
               >
@@ -114,8 +112,12 @@ const index = () => {
               </span>
               <span className="px-3 py-0 text-base     bg-[#FF37F5] text-white rounded-full">
                 {course.tag2}
-              </span>
-              <BsEye className="text-base" />
+              </span>{" "}
+              <div className="flex gap-2">
+                <BsEye className="text-base" />
+
+                <RxCross1 className="text-red-500" />
+              </div>
             </div>
           ))}
         </div>

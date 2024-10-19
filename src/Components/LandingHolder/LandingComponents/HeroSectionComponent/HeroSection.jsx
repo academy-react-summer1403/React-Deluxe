@@ -87,7 +87,6 @@ const HeroSection = () => {
 
         <div className="flex justify-center w-full items-center">
           <div className="relative w-full">
-            {" "}
             <div className="absolute bottom-1 w-full h-1 bg-gray-300 overflow-hidden">
               <div className="absolute z-10 w-full h-1 right-3/4 bg-blue-500"></div>
             </div>

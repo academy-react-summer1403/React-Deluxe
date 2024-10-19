@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const StudentMenu = () => {
   return (
@@ -13,8 +14,8 @@ const StudentMenu = () => {
 
         {/* Menu Items */}
         <nav className="space-y-7 py-16 px-6">
-          <a
-            href="#"
+          <Link
+            to={"/dashboard"}
             className="flex items-center space-x-3 hover:text-blue-300"
           >
             <svg
@@ -41,8 +42,9 @@ const StudentMenu = () => {
             </svg>
 
             <span className="text-lg pr-1">داشبورد</span>
-          </a>
-          <a
+          </Link>
+          <Link
+            to={"/mycourse"}
             href="#"
             className="flex items-center space-x-3 hover:text-blue-300"
           >
@@ -70,8 +72,9 @@ const StudentMenu = () => {
             </svg>
 
             <span className="text-lg pr-1">دوره من</span>
-          </a>
-          <a
+          </Link>
+          <Link
+            to={"/myreserve"}
             href="#"
             className="flex items-center space-x-3 hover:text-blue-300"
           >
@@ -117,8 +120,9 @@ const StudentMenu = () => {
             </svg>
 
             <span className="text-lg pr-1">رزرو من</span>
-          </a>
-          <a
+          </Link>
+          <Link
+            to={"/favoritecourses"}
             href="#"
             className="flex items-center space-x-3 hover:text-blue-300"
           >
@@ -167,8 +171,9 @@ const StudentMenu = () => {
             </svg>
 
             <span className="text-lg pr-1">دوره های موردعلاقه</span>
-          </a>
-          <a
+          </Link>
+          <Link
+            to={"favoriteblogs"}
             href="#"
             className="flex items-center space-x-3 hover:text-blue-300"
           >
@@ -224,8 +229,9 @@ const StudentMenu = () => {
             </svg>
 
             <span className="text-lg pr-1">بلاگ های موردعلاقه</span>
-          </a>
-          <a
+          </Link>
+          <Link
+            to={"/myprofile"}
             href="#"
             className="flex items-center space-x-3 hover:text-blue-300"
           >
@@ -250,7 +256,7 @@ const StudentMenu = () => {
             </svg>
 
             <span className="text-lg pr-1">پروفایل</span>
-          </a>
+          </Link>
           <a
             href="#"
             className="flex items-center space-x-3 hover:text-blue-300"
@@ -303,7 +309,8 @@ const StudentMenu = () => {
 
       {/* Logout Section */}
       <div className="px-6 py-4">
-        <a
+        <Link
+          to={"/auth/signin"}
           href="#"
           className="flex items-center space-x-3 text-red-500 border border-red-500 px-4 py-2 rounded-3xl hover:bg-red-500 hover:text-white"
         >
@@ -330,7 +337,7 @@ const StudentMenu = () => {
           </svg>
 
           <span className="text-lg pr-1">خروج از حساب کاربری</span>
-        </a>
+        </Link>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import { HiOutlineBell } from "react-icons/hi2";
 import { BsMoon } from "react-icons/bs";
 
 import DarkModeToggle from "../DarkMode";
+import { Link } from "react-router-dom";
 
 const StudentHeader = () => {
   return (
@@ -118,7 +119,7 @@ const StudentHeader = () => {
 
       {/* Center Links */}
       <nav className="hidden md:flex justify-evenly w-[500px] text-lg">
-        <a href="">صفحه اصلی</a>
+        <Link to={"/"}>صفحه اصلی</Link>
         <a href=""> گزارش</a>
         <a href="">ارتباط باما</a>
       </nav>
