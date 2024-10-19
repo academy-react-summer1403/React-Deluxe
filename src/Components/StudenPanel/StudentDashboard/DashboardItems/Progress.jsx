@@ -4,7 +4,7 @@ const UserProgress = ({ percentage }) => {
   const progress = percentage || 70;
 
   return (
-    <div className="flex flex-col items-center justify-center w-[253px] h-[246px] bg-gray-100 rounded-3xl p-4 ">
+    <div className="flex flex-col items-center justify-center w-[253px] h-[246px] bg-gray-50 rounded-3xl p-4 ">
       <div className="flex-row flex justify-between gap-1">
         <p className="text-base ">وضعیت اطلاعات حساب کاربری</p>
         <svg
