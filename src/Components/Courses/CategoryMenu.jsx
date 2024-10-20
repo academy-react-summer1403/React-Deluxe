@@ -118,7 +118,6 @@ const CategoryMenu = () => {
 
 
 
-      <CourseList category={activeCategory} />
     </div>
   );
 };
