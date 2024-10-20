@@ -19,9 +19,13 @@ const Register = ({ onBack }) => {
             onClick={() => setCurrentTab("1")}
           >
             <div
-              className={`h-1 w-full ${currentTab === "1" ? "bg-blue-500" : "bg-transparent"}`}
+              className={`h-2 rounded-2xl w-full ${
+                currentTab === "1" ? "bg-blue-500" : "bg-transparent"
+              }`}
             />
-            <span className="mt-2 min-h-[30px] dark:text-white">وارد کردن شماره همراه</span>
+            <span className="mt-2 min-h-[30px] dark:text-white">
+              وارد کردن شماره همراه
+            </span>
           </div>
 
           {/* Space between tabs (for larger screens) */}
@@ -35,9 +39,13 @@ const Register = ({ onBack }) => {
             onClick={() => setCurrentTab("2")}
           >
             <div
-              className={`h-1 w-full ${currentTab === "2" ? "bg-blue-500" : "bg-transparent"}`}
+              className={`h-2 rounded-2xl w-full ${
+                currentTab === "2" ? "bg-blue-500" : "bg-transparent"
+              }`}
             />
-            <span className="mt-2 min-h-[30px] dark:text-white">تایید کد ارسال شده</span>
+            <span className="mt-2 min-h-[30px] dark:text-white">
+              تایید کد ارسال شده
+            </span>
           </div>
 
           {/* Space between tabs (for larger screens) */}
@@ -51,16 +59,22 @@ const Register = ({ onBack }) => {
             onClick={() => setCurrentTab("3")}
           >
             <div
-              className={`h-1 w-full ${currentTab === "3" ? "bg-blue-500" : "bg-transparent"}`}
+              className={`h-2 rounded-2xl w-full ${
+                currentTab === "3" ? "bg-blue-500" : "bg-transparent"
+              }`}
             />
-            <span className="mt-2 min-h-[30px] dark:text-white">وارد کردن اطلاعات شخصی</span>
+            <span className="mt-2 min-h-[30px] dark:text-white">
+              وارد کردن اطلاعات شخصی
+            </span>
           </div>
         </div>
 
         {/* محتویات تب‌ها */}
         {currentTab === "1" && (
           <div className="w-full max-w-xs sm:max-w-md lg:max-w-lg text-center">
-            <h2 className="text-2xl font-bold mb-2 text-right dark:text-white">خوش آمدید!</h2>
+            <h2 className="text-2xl font-bold mb-2 text-right dark:text-white">
+              خوش آمدید!
+            </h2>
             <p className="text-xs sm:text-sm mb-4 w-full text-right text-gray-500 dark:text-white">
               لطفا شماره همراه خود را وارد کنید تا کد تایید برای شما ارسال شود.
             </p>
@@ -74,7 +88,7 @@ const Register = ({ onBack }) => {
             <Button
               type="primary"
               className="w-full h-10 bg-blue-500 text-white rounded-3xl font-bold dark:text-white"
-              onClick={() => setCurrentTab("2")}  
+              onClick={() => setCurrentTab("2")}
             >
               ارسال کد تایید
             </Button>
@@ -83,7 +97,9 @@ const Register = ({ onBack }) => {
 
         {currentTab === "2" && (
           <div className="w-full max-w-xs sm:max-w-md lg:max-w-lg text-center">
-            <h2 className="text-2xl font-bold mb-2 text-right dark:text-white">تایید کد ارسال شده</h2>
+            <h2 className="text-2xl font-bold mb-2 text-right dark:text-white">
+              تایید کد ارسال شده
+            </h2>
             <p className="text-xs sm:text-sm mb-4 w-full text-right text-gray-500 dark:text-white">
               کد تایید ارسال‌شده به شماره همراه خود را وارد کنید.
             </p>
@@ -97,7 +113,7 @@ const Register = ({ onBack }) => {
             <Button
               type="primary"
               className="w-full h-10 bg-blue-500 text-white rounded-3xl font-bold dark:text-white"
-              onClick={() => setCurrentTab("3")}   
+              onClick={() => setCurrentTab("3")}
             >
               تایید
             </Button>
@@ -106,7 +122,9 @@ const Register = ({ onBack }) => {
 
         {currentTab === "3" && (
           <div className="w-full max-w-xs sm:max-w-md lg:max-w-lg text-center ">
-            <h2 className="text-2xl font-bold mb-2 text-right dark:text-white">وارد کردن اطلاعات شخصی</h2>
+            <h2 className="text-2xl font-bold mb-2 text-right dark:text-white">
+              وارد کردن اطلاعات شخصی
+            </h2>
             <p className="text-xs sm:text-sm mb-4 w-full text-right text-gray-500 dark:text-white">
               لطفا اطلاعات شخصی خود را وارد کنید.
             </p>

@@ -42,12 +42,8 @@ const Services = () => {
               key={index}
               className="flex flex-row flex-shrink-0 md:items-center p-4 border w-full md:w-1/2 rounded-3xl bg-gray-100 dark:bg-gray-700 border-gray-300 hover:border-blue-500 flex-1"
             >
-              <div className="flex-shrink-0 border border-gray-300 bg-white rounded-full   mx-2">
-                <img
-                  src={service.icon}
-                  alt=""
-                  className="size-14 rounded-full"
-                />
+              <div className="flex-shrink-0 border size-14 border-gray-300 bg-white rounded-full   mx-2">
+                <img src={service.icon} alt="" />
               </div>
               <div className="text-right">
                 <h3 className="text-xl font-semibold mb-1 dark:text-white">
@@ -68,12 +64,8 @@ const Services = () => {
               key={index}
               className={`flex flex-row flex-shrink-0 md:items-center p-4 border w-full md:w-1/2 rounded-3xl bg-gray-100 dark:bg-gray-700 border-gray-300 hover:border-blue-500 flex-1`}
             >
-              <div className="flex-shrink-0 border border-gray-300 bg-white rounded-full   mx-2">
-                <img
-                  src={service.icon}
-                  alt=""
-                  className="size-14 rounded-full"
-                />
+              <div className="flex-shrink-0 border border-gray-300 size-14 bg-white rounded-full   mx-2">
+                <img src={service.icon} alt="" />
               </div>
               <div className="text-right">
                 <h3 className="text-xl font-semibold mb-1 dark:text-white">

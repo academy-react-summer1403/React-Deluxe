@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { CoursesItems } from "./CoursesItems/Courses";
+import { CoursesCarsoual, CoursesItems } from "./CoursesItems/Courses";
 
 const TopCourses = () => {
   return (
@@ -10,6 +10,9 @@ const TopCourses = () => {
           دوره های برتر هفته
         </h2>
         <CoursesItems />
+
+        <CoursesCarsoual />
+
         <Link to={"courses"}>
           <button className="bg-gray-900   dark:bg-blue-500 text-white px-5 py-1.5 rounded-full mt-8">
             مشاهده بیشتر

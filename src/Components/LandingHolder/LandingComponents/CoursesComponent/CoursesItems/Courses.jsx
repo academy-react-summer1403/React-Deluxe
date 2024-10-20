@@ -1,6 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Carousel } from "antd";
 
+const contentStyle = {
+  height: "",
+  color: "",
+  lineHeight: "160px",
+  textAlign: "center",
+  background: "",
+};
 const coursesData = [
   {
     title: "دوره ری‌اکت جی‌اس",
@@ -82,4 +90,178 @@ const CoursesItems = () => {
   );
 };
 
-export { CoursesItems };
+const CoursesCarsoual = () => (
+  <Carousel autoplay>
+    <div>
+      <h3 style={contentStyle}>
+        <div className="md:hidden flex flex-wrap justify-center gap-8">
+          {coursesData.slice(0, 1).map((course, index) => (
+            <div
+              key={index}
+              className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-900 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
+            >
+              <Link to={"/courseDetails"}>
+                <div
+                  className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${course.color}`}
+                >
+                  <img src={course.icon} alt={""} className={`size-48 `} />
+                </div>
+              </Link>
+
+              <Link to={"/courseDetails"}>
+                <h3 className="flex text-xl dark:text-white font-semibold mb-2 ">
+                  {course.title}
+                </h3>
+              </Link>
+              <div className="flex flex-nowrap gap-7">
+                <span className="text-gray-500 dark:text-white text-sm font-semibold mb-4">
+                  {course.price}
+                </span>
+                <p className=" text-gray-400 dark:text-white text-base items-center ">
+                  {course.teacher}
+                </p>
+              </div>
+              <div className="mt-4">
+                <span className="px-3 py-0  text-xs absolute top-8 right-32 md:right-32 bg-blue-500 text-white rounded-full">
+                  {course.tag}
+                </span>
+                <span className="px-3 py-0 text-xs  absolute top-8 right-14 md:right-14 bg-pink-500 text-white rounded-full">
+                  {course.tag2}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </h3>
+    </div>
+    <div>
+      <h3 style={contentStyle}>
+        <div className="md:hidden flex flex-wrap justify-center gap-8">
+          {coursesData.slice(1, 2).map((course, index) => (
+            <div
+              key={index}
+              className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-900 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
+            >
+              <Link to={"/courseDetails"}>
+                <div
+                  className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${course.color}`}
+                >
+                  <img src={course.icon} alt={""} className={`size-48 `} />
+                </div>
+              </Link>
+
+              <Link to={"/courseDetails"}>
+                <h3 className="flex text-xl dark:text-white font-semibold mb-2 ">
+                  {course.title}
+                </h3>
+              </Link>
+              <div className="flex flex-nowrap gap-7">
+                <span className="text-gray-500 dark:text-white text-sm font-semibold mb-4">
+                  {course.price}
+                </span>
+                <p className=" text-gray-400 dark:text-white text-base items-center ">
+                  {course.teacher}
+                </p>
+              </div>
+              <div className="mt-4">
+                <span className="px-3 py-0  text-xs absolute top-8 right-32 md:right-32 bg-blue-500 text-white rounded-full">
+                  {course.tag}
+                </span>
+                <span className="px-3 py-0 text-xs  absolute top-8 right-14 md:right-14 bg-pink-500 text-white rounded-full">
+                  {course.tag2}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </h3>
+    </div>
+    <div>
+      <h3 style={contentStyle}>
+        <div className="md:hidden flex flex-wrap justify-center gap-8">
+          {coursesData.slice(2, 3).map((course, index) => (
+            <div
+              key={index}
+              className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-900 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
+            >
+              <Link to={"/courseDetails"}>
+                <div
+                  className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${course.color}`}
+                >
+                  <img src={course.icon} alt={""} className={`size-48 `} />
+                </div>
+              </Link>
+
+              <Link to={"/courseDetails"}>
+                <h3 className="flex text-xl dark:text-white font-semibold mb-2 ">
+                  {course.title}
+                </h3>
+              </Link>
+              <div className="flex flex-nowrap gap-7">
+                {" "}
+                <span className="text-gray-500 dark:text-white text-sm font-semibold mb-4">
+                  {course.price}
+                </span>
+                <p className=" text-gray-400 dark:text-white text-base items-center ">
+                  {course.teacher}
+                </p>
+              </div>
+              <div className="mt-4">
+                <span className="px-3 py-0  text-xs absolute top-8 right-32 md:right-32 bg-blue-500 text-white rounded-full">
+                  {course.tag}
+                </span>
+                <span className="px-3 py-0 text-xs  absolute top-8 right-14 md:right-14 bg-pink-500 text-white rounded-full">
+                  {course.tag2}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </h3>
+    </div>
+    <div>
+      <h3 style={contentStyle}>
+        <div className="md:hidden flex flex-wrap justify-center gap-8">
+          {coursesData.slice(3, 4).map((course, index) => (
+            <div
+              key={index}
+              className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-900 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
+            >
+              <Link to={"/courseDetails"}>
+                <div
+                  className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${course.color}`}
+                >
+                  <img src={course.icon} alt={""} className={`size-48 `} />
+                </div>
+              </Link>
+
+              <Link to={"/courseDetails"}>
+                <h3 className="flex text-xl dark:text-white font-semibold mb-2 ">
+                  {course.title}
+                </h3>
+              </Link>
+              <div className="flex flex-nowrap gap-7">
+                <span className="text-gray-500 dark:text-white text-sm font-semibold mb-4">
+                  {course.price}
+                </span>
+                <p className=" text-gray-400 dark:text-white text-base items-center ">
+                  {course.teacher}
+                </p>
+              </div>
+              <div className="mt-4">
+                <span className="px-3 py-0  text-xs absolute top-8 right-32 md:right-32 bg-blue-500 text-white rounded-full">
+                  {course.tag}
+                </span>
+                <span className="px-3 py-0 text-xs  absolute top-8 right-14 md:right-14 bg-pink-500 text-white rounded-full">
+                  {course.tag2}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </h3>
+    </div>
+  </Carousel>
+);
+
+export { CoursesItems, CoursesCarsoual };

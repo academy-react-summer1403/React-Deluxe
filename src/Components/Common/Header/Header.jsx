@@ -26,7 +26,7 @@ const Header = () => {
               <HeaderItems Item="دوره ها" link="/courses" />
 
               <HeaderItems Item="بلاگ ها" link="/blogs" />
-              <HeaderItems Item="درباره ما" />
+              <HeaderItems Item="درباره ما" link="/aboutus" />
             </ul>
           </nav>
           <Link to={"/auth/signup"} className="space-x-2">
