@@ -2,11 +2,17 @@ import { useState } from "react";
 import { Button, Input } from "antd";
 import "antd/dist/reset.css";
 import { LoginPanel } from "../LoginPanel";
+import { Link } from "react-router-dom";
 
 const InputField = ({ label, placeholder }) => (
   <div className="mb-4">
-    <label className="block text-xs font-bold text-right mb-2 text-gray-700">{label}</label>
-    <Input className="rounded-3xl w-full bg-white text-black" placeholder={placeholder} />
+    <label className="block text-xs font-bold text-right mb-2 text-gray-700">
+      {label}
+    </label>
+    <Input
+      className="rounded-3xl w-full bg-white text-black"
+      placeholder={placeholder}
+    />
   </div>
 );
 
@@ -25,8 +31,14 @@ const ForgotPassword = ({ onBack }) => {
             }`}
             onClick={() => setCurrentTab("1")}
           >
-            <div className={`h-1 w-full ${currentTab === "1" ? "bg-blue-500" : "bg-transparent"}`} />
-            <span className="mt-2 min-h-[30px] dark:text-black">وارد کردن ایمیل</span>
+            <div
+              className={`h-2  rounded-2xl w-full ${
+                currentTab === "1" ? "bg-blue-500" : "bg-transparent"
+              }`}
+            />
+            <span className="mt-2 min-h-[30px] dark:text-black">
+              وارد کردن ایمیل
+            </span>
           </div>
 
           {/* Space between tabs (hidden in mobile view) */}
@@ -39,21 +51,28 @@ const ForgotPassword = ({ onBack }) => {
             }`}
             onClick={() => setCurrentTab("2")}
           >
-            <div className={`h-1 w-full ${currentTab === "2" ? "bg-blue-500" : "bg-transparent"}`} />
-            <span className="mt-2 min-h-[30px] dark:text-black">تایید کد ارسال شده</span>
+            <div
+              className={`h-2  rounded-2xl w-full ${
+                currentTab === "2" ? "bg-blue-500" : "bg-transparent"
+              }`}
+            />
+            <span className="mt-2 min-h-[30px] dark:text-black">
+              تایید کد ارسال شده
+            </span>
           </div>
         </div>
 
         {/* Tab contents */}
         {currentTab === "1" && (
           <div className="w-full max-w-lg text-center mt-14">
-            <h2 className="text-2xl sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-4xl font-bold mb-2 text-right">
+            <h2 className="text-xl sm:text-xl md:text-xl lg:text-2xl xl:text-2xl 2xl:text-4xl font-bold mb-2 text-right">
               فراموشی رمزعبور!
             </h2>
             <p className="text-xs sm:text-xs md:text-sm lg:text-sm xl:text-base 2xl:text-lg mb-6 w-80 sm:w-72 md:w-80 lg:w-96 xl:w-[400px] 2xl:w-[500px] text-right text-gray-500">
-              اگر رمزعبور خود را فراموش کرده‌اید، ایمیل خود را وارد کنید تا لینک تغییر رمزعبور برای شما ارسال شود.
+              اگر رمزعبور خود را فراموش کرده‌اید، ایمیل خود را وارد کنید تا لینک
+              تغییر رمزعبور برای شما ارسال شود.
             </p>
-            <InputField label="ایمیل" placeholder="ایمیل خود را وارد کنید" />
+            <InputField className="h-10" label="ایمیل" placeholder="ایمیل خود را وارد کنید" />
             <Button
               type="primary"
               className="w-full h-10 bg-blue-500 text-white rounded-3xl font-bold"
@@ -78,14 +97,23 @@ const ForgotPassword = ({ onBack }) => {
             <p className="text-xs sm:text-xs md:text-sm lg:text-sm xl:text-base 2xl:text-lg mb-6 w-80 sm:w-72 md:w-80 lg:w-96 xl:w-[400px] 2xl:w-[500px] text-right text-gray-500">
               رمز عبور جدید خود را وارد کنید
             </p>
-            <InputField label="رمز عبور جدید" placeholder="رمز عبور خود را وارد کنید" />
-            <InputField label="تکرار رمز عبور جدید" placeholder="تکرار رمز عبور خود را وارد کنید" />
-            <Button
-              type="primary"
-              className="w-full h-10 bg-blue-500 text-white rounded-3xl font-bold"
-            >
-              تایید رمز عبور
-            </Button>
+            <InputField
+              label="رمز عبور جدید"
+              placeholder="رمز عبور خود را وارد کنید"
+            />
+            <InputField
+              label="تکرار رمز عبور جدید"
+              placeholder="تکرار رمز عبور خود را وارد کنید"
+            />
+            <Link to={"/auth/signin"}>
+              <Button
+                type="primary"
+                className="w-full h-10 bg-blue-500 text-white rounded-3xl font-bold"
+              >
+                تایید رمز عبور
+              </Button>
+            </Link>
+
             <Button
               className="w-32 h-9 mt-4 border border-solid border-gray-300 text-blue-500 rounded-3xl font-bold"
               onClick={() => setCurrentTab("1")}
@@ -96,7 +124,6 @@ const ForgotPassword = ({ onBack }) => {
         )}
       </div>
 
-      {/* Hide left panel for tablet and smaller screens */}
       <div className="hidden lg:flex w-full lg:w-1/2 p-9">
         <LoginPanel />
       </div>

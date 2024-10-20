@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Button, Input } from "antd";
 import "antd/dist/reset.css";
 import { LoginPanel } from "./LoginPanel";
+import { Link } from "react-router-dom";
+
 
 const Register = ({ onBack }) => {
   const [currentTab, setCurrentTab] = useState("1");
@@ -75,14 +77,14 @@ const Register = ({ onBack }) => {
             <h2 className="text-2xl font-bold mb-2 text-right dark:text-white">
               خوش آمدید!
             </h2>
-            <p className="text-xs sm:text-sm mb-4 w-full text-right text-gray-500 dark:text-white">
+            <p className="text-sm sm:text-sm mt-4 mb-4 w-full text-right text-gray-500 dark:text-white">
               لطفا شماره همراه خود را وارد کنید تا کد تایید برای شما ارسال شود.
             </p>
-            <label className="block text-xs sm:text-sm font-bold text-right mb-2 text-gray-700 dark:text-white">
+            <label className="block text-xs mt-12 sm:text-sm font-bold text-right mb-2 text-gray-700 dark:text-white">
               شماره همراه
             </label>
             <Input
-              className="rounded-3xl mb-4 w-full bg-white text-black dark:text-white"
+              className="rounded-3xl h-10 mb-4 w-full bg-white text-black dark:text-white"
               placeholder="شماره همراه خود را وارد کنید"
             />
             <Button
@@ -107,7 +109,7 @@ const Register = ({ onBack }) => {
               کد تایید
             </label>
             <Input
-              className="rounded-3xl mb-4 w-full bg-white text-black dark:text-white"
+              className="rounded-3xl h-10 mb-4 w-full bg-white text-black dark:text-white"
               placeholder="کد تایید خود را وارد کنید"
             />
             <Button
@@ -125,32 +127,42 @@ const Register = ({ onBack }) => {
             <h2 className="text-2xl font-bold mb-2 text-right dark:text-white">
               وارد کردن اطلاعات شخصی
             </h2>
-            <p className="text-xs sm:text-sm mb-4 w-full text-right text-gray-500 dark:text-white">
+            <p className="text-sm sm:text-sm mb-4 w-full text-right text-gray-500 dark:text-white">
               لطفا اطلاعات شخصی خود را وارد کنید.
             </p>
             <label className="block text-xs sm:text-sm font-bold text-right mb-2 text-gray-700 dark:text-white">
               ایمیل
             </label>
             <Input
-              className="rounded-3xl mb-4 w-full bg-white text-black dark:text-white"
+              className="rounded-3xl h-10 mb-4 w-full bg-white text-black dark:text-white"
               placeholder="ایمیل خود را وارد کنید"
             />
             <label className="block text-xs sm:text-sm font-bold text-right mb-2 text-gray-700 dark:text-white">
               رمز عبور جدید
             </label>
             <Input
-              className="rounded-3xl mb-4 w-full bg-white text-black dark:text-white"
+              className="rounded-3xl h-10 mb-4 w-full bg-white text-black dark:text-white"
               placeholder="رمز عبور جدید خود را وارد کنید"
               type="password"
             />
-            <Button
-              type="primary"
-              className="w-full h-10 bg-blue-500 text-white rounded-3xl font-bold"
-            >
-              تایید
-            </Button>
+            <Link to={"/auth/signin"}>
+              <Button
+                type="primary"
+                className="w-full h-10 bg-blue-500 text-white rounded-3xl font-bold"
+              >
+                تایید
+              </Button>
+            </Link>
           </div>
         )}
+           <Link to={"/"}>
+          <Button
+            type="primary"
+            className="w-28 mt-8 h-10 py-2 px-4 border-gray-300 text-sm  bg-white text-blue-500 rounded-3xl font-bold"
+          >
+             صفحه اصلی 
+          </Button>
+        </Link>
       </div>
 
       <div className="hidden lg:flex w-full lg:w-1/2 p-9 dark:bg-indigo-950">
