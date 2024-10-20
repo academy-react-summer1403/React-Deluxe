@@ -20,7 +20,7 @@ const ForgotPassword = ({ onBack }) => {
   const [currentTab, setCurrentTab] = useState("1");
 
   return (
-    <div className="flex flex-col md:flex-row h-screen justify-center items-start bg-white">
+    <div className="flex flex-col md:flex-row h-screen justify-center items-start bg-white  dark:bg-indigo-950">
       <div className="w-full sm:w-full md:w-2/3 lg:w-1/2 xl:w-1/2 2xl:w-1/2 flex flex-col justify-center items-center p-5 sm:p-5 md:p-10 lg:p-12 xl:p-14 2xl:p-16 text-black">
         {/* Tabs */}
         <div className="flex flex-col md:flex-row justify-between w-full max-w-lg mb-4">
@@ -36,7 +36,7 @@ const ForgotPassword = ({ onBack }) => {
                 currentTab === "1" ? "bg-blue-500" : "bg-transparent"
               }`}
             />
-            <span className="mt-2 min-h-[30px] dark:text-black">
+            <span className="mt-2 min-h-[30px] dark:text-white ">
               وارد کردن ایمیل
             </span>
           </div>
@@ -56,7 +56,7 @@ const ForgotPassword = ({ onBack }) => {
                 currentTab === "2" ? "bg-blue-500" : "bg-transparent"
               }`}
             />
-            <span className="mt-2 min-h-[30px] dark:text-black">
+            <span className="mt-2 min-h-[30px] dark:text-white">
               تایید کد ارسال شده
             </span>
           </div>
@@ -65,10 +65,10 @@ const ForgotPassword = ({ onBack }) => {
         {/* Tab contents */}
         {currentTab === "1" && (
           <div className="w-full max-w-lg text-center mt-14">
-            <h2 className="text-xl sm:text-xl md:text-xl lg:text-2xl xl:text-2xl 2xl:text-4xl font-bold mb-2 text-right">
+            <h2 className="text-xl sm:text-xl md:text-xl lg:text-2xl xl:text-2xl 2xl:text-4xl font-bold mb-2 text-right dark:text-white">
               فراموشی رمزعبور!
             </h2>
-            <p className="text-xs sm:text-xs md:text-sm lg:text-sm xl:text-base 2xl:text-lg mb-6 w-80 sm:w-72 md:w-80 lg:w-96 xl:w-[400px] 2xl:w-[500px] text-right text-gray-500">
+            <p className="text-xs sm:text-xs md:text-sm lg:text-sm xl:text-base 2xl:text-lg mb-6 w-80 sm:w-72 md:w-80 lg:w-96 xl:w-[400px] 2xl:w-[500px] text-right text-gray-500 dark:text-white">
               اگر رمزعبور خود را فراموش کرده‌اید، ایمیل خود را وارد کنید تا لینک
               تغییر رمزعبور برای شما ارسال شود.
             </p>
