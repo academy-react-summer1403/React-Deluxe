@@ -135,7 +135,6 @@ const Register = ({ onBack }) => {
         )}
       </div>
 
-      {/* Hide left panel for tablet and smaller screens */}
       <div className="hidden lg:flex w-full lg:w-1/2 p-9 dark:bg-indigo-950">
         <LoginPanel />
       </div>
