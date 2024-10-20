@@ -1,9 +1,9 @@
 import React from "react";
 import { WelcomeHeader } from "./DashboardItems/WelcomeHeader";
-import { UserProgress } from "./DashboardItems/progress";
 import { MyCourses } from "./DashboardItems/MyCourses";
 import { MyReserves } from "./DashboardItems/MyReserves";
 import { MyComments } from "./DashboardItems/MyComments";
+import { UserProgress } from "./DashboardItems/Progress";
 
 const index = () => {
   return (

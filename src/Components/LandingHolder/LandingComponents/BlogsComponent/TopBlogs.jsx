@@ -43,14 +43,17 @@ const TopBlogs = () => {
               key={index}
               className=" bg-gray-50 dark:bg-indigo-900 rounded-3xl  flex-1 "
             >
-              <div
-                className={`h-72 mx-auto flex justify-center items-center mb-4 rounded-xl ${blog.color}`}
-              >
-                <img src={blog.icon} alt={""} className={`size-48 `} />
-              </div>
-              <h3 className="flex text-l font-bold mb-2 px-2 dark:text-white">
-                {blog.title}
-              </h3>
+              <Link to={"/blogdetails"}>
+                <div
+                  className={`h-72 mx-auto flex justify-center items-center mb-4 rounded-xl ${blog.color}`}
+                >
+                  <img src={blog.icon} alt={""} className={`size-48 `} />
+                </div>
+
+                <h3 className="flex text-l font-bold mb-2 px-2 dark:text-white">
+                  {blog.title}
+                </h3>
+              </Link>
               <div className="flex justify-between mt-4 px-2 text-gray-500 space-x-2 rtl:space-x-reverse mb-2">
                 <p className="flex text-gray-400 dark:text-white text-sm items-center ">
                   {blog.author}
