@@ -1,12 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const HeaderItems = ({ Item, link }) => {
   return (
     <li>
-      <Link to={link} className="hover:text-white dark:hover:text-black">
+      <NavLink
+        to={link}
+        className={({ isActive, isPending }) =>
+          isPending ? "pending" : isActive ? "underline" : ""
+        }
+      >
         {Item}
-      </Link>
+      </NavLink>
     </li>
   );
 };

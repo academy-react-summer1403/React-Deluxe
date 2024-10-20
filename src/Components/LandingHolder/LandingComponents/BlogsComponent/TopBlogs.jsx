@@ -2,6 +2,15 @@ import React from "react";
 import { BsCalendar4Week } from "react-icons/bs";
 import { BsEye } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { Carousel } from "antd";
+
+const contentStyle = {
+  height: "",
+  color: "",
+  lineHeight: "",
+  textAlign: "center",
+  background: "",
+};
 
 const blogsData = [
   {
@@ -30,6 +39,136 @@ const blogsData = [
   },
 ];
 
+const BlogsCarsoual = () => (
+  <Carousel autoplay>
+    <div>
+      <h3 style={contentStyle}>
+        <div className="md:hidden flex flex-wrap justify-center gap-2">
+          {blogsData.slice(0, 1).map((blog, index) => (
+            <div
+              key={index}
+              className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-900 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
+            >
+              <Link to={"/blogDetails"}>
+                <div
+                  className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${blog.color}`}
+                >
+                  <img src={blog.icon} alt={""} className={`size-48 `} />
+                </div>
+              </Link>
+
+              <Link to={"/blogDetails"}>
+                <h3 className="flex text-xl dark:text-white truncate w-[350px] font-semibold mb-2 ">
+                  {blog.title}
+                </h3>
+              </Link>
+              <div className="flex flex-col items-center justify-between  px-2 text-gray-500 space-x-2 rtl:space-x-reverse ">
+                <p className="flex text-gray-400 dark:text-white text-sm items-center ">
+                  {blog.author}
+                </p>
+                <div className=" mt-0 pt-0">
+                  <span
+                    className={`inline-flex items-center dark:text-white text-xs gap-2 w-32 `}
+                  >
+                    <i /> {blog.date}
+                    <BsCalendar4Week />
+                  </span>
+                  <span className="inline-flex items-center dark:text-white text-xs gap-2">
+                    <i /> {blog.views} <BsEye />
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </h3>
+    </div>
+    <div>
+      <h3 style={contentStyle}>
+        {" "}
+        <div className="md:hidden flex flex-wrap justify-center gap-2">
+          {blogsData.slice(1, 2).map((blog, index) => (
+            <div
+              key={index}
+              className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-900 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
+            >
+              <Link to={"/blogDetails"}>
+                <div
+                  className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${blog.color}`}
+                >
+                  <img src={blog.icon} alt={""} className={`size-48 `} />
+                </div>
+              </Link>
+
+              <Link to={"/blogDetails"}>
+                <h3 className="flex text-xl dark:text-white   font-semibold mb-2 ">
+                  {blog.title}
+                </h3>
+              </Link>
+              <div className="flex flex-col items-center justify-between  px-2 text-gray-500 space-x-2 rtl:space-x-reverse ">
+                <p className="flex text-gray-400 dark:text-white text-sm items-center ">
+                  {blog.author}
+                </p>
+                <div className=" mt-0 pt-0">
+                  <span
+                    className={`inline-flex items-center dark:text-white text-xs gap-2 w-32 `}
+                  >
+                    <i /> {blog.date}
+                    <BsCalendar4Week />
+                  </span>
+                  <span className="inline-flex items-center dark:text-white text-xs gap-2">
+                    <i /> {blog.views} <BsEye />
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </h3>
+    </div>
+    <div>
+      <h3 style={contentStyle}>
+        {" "}
+        <div className="md:hidden flex flex-wrap justify-center gap-2">
+          {blogsData.slice(2, 3).map((blog, index) => (
+            <div
+              key={index}
+              className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-900 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
+            >
+              <Link to={"/blogDetails"}>
+                <div
+                  className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${blog.color}`}
+                >
+                  <img src={blog.icon} alt={""} className={`size-48 `} />
+                </div>
+
+                <h3 className="flex text-xl dark:text-white  font-semibold mb-2 ">
+                  {blog.title}
+                </h3>
+              </Link>
+              <div className="flex flex-col items-center justify-between  px-2 text-gray-500 space-x-2 rtl:space-x-reverse ">
+                <p className="flex text-gray-400 dark:text-white text-sm items-center ">
+                  {blog.author}
+                </p>
+                <div className=" mt-0 pt-0">
+                  <span
+                    className={`inline-flex items-center dark:text-white text-xs gap-2 w-32 `}
+                  >
+                    <i /> {blog.date}
+                    <BsCalendar4Week />
+                  </span>
+                  <span className="inline-flex items-center dark:text-white text-xs gap-2">
+                    <i /> {blog.views} <BsEye />
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </h3>
+    </div>
+  </Carousel>
+);
 const TopBlogs = () => {
   return (
     <section className="py-16 ">
@@ -73,6 +212,7 @@ const TopBlogs = () => {
             </div>
           ))}
         </div>
+        <BlogsCarsoual />
         <Link to={"/Blogs"}>
           <button className="bg-gray-900 dark:bg-blue-500 text-white px-5 py-1.5 rounded-full mt-8">
             مشاهده بیشتر

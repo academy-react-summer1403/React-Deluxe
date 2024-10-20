@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 
 const coursesData = [
@@ -91,6 +90,7 @@ const coursesData = [
     tag2: "پیشرفته",
     teacher: "محمدحسین خلیل پور",
     color: "bg-red-400",
+
   },
   {
     title: "دوره ری‌اکت جی‌اس",
@@ -110,11 +110,10 @@ const coursesData = [
     teacher: "محمدحسین خلیل پور",
     color: "bg-red-400",
   },
-  
 ];
 const CourseList = () => {
   return (
-    <div className="hidden md:flex flex-wrap justify-center gap-8">
+    <div className="flex flex-wrap justify-center gap-8">
       {coursesData.map((course, index) => (
         <div
           key={index}
@@ -129,7 +128,7 @@ const CourseList = () => {
           </Link>
 
           <Link to={"/courseDetails"}>
-            <h3 className="flex text-xl dark:text-white font-semibold mb-2 text-right">
+            <h3 className="flex text-xl dark:text-white font-semibold mb-2 ">
               {course.title}
             </h3>
           </Link>
