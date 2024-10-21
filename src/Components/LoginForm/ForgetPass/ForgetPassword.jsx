@@ -105,7 +105,7 @@ const ForgotPassword = ({ onBack }) => {
               label="تکرار رمز عبور جدید"
               placeholder="تکرار رمز عبور خود را وارد کنید"
             />
-            <Link to={"/auth/signin"}>
+            <Link to={"/dashboard"}>
               <Button
                 type="primary"
                 className="w-full h-10 bg-blue-500 text-white rounded-3xl font-bold"
