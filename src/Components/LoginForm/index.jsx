@@ -2,6 +2,8 @@ import { useState } from "react";
 import { ForgotPassword } from "./ForgetPass/ForgetPassword";
 import { LoginPanel } from "./LoginPanel";
 import { Register } from "./Register";
+import { Link } from "react-router-dom";
+
 
 const LoginPage = () => {
   const [currentTab, setCurrentTab] = useState("1");
@@ -32,7 +34,7 @@ const LoginPage = () => {
                 currentTab === "1" ? "bg-blue-500" : "bg-transparent"
               }`}
             />
-            <span className="mt-2 min-h-[30px]">وارد کردن شماره همراه</span>
+            <span className="mt-2 min-h-[30px] dark:text-white">وارد کردن شماره همراه</span>
           </div>
 
           {/* Space between tabs */}
@@ -108,22 +110,26 @@ const LoginPage = () => {
             <div className="mt-2 w-full font-bold">
               <p className="text-sm dark:text-white">
                 حساب کاربری ندارید؟{" "}
-                <a
+               <Link to={"/auth/signup"}>
+               <a
                   href="#"
                   className="text-blue-500 hover:underline font-bold text-sm dark:text-white"
                   onClick={() => setShowRegister(true)}
                 >
                   ایجاد حساب کاربری
                 </a>
+               </Link>
               </p>
             </div>
             <div className="flex justify-center mt-4 w-full">
+              <Link to={"/"}>
               <button
                 type="button"
-                className="w-28 md:w-[141px] text-sm border-solid border border-gray-300 text-blue-500 py-2 px-4 rounded-3xl h-10 font-bold dark:text-white"
+                className="w-28 mt-4 md:w-[141px] text-sm border-solid border border-gray-300 text-blue-500 py-2 px-4 rounded-3xl h-10 font-bold dark:text-white"
               >
                 صفحه اصلی
               </button>
+              </Link>
             </div>
           </div>
         )}
@@ -143,9 +149,11 @@ const LoginPage = () => {
               className="mt-4 rounded-3xl h-9 w-full bg-white text-black px-4 py-2 border border-gray-300 dark:text-white"
               placeholder="کد دو مرحله‌ای خود را وارد کنید"
             />
-            <button className="dark:text-white mt-4 flex items-center justify-center text-center h-10 bg-blue-500 text-white rounded-3xl w-full font-bold">
+          <Link to={"/dashboard"}>
+          <button className="dark:text-white mt-4 flex items-center justify-center text-center h-10 bg-blue-500 text-white rounded-3xl w-full font-bold">
               ورود به حساب
             </button>
+          </Link>
             <button
               className="dark:text-white w-28 mt-4 text-sm border-solid border border-gray-300 text-blue-500 py-2 px-4 rounded-3xl h-10 font-bold"
               onClick={() => setCurrentTab("1")}
