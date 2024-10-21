@@ -113,7 +113,7 @@ const Filter = () => {
           <input
             type="text"
             className="w-full pr-4 pl-12 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 text-right bg-slate-200 text-gray-500"
-            placeholder="بلاگ مورد نظر را جستجو کنید..."
+            placeholder="فیلتر مورد نظر را جستجو کنید..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
