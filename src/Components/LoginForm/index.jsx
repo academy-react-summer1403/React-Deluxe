@@ -34,7 +34,7 @@ const LoginPage = () => {
                 currentTab === "1" ? "bg-blue-500" : "bg-transparent"
               }`}
             />
-            <span className="mt-2 min-h-[30px]">وارد کردن شماره همراه</span>
+            <span className="mt-2 min-h-[30px] dark:text-white">وارد کردن شماره همراه</span>
           </div>
 
           {/* Space between tabs */}
@@ -122,7 +122,7 @@ const LoginPage = () => {
               </p>
             </div>
             <div className="flex justify-center mt-4 w-full">
-              <Link to={"/auth/signup"}>
+              <Link to={"/"}>
               <button
                 type="button"
                 className="w-28 mt-4 md:w-[141px] text-sm border-solid border border-gray-300 text-blue-500 py-2 px-4 rounded-3xl h-10 font-bold dark:text-white"
