@@ -23,7 +23,7 @@ const CategoryMenu = () => {
           className={`px-4 py-2 h-10 rounded-full border border-transparent ${
             activeCategory === "جدیدترین"
               ? "bg-red-500 text-white"
-              : "border-gray-600 text-gray-800 hover:border-red-500 hover:text-red-500"
+              : "border-gray-600 bg-white text-gray-800 hover:border-red-500 hover:text-red-500"
           }`}
         >
           جدیدترین
