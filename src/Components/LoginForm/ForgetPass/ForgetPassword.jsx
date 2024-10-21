@@ -6,11 +6,11 @@ import { Link } from "react-router-dom";
 
 const InputField = ({ label, placeholder }) => (
   <div className="mb-4">
-    <label className="block text-xs font-bold text-right mb-2 text-gray-700">
+    <label className="block text-lg font-bold text-right mb-2 text-gray-700">
       {label}
     </label>
     <Input
-      className="rounded-3xl w-full bg-white text-black"
+      className="rounded-3xl w-full bg-white text-lg text-black"
       placeholder={placeholder}
     />
   </div>
@@ -21,7 +21,7 @@ const ForgotPassword = ({ onBack }) => {
 
   return (
     <div className="flex flex-col md:flex-row h-screen justify-center items-start bg-white  dark:bg-indigo-950">
-      <div className="w-full sm:w-full md:w-2/3 lg:w-1/2 xl:w-1/2 2xl:w-1/2 flex flex-col justify-center items-center p-5 sm:p-5 md:p-10 lg:p-12 xl:p-14 2xl:p-16 text-black">
+      <div className="w-full sm:w-full md:w-2/3 lg:w-1/2 xl:w-1/2 2xl:w-1/2 flex flex-col justify-center items-center p-11 sm:p-5 md:p-10 lg:p-12 xl:p-14 2xl:p-16 text-black">
         {/* Tabs */}
         <div className="flex flex-col md:flex-row justify-between w-full max-w-lg mb-4">
           {/* First tab */}
@@ -68,20 +68,20 @@ const ForgotPassword = ({ onBack }) => {
             <h2 className="text-xl sm:text-xl md:text-xl lg:text-2xl xl:text-2xl 2xl:text-4xl font-bold mb-2 text-right dark:text-white">
               فراموشی رمزعبور!
             </h2>
-            <p className="text-xs sm:text-xs md:text-sm lg:text-sm xl:text-base 2xl:text-lg mb-6 w-80 sm:w-72 md:w-80 lg:w-96 xl:w-[400px] 2xl:w-[500px] text-right text-gray-500 dark:text-white ">
+            <p className="text-sm sm:text-sm md:text-sm lg:text-sm xl:text-base 2xl:text-lg mb-6 mt-8 w-80 sm:w-72 md:w-80 lg:w-96 xl:w-[400px] 2xl:w-[500px] text-right text-gray-500 dark:text-white ">
               اگر رمزعبور خود را فراموش کرده‌اید، ایمیل خود را وارد کنید تا لینک
               تغییر رمزعبور برای شما ارسال شود.
             </p>
             <InputField className="h-10" label="ایمیل" placeholder="ایمیل خود را وارد کنید" />
             <Button
               type="primary"
-              className="w-full h-10 bg-blue-500 text-white rounded-3xl font-bold"
+              className="w-full h-11 text-lg bg-blue-500 text-white rounded-3xl font-bold mt-3"
               onClick={() => setCurrentTab("2")}
             >
               ارسال لینک
             </Button>
             <Button
-              className="w-32 h-9 mt-4 border border-solid border-gray-300 text-blue-500 rounded-3xl font-bold"
+              className="w-32 h-11 text-lg mt-8 border border-solid border-gray-300 text-blue-500 rounded-3xl font-bold "
               onClick={onBack}
             >
               بازگشت
@@ -91,10 +91,10 @@ const ForgotPassword = ({ onBack }) => {
 
         {currentTab === "2" && (
           <div className="w-full max-w-md text-center">
-            <h2 className="text-2xl sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-4xl font-bold mb-2 text-right">
+            <h2 className="text-2xl sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-4xl font-bold mb-2 text-right mt-11">
               رمز عبور جدید!
             </h2>
-            <p className="text-xs sm:text-xs md:text-sm lg:text-sm xl:text-base 2xl:text-lg mb-6 w-80 sm:w-72 md:w-80 lg:w-96 xl:w-[400px] 2xl:w-[500px] text-right text-gray-500">
+            <p className="text-xs sm:text-xs md:text-sm lg:text-sm xl:text-base 2xl:text-lg mb-6 w-80 sm:w-72 md:w-80 lg:w-96 xl:w-[400px] 2xl:w-[500px] text-right text-gray-500 mt-8">
               رمز عبور جدید خود را وارد کنید
             </p>
             <InputField
@@ -108,14 +108,14 @@ const ForgotPassword = ({ onBack }) => {
             <Link to={"/dashboard"}>
               <Button
                 type="primary"
-                className="w-full h-10 bg-blue-500 text-white rounded-3xl font-bold"
+                className="w-full h-12  mt-6 text-lg bg-blue-500 text-white rounded-3xl font-bold"
               >
                 تایید رمز عبور
               </Button>
             </Link>
 
             <Button
-              className="w-32 h-9 mt-4 border border-solid border-gray-300 text-blue-500 rounded-3xl font-bold"
+              className="w-32 h-11 text-lg  mt-8 border border-solid border-gray-300 text-blue-500 rounded-3xl font-bold"
               onClick={() => setCurrentTab("1")}
             >
               بازگشت
