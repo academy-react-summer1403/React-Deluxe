@@ -49,6 +49,10 @@ const coursesData = [
   },
 ];
 const CoursesItems = () => {
+  const scrollTop = () => {
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  };
   return (
     <div className="hidden md:flex flex-wrap justify-center gap-8">
       {coursesData.map((course, index) => (
@@ -56,7 +60,12 @@ const CoursesItems = () => {
           key={index}
           className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-900 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
         >
-          <Link to={"/courseDetails"}>
+          <Link
+            onClick={() => {
+              scrollTop();
+            }}
+            to={"/courseDetails"}
+          >
             <div
               className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${course.color}`}
             >
@@ -64,7 +73,12 @@ const CoursesItems = () => {
             </div>
           </Link>
 
-          <Link to={"/courseDetails"}>
+          <Link
+            onClick={() => {
+              scrollTop();
+            }}
+            to={"/courseDetails"}
+          >
             <h3 className="flex text-xl dark:text-white font-semibold mb-2 ">
               {course.title}
             </h3>

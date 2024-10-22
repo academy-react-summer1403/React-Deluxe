@@ -18,7 +18,7 @@ const ReserveData = [
 
 const MyReserves = () => {
   return (
-    <div className="bg-gray-50 dark:bg-indigo-900 h-[400px] dark:text-white  p-2 rounded-3xl  w-4/5 flex-1">
+    <div className="bg-gray-50 dark:bg-indigo-900 h-[400px] dark:text-white shadow-lg  p-2 rounded-3xl  w-2/3 flex-1">
       <div className="flex flex-row px-4 justify-between">
         <h2 className="text-base font-semibold">رزرو من</h2>
         <Link to={"/MyReserve"}>
@@ -45,35 +45,35 @@ const MyReserves = () => {
           </div>
         </Link>
       </div>
-      <ul className="flex p-2 rounded-xl text-sm text-gray-500  mx-5 dark:bg-indigo-950 dark:text-white  bg-gray-100 gap-40 justify-start">
+      <ul className="flex p-2 rounded-xl text-sm text-gray-500  mx-5 dark:bg-indigo-950 dark:text-white  bg-gray-100 gap-24 justify-start">
         <li>#</li>
         <li> نام دوره</li>
-        <li className="w-[50px]">مدرس</li>
-        <li className="mr-7">وضعیت</li>
+        <li className="">مدرس</li>
+        <li className="mr-6">وضعیت</li>
       </ul>
       <div className="mt-4 mx-5 space-y-4">
         {ReserveData.map((Reserve, index) => (
           <div
             key={index}
-            className="  flex flex-row  relative  items-center rounded-3xl justify-start gap-24    "
+            className="  flex flex-row  relative  items-center rounded-3xl justify-start gap-16    "
           >
             <div
-              className={`h-12 flex justify-center items-center rounded-xl w-20  mb-4 ${Reserve.color}`}
+              className={`h-12 flex justify-center items-center rounded-xl w-24  mb-4 ${Reserve.color}`}
             >
               <img src={Reserve.icon} alt={""} className={`size-8 `} />
             </div>
 
-            <h3 className=" text-xl dark:text-white font-semibold mb-2  truncate w-[111px]">
+            <h3 className=" text-xl dark:text-white font-semibold mb-2  truncate w-24 ">
               {Reserve.title}
             </h3>
 
-            <p className="  dark:text-white text-[12px]  font-bold items-center w-[125px]  ">
+            <p className="  dark:text-white text-[12px] w-56  font-bold items-center w-54 mr-3   ">
               {Reserve.teacher}
             </p>
-            <span className="px-3 py-0 text-base  mr-2   bg-red-400 text-white rounded-full">
+            <span className="px-3 py-0 text-base w-40   bg-red-400 text-white rounded-full">
               {Reserve.state}
             </span>
-            <div className="flex flex-row mr-16 gap-2">
+            <div className="flex flex-row gap-2">
               <BsEye className="text-base dark:text-white" />
 
               <RxCross1 className="text-red-500" />

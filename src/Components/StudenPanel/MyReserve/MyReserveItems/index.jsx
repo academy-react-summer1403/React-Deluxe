@@ -88,7 +88,7 @@ const index = () => {
   return (
     <div className="bg-gray-50 dark:bg-indigo-900  p-2 rounded-3xl flex flex-col gap-24   flex-1">
       <div>
-        <ul className="flex p-2 rounded-xl text-sm text-gray-500  m-5 dark:bg-indigo-950 dark:text-white  bg-gray-100 gap-40 justify-start">
+        <ul className="flex p-2 rounded-xl text-sm text-gray-500  m-5 dark:bg-indigo-950 dark:text-white  bg-gray-100 gap-24 justify-start">
           <li>#</li>
           <li> نام دوره</li>
           <li className="w-[50px]">مدرس</li>
@@ -100,7 +100,7 @@ const index = () => {
           {ReserveData.map((Reserve, index) => (
             <div
               key={index}
-              className="  flex flex-row  relative  items-center rounded-3xl justify-start gap-24    "
+              className="  flex flex-row  relative  items-center rounded-3xl justify-start gap-9    "
             >
               <div
                 className={`h-12 flex justify-center items-center rounded-xl w-20  mb-4 ${Reserve.color}`}
@@ -116,7 +116,7 @@ const index = () => {
                 {Reserve.teacher}
               </p>
               <span
-                className={`inline-flex items-center w-[125px] dark:text-white `}
+                className={`inline-flex items-center w-[127px] dark:text-white `}
               >
                 {Reserve.date}
               </span>
@@ -127,7 +127,7 @@ const index = () => {
                 {Reserve.enddate}
               </span>
               <span
-                className={`px-3 py-0 text-base ${Reserve.tagCol}     text-white rounded-full`}
+                className={`px-3 py-0 text-base ${Reserve.tagCol}  w-[97px]   text-white rounded-full`}
               >
                 {Reserve.status}
               </span>

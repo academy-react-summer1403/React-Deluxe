@@ -31,8 +31,8 @@ const WelcomeHeader = () => {
       {/* Welcome and Date/Time Section */}
       <div className="flex flex-col items-start">
         <div className="flex gap-5 items-center space-x-2">
-          <h2 className="text-2xl font-semibold"> سلام پارسا، روزت بخیر 👋</h2>{" "}
-          <p className="text-gray-500 dark:text-gray-50 text-sm mt-1">
+          <h2 className="text-xl font-semibold"> سلام پارسا، روزت بخیر 👋</h2>{" "}
+          <p className="text-gray-500 dark:text-gray-50 text-xs mt-1">
             امیدوارم امروز روز خوبی رو داشته باشید
           </p>
         </div>
@@ -126,7 +126,7 @@ const WelcomeHeader = () => {
       </div>
       {/* Bio Section */}
       <div className="flex flex-col justify-center w-96">
-        <p className="text-gray-700 dark:text-gray-100 text-lg">
+        <p className="text-gray-700 dark:text-gray-100 text-base">
           سلام ، من پارسام
         </p>
         <p className="text-sm text-gray-500 dark:text-gray-50">
