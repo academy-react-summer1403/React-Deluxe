@@ -249,7 +249,7 @@ const CourseList = () => {
 
 
 
-      <div className="flex flex-wrap justify-center ">
+      <div className="flex flex-wrap justify-center gap-8 ">
         {coursesData.map((course, index) => (
           <div
             key={index}
