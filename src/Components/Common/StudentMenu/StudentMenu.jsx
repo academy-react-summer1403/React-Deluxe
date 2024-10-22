@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 const StudentMenu = () => {
   return (
-    <div className="w-fit h-screen bg-gray-950 hidden text-white lg:flex flex-col justify-between">
+    <div className="w-fit h-fit bg-gray-950 hidden text-white lg:flex flex-col justify-between">
       <div>
         {/* Logo Section */}
         <div className="px-6 py-4">
@@ -345,7 +345,7 @@ const StudentMenu = () => {
       </div>
 
       {/* Logout Section */}
-      <div className="px-6 py-4">
+      <div className="px-6 pt-[370px] pb-4">
         <Link
           to={"/auth/signin"}
           href="#"

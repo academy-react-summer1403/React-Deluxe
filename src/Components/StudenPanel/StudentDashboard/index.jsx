@@ -11,8 +11,8 @@ const index = () => {
       <WelcomeHeader />
 
       <div className="flex flex-col lg:flex-row justify-between space-y-8 gap-4 lg:space-y-0">
-        <MyCourses className="order-2" />
-        <UserProgress className="order-1" />
+        <MyCourses />
+        <UserProgress />
       </div>
       <div className="flex flex-col lg:flex-row justify-between gap-6 space-y-8 lg:space-y-0">
         <MyReserves />
