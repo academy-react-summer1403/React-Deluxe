@@ -3,7 +3,7 @@ import StudentDashboard from "./StudentDashboard";
 
 const StudentPanelHolder = () => {
   return (
-    <div className="w-full h-full pb-3 pl-9 bg-gray-950">
+    <div className="w-full  pb-4 pl-5  bg-gray-950">
       <StudentDashboard />
     </div>
   );

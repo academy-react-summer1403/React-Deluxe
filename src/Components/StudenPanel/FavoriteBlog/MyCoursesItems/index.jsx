@@ -75,7 +75,7 @@ const index = () => {
   return (
     <div className="bg-gray-50 dark:bg-indigo-900 flex flex-col gap-24 p-2 rounded-3xl    ">
       <div>
-        <ul className="flex p-2 rounded-xl text-sm text-gray-500  m-5 dark:bg-indigo-950 dark:text-white  bg-gray-100 gap-40 justify-start">
+        <ul className="flex p-2 rounded-xl text-sm text-gray-500  m-5 dark:bg-indigo-950 dark:text-white  bg-gray-100 gap-24 justify-start">
           <li>#</li>
           <li> نام دوره</li>
           <li className="w-[50px]">مدرس</li>
@@ -87,7 +87,7 @@ const index = () => {
           {coursesData.map((course, index) => (
             <div
               key={index}
-              className="  flex flex-row  relative  items-center rounded-3xl justify-start gap-24    "
+              className="  flex flex-row  relative  items-center rounded-3xl justify-start gap-9    "
             >
               <div
                 className={`h-12 flex justify-center items-center rounded-xl w-20  mb-4 ${course.color}`}

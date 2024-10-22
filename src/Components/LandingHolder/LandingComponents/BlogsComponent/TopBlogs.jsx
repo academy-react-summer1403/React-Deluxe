@@ -170,6 +170,10 @@ const BlogsCarsoual = () => (
   </Carousel>
 );
 const TopBlogs = () => {
+  const scrollTop = () => {
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  };
   return (
     <section className="py-16 ">
       <div className="container mx-auto text-center">
@@ -182,7 +186,12 @@ const TopBlogs = () => {
               key={index}
               className=" bg-gray-50 dark:bg-indigo-900 rounded-3xl  flex-1 "
             >
-              <Link to={"/blogdetails"}>
+              <Link
+                onClick={() => {
+                  scrollTop();
+                }}
+                to={"/blogdetails"}
+              >
                 <div
                   className={`h-72 mx-auto flex justify-center items-center mb-4 rounded-xl ${blog.color}`}
                 >
