@@ -12,53 +12,53 @@
 //     setIsModalOpen(!isModalOpen);
 //   };
 
-//   return (
-//     <div className="flex flex-col items-start mb-6 mr-8">
-//       <div className="hidden md:flex justify-start space-x-4 mb-4">
-//         <p className="font-bold text-lg p-2 dark:text-white dark:bg-indigo-950">
-//           ترتیب
-//         </p>
-//         <button
-//           onClick={() => handleCategoryClick("جدیدترین")}
-//           className={`px-4 py-2 h-10 rounded-full border border-transparent ${
-//             activeCategory === "جدیدترین"
-//               ? "bg-red-500 text-white"
-//               : "border-gray-600 text-gray-800 hover:border-red-500 hover:text-red-500"
-//           }`}
-//         >
-//           جدیدترین
-//         </button>
-//         <button
-//           onClick={() => handleCategoryClick("محبوب‌ترین")}
-//           className={`px-4 py-2 h-10 rounded-full border border-transparent ${
-//             activeCategory === "محبوب‌ترین"
-//               ? "bg-red-500 text-white"
-//               : "bg-white border-gray-600 text-gray-800 hover:border-red-500 hover:text-red-500"
-//           }`}
-//         >
-//           محبوب‌ترین
-//         </button>
-//         <button
-//           onClick={() => handleCategoryClick("گران‌ترین")}
-//           className={`px-4 py-2 h-10 rounded-full border border-transparent ${
-//             activeCategory === "گران‌ترین"
-//               ? "bg-red-500 text-white"
-//               : "bg-white border-gray-600 text-gray-800 hover:border-red-500 hover:text-red-500"
-//           }`}
-//         >
-//           گران‌ترین
-//         </button>
-//         <button
-//           onClick={() => handleCategoryClick("ارزان‌ترین")}
-//           className={`px-4 py-2 h-10 rounded-full border border-transparent ${
-//             activeCategory === "ارزان‌ترین"
-//               ? "bg-red-500 text-white"
-//               : "bg-white border-gray-600 text-gray-800 hover:border-red-500 hover:text-red-500"
-//           }`}
-//         >
-//           ارزان‌ترین
-//         </button>
-//       </div>
+  return (
+    <div className="flex flex-col items-start mb-6 mr-8">
+      <div className="hidden md:flex justify-start space-x-4 mb-4">
+        <p className="font-bold text-lg p-2 dark:text-white dark:bg-indigo-950">
+          ترتیب
+        </p>
+        <button
+          onClick={() => handleCategoryClick("جدیدترین")}
+          className={`px-4 py-2 h-10 rounded-full border border-transparent ${
+            activeCategory === "جدیدترین"
+              ? "bg-red-500 text-white"
+              : "border-gray-600 bg-white text-gray-800 hover:border-red-500 hover:text-red-500"
+          }`}
+        >
+          جدیدترین
+        </button>
+        <button
+          onClick={() => handleCategoryClick("محبوب‌ترین")}
+          className={`px-4 py-2 h-10 rounded-full border border-transparent ${
+            activeCategory === "محبوب‌ترین"
+              ? "bg-red-500 text-white"
+              : "bg-white border-gray-600 text-gray-800 hover:border-red-500 hover:text-red-500"
+          }`}
+        >
+          محبوب‌ترین
+        </button>
+        <button
+          onClick={() => handleCategoryClick("گران‌ترین")}
+          className={`px-4 py-2 h-10 rounded-full border border-transparent ${
+            activeCategory === "گران‌ترین"
+              ? "bg-red-500 text-white"
+              : "bg-white border-gray-600 text-gray-800 hover:border-red-500 hover:text-red-500"
+          }`}
+        >
+          گران‌ترین
+        </button>
+        <button
+          onClick={() => handleCategoryClick("ارزان‌ترین")}
+          className={`px-4 py-2 h-10 rounded-full border border-transparent ${
+            activeCategory === "ارزان‌ترین"
+              ? "bg-red-500 text-white"
+              : "bg-white border-gray-600 text-gray-800 hover:border-red-500 hover:text-red-500"
+          }`}
+        >
+          ارزان‌ترین
+        </button>
+      </div>
 
 //       <div className="md:hidden mb-4 lg:hidden flex justify-start">
 //         <button

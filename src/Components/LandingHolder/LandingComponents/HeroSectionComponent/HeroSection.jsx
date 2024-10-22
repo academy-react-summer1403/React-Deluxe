@@ -34,7 +34,7 @@ const HeroSection = () => {
       <div className="container mx-auto text-center w-full ">
         <div className="flex flex-col lg:flex-row items-center justify-start lg:justify-evenly   mb-10">
           {/* Stats Section */}
-          <div className="w-80 order-2 lg:order-1 flex flex-wrap justify-start mb-5">
+          <div className="w-80 order-2 lg:order-1 flex gap-4   flex-wrap justify-start mb-5">
             <div className="flex items-center mx-4">
               <Avatar.Group>
                 <Avatar src="https://s3-alpha-sig.figma.com/img/555c/b373/5701db8d4318f0d93edd1f4b64493b37?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=gbNRux8srZxwElhth9ojNNhAqLL73X0Tf3-7jteE~gFNDjm9aquaEfH7MEXxcZx4reT-P~~lQrYvhkFk1NzgB6CRBCXYi~5bS9xZxyXlfbWxX8--p8VRuDyBTOMRpzlsWP8KBtwrYYmw1aIJXrGB37PEQOUNNGPU~9URImIUvrQCfG1JM9PBHbSnd93PTGFErAp-6ajHzaruNUsJqbf1xvjBezbdZvRAJVvyncpmwTfL76Qy5auh8SsE2Owzdj7yzFubADQYBT8S2nPpIujx2B6PuZRxywMivGs7KtPwclW4FllDHxGXPYdWW36oaE0abNqmAE7Rw~HMZYsN08hC4Q__" />
@@ -43,7 +43,7 @@ const HeroSection = () => {
               </Avatar.Group>
               <span className="dark:text-white">+100 دانشجوی فعال در دوره</span>
             </div>
-            <div className="flex relative right-24 lg:right-0 items-center mx-4">
+            <div className="flex relative right-4 lg:right-0 items-center mx-4">
               <Avatar.Group>
                 <Avatar src="https://s3-alpha-sig.figma.com/img/c147/98cf/5293c57333d6b58c079ca634d833acf3?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=QjP~FD3J~~qRa60ljMW7RBJXO5fwNr5m1SRjWa9VkWZHIqmW7yq4M-ZUhsT0F~dTOqxVErIN2P2FhX4qeBiyrM10qEQ1EJe~bwzEkKZx3bBh1D1mpe5p57Gl4hfFLp278qER5YVKtGzfDVmTGgmCqREagMqMdm1P~lyxAmu93l~aFJGnp7uRMS6oHCrCKfS6nmp4u0YuhSYq3OIYuaytgIG7ixJoOw9D346IHw0G1qGD2io1hVChZD7hjyqsxb7UiW7ADkup98nWXQ-GwSGBKyANp2Mt2VsWWVBVDJQbZeyL192k0McNA52dCpc-MxJ0vuStH2Bql2YFbNaGiCVDvQ__" />
                 <Avatar src="https://s3-alpha-sig.figma.com/img/f8b5/1203/5a2e42c8ec0c92cd29eb940180f4d6b5?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=SOIypVdmAz8hvG-X1RhzzY1E6FnoVNtQ4bR75qAaADjHuBBFj~ChaPbZ19K2Aqkc2M9JFhg4JmQPkfMoM1mkNrH~KUExiMreCKkj6TsobggQlnc2Q3Z1hTVws52557AlrmbXbvkxab9gjjTZShbPmMLrzW1N1MkjRccnEiWbuLlIMKmfQVD3v2LlE2EKJTXFzqiWlyQNv1O33i0ExxrsPDW7HHnN8WEHAs8PfF20EK-BZdyukWXxuUn7zq7HffTEpfuii-oZf45He6EpPM8FhPEjcMGtToai6xjY2wrhrzlPap2s2heMDW3TO1siaGvel9r2M1QJ4zYzjeFgPtvLKg__" />
