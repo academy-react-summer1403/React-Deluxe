@@ -1,5 +1,6 @@
 import { ConfigProvider, Modal, Pagination } from "antd";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const cardsData = [
   {
@@ -185,18 +186,20 @@ const BlogsCards = () => {
             key={index}
             className={`lg:basis-[47%] basis-[90%] rounded-3xl mb-7`}
           >
-            <div
-              className={`mb-4 w-full h-[22rem] rounded-[2.5rem] object-cover ${card.bgColor} flex justify-center items-center`}
-            >
-              <img
-                src={card.imgUrl}
-                alt={card.title}
-                className={`w-60 h-60 object-contain`}
-              />
-            </div>
-            <h3 className="text-2xl font-bold mb-2 dark:text-slate-300">
-              {card.title}
-            </h3>
+            <Link to={"/BlogDetails"} className="cursor-pointer ">
+              <div
+                className={`mb-4 w-full h-[22rem] rounded-[2.5rem] object-cover ${card.bgColor} flex justify-center items-center`}
+              >
+                <img
+                  src={card.imgUrl}
+                  alt={card.title}
+                  className={`w-60 h-60 object-contain`}
+                />
+              </div>
+              <h3 className="text-2xl font-bold mb-2 dark:text-slate-300">
+                {card.title}
+              </h3>
+            </Link>
             <div className="text-gray-600 flex flex-row justify-between">
               <p className="text-sm/[1.3rem] dark:text-slate-400">
                 {card.author}
