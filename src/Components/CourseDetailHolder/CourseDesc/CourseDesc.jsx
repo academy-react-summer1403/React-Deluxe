@@ -1,7 +1,8 @@
 // CourseDescription.jsx
 import { Rate } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoIosLink } from "react-icons/io";
+import { useLocation } from "react-router-dom";
 
 const CopyLink = () => {
   const [copied, setCopied] = useState(false);
@@ -37,6 +38,8 @@ const CopyLink = () => {
 };
 
 const CourseDesc = () => {
+  const { pathname } = useLocation();
+
   return (
     <div className="p-6 mb-6 bg-white rounded-lg dark:bg-indigo-950">
       <h3 className="mb-4 text-xl font-bold text-gray-500 dark:text-gray-300">
@@ -85,7 +88,7 @@ const CourseDesc = () => {
           <span className="text-[#3772FF] dark:text-white">امتیاز بدید</span>
           <Rate className="mr-4" defaultValue={3} />
         </div>
-        <CopyLink />
+        {pathname.includes("courseDetails") ? <CopyLink /> : ""}
       </div>
     </div>
   );

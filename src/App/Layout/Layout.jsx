@@ -5,8 +5,7 @@ import { Footer } from "../../Components/Common/Footer";
 
 const Layout = () => {
   return (
-    <div className="dark:bg-indigo-950 xl:px-[200px]">
-
+    <div className="dark:bg-indigo-950">
       <Header />
       <div className="flex justify-center">
         <div className="max-w-[1400px] min-w-0">

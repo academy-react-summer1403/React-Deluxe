@@ -18,20 +18,26 @@ const CopyLink = () => {
   };
 
   return (
-    <div className="mr-5 -mt-1">
+    <div
+      className="mr-5 -mt-1
+    overflow-hidden text-ellipsis max-w-full"
+    >
       <button
         onClick={copyToClipboard}
-        className="border-2 border-[#3772FF] dark:border-indigo-800 text-[#3772FF] dark:text-indigo-300 text-lg/5 px-4 py-3 rounded-full mt-1"
+        className="border-2 border-[#3772FF] dark:border-indigo-800 text-[#3772FF] dark:text-indigo-300 text-sm lg:text-lg/5 px-2 lg:px-4 py-3 rounded-full mt-1
+        overflow-hidden text-ellipsis max-w-full"
       >
         {copied ? (
           <div className="flex">
             <IoIosLink className="-scale-x-[1] ml-2 text-[#3772FF] dark:text-white" />
-            <span className="text-[#3772FF] dark:text-white">کپی شد!</span>
+            <span className="text-[#3772FF] dark:text-white whitespace-nowrap text-ellipsis">
+              کپی شد!
+            </span>
           </div>
         ) : (
           <div className="flex">
             <IoIosLink className="-scale-x-[1] ml-2 text-[#3772FF] dark:text-white" />
-            <span className="text-[#3772FF] dark:text-white">
+            <span className="text-[#3772FF] dark:text-white text-ellipsis overflow-hidden whitespace-nowrap min-w-0">
               کپی کردن لینک صفحه
             </span>
           </div>
@@ -47,7 +53,7 @@ const BlogInfo = () => {
   const infoBlock1Data = [
     {
       wrapperClasses:
-        "basis-[50%] border-l border-gray-400 dark:border-gray-500 w-32 h-20 p-2 text-nowrap flex flex-col items-center lg:block",
+        "basis-[50%] border-l border-slate-200 dark:border-gray-500 w-32 h-20 p-2 text-nowrap flex flex-col items-center lg:block",
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
       title: "دسته بندی",
       statusClasses:
@@ -65,7 +71,7 @@ const BlogInfo = () => {
   const infoBlock2Data = [
     {
       wrapperClasses:
-        "basis-[50%] border-l border-gray-400 dark:border-gray-500 w-32 h-20 p-2",
+        "basis-[50%] border-l border-slate-200 dark:border-gray-500 w-32 h-20 p-2",
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
       title: "تاریخ انتشار",
       statusClasses: "text-base/[2.5rem] font-light dark:text-white",
@@ -83,7 +89,7 @@ const BlogInfo = () => {
   const infoBlock3Data = [
     {
       wrapperClasses:
-        "basis-[50%] border-l border-gray-400 dark:border-gray-500 w-32 h-20 p-2",
+        "basis-[50%] border-l border-slate-200 dark:border-gray-500 w-32 h-20 p-2",
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
       title: "تعداد لایک",
       statusClasses: "text-base/[2.5rem] font-light dark:text-white",
@@ -122,7 +128,7 @@ const BlogInfo = () => {
 
           {/* 2nd Row: Course Info Section */}
           <div className="flex flex-wrap justify-between mb-4 text-center lg:text-right">
-            <div className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-r-3xl lg:basis-[50%] xl:basis-[50%] border lg:border-0 lg:border-t lg:border-r lg:border-b border-gray-400 dark:border-gray-500 overflow-hidden dark:bg-indigo-900">
+            <div className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-r-3xl lg:basis-[50%] xl:basis-[50%] border lg:border-0 lg:border-t lg:border-r lg:border-b border-slate-200 bg-slate-100 dark:border-gray-500 overflow-hidden dark:bg-indigo-900">
               {infoBlock1Data.map((item, index) => (
                 <InfoBlock
                   key={index}
@@ -134,7 +140,7 @@ const BlogInfo = () => {
                 />
               ))}
             </div>
-            <div className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-l-3xl lg:basis-[50%] xl:basis-[50%] border border-gray-400 dark:border-gray-500 overflow-hidden dark:bg-indigo-900">
+            <div className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-l-3xl lg:basis-[50%] xl:basis-[50%] border border-slate-200 bg-slate-100 dark:border-gray-500 overflow-hidden dark:bg-indigo-900">
               {infoBlock2Data.map((item, index) => (
                 <InfoBlock
                   key={index}
@@ -148,13 +154,7 @@ const BlogInfo = () => {
             </div>
 
             {/* 3rd Row: Additional Info Section */}
-            <div
-              className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl 
-              //lg:rounded-none lg:rounded-r-3xl 
-              lg:basis-[50%] 
-            border //lg:border-0 lg:border-t lg:border-r lg:border-b
-             border-gray-400 dark:border-gray-500 overflow-hidden dark:bg-indigo-900"
-            >
+            <div className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:basis-[50%] border border-slate-200 bg-slate-100 dark:border-gray-500 overflow-hidden dark:bg-indigo-900">
               {infoBlock3Data.map((item, index) => (
                 <InfoBlock
                   key={index}
@@ -193,6 +193,13 @@ const BlogInfo = () => {
               <PiShoppingBagOpen className="mx-0 size-5 xl:mx-2" />
               اضافه به لیست مورد علاقه
             </button>
+            {/* <button className="bg-[#2f2f2f] dark:bg-indigo-800 text-white px-2 whitespace-nowrap text-sm sm:text-base lg:px-4 xl:px-8 xl:py-2 rounded-full lg:mx-auto flex items-center overflow-hidden text-ellipsis max-w-full">
+              <PiShoppingBagOpen className="mx-0 size-5 xl:mx-2" />
+              <span className="overflow-hidden text-ellipsis">
+                اضافه به لیست مورد علاقه
+              </span>
+            </button>
+            Ellipsis code!!!!!!!! */}
             <div className="flex gap-3">
               <button className="bg-[#3772ff] dark:bg-indigo-800 text-white w-12 h-12 rounded-full flex justify-center items-center">
                 <AiOutlineLike className="size-5" />

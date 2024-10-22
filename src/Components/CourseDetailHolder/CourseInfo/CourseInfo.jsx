@@ -13,7 +13,7 @@ const CourseInfo = () => {
   const infoBlock1Data = [
     {
       wrapperClasses:
-        "basis-[50%] border-l border-gray-400 dark:border-gray-500 w-32 h-20 p-2 flex flex-col items-center lg:block",
+        "basis-[50%] border-l border-slate-200 dark:border-gray-500 w-32 h-20 p-2 flex flex-col items-center lg:block",
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
       title: "وضعیت",
       statusClasses:
@@ -33,7 +33,7 @@ const CourseInfo = () => {
   const infoBlock2Data = [
     {
       wrapperClasses:
-        "basis-[50%] lg:basis-[50%] border-l border-gray-400 dark:border-gray-500 w-32 h-20 p-2 flex flex-col items-center lg:block",
+        "basis-[50%] lg:basis-[50%] border-l border-slate-200 dark:border-gray-500 w-32 h-20 p-2 flex flex-col items-center lg:block",
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
       title: "سطح آموزشی",
       statusClasses:
@@ -52,7 +52,7 @@ const CourseInfo = () => {
   const infoBlock3Data = [
     {
       wrapperClasses:
-        "basis-[50%] border-l border-gray-400 dark:border-gray-500 w-32 h-20 p-2",
+        "basis-[50%] border-l border-slate-200 dark:border-gray-500 w-32 h-20 p-2",
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
       title: "تاریخ برگزاری",
       statusClasses: "text-base/[2.5rem] font-light dark:text-white",
@@ -69,7 +69,7 @@ const CourseInfo = () => {
   const infoBlock4Data = [
     {
       wrapperClasses:
-        "basis-[50%] border-l border-gray-400 dark:border-gray-500 w-32 h-20 p-2",
+        "basis-[50%] border-l border-slate-200 dark:border-gray-500 w-32 h-20 p-2",
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
       title: "تعداد لایک",
       statusClasses: "text-base/[2.5rem] font-light dark:text-white",
@@ -108,7 +108,7 @@ const CourseInfo = () => {
 
           {/* 2nd Row: Course Info Section */}
           <div className="flex flex-wrap justify-between mb-4 text-center lg:text-right">
-            <div className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-r-3xl lg:basis-[50%] xl:basis-[50%] border lg:border-0 lg:border-t lg:border-r lg:border-b border-gray-400 dark:border-gray-500 overflow-hidden dark:bg-indigo-900">
+            <div className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-r-3xl lg:basis-[50%] xl:basis-[50%] border lg:border-0 lg:border-t lg:border-r lg:border-b border-slate-200 bg-slate-100 dark:border-gray-500 overflow-hidden dark:bg-indigo-900">
               {infoBlock1Data.map((item, index) => (
                 <InfoBlock
                   key={index}
@@ -120,7 +120,7 @@ const CourseInfo = () => {
                 />
               ))}
             </div>
-            <div className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-l-3xl lg:basis-[50%] xl:basis-[50%] border border-gray-400 dark:border-gray-500 overflow-hidden dark:bg-indigo-900">
+            <div className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-l-3xl lg:basis-[50%] xl:basis-[50%] border border-slate-200 bg-slate-100 dark:border-gray-500 overflow-hidden dark:bg-indigo-900">
               {infoBlock2Data.map((item, index) => (
                 <InfoBlock
                   key={index}
@@ -134,7 +134,7 @@ const CourseInfo = () => {
             </div>
 
             {/* 3rd Row: Additional Info Section */}
-            <div className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-r-3xl lg:basis-[50%] border lg:border-0 lg:border-t lg:border-r lg:border-b border-gray-400 dark:border-gray-500 overflow-hidden dark:bg-indigo-900">
+            <div className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-r-3xl lg:basis-[50%] border lg:border-0 lg:border-t lg:border-r lg:border-b border-slate-200 bg-slate-100 dark:border-gray-500 overflow-hidden dark:bg-indigo-900">
               {infoBlock3Data.map((item, index) => (
                 <InfoBlock
                   key={index}
@@ -146,7 +146,7 @@ const CourseInfo = () => {
                 />
               ))}
             </div>
-            <div className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-l-3xl lg:basis-[50%] border border-gray-400 dark:border-gray-500 overflow-hidden dark:bg-indigo-900">
+            <div className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-l-3xl lg:basis-[50%] border border-slate-200 bg-slate-100 dark:border-gray-500 overflow-hidden dark:bg-indigo-900">
               {infoBlock4Data.map((item, index) => (
                 <InfoBlock
                   key={index}
