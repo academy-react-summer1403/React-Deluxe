@@ -72,7 +72,7 @@ const LoginPage = () => {
               شماره همراه یا ایمیل
             </label>
             <input
-              className="mt-2 rounded-3xl w-full bg-white text-black px-4 py-2 border border-gray-300 dark:text-white"
+              className="mt-2 text-lg rounded-3xl w-full bg-white text-black px-4 py-2 border border-gray-300 dark:text-white"
               placeholder="شماره همراه یا ایمیل خود را وارد کنید"
             />
             <label className="block mt-2 text-lg font-bold text-right text-gray-700 dark:text-white">
@@ -80,7 +80,7 @@ const LoginPage = () => {
             </label>
             <input
               type="password"
-              className="mt-4 rounded-3xl w-full bg-white text-black px-4 py-2 border border-gray-300 dark:text-white"
+              className="mt-4 rounded-3xl w-full text-lg bg-white text-black px-4 py-2 border border-gray-300 dark:text-white"
               placeholder="رمز عبور خود را وارد کنید"
             />
             <div className="flex items-center mt-2 justify-between w-full">

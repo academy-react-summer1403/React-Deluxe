@@ -155,10 +155,18 @@ const Register = ({ onBack }) => {
             </Link>
           </div>
         )}
+          <Link to={"/auth/signin"}>
+          <p
+            type="primary"
+            className="w-full mt-3 h-12 text-lg py-2 px-4 border-gray-300 dark:bg-indigo-950 text-blue-500 rounded-3xl font-bold hover:underline"
+          >
+              اگر حساب کاربری دارید وارد شوید 
+          </p>
+        </Link>
            <Link to={"/"}>
           <Button
             type="primary"
-            className="w-36 mt-11 h-12 text-lg py-2 px-4 border-gray-300   bg-white text-blue-500 rounded-3xl font-bold"
+            className="w-36 mt-8 h-12 text-lg py-2 px-4 border-gray-300   bg-white text-blue-500 rounded-3xl font-bold"
           >
              صفحه اصلی 
           </Button>

@@ -79,7 +79,7 @@ const Filter = () => {
       </div>
 
       {/* Filter form hidden on small screens */}
-      <div className="hidden lg:block bg-white rounded-3xl p-4 w-80 text-right border-2 mt-20 h-fit dark:bg-indigo-950 ">
+      <div className="hidden lg:block bg-white rounded-3xl p-4 w-72 text-right border-2 mt-20 h-fit dark:bg-indigo-950 ">
         <h2 className="text-xl font-semibold mb-4 dark:text-white">فیلتر</h2>
 
         {/* Search */}
