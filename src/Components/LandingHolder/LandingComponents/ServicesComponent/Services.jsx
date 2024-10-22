@@ -5,15 +5,18 @@ const servicesData = [
     title: "مدرک معتبر",
     description: "با مدرک ما میتوانید به راحتی در همه جا استخدام بشید",
     icon: "src/assets/licence.png",
+    border: "border-blue-500",
   },
   {
     title: "آزمون ها",
     description: "با آزمون های تعیین سطح میتوانید سطح دانش خودتون رو بسنجید",
+    border: "border-red-500",
     icon: "src/assets/tests.png",
   },
   {
     title: "مشاوره ۲۴ ساعته",
     description: "مشاورین ما ۲۴ ساعته جوابگوی سوال های شما هستند",
+    border: "border-yellow-500",
     icon: "src/assets/support.png",
   },
   {
@@ -21,6 +24,7 @@ const servicesData = [
     description:
       "با توجه به سطح توانایی شما فرصت های شغلی به شما پیشنهاد داده میشه",
     icon: "src/assets/career.png",
+    border: "border-pink-500",
   },
 ];
 
@@ -31,7 +35,7 @@ const Services = () => {
         <h2 className="text-3xl font-bold dark:text-white">
           خدماتی که ما در طی دوره‌ها
         </h2>
-        <h2 className="text-3xl font-bold mb-8 dark:text-white">
+        <h2 className="text-3xl font-bold mb-8  dark:text-white">
           به شما ارائه می‌دهیم
         </h2>
 
@@ -40,9 +44,11 @@ const Services = () => {
           {servicesData.slice(0, 2).map((service, index) => (
             <div
               key={index}
-              className="flex flex-row flex-shrink-0 md:items-center p-4 border w-full md:w-1/2 rounded-3xl bg-gray-100 dark:bg-gray-700 border-gray-300 hover:border-blue-500 flex-1"
+              className="flex flex-row flex-shrink-0 md:items-center hover:bg-gradient-to-r from-pink-100 via-blue-100 to-teal-100 p-4 border w-full md:w-1/2 rounded-3xl bg-gray-100 dark:bg-gray-700 border-gray-300 hover:border-blue-300 flex-1"
             >
-              <div className="flex-shrink-0 border size-14 border-gray-300 bg-white rounded-full   mx-2">
+              <div
+                className={`flex-shrink-0 border size-14 ${service.border} bg-white rounded-full dark:bg-gray-200  mx-2`}
+              >
                 <img src={service.icon} alt="" />
               </div>
               <div className="text-right">
@@ -62,9 +68,11 @@ const Services = () => {
           {servicesData.slice(2, 4).map((service, index) => (
             <div
               key={index}
-              className={`flex flex-row flex-shrink-0 md:items-center p-4 border w-full md:w-1/2 rounded-3xl bg-gray-100 dark:bg-gray-700 border-gray-300 hover:border-blue-500 flex-1`}
+              className={`flex flex-row flex-shrink-0 md:items-center p-4 hover:bg-gradient-to-r from-pink-100 via-blue-100 to-teal-100  border w-full md:w-1/2 rounded-3xl bg-gray-100 dark:bg-gray-700 border-gray-300 hover:border-blue-300 flex-1`}
             >
-              <div className="flex-shrink-0 border border-gray-300 size-14 bg-white rounded-full   mx-2">
+              <div
+                className={`flex-shrink-0 border size-14 ${service.border} bg-white rounded-full dark:bg-gray-200  mx-2`}
+              >
                 <img src={service.icon} alt="" />
               </div>
               <div className="text-right">
