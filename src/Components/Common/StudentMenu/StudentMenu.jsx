@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const StudentMenu = () => {
   return (
-    <div className="w-full h-full bg-gray-950 text-white flex flex-col justify-between">
+    <div className="w-full h-screen bg-gray-950 text-white flex flex-col justify-between">
       <div>
         {/* Logo Section */}
         <div className="px-6 py-4">

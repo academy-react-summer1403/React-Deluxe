@@ -50,7 +50,7 @@ const TopTeachers = () => {
                   key={index}
                   className={`text-center flex flex-col items-center pb-10  min-w-[250px] max-w-[350px] relative ${teacher.order}  ${teacher.top}`}
                 >
-                  <div className="bg-white rounded-full overflow-hidden size-20">
+                  <div className=" rounded-full overflow-hidden size-20">
                     <img
                       src={teacher.icon}
                       alt=""

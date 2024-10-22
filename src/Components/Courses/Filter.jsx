@@ -6,9 +6,10 @@ const Filter = () => {
   const [level, setLevel] = useState("");
   const [teacher, setTeacher] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
   const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false);
-  const [isLevelDropdownOpen, setIsLevelDropdownOpen] = useState(false); 
-  const [isTeacherDropdownOpen, setIsTeacherDropdownOpen] = useState(false);
+  const [isLevelDropdownOpen, setIsLevelDropdownOpen] = useState(false); // State for level dropdown
+  const [isTeacherDropdownOpen, setIsTeacherDropdownOpen] = useState(false); // State for teacher dropdown
 
   const handleSearch = () => {
     const filters = {
@@ -18,11 +19,21 @@ const Filter = () => {
       teacher,
     };
     console.log("Searching with filters:", filters);
-    setIsModalOpen(false); 
+    setIsModalOpen(false); // Close modal after search
   };
 
   const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
+    if (isModalOpen) {
+      setIsAnimating(false);
+      setTimeout(() => {
+        setIsModalOpen(false);
+      }, 300); // Match the duration of the slide-down transition
+    } else {
+      setIsModalOpen(true);
+      setTimeout(() => {
+        setIsAnimating(true);
+      }, 10); // Delay to allow transition to trigger properly
+    }
   };
 
   const handleCategorySelect = (selectedCategory) => {
@@ -41,14 +52,14 @@ const Filter = () => {
   };
 
   return (
-    <div className="relative">
-      <div className="mb-4 lg:hidden md:hidden md:min-w-8">
+    <div className="absolute right-12 lg:right-0 lg:relative w-[128px] flex lg:w-[20rem]">
+      {/* Button to show filters only on small screens */}
+      <div className="mb-4 lg:hidden">
         <button
           onClick={toggleModal}
-          className="px-4 py-3 bg-red-500 text-white rounded-full flex gap-2"
-
+          className="px-4 py-3 bg-black text-white rounded-full flex gap-2"
         >
-           <svg
+          <svg
             width="20"
             height="20"
             viewBox="0 0 20 20"
@@ -63,12 +74,12 @@ const Filter = () => {
               stroke-linejoin="round"
             />
           </svg>
-           فیلتر
+          فیلتر
         </button>
       </div>
 
       {/* Filter form hidden on small screens */}
-      <div className="hidden lg:block bg-white rounded-2xl p-8 w-full max-w-xs text-right border-4 mt-20 dark:bg-indigo-950 ">
+      <div className="hidden lg:block bg-white rounded-3xl p-4 w-80 text-right border-2 mt-20 h-fit dark:bg-indigo-950 ">
         <h2 className="text-xl font-semibold mb-4 dark:text-white">فیلتر</h2>
 
         {/* Search */}
@@ -101,8 +112,8 @@ const Filter = () => {
         <div className="relative mb-4">
           <input
             type="text"
-            className="w-full pr-4 pl-12 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 text-right bg-slate-200 text-gray-500 md:text-sm"
-            placeholder="بلاگ مورد نظر را جستجو کنید..."
+            className="w-full pr-4 pl-12 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 text-right bg-slate-200 text-gray-500"
+            placeholder="فیلتر مورد نظر را جستجو کنید..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -195,44 +206,22 @@ const Filter = () => {
 
         {/* Level Dropdown */}
         <div className="mb-4 relative">
-          <div className="flex flex-row gap-1">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M8.64298 3.14559L6.93816 3.93362C4.31272 5.14719 3 5.75397 3 6.75C3 7.74603 4.31272 8.35281 6.93817 9.56638L8.64298 10.3544C10.2952 11.1181 11.1214 11.5 12 11.5C12.8786 11.5 13.7048 11.1181 15.357 10.3544L17.0618 9.56638C19.6873 8.35281 21 7.74603 21 6.75C21 5.75397 19.6873 5.14719 17.0618 3.93362L15.357 3.14559C13.7048 2.38186 12.8786 2 12 2C11.1214 2 10.2952 2.38186 8.64298 3.14559Z"
-                stroke="#272727"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M20.788 11.0972C20.9293 11.2959 21 11.5031 21 11.7309C21 12.7127 19.6873 13.3109 17.0618 14.5072L15.357 15.284C13.7048 16.0368 12.8786 16.4133 12 16.4133C11.1214 16.4133 10.2952 16.0368 8.64298 15.284L6.93817 14.5072C4.31272 13.3109 3 12.7127 3 11.7309C3 11.5031 3.07067 11.2959 3.212 11.0972"
-                stroke="#272727"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M20.3767 16.2661C20.7922 16.5971 21 16.927 21 17.3176C21 18.2995 19.6873 18.8976 17.0618 20.0939L15.357 20.8707C13.7048 21.6236 12.8786 22 12 22C11.1214 22 10.2952 21.6236 8.64298 20.8707L6.93817 20.0939C4.31272 18.8976 3 18.2995 3 17.3176C3 16.927 3.20778 16.5971 3.62334 16.2661"
-                stroke="#272727"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-
-            <label className="text-gray-700 mb-2 block dark:text-white">
-              سطح آموزشی
-            </label>
+          <div className="flex gap-1">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.64298 3.14559L6.93816 3.93362C4.31272 5.14719 3 5.75397 3 6.75C3 7.74603 4.31272 8.35281 6.93817 9.56638L8.64298 10.3544C10.2952 11.1181 11.1214 11.5 12 11.5C12.8786 11.5 13.7048 11.1181 15.357 10.3544L17.0618 9.56638C19.6873 8.35281 21 7.74603 21 6.75C21 5.75397 19.6873 5.14719 17.0618 3.93362L15.357 3.14559C13.7048 2.38186 12.8786 2 12 2C11.1214 2 10.2952 2.38186 8.64298 3.14559Z" stroke="#272727" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M20.788 11.0972C20.9293 11.2959 21 11.5031 21 11.7309C21 12.7127 19.6873 13.3109 17.0618 14.5072L15.357 15.284C13.7048 16.0368 12.8786 16.4133 12 16.4133C11.1214 16.4133 10.2952 16.0368 8.64298 15.284L6.93817 14.5072C4.31272 13.3109 3 12.7127 3 11.7309C3 11.5031 3.07067 11.2959 3.212 11.0972" stroke="#272727" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M20.3767 16.2661C20.7922 16.5971 21 16.927 21 17.3176C21 18.2995 19.6873 18.8976 17.0618 20.0939L15.357 20.8707C13.7048 21.6236 12.8786 22 12 22C11.1214 22 10.2952 21.6236 8.64298 20.8707L6.93817 20.0939C4.31272 18.8976 3 18.2995 3 17.3176C3 16.927 3.20778 16.5971 3.62334 16.2661" stroke="#272727" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+          <label className="text-gray-700 mb-2 block dark:text-white">
+            سطح آموزشی
+          </label>
+          
           </div>
+         
+
           <button
             onClick={() => setIsLevelDropdownOpen(!isLevelDropdownOpen)}
-            className="w-full  text-gray-500 text-right border border-gray-300 rounded-lg py-2 px-4 bg-slate-200"
+            className="w-full text-right  text-gray-500 border border-gray-300 rounded-lg py-2 px-4  bg-slate-200"
           >
             {level ? level : "سطح مورد نظر را انتخاب کنید"}
           </button>
@@ -253,49 +242,22 @@ const Filter = () => {
 
         {/* Teachers Dropdown */}
         <div className="mb-4 relative">
-          <div className="flex flex-row gap-1">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M2 2H16C17.8856 2 18.8284 2 19.4142 2.58579C20 3.17157 20 4.11438 20 6V12C20 13.8856 20 14.8284 19.4142 15.4142C18.8284 16 17.8856 16 16 16H9"
-                stroke="#272727"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M10 6.5H16"
-                stroke="#272727"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M2 17V13C2 12.0572 2 11.5858 2.29289 11.2929C2.58579 11 3.05719 11 4 11H6M2 17H6M2 17V22M6 11V17M6 11H9H12M6 17V22"
-                stroke="#272727"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M6 6.5C6 7.60457 5.10457 8.5 4 8.5C2.89543 8.5 2 7.60457 2 6.5C2 5.39543 2.89543 4.5 4 4.5C5.10457 4.5 6 5.39543 6 6.5Z"
-                stroke="#272727"
-                stroke-width="1.5"
-              />
-            </svg>
+          <div className="flex gap-1">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 2H16C17.8856 2 18.8284 2 19.4142 2.58579C20 3.17157 20 4.11438 20 6V12C20 13.8856 20 14.8284 19.4142 15.4142C18.8284 16 17.8856 16 16 16H9" stroke="#272727" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M10 6.5H16" stroke="#272727" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2 17V13C2 12.0572 2 11.5858 2.29289 11.2929C2.58579 11 3.05719 11 4 11H6M2 17H6M2 17V22M6 11V17M6 11H9H12M6 17V22" stroke="#272727" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M6 6.5C6 7.60457 5.10457 8.5 4 8.5C2.89543 8.5 2 7.60457 2 6.5C2 5.39543 2.89543 4.5 4 4.5C5.10457 4.5 6 5.39543 6 6.5Z" stroke="#272727" stroke-width="1.5"/>
+</svg>
 
-            <label className="text-gray-700 mb-2 block dark:text-white">
-              اساتید
-            </label>
+          <label className="text-gray-700 mb-2 block dark:text-white">
+            اساتید
+          </label>
           </div>
+        
           <button
             onClick={() => setIsTeacherDropdownOpen(!isTeacherDropdownOpen)}
-            className="w-full  text-gray-500  text-right bg-slate-200 border border-gray-300 rounded-lg py-2 px-4"
+            className="w-full text-right  text-gray-500 border border-gray-300 rounded-lg py-2 px-4  bg-slate-200"
           >
             {teacher ? teacher : "استاد مورد نظر را انتخاب کنید"}
           </button>
@@ -321,54 +283,25 @@ const Filter = () => {
 
         {/* Price */}
         <div className="mb-4">
-          <div className="flex flex-row gap-1">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12 19.5C10.6675 20.1224 8.91707 20.5 7 20.5C5.93408 20.5 4.91969 20.3833 4 20.1726C2.41828 19.8103 2 18.8796 2 17.386V6.61397C2 5.62914 3.04003 4.95273 4 5.1726C4.91969 5.38325 5.93408 5.5 7 5.5C8.91707 5.5 10.6675 5.12236 12 4.5C13.3325 3.87764 15.0829 3.5 17 3.5C18.0659 3.5 19.0803 3.61675 20 3.8274C21.5817 4.18968 22 5.12036 22 6.61397V17.386C22 18.3709 20.96 19.0473 20 18.8274C19.0803 18.6167 18.0659 18.5 17 18.5C15.0829 18.5 13.3325 18.8776 12 19.5Z"
-                stroke="#272727"
-                stroke-width="1.5"
-              />
-              <path
-                d="M14.5 12C14.5 13.3807 13.3807 14.5 12 14.5C10.6193 14.5 9.5 13.3807 9.5 12C9.5 10.6193 10.6193 9.5 12 9.5C13.3807 9.5 14.5 10.6193 14.5 12Z"
-                stroke="#272727"
-                stroke-width="1.5"
-              />
-              <path
-                d="M5.5 13V13.009"
-                stroke="#272727"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M18.5 10.9922V11.0012"
-                stroke="#272727"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
+          <div className="flex gap-1">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 19.5C10.6675 20.1224 8.91707 20.5 7 20.5C5.93408 20.5 4.91969 20.3833 4 20.1726C2.41828 19.8103 2 18.8796 2 17.386V6.61397C2 5.62914 3.04003 4.95273 4 5.1726C4.91969 5.38325 5.93408 5.5 7 5.5C8.91707 5.5 10.6675 5.12236 12 4.5C13.3325 3.87764 15.0829 3.5 17 3.5C18.0659 3.5 19.0803 3.61675 20 3.8274C21.5817 4.18968 22 5.12036 22 6.61397V17.386C22 18.3709 20.96 19.0473 20 18.8274C19.0803 18.6167 18.0659 18.5 17 18.5C15.0829 18.5 13.3325 18.8776 12 19.5Z" stroke="#272727" stroke-width="1.5"/>
+<path d="M14.5 12C14.5 13.3807 13.3807 14.5 12 14.5C10.6193 14.5 9.5 13.3807 9.5 12C9.5 10.6193 10.6193 9.5 12 9.5C13.3807 9.5 14.5 10.6193 14.5 12Z" stroke="#272727" stroke-width="1.5"/>
+<path d="M5.5 13V13.009" stroke="#272727" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M18.5 10.9922V11.0012" stroke="#272727" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
 
-            <label className="text-gray-700 mb-2 block dark:text-white">
-              قیمت
-            </label>
+<label className="text-gray-700 mb-2 block dark:text-white">
+            قیمت
+          </label>
+        
           </div>
-          <div className="flex items-center justify-between text-sm text-gray-500 mb-2 dark:text-white border-gray-400">
+       
+          <div className="flex items-center justify-between text-sm text-gray-500 mb-2 dark:text-white">
             <span>از 10,000</span>
             <span>تا 1,000,000</span>
           </div>
-          <input
-            type="range"
-            className="w-full bg-gray-400 border-gray-400"
-            min="10000"
-            max="1000000"
-          />
+          <input type="range" className="w-full" min="10000" max="1000000" />
         </div>
 
         {/* Event Dates */}
@@ -410,12 +343,11 @@ const Filter = () => {
                 stroke-linejoin="round"
               />
             </svg>
-
             <label className="text-gray-700 mb-2 block dark:text-white">
               تاریخ برگزاری - اتمام
             </label>
           </div>
-          <p className="text-sm text-gray-500 mt-3 bg-gray-200 pr-4 h-6 rounded-lg">
+          <p className="text-sm text-gray-500 mt-3 bg-gray-200 py-2 px-4 rounded-lg">
             ۲۹ اردیبهشت ۱۴۰۳ - ۵ خرداد ۱۴۰۳
           </p>
         </div>
@@ -423,70 +355,136 @@ const Filter = () => {
 
       {/* Modal for filters */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white dark:bg-indigo-950 p-8 rounded-lg w-full max-w-xs">
-            <h2 className="text-xl font-semibold mb-4 dark:text-white">
-              فیلتر
-            </h2>
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-end z-50"
+          onClick={toggleModal} // Close modal when background is clicked
+        >
+          <div
+            className={`w-full bg-white dark:bg-indigo-950 px-8 pb-8 pt-4 rounded-t-3xl transition-transform duration-300 flex flex-col ${
+              isAnimating ? "translate-y-0" : "translate-y-full"
+            }`}
+            onClick={(e) => e.stopPropagation()} // Prevent closing modal when clicking inside it
+          >
+            <div className="flex justify-center">
+              <div className="bg-gray-300 rounded-3xl w-16 h-2 mb-6"></div>
+            </div>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-semibold mb-4 dark:text-white">
+                فیلتر
+              </h2>
 
+              {/* Button to close modal */}
+              <button
+                className="text-red-500 border border-[#FF5353] rounded-full py-2 px-4 mb-2"
+                onClick={toggleModal}
+              >
+                ✕ بستن
+              </button>
+            </div>
             {/* Search */}
-            <label className="text-gray-700 mb-2 block dark:text-white">
-              جستجو
-            </label>
+            <div className="flex flex-row gap-1 mb-4">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M17.5 17.5L22 22"
+                  stroke="#2F2F2F"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M20 11C20 6.02944 15.9706 2 11 2C6.02944 2 2 6.02944 2 11C2 15.9706 6.02944 20 11 20C15.9706 20 20 15.9706 20 11Z"
+                  stroke="#2F2F2F"
+                  strokeWidth="1.5"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <label className="text-gray-700 dark:text-white">جستجو</label>
+            </div>
             <div className="relative mb-4">
               <input
                 type="text"
                 className="w-full pr-4 pl-12 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 text-right bg-slate-200 text-gray-500"
-                placeholder="دوره مورد نظر را جستجو کنید..."
+                placeholder="بلاگ مورد نظر را جستجو کنید..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
               <button
-                className="absolute left-1 text-blue-600"
+                className="absolute left-0 text-blue-600 w-10 h-full rounded-xl bg-[#3772FF]"
                 onClick={handleSearch}
               >
-                <svg
-                  width="40"
-                  height="40"
-                  viewBox="0 0 48 48"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect width="48" height="48" rx="16" fill="#3772FF" />
+                <div className="flex justify-center items-center">
                   <svg
-                    width="24"
-                    height="24"
+                    width="20"
+                    height="20"
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      d="M18.5 17.5L22 22"
+                      d="M17.5 17.5L22 22"
                       stroke="#FEFDFF"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
                     />
                     <path
                       d="M20 11C20 6.02944 15.9706 2 11 2C6.02944 2 2 6.02944 2 11C2 15.9706 6.02944 20 11 20C15.9706 20 20 15.9706 20 11Z"
                       stroke="#FEFDFF"
-                      strokeWidth="1.5"
+                      stroke-width="1.5"
+                      stroke-linejoin="round"
                     />
                   </svg>
-                </svg>
+                </div>
               </button>
             </div>
 
             {/* Category Dropdown */}
             <div className="mb-4 relative">
-              <label className="text-gray-700 mb-2 block dark:text-white">
-                دسته بندی
-              </label>
+              <div className="flex flex-row gap-1">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M11.1075 5.57624C11.3692 6.02707 11.5 6.25248 11.5 6.5C11.5 6.74752 11.3692 6.97293 11.1075 7.42376L9.85804 9.57624C9.59636 10.0271 9.46551 10.2525 9.25 10.3762C9.03449 10.5 8.7728 10.5 8.24943 10.5H5.75057C5.2272 10.5 4.96551 10.5 4.75 10.3762C4.53449 10.2525 4.40364 10.0271 4.14196 9.57624L2.89253 7.42376C2.63084 6.97293 2.5 6.74752 2.5 6.5C2.5 6.25248 2.63084 6.02707 2.89253 5.57624L4.14196 3.42376C4.40364 2.97293 4.53449 2.74752 4.75 2.62376C4.96551 2.5 5.2272 2.5 5.75057 2.5H8.24943C8.7728 2.5 9.03449 2.5 9.25 2.62376C9.46551 2.74752 9.59636 2.97293 9.85804 3.42376L11.1075 5.57624Z"
+                    stroke="#2F2F2F"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M21.1075 11.5762C21.3692 12.0271 21.5 12.2525 21.5 12.5C21.5 12.7475 21.3692 12.9729 21.1075 13.4238L19.858 15.5762C19.5964 16.0271 19.4655 16.2525 19.25 16.3762C19.0345 16.5 18.7728 16.5 18.2494 16.5H15.7506C15.2272 16.5 14.9655 16.5 14.75 16.3762C14.5345 16.2525 14.4036 16.0271 14.142 15.5762L12.8925 13.4238C12.6308 12.9729 12.5 12.7475 12.5 12.5C12.5 12.2525 12.6308 12.0271 12.8925 11.5762L14.142 9.42376C14.4036 8.97293 14.5345 8.74752 14.75 8.62376C14.9655 8.5 15.2272 8.5 15.7506 8.5H18.2494C18.7728 8.5 19.0345 8.5 19.25 8.62376C19.4655 8.74752 19.5964 8.97293 19.858 9.42376L21.1075 11.5762Z"
+                    stroke="#2F2F2F"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M11.1075 16.5762C11.3692 17.0271 11.5 17.2525 11.5 17.5C11.5 17.7475 11.3692 17.9729 11.1075 18.4238L9.85804 20.5762C9.59636 21.0271 9.46551 21.2525 9.25 21.3762C9.03449 21.5 8.7728 21.5 8.24943 21.5H5.75057C5.2272 21.5 4.96551 21.5 4.75 21.3762C4.53449 21.2525 4.40364 21.0271 4.14196 20.5762L2.89253 18.4238C2.63084 17.9729 2.5 17.7475 2.5 17.5C2.5 17.2525 2.63084 17.0271 2.89253 16.5762L4.14196 14.4238C4.40364 13.9729 4.53449 13.7475 4.75 13.6238C4.96551 13.5 5.2272 13.5 5.75057 13.5H8.24943C8.7728 13.5 9.03449 13.5 9.25 13.6238C9.46551 13.7475 9.59636 13.9729 9.85804 14.4238L11.1075 16.5762Z"
+                    stroke="#2F2F2F"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <label className="text-gray-700 mb-2 block dark:text-white">
+                  دسته بندی
+                </label>
+              </div>
               <button
                 onClick={() =>
                   setIsCategoryDropdownOpen(!isCategoryDropdownOpen)
                 }
-                className="w-full text-left border border-gray-300 rounded-lg py-2 px-4"
+                className="w-full text-gray-500 text-right border border-gray-300 rounded-lg py-2 px-4 bg-slate-200"
               >
                 {category ? category : "دسته مورد نظر را انتخاب کنید"}
               </button>
@@ -514,7 +512,7 @@ const Filter = () => {
               </label>
               <button
                 onClick={() => setIsLevelDropdownOpen(!isLevelDropdownOpen)}
-                className="w-full text-right border border-gray-300 rounded-lg py-2 px-4 "
+                className="w-full text-right  text-gray-500 border border-gray-300 rounded-lg py-2 px-4  bg-slate-200"
               >
                 {level ? level : "سطح مورد نظر را انتخاب کنید"}
               </button>
@@ -540,7 +538,7 @@ const Filter = () => {
               </label>
               <button
                 onClick={() => setIsTeacherDropdownOpen(!isTeacherDropdownOpen)}
-                className="w-full text-right border border-gray-300 rounded-lg py-2 px-4"
+                className="w-full text-right border  text-gray-500 border-gray-300 rounded-lg py-2 px-4  bg-slate-200"
               >
                 {teacher ? teacher : "استاد مورد نظر را انتخاب کنید"}
               </button>
@@ -563,7 +561,6 @@ const Filter = () => {
                 </div>
               )}
             </div>
-
             {/* Price */}
             <div className="mb-4">
               <label className="text-gray-700 mb-2 block dark:text-white">
@@ -621,21 +618,13 @@ const Filter = () => {
                   />
                 </svg>
                 <label className="text-gray-700 dark:text-white">
-                  تاریخ انتشار
+                  تاریخ برگزاری - اتمام
                 </label>
               </div>
               <p className="text-sm text-gray-500 mt-3 border border-gray-300 bg-slate-200 py-2 px-4 rounded-lg">
                 ۲۹ اردیبهشت ۱۴۰۳ - ۵ خرداد ۱۴۰۳
               </p>
             </div>
-
-            {/* Button to close modal */}
-            <button
-              onClick={toggleModal}
-              className="mt-4 w-full bg-gray-500 text-white py-2 rounded-lg"
-            >
-              بستن
-            </button>
           </div>
         </div>
       )}
