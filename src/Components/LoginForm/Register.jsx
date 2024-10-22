@@ -158,7 +158,7 @@ const Register = ({ onBack }) => {
           <Link to={"/auth/signin"}>
           <p
             type="primary"
-            className="w-full mt-3 h-12 text-lg py-2 px-4 border-gray-300   bg-white text-blue-500 rounded-3xl font-bold"
+            className="w-full mt-3 h-12 text-lg py-2 px-4 border-gray-300   bg-white text-blue-500 rounded-3xl font-bold hover:underline"
           >
               اگر حساب کاربری دارید وارد شوید 
           </p>
