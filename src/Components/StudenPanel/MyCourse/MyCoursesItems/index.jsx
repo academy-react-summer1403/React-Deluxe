@@ -74,19 +74,19 @@ const index = () => {
   return (
     <div className="bg-gray-50 dark:bg-indigo-900 flex flex-col gap-24 p-2 rounded-3xl    ">
       <div>
-        <ul className="flex p-2 rounded-xl text-sm text-gray-500  m-5 dark:bg-indigo-950 dark:text-white  bg-gray-100 gap-40 justify-start">
+        <ul className="flex p-2 rounded-xl text-sm text-gray-500  m-5 dark:bg-indigo-950 dark:text-white  bg-gray-100 gap-24 justify-start">
           <li>#</li>
           <li> نام دوره</li>
           <li className="w-[50px]">مدرس</li>
-          <li className="mr-2">تاریخ برگزاری</li>
+          <li className="mr-8">تاریخ برگزاری</li>
           <li className="mr-2">تاریخ اتمام</li>
           <li>سطح</li>
         </ul>
-        <div className="mt-4 mx-5 space-y-4">
+        <div className="mt-4 mx-1 space-y-4">
           {coursesData.map((course, index) => (
             <div
               key={index}
-              className="  flex flex-row  relative  items-center rounded-3xl justify-start gap-24    "
+              className="  flex flex-row  relative  items-center rounded-3xl justify-start gap-11    "
             >
               <div
                 className={`h-12 flex justify-center items-center rounded-xl w-20  mb-4 ${course.color}`}
@@ -108,7 +108,7 @@ const index = () => {
               </span>
 
               <span
-                className={`inline-flex items-center w-[125px] dark:text-white `}
+                className={`inline-flex items-center w-[105px] dark:text-white `}
               >
                 {course.enddate}
               </span>

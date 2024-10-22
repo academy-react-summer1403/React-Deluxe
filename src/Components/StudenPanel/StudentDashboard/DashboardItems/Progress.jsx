@@ -5,9 +5,9 @@ const UserProgress = ({ percentage }) => {
   const progress = percentage || 75;
 
   return (
-    <div className="flex flex-col items-center justify-center w-[253px] h-[246px] bg-gray-50 dark:bg-indigo-900 dark:text-white rounded-3xl p-4 ">
+    <div className="flex flex-col  justify-center w-72 h-72 bg-gray-50 shadow-md dark:bg-indigo-900 dark:text-white rounded-3xl px-4 ">
       <div className="flex-row flex justify-between gap-1">
-        <p className="text-base ">وضعیت اطلاعات حساب کاربری</p>
+        <p className="text-sm ">وضعیت اطلاعات حساب کاربری</p>
         <Link to={"/myprofile"}>
           <svg
             width="20"
@@ -57,7 +57,7 @@ const UserProgress = ({ percentage }) => {
         </div>
       </div>
       <div className="mt-4 text-center">
-        <p className="text-gray-500 dark:text-gray-50 text-[14px] w-full">
+        <p className="text-gray-500 dark:text-gray-50 text-[12px] w-full">
           اطلاعات حساب کاربری شما کامل نیست
         </p>
       </div>

@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const StudentMenu = () => {
   return (
-    <div className="w-full h-screen bg-gray-950 text-white flex flex-col justify-between">
+    <div className="w-fit h-screen bg-gray-950 hidden text-white lg:flex flex-col justify-between">
       <div>
         {/* Logo Section */}
         <div className="px-6 py-4">
@@ -13,10 +14,16 @@ const StudentMenu = () => {
         </div>
 
         {/* Menu Items */}
-        <nav className="space-y-7 py-16 px-6">
-          <Link
+        <nav className="space-y-7 py-16 lg:px-6">
+          <NavLink
             to={"/dashboard"}
-            className="flex items-center space-x-3 hover:text-blue-300"
+            className={({ isActive, isPending }) =>
+              isPending
+                ? "pending"
+                : isActive
+                ? "underline flex"
+                : "flex hover:text-blue-300 "
+            }
           >
             <svg
               width="24"
@@ -42,11 +49,17 @@ const StudentMenu = () => {
             </svg>
 
             <span className="text-lg pr-1">داشبورد</span>
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to={"/mycourse"}
             href="#"
-            className="flex items-center space-x-3 hover:text-blue-300"
+            className={({ isActive, isPending }) =>
+              isPending
+                ? "pending"
+                : isActive
+                ? "underline flex"
+                : "flex hover:text-blue-300 "
+            }
           >
             <svg
               width="24"
@@ -72,11 +85,17 @@ const StudentMenu = () => {
             </svg>
 
             <span className="text-lg pr-1">دوره من</span>
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to={"/myreserve"}
             href="#"
-            className="flex items-center space-x-3 hover:text-blue-300"
+            className={({ isActive, isPending }) =>
+              isPending
+                ? "pending"
+                : isActive
+                ? "underline flex"
+                : "flex hover:text-blue-300 "
+            }
           >
             <svg
               width="24"
@@ -120,11 +139,17 @@ const StudentMenu = () => {
             </svg>
 
             <span className="text-lg pr-1">رزرو من</span>
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to={"/favoritecourses"}
             href="#"
-            className="flex items-center space-x-3 hover:text-blue-300"
+            className={({ isActive, isPending }) =>
+              isPending
+                ? "pending"
+                : isActive
+                ? "underline flex"
+                : "flex hover:text-blue-300 "
+            }
           >
             <svg
               width="24"
@@ -171,11 +196,17 @@ const StudentMenu = () => {
             </svg>
 
             <span className="text-lg pr-1">دوره های موردعلاقه</span>
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to={"favoriteblogs"}
             href="#"
-            className="flex items-center space-x-3 hover:text-blue-300"
+            className={({ isActive, isPending }) =>
+              isPending
+                ? "pending"
+                : isActive
+                ? "underline flex"
+                : "flex hover:text-blue-300 "
+            }
           >
             <svg
               width="24"
@@ -229,11 +260,17 @@ const StudentMenu = () => {
             </svg>
 
             <span className="text-lg pr-1">بلاگ های موردعلاقه</span>
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to={"/myprofile"}
             href="#"
-            className="flex items-center space-x-3 hover:text-blue-300"
+            className={({ isActive, isPending }) =>
+              isPending
+                ? "pending"
+                : isActive
+                ? "underline flex"
+                : "flex hover:text-blue-300 "
+            }
           >
             <svg
               width="24"
@@ -256,7 +293,7 @@ const StudentMenu = () => {
             </svg>
 
             <span className="text-lg pr-1">پروفایل</span>
-          </Link>
+          </NavLink>
           <a
             href="#"
             className="flex items-center space-x-3 hover:text-blue-300"

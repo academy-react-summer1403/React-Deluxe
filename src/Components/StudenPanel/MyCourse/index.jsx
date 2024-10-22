@@ -6,7 +6,7 @@ import { ConfigProvider, Pagination } from "antd";
 
 const index = () => {
   return (
-    <div className="container w-[1440px] h-[921px]  bg-gray-950 ">
+    <div className="container  h-[921px]  bg-gray-950 ">
       <div className="bg-white dark:bg-indigo-950 p-8 mx-5 dark:text-white space-y-8 rounded-3xl ">
         <h2>دوره من</h2>
         <div className="flex flex-col">

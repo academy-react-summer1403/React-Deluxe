@@ -7,10 +7,9 @@ const StudentPanelLayout = () => {
   return (
     <div className="flex justify-center h-screen  dark:bg-indigo-950">
       <div>
-        {" "}
-        <StudentMenu />{" "}
+        <StudentMenu />
       </div>
-      <div className="flex-col p-0 flex">
+      <div className="flex-col p-0 flex w-[1040px]">
         <div>
           <StudentHeader />
         </div>

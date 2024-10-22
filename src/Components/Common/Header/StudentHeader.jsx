@@ -121,7 +121,9 @@ const StudentHeader = () => {
       <nav className="hidden md:flex justify-evenly w-[500px] text-lg">
         <Link to={"/"}>صفحه اصلی</Link>
         <a href=""> گزارش</a>
-        <a href="">ارتباط باما</a>
+        <Link to={"/aboutUs"} href="">
+          ارتباط باما
+        </Link>
       </nav>
 
       <div className="flex gap-2 pl-8">
