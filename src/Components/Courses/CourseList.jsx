@@ -250,11 +250,11 @@ const CourseList = () => {
                 ✕ بستن
               </button>
             </div>
-            <div className="flex justify-start items-center gap-2 mb-4 mr-4">
+            <div className="flex flex-col justify-center items-center gap-1 mb-4 ">
               <button className=" text-red-500 border border-red-500 py-2 px-4 rounded-full  dark:text-white dark:border-white">
                 جدیدترین
               </button>
-              <button className="text-gray-800 border border-gray-800 py-2 px-4 rounded-full  dark:text-white dark:border-white">
+              <button className="text-gray-800 border border-gray-800 py-2 px-3 rounded-full  dark:text-white dark:border-white">
                 محبوب‌ترین
               </button>
               <button className="text-gray-800 border border-gray-800 py-2 px-4 rounded-full  dark:text-white dark:border-white">
@@ -268,7 +268,7 @@ const CourseList = () => {
         </div>
       )}
 
-      <div className="flex flex-wrap justify-center ">
+      <div className="flex flex-wrap justify-center gap-8 ">
         {courses.map((course, index) => (
           <div
             key={index}
