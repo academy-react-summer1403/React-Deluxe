@@ -11,11 +11,11 @@ const onSuccess = (response) => {
 };
 
 const onError = (err) => {
-  console.log("Interceptor : " + err);
+  // console.log("Interceptor : " + err);
 
-  if (err.response.status >= 400 && err.response.status < 500) {
-    alert("Client error: " + err.response.status);
-  }
+  // if (err.response.status >= 400 && err.response.status < 500) {
+  //   alert("Client error: " + err.response.status);
+  // }
 
   return Promise.reject(err);
 };
