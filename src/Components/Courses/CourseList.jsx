@@ -1,6 +1,7 @@
 import { ConfigProvider, Modal, Pagination } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { GetAllCoursesByPg } from "../../core/services/api/Courses.api";
 
 const coursesData = [
   {
@@ -117,6 +118,20 @@ const CourseList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false); // For controlling slide effect
 
+  // const getAllCourse = () => {
+  //   try {
+  //     const result = GetAllCoursesByPg();
+
+  //     console.log("result", result);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   getAllCourse();
+  // }, []);
+
   const openModal = () => {
     setIsModalOpen(true);
     // Add a slight delay before triggering the slide-up animation
@@ -208,14 +223,14 @@ const CourseList = () => {
       {isModalOpen && (
         <div
           className="fixed  z-50 inset-0 bg-black bg-opacity-50 flex justify-center items-end"
-          onClick={closeModal} 
+          onClick={closeModal}
         >
           {/* Modal Content (Slide-up effect) */}
           <div
             className={`w-full  dark:bg-indigo-900 bg-white  rounded-t-3xl p-4 transform transition-transform duration-300 flex flex-col ${
               isAnimating ? "translate-y-0" : "translate-y-full"
             }`}
-            onClick={(e) => e.stopPropagation()} 
+            onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-center">
               <div className="bg-gray-300 rounded-3xl w-16 h-2 mb-6"></div>
@@ -246,8 +261,6 @@ const CourseList = () => {
           </div>
         </div>
       )}
-
-
 
       <div className="flex flex-wrap justify-center ">
         {coursesData.map((course, index) => (
