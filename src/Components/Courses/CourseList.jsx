@@ -1,121 +1,142 @@
 import { ConfigProvider, Modal, Pagination } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { GetAllCoursesByPg } from "../../core/services/api/Courses.api";
+import Pic from "../../assets/pic3.png";
 
-const coursesData = [
-  {
-    title: "دوره ری‌اکت جی‌اس",
-    price: "۱,۲۰۰,۰۰۰ تومان",
-    icon: "https://s3-alpha-sig.figma.com/img/e186/5b86/bca1c8cd3132e2639f0ded1c76c11d46?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ZpF7verSM~Wu9RNqd6hHA12IbI~LIx0FgOIbjEJ1VWHoFByPXm~I35f~hNBNQaRdeTzriYNSU5G0ZBRk~OdTp5AYbDVLbBVr-uELXIrqJ7qL5uwtJHsPoWAY4ezQFG8rQ-LdULqFnxFTniNE5jVzE7~rpHETIA1o2GIyx8AMsDEN92z1Z26hhXLoHvIIUW3wi6b0DkT179r81dYvmxs6GJy1VS5UIdfUYgiWvPJJJJo25PjCzBHLQk2npBWFV4xWDrtkZvxb~0aqJlk1ZBy-kgkQ0h-7g-7GJh~KAryZtkvoUJMQEWtt2mYD53c6RG478pyeiEK-M6JRMIG8zZUbLA__",
-    tag: "برنامه نویسی",
-    tag2: "مقدماتی",
-    teacher: "محسن اسفندیاری",
-    color: "bg-cyan-200",
-  },
-  {
-    title: "دوره فیگما",
-    price: "۴۵۰,۰۰۰ تومان",
-    icon: "https://s3-alpha-sig.figma.com/img/72eb/0bda/c649ce20dfb0409d36134908c7d16a53?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=NTX-nRHg93a6TXcuTScT80hAeNu0VZeV5vMYLG-0~urRRr6LsSKNMlWdAfodQmm6J0dq-TPtvE4niMqkf1pnoxTPlAVpyNu-aF58-0c5TvDG4AuxLXAEGG0TYthmYSa5LkylYkEeL2XQcHJpMYtVE79UeBqc7cb~1bHuB-yWirNlcqqrWu0Nv8MXrUylDCPfgavysRxSoqODwqfBLBjri-TfAcrDqobkE-H30st5~ulh3PJjh~Wld46oa968aC6uj~vflXQPEeIDmEDXf~aT~DDTeqJPu68sD00W7MHbI3nVSz423ftucwaLNZlv4zKBZINmKv0TjeB-ZZgnmPmLZQ__",
-    tag: "طراحی",
-    tag2: "پیشرفته",
-    teacher: "محمدحسین خلیل پور",
-    color: "bg-red-400",
-  },
-  {
-    title: "دوره ری‌اکت جی‌اس",
-    price: "۱,۲۰۰,۰۰۰ تومان",
-    icon: "https://s3-alpha-sig.figma.com/img/e186/5b86/bca1c8cd3132e2639f0ded1c76c11d46?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ZpF7verSM~Wu9RNqd6hHA12IbI~LIx0FgOIbjEJ1VWHoFByPXm~I35f~hNBNQaRdeTzriYNSU5G0ZBRk~OdTp5AYbDVLbBVr-uELXIrqJ7qL5uwtJHsPoWAY4ezQFG8rQ-LdULqFnxFTniNE5jVzE7~rpHETIA1o2GIyx8AMsDEN92z1Z26hhXLoHvIIUW3wi6b0DkT179r81dYvmxs6GJy1VS5UIdfUYgiWvPJJJJo25PjCzBHLQk2npBWFV4xWDrtkZvxb~0aqJlk1ZBy-kgkQ0h-7g-7GJh~KAryZtkvoUJMQEWtt2mYD53c6RG478pyeiEK-M6JRMIG8zZUbLA__",
-    tag: "برنامه نویسی",
-    tag2: "مقدماتی",
-    teacher: "محسن اسفندیاری",
-    color: "bg-cyan-200",
-  },
-  {
-    title: "دوره فیگما",
-    price: "۴۵۰,۰۰۰ تومان",
-    icon: "https://s3-alpha-sig.figma.com/img/72eb/0bda/c649ce20dfb0409d36134908c7d16a53?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=NTX-nRHg93a6TXcuTScT80hAeNu0VZeV5vMYLG-0~urRRr6LsSKNMlWdAfodQmm6J0dq-TPtvE4niMqkf1pnoxTPlAVpyNu-aF58-0c5TvDG4AuxLXAEGG0TYthmYSa5LkylYkEeL2XQcHJpMYtVE79UeBqc7cb~1bHuB-yWirNlcqqrWu0Nv8MXrUylDCPfgavysRxSoqODwqfBLBjri-TfAcrDqobkE-H30st5~ulh3PJjh~Wld46oa968aC6uj~vflXQPEeIDmEDXf~aT~DDTeqJPu68sD00W7MHbI3nVSz423ftucwaLNZlv4zKBZINmKv0TjeB-ZZgnmPmLZQ__",
-    tag: "طراحی",
-    tag2: "پیشرفته",
-    teacher: "محمدحسین خلیل پور",
-    color: "bg-red-400",
-  },
-  {
-    title: "دوره ری‌اکت جی‌اس",
-    price: "۱,۲۰۰,۰۰۰ تومان",
-    icon: "https://s3-alpha-sig.figma.com/img/e186/5b86/bca1c8cd3132e2639f0ded1c76c11d46?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ZpF7verSM~Wu9RNqd6hHA12IbI~LIx0FgOIbjEJ1VWHoFByPXm~I35f~hNBNQaRdeTzriYNSU5G0ZBRk~OdTp5AYbDVLbBVr-uELXIrqJ7qL5uwtJHsPoWAY4ezQFG8rQ-LdULqFnxFTniNE5jVzE7~rpHETIA1o2GIyx8AMsDEN92z1Z26hhXLoHvIIUW3wi6b0DkT179r81dYvmxs6GJy1VS5UIdfUYgiWvPJJJJo25PjCzBHLQk2npBWFV4xWDrtkZvxb~0aqJlk1ZBy-kgkQ0h-7g-7GJh~KAryZtkvoUJMQEWtt2mYD53c6RG478pyeiEK-M6JRMIG8zZUbLA__",
-    tag: "برنامه نویسی",
-    tag2: "مقدماتی",
-    teacher: "محسن اسفندیاری",
-    color: "bg-cyan-200",
-  },
-  {
-    title: "دوره فیگما",
-    price: "۴۵۰,۰۰۰ تومان",
-    icon: "https://s3-alpha-sig.figma.com/img/72eb/0bda/c649ce20dfb0409d36134908c7d16a53?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=NTX-nRHg93a6TXcuTScT80hAeNu0VZeV5vMYLG-0~urRRr6LsSKNMlWdAfodQmm6J0dq-TPtvE4niMqkf1pnoxTPlAVpyNu-aF58-0c5TvDG4AuxLXAEGG0TYthmYSa5LkylYkEeL2XQcHJpMYtVE79UeBqc7cb~1bHuB-yWirNlcqqrWu0Nv8MXrUylDCPfgavysRxSoqODwqfBLBjri-TfAcrDqobkE-H30st5~ulh3PJjh~Wld46oa968aC6uj~vflXQPEeIDmEDXf~aT~DDTeqJPu68sD00W7MHbI3nVSz423ftucwaLNZlv4zKBZINmKv0TjeB-ZZgnmPmLZQ__",
-    tag: "طراحی",
-    tag2: "پیشرفته",
-    teacher: "محمدحسین خلیل پور",
-    color: "bg-red-400",
-  },
-  {
-    title: "دوره ری‌اکت جی‌اس",
-    price: "۱,۲۰۰,۰۰۰ تومان",
-    icon: "https://s3-alpha-sig.figma.com/img/e186/5b86/bca1c8cd3132e2639f0ded1c76c11d46?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ZpF7verSM~Wu9RNqd6hHA12IbI~LIx0FgOIbjEJ1VWHoFByPXm~I35f~hNBNQaRdeTzriYNSU5G0ZBRk~OdTp5AYbDVLbBVr-uELXIrqJ7qL5uwtJHsPoWAY4ezQFG8rQ-LdULqFnxFTniNE5jVzE7~rpHETIA1o2GIyx8AMsDEN92z1Z26hhXLoHvIIUW3wi6b0DkT179r81dYvmxs6GJy1VS5UIdfUYgiWvPJJJJo25PjCzBHLQk2npBWFV4xWDrtkZvxb~0aqJlk1ZBy-kgkQ0h-7g-7GJh~KAryZtkvoUJMQEWtt2mYD53c6RG478pyeiEK-M6JRMIG8zZUbLA__",
-    tag: "برنامه نویسی",
-    tag2: "مقدماتی",
-    teacher: "محسن اسفندیاری",
-    color: "bg-cyan-200",
-  },
-  {
-    title: "دوره فیگما",
-    price: "۴۵۰,۰۰۰ تومان",
-    icon: "https://s3-alpha-sig.figma.com/img/72eb/0bda/c649ce20dfb0409d36134908c7d16a53?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=NTX-nRHg93a6TXcuTScT80hAeNu0VZeV5vMYLG-0~urRRr6LsSKNMlWdAfodQmm6J0dq-TPtvE4niMqkf1pnoxTPlAVpyNu-aF58-0c5TvDG4AuxLXAEGG0TYthmYSa5LkylYkEeL2XQcHJpMYtVE79UeBqc7cb~1bHuB-yWirNlcqqrWu0Nv8MXrUylDCPfgavysRxSoqODwqfBLBjri-TfAcrDqobkE-H30st5~ulh3PJjh~Wld46oa968aC6uj~vflXQPEeIDmEDXf~aT~DDTeqJPu68sD00W7MHbI3nVSz423ftucwaLNZlv4zKBZINmKv0TjeB-ZZgnmPmLZQ__",
-    tag: "طراحی",
-    tag2: "پیشرفته",
-    teacher: "محمدحسین خلیل پور",
-    color: "bg-red-400",
-  },
-  {
-    title: "دوره ری‌اکت جی‌اس",
-    price: "۱,۲۰۰,۰۰۰ تومان",
-    icon: "https://s3-alpha-sig.figma.com/img/e186/5b86/bca1c8cd3132e2639f0ded1c76c11d46?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ZpF7verSM~Wu9RNqd6hHA12IbI~LIx0FgOIbjEJ1VWHoFByPXm~I35f~hNBNQaRdeTzriYNSU5G0ZBRk~OdTp5AYbDVLbBVr-uELXIrqJ7qL5uwtJHsPoWAY4ezQFG8rQ-LdULqFnxFTniNE5jVzE7~rpHETIA1o2GIyx8AMsDEN92z1Z26hhXLoHvIIUW3wi6b0DkT179r81dYvmxs6GJy1VS5UIdfUYgiWvPJJJJo25PjCzBHLQk2npBWFV4xWDrtkZvxb~0aqJlk1ZBy-kgkQ0h-7g-7GJh~KAryZtkvoUJMQEWtt2mYD53c6RG478pyeiEK-M6JRMIG8zZUbLA__",
-    tag: "برنامه نویسی",
-    tag2: "مقدماتی",
-    teacher: "محسن اسفندیاری",
-    color: "bg-cyan-200",
-  },
-  {
-    title: "دوره فیگما",
-    price: "۴۵۰,۰۰۰ تومان",
-    icon: "https://s3-alpha-sig.figma.com/img/72eb/0bda/c649ce20dfb0409d36134908c7d16a53?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=NTX-nRHg93a6TXcuTScT80hAeNu0VZeV5vMYLG-0~urRRr6LsSKNMlWdAfodQmm6J0dq-TPtvE4niMqkf1pnoxTPlAVpyNu-aF58-0c5TvDG4AuxLXAEGG0TYthmYSa5LkylYkEeL2XQcHJpMYtVE79UeBqc7cb~1bHuB-yWirNlcqqrWu0Nv8MXrUylDCPfgavysRxSoqODwqfBLBjri-TfAcrDqobkE-H30st5~ulh3PJjh~Wld46oa968aC6uj~vflXQPEeIDmEDXf~aT~DDTeqJPu68sD00W7MHbI3nVSz423ftucwaLNZlv4zKBZINmKv0TjeB-ZZgnmPmLZQ__",
-    tag: "طراحی",
-    tag2: "پیشرفته",
-    teacher: "محمدحسین خلیل پور",
-    color: "bg-red-400",
-  },
-  {
-    title: "دوره ری‌اکت جی‌اس",
-    price: "۱,۲۰۰,۰۰۰ تومان",
-    icon: "https://s3-alpha-sig.figma.com/img/e186/5b86/bca1c8cd3132e2639f0ded1c76c11d46?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ZpF7verSM~Wu9RNqd6hHA12IbI~LIx0FgOIbjEJ1VWHoFByPXm~I35f~hNBNQaRdeTzriYNSU5G0ZBRk~OdTp5AYbDVLbBVr-uELXIrqJ7qL5uwtJHsPoWAY4ezQFG8rQ-LdULqFnxFTniNE5jVzE7~rpHETIA1o2GIyx8AMsDEN92z1Z26hhXLoHvIIUW3wi6b0DkT179r81dYvmxs6GJy1VS5UIdfUYgiWvPJJJJo25PjCzBHLQk2npBWFV4xWDrtkZvxb~0aqJlk1ZBy-kgkQ0h-7g-7GJh~KAryZtkvoUJMQEWtt2mYD53c6RG478pyeiEK-M6JRMIG8zZUbLA__",
-    tag: "برنامه نویسی",
-    tag2: "مقدماتی",
-    teacher: "محسن اسفندیاری",
-    color: "bg-cyan-200",
-  },
-  {
-    title: "دوره فیگما",
-    price: "۴۵۰,۰۰۰ تومان",
-    icon: "https://s3-alpha-sig.figma.com/img/72eb/0bda/c649ce20dfb0409d36134908c7d16a53?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=NTX-nRHg93a6TXcuTScT80hAeNu0VZeV5vMYLG-0~urRRr6LsSKNMlWdAfodQmm6J0dq-TPtvE4niMqkf1pnoxTPlAVpyNu-aF58-0c5TvDG4AuxLXAEGG0TYthmYSa5LkylYkEeL2XQcHJpMYtVE79UeBqc7cb~1bHuB-yWirNlcqqrWu0Nv8MXrUylDCPfgavysRxSoqODwqfBLBjri-TfAcrDqobkE-H30st5~ulh3PJjh~Wld46oa968aC6uj~vflXQPEeIDmEDXf~aT~DDTeqJPu68sD00W7MHbI3nVSz423ftucwaLNZlv4zKBZINmKv0TjeB-ZZgnmPmLZQ__",
-    tag: "طراحی",
-    tag2: "پیشرفته",
-    teacher: "محمدحسین خلیل پور",
-    color: "bg-red-400",
-  },
-];
+// const coursesData = [
+//   {
+//     title: "دوره ری‌اکت جی‌اس",
+//     price: "۱,۲۰۰,۰۰۰ تومان",
+//     icon: "https://s3-alpha-sig.figma.com/img/e186/5b86/bca1c8cd3132e2639f0ded1c76c11d46?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ZpF7verSM~Wu9RNqd6hHA12IbI~LIx0FgOIbjEJ1VWHoFByPXm~I35f~hNBNQaRdeTzriYNSU5G0ZBRk~OdTp5AYbDVLbBVr-uELXIrqJ7qL5uwtJHsPoWAY4ezQFG8rQ-LdULqFnxFTniNE5jVzE7~rpHETIA1o2GIyx8AMsDEN92z1Z26hhXLoHvIIUW3wi6b0DkT179r81dYvmxs6GJy1VS5UIdfUYgiWvPJJJJo25PjCzBHLQk2npBWFV4xWDrtkZvxb~0aqJlk1ZBy-kgkQ0h-7g-7GJh~KAryZtkvoUJMQEWtt2mYD53c6RG478pyeiEK-M6JRMIG8zZUbLA__",
+//     tag: "برنامه نویسی",
+//     tag2: "مقدماتی",
+//     teacher: "محسن اسفندیاری",
+//     color: "bg-cyan-200",
+//   },
+//   {
+//     title: "دوره فیگما",
+//     price: "۴۵۰,۰۰۰ تومان",
+//     icon: "https://s3-alpha-sig.figma.com/img/72eb/0bda/c649ce20dfb0409d36134908c7d16a53?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=NTX-nRHg93a6TXcuTScT80hAeNu0VZeV5vMYLG-0~urRRr6LsSKNMlWdAfodQmm6J0dq-TPtvE4niMqkf1pnoxTPlAVpyNu-aF58-0c5TvDG4AuxLXAEGG0TYthmYSa5LkylYkEeL2XQcHJpMYtVE79UeBqc7cb~1bHuB-yWirNlcqqrWu0Nv8MXrUylDCPfgavysRxSoqODwqfBLBjri-TfAcrDqobkE-H30st5~ulh3PJjh~Wld46oa968aC6uj~vflXQPEeIDmEDXf~aT~DDTeqJPu68sD00W7MHbI3nVSz423ftucwaLNZlv4zKBZINmKv0TjeB-ZZgnmPmLZQ__",
+//     tag: "طراحی",
+//     tag2: "پیشرفته",
+//     teacher: "محمدحسین خلیل پور",
+//     color: "bg-red-400",
+//   },
+//   {
+//     title: "دوره ری‌اکت جی‌اس",
+//     price: "۱,۲۰۰,۰۰۰ تومان",
+//     icon: "https://s3-alpha-sig.figma.com/img/e186/5b86/bca1c8cd3132e2639f0ded1c76c11d46?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ZpF7verSM~Wu9RNqd6hHA12IbI~LIx0FgOIbjEJ1VWHoFByPXm~I35f~hNBNQaRdeTzriYNSU5G0ZBRk~OdTp5AYbDVLbBVr-uELXIrqJ7qL5uwtJHsPoWAY4ezQFG8rQ-LdULqFnxFTniNE5jVzE7~rpHETIA1o2GIyx8AMsDEN92z1Z26hhXLoHvIIUW3wi6b0DkT179r81dYvmxs6GJy1VS5UIdfUYgiWvPJJJJo25PjCzBHLQk2npBWFV4xWDrtkZvxb~0aqJlk1ZBy-kgkQ0h-7g-7GJh~KAryZtkvoUJMQEWtt2mYD53c6RG478pyeiEK-M6JRMIG8zZUbLA__",
+//     tag: "برنامه نویسی",
+//     tag2: "مقدماتی",
+//     teacher: "محسن اسفندیاری",
+//     color: "bg-cyan-200",
+//   },
+//   {
+//     title: "دوره فیگما",
+//     price: "۴۵۰,۰۰۰ تومان",
+//     icon: "https://s3-alpha-sig.figma.com/img/72eb/0bda/c649ce20dfb0409d36134908c7d16a53?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=NTX-nRHg93a6TXcuTScT80hAeNu0VZeV5vMYLG-0~urRRr6LsSKNMlWdAfodQmm6J0dq-TPtvE4niMqkf1pnoxTPlAVpyNu-aF58-0c5TvDG4AuxLXAEGG0TYthmYSa5LkylYkEeL2XQcHJpMYtVE79UeBqc7cb~1bHuB-yWirNlcqqrWu0Nv8MXrUylDCPfgavysRxSoqODwqfBLBjri-TfAcrDqobkE-H30st5~ulh3PJjh~Wld46oa968aC6uj~vflXQPEeIDmEDXf~aT~DDTeqJPu68sD00W7MHbI3nVSz423ftucwaLNZlv4zKBZINmKv0TjeB-ZZgnmPmLZQ__",
+//     tag: "طراحی",
+//     tag2: "پیشرفته",
+//     teacher: "محمدحسین خلیل پور",
+//     color: "bg-red-400",
+//   },
+//   {
+//     title: "دوره ری‌اکت جی‌اس",
+//     price: "۱,۲۰۰,۰۰۰ تومان",
+//     icon: "https://s3-alpha-sig.figma.com/img/e186/5b86/bca1c8cd3132e2639f0ded1c76c11d46?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ZpF7verSM~Wu9RNqd6hHA12IbI~LIx0FgOIbjEJ1VWHoFByPXm~I35f~hNBNQaRdeTzriYNSU5G0ZBRk~OdTp5AYbDVLbBVr-uELXIrqJ7qL5uwtJHsPoWAY4ezQFG8rQ-LdULqFnxFTniNE5jVzE7~rpHETIA1o2GIyx8AMsDEN92z1Z26hhXLoHvIIUW3wi6b0DkT179r81dYvmxs6GJy1VS5UIdfUYgiWvPJJJJo25PjCzBHLQk2npBWFV4xWDrtkZvxb~0aqJlk1ZBy-kgkQ0h-7g-7GJh~KAryZtkvoUJMQEWtt2mYD53c6RG478pyeiEK-M6JRMIG8zZUbLA__",
+//     tag: "برنامه نویسی",
+//     tag2: "مقدماتی",
+//     teacher: "محسن اسفندیاری",
+//     color: "bg-cyan-200",
+//   },
+//   {
+//     title: "دوره فیگما",
+//     price: "۴۵۰,۰۰۰ تومان",
+//     icon: "https://s3-alpha-sig.figma.com/img/72eb/0bda/c649ce20dfb0409d36134908c7d16a53?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=NTX-nRHg93a6TXcuTScT80hAeNu0VZeV5vMYLG-0~urRRr6LsSKNMlWdAfodQmm6J0dq-TPtvE4niMqkf1pnoxTPlAVpyNu-aF58-0c5TvDG4AuxLXAEGG0TYthmYSa5LkylYkEeL2XQcHJpMYtVE79UeBqc7cb~1bHuB-yWirNlcqqrWu0Nv8MXrUylDCPfgavysRxSoqODwqfBLBjri-TfAcrDqobkE-H30st5~ulh3PJjh~Wld46oa968aC6uj~vflXQPEeIDmEDXf~aT~DDTeqJPu68sD00W7MHbI3nVSz423ftucwaLNZlv4zKBZINmKv0TjeB-ZZgnmPmLZQ__",
+//     tag: "طراحی",
+//     tag2: "پیشرفته",
+//     teacher: "محمدحسین خلیل پور",
+//     color: "bg-red-400",
+//   },
+//   {
+//     title: "دوره ری‌اکت جی‌اس",
+//     price: "۱,۲۰۰,۰۰۰ تومان",
+//     icon: "https://s3-alpha-sig.figma.com/img/e186/5b86/bca1c8cd3132e2639f0ded1c76c11d46?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ZpF7verSM~Wu9RNqd6hHA12IbI~LIx0FgOIbjEJ1VWHoFByPXm~I35f~hNBNQaRdeTzriYNSU5G0ZBRk~OdTp5AYbDVLbBVr-uELXIrqJ7qL5uwtJHsPoWAY4ezQFG8rQ-LdULqFnxFTniNE5jVzE7~rpHETIA1o2GIyx8AMsDEN92z1Z26hhXLoHvIIUW3wi6b0DkT179r81dYvmxs6GJy1VS5UIdfUYgiWvPJJJJo25PjCzBHLQk2npBWFV4xWDrtkZvxb~0aqJlk1ZBy-kgkQ0h-7g-7GJh~KAryZtkvoUJMQEWtt2mYD53c6RG478pyeiEK-M6JRMIG8zZUbLA__",
+//     tag: "برنامه نویسی",
+//     tag2: "مقدماتی",
+//     teacher: "محسن اسفندیاری",
+//     color: "bg-cyan-200",
+//   },
+//   {
+//     title: "دوره فیگما",
+//     price: "۴۵۰,۰۰۰ تومان",
+//     icon: "https://s3-alpha-sig.figma.com/img/72eb/0bda/c649ce20dfb0409d36134908c7d16a53?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=NTX-nRHg93a6TXcuTScT80hAeNu0VZeV5vMYLG-0~urRRr6LsSKNMlWdAfodQmm6J0dq-TPtvE4niMqkf1pnoxTPlAVpyNu-aF58-0c5TvDG4AuxLXAEGG0TYthmYSa5LkylYkEeL2XQcHJpMYtVE79UeBqc7cb~1bHuB-yWirNlcqqrWu0Nv8MXrUylDCPfgavysRxSoqODwqfBLBjri-TfAcrDqobkE-H30st5~ulh3PJjh~Wld46oa968aC6uj~vflXQPEeIDmEDXf~aT~DDTeqJPu68sD00W7MHbI3nVSz423ftucwaLNZlv4zKBZINmKv0TjeB-ZZgnmPmLZQ__",
+//     tag: "طراحی",
+//     tag2: "پیشرفته",
+//     teacher: "محمدحسین خلیل پور",
+//     color: "bg-red-400",
+//   },
+//   {
+//     title: "دوره ری‌اکت جی‌اس",
+//     price: "۱,۲۰۰,۰۰۰ تومان",
+//     icon: "https://s3-alpha-sig.figma.com/img/e186/5b86/bca1c8cd3132e2639f0ded1c76c11d46?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ZpF7verSM~Wu9RNqd6hHA12IbI~LIx0FgOIbjEJ1VWHoFByPXm~I35f~hNBNQaRdeTzriYNSU5G0ZBRk~OdTp5AYbDVLbBVr-uELXIrqJ7qL5uwtJHsPoWAY4ezQFG8rQ-LdULqFnxFTniNE5jVzE7~rpHETIA1o2GIyx8AMsDEN92z1Z26hhXLoHvIIUW3wi6b0DkT179r81dYvmxs6GJy1VS5UIdfUYgiWvPJJJJo25PjCzBHLQk2npBWFV4xWDrtkZvxb~0aqJlk1ZBy-kgkQ0h-7g-7GJh~KAryZtkvoUJMQEWtt2mYD53c6RG478pyeiEK-M6JRMIG8zZUbLA__",
+//     tag: "برنامه نویسی",
+//     tag2: "مقدماتی",
+//     teacher: "محسن اسفندیاری",
+//     color: "bg-cyan-200",
+//   },
+//   {
+//     title: "دوره فیگما",
+//     price: "۴۵۰,۰۰۰ تومان",
+//     icon: "https://s3-alpha-sig.figma.com/img/72eb/0bda/c649ce20dfb0409d36134908c7d16a53?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=NTX-nRHg93a6TXcuTScT80hAeNu0VZeV5vMYLG-0~urRRr6LsSKNMlWdAfodQmm6J0dq-TPtvE4niMqkf1pnoxTPlAVpyNu-aF58-0c5TvDG4AuxLXAEGG0TYthmYSa5LkylYkEeL2XQcHJpMYtVE79UeBqc7cb~1bHuB-yWirNlcqqrWu0Nv8MXrUylDCPfgavysRxSoqODwqfBLBjri-TfAcrDqobkE-H30st5~ulh3PJjh~Wld46oa968aC6uj~vflXQPEeIDmEDXf~aT~DDTeqJPu68sD00W7MHbI3nVSz423ftucwaLNZlv4zKBZINmKv0TjeB-ZZgnmPmLZQ__",
+//     tag: "طراحی",
+//     tag2: "پیشرفته",
+//     teacher: "محمدحسین خلیل پور",
+//     color: "bg-red-400",
+//   },
+//   {
+//     title: "دوره ری‌اکت جی‌اس",
+//     price: "۱,۲۰۰,۰۰۰ تومان",
+//     icon: "https://s3-alpha-sig.figma.com/img/e186/5b86/bca1c8cd3132e2639f0ded1c76c11d46?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ZpF7verSM~Wu9RNqd6hHA12IbI~LIx0FgOIbjEJ1VWHoFByPXm~I35f~hNBNQaRdeTzriYNSU5G0ZBRk~OdTp5AYbDVLbBVr-uELXIrqJ7qL5uwtJHsPoWAY4ezQFG8rQ-LdULqFnxFTniNE5jVzE7~rpHETIA1o2GIyx8AMsDEN92z1Z26hhXLoHvIIUW3wi6b0DkT179r81dYvmxs6GJy1VS5UIdfUYgiWvPJJJJo25PjCzBHLQk2npBWFV4xWDrtkZvxb~0aqJlk1ZBy-kgkQ0h-7g-7GJh~KAryZtkvoUJMQEWtt2mYD53c6RG478pyeiEK-M6JRMIG8zZUbLA__",
+//     tag: "برنامه نویسی",
+//     tag2: "مقدماتی",
+//     teacher: "محسن اسفندیاری",
+//     color: "bg-cyan-200",
+//   },
+//   {
+//     title: "دوره فیگما",
+//     price: "۴۵۰,۰۰۰ تومان",
+//     icon: "https://s3-alpha-sig.figma.com/img/72eb/0bda/c649ce20dfb0409d36134908c7d16a53?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=NTX-nRHg93a6TXcuTScT80hAeNu0VZeV5vMYLG-0~urRRr6LsSKNMlWdAfodQmm6J0dq-TPtvE4niMqkf1pnoxTPlAVpyNu-aF58-0c5TvDG4AuxLXAEGG0TYthmYSa5LkylYkEeL2XQcHJpMYtVE79UeBqc7cb~1bHuB-yWirNlcqqrWu0Nv8MXrUylDCPfgavysRxSoqODwqfBLBjri-TfAcrDqobkE-H30st5~ulh3PJjh~Wld46oa968aC6uj~vflXQPEeIDmEDXf~aT~DDTeqJPu68sD00W7MHbI3nVSz423ftucwaLNZlv4zKBZINmKv0TjeB-ZZgnmPmLZQ__",
+//     tag: "طراحی",
+//     tag2: "پیشرفته",
+//     teacher: "محمدحسین خلیل پور",
+//     color: "bg-red-400",
+//   },
+// ];
 
 const CourseList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false); // For controlling slide effect
+  const [courses, setCourses] = useState([]);
+
+  console.log(courses);
+
+  const getAllCourse = async () => {
+    try {
+      const result = await GetAllCoursesByPg();
+
+      setCourses(result.courseFilterDtos);
+
+      // console.log("result", result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getAllCourse();
+  }, []);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -208,14 +229,14 @@ const CourseList = () => {
       {isModalOpen && (
         <div
           className="fixed  z-50 inset-0 bg-black bg-opacity-50 flex justify-center items-end"
-          onClick={closeModal} 
+          onClick={closeModal}
         >
           {/* Modal Content (Slide-up effect) */}
           <div
             className={`w-full  dark:bg-indigo-900 bg-white  rounded-t-3xl p-4 transform transition-transform duration-300 flex flex-col ${
               isAnimating ? "translate-y-0" : "translate-y-full"
             }`}
-            onClick={(e) => e.stopPropagation()} 
+            onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-center">
               <div className="bg-gray-300 rounded-3xl w-16 h-2 mb-6"></div>
@@ -234,7 +255,6 @@ const CourseList = () => {
                 جدیدترین
               </button>
               <button className="text-gray-800 border border-gray-800 py-2 px-3 rounded-full  dark:text-white dark:border-white">
-
                 محبوب‌ترین
               </button>
               <button className="text-gray-800 border border-gray-800 py-2 px-4 rounded-full  dark:text-white dark:border-white">
@@ -248,10 +268,8 @@ const CourseList = () => {
         </div>
       )}
 
-
-
       <div className="flex flex-wrap justify-center gap-8 ">
-        {coursesData.map((course, index) => (
+        {courses.map((course, index) => (
           <div
             key={index}
             className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-900 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
@@ -260,7 +278,11 @@ const CourseList = () => {
               <div
                 className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${course.color}`}
               >
-                <img src={course.icon} alt={""} className={`size-48 `} />
+                <img
+                  src={course.tumbImageAddress ?? Pic}
+                  alt={""}
+                  className={`size-48 `}
+                />
               </div>
             </Link>
 
@@ -271,18 +293,18 @@ const CourseList = () => {
             </Link>
             <div className="flex flex-nowrap gap-7">
               <p className=" text-gray-400 dark:text-white text-xs items-center ">
-                {course.teacher}
+                {course.teacherName}
               </p>
               <span className="text-gray-500 dark:text-white text-sm font-semibold mb-4">
-                {course.price}
+                {course.cost}
               </span>
             </div>
             <div className="mt-4">
               <span className="px-3 py-0  text-xs absolute top-8 right-28 md:right-32 bg-blue-500 text-white rounded-full">
-                {course.tag}
+                {course.statusName}
               </span>
               <span className="px-3 py-0 text-xs  absolute top-8 right-10 md:right-14 bg-pink-500 text-white rounded-full">
-                {course.tag2}
+                {course.levelName}
               </span>
             </div>
           </div>
