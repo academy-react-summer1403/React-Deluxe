@@ -1,63 +1,84 @@
 import { ConfigProvider, Modal, Pagination } from "antd";
-import React, { useState } from "react";
+import  { useEffect , useState } from "react";
 import { Link } from "react-router-dom";
+import { GetAllBlogsByPg } from "../../../core/services/api/Blogs.api"
 
-const cardsData = [
-  {
-    title: "فرق ری‌اکت با نکست جی‌اس چیست؟",
-    author: "محسن اسفندیاری",
-    date: "17 اردیبهشت 1403",
-    views: 290,
-    imgUrl:
-      "https://s3-alpha-sig.figma.com/img/e186/5b86/bca1c8cd3132e2639f0ded1c76c11d46?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=muFxYD2fdDTghyT3akyfQRGLCXbK5cs8xGUHKkZBUrsmRNfzuCQOuiIPk0Msp2WUV-UzndCzpzBWLyinFXJiNutEDil5SvTT7rFNwFJC83ue1cYKFMxewp-I8szWezADhT0F1RGZjQAwxXSmaANjCcJoYRQxjw-lSgO4N-m9fpQ~t~urlMfcClORI9m-AFltZsKO6uawoGuVxWPrHUWu2hTNlzVE9-4-W75e-MLX0G1Eh9tzRqZ5nsocQBZ-eW68Gta4f01ZznlkulJS3z6pKmo8PcAQUHbvsZBndS8CpoBuJuYP4j-XPnrV0P7~GFBXsZNILbR1jZXVDpQ4C0dt7A__",
-    bgColor: "bg-[#87DFFF]",
-  },
-  {
-    title: "فیگما یا ادوبی ایکس‌دی؟",
-    author: "محمدحسین خلیل‌پور",
-    date: "17 اردیبهشت 1403",
-    views: 318,
-    imgUrl:
-      "https://s3-alpha-sig.figma.com/img/72eb/0bda/c649ce20dfb0409d36134908c7d16a53?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=VKvXDw8XmMqPX-avBXZ3r-CHzU9Gajrp1YuONERMXpFwVwsZ621ROUvmGg0l0M5Uk3WLvvw2rJNVCzHrcBZFnMZ7223KYF1zthqjB~agrpfX1me4Htn4sYgPWzfOwWcoeMc-8Ft~KokEaEwmlvGatv8eiEtEq7qJdFYL2XiYwSwyu6q6HpeqpSxry78jz0IRAoiTvIYk2P9IFUBoe0ld3XB~XIPFhnHivN8S7q7uvba6q8faq91bBMcoe6dbzjhSVpBQOyKyOeSw4CO4ds4OMV-PV~7gwlyWBn85CIdU5oudgmBhTkRo5lytZ9g8DyzRqkHuWOr7Wez3jdvHYkD02g__",
-    bgColor: "bg-[#FF6C6C]",
-  },
-  {
-    title: "زبان جاوا اسکریپت در چه حوزه ای به کار میره؟",
-    author: "محمدحسین بحرالعلومی",
-    date: "17 اردیبهشت 1403",
-    views: 318,
-    imgUrl:
-      "https://s3-alpha-sig.figma.com/img/6405/b314/68db8ea561a27064e67d06d024404030?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=plAdFIOKijEfsSeU-9aihHOhbNcP~sosS5W~X9aELB0u5HdlmsEYjQJA0UZKFCv4HrgNvN-D9t0Fv1RljNjHNzddGL9qXbdEHeaIQzWWpB26CmVXACneoTk1yKtsimn4L4yZhz6t6lPtw9Jd19zX6DDtsMiZrU-y0ZWBBEO0cqb7XRfqedjRCrGmx6ikEc6UkdA-rXiQySoEWqOIoOl0sW4OPKqvAmB1QwR0PxNrpGUUu5I0QylRgUaK~DtnPFEHb8plnrfz5R~HiFU8gphiEYknrYA6fRqPJQDE5T0RA2kwOq0gU3rUwjfjqk1wnmVhND~4LDaQR-8KDA63SebBxg__",
-    bgColor: "bg-[#F0DB4F]",
-  },
-  {
-    title: "فرق ری‌اکت با نکست جی‌اس چیست؟",
-    author: "محسن اسفندیاری",
-    date: "17 اردیبهشت 1403",
-    views: 290,
-    imgUrl:
-      "https://s3-alpha-sig.figma.com/img/e186/5b86/bca1c8cd3132e2639f0ded1c76c11d46?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=muFxYD2fdDTghyT3akyfQRGLCXbK5cs8xGUHKkZBUrsmRNfzuCQOuiIPk0Msp2WUV-UzndCzpzBWLyinFXJiNutEDil5SvTT7rFNwFJC83ue1cYKFMxewp-I8szWezADhT0F1RGZjQAwxXSmaANjCcJoYRQxjw-lSgO4N-m9fpQ~t~urlMfcClORI9m-AFltZsKO6uawoGuVxWPrHUWu2hTNlzVE9-4-W75e-MLX0G1Eh9tzRqZ5nsocQBZ-eW68Gta4f01ZznlkulJS3z6pKmo8PcAQUHbvsZBndS8CpoBuJuYP4j-XPnrV0P7~GFBXsZNILbR1jZXVDpQ4C0dt7A__",
-    bgColor: "bg-[#87DFFF]",
-  },
-  {
-    title: "فیگما یا ادوبی ایکس‌دی؟",
-    author: "محمدحسین خلیل‌پور",
-    date: "17 اردیبهشت 1403",
-    views: 318,
-    imgUrl:
-      "https://s3-alpha-sig.figma.com/img/72eb/0bda/c649ce20dfb0409d36134908c7d16a53?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=VKvXDw8XmMqPX-avBXZ3r-CHzU9Gajrp1YuONERMXpFwVwsZ621ROUvmGg0l0M5Uk3WLvvw2rJNVCzHrcBZFnMZ7223KYF1zthqjB~agrpfX1me4Htn4sYgPWzfOwWcoeMc-8Ft~KokEaEwmlvGatv8eiEtEq7qJdFYL2XiYwSwyu6q6HpeqpSxry78jz0IRAoiTvIYk2P9IFUBoe0ld3XB~XIPFhnHivN8S7q7uvba6q8faq91bBMcoe6dbzjhSVpBQOyKyOeSw4CO4ds4OMV-PV~7gwlyWBn85CIdU5oudgmBhTkRo5lytZ9g8DyzRqkHuWOr7Wez3jdvHYkD02g__",
-    bgColor: "bg-[#FF6C6C]",
-  },
-  {
-    title: "زبان جاوا اسکریپت در چه حوزه ای به کار میره؟",
-    author: "محمدحسین بحرالعلومی",
-    date: "17 اردیبهشت 1403",
-    views: 318,
-    imgUrl:
-      "https://s3-alpha-sig.figma.com/img/6405/b314/68db8ea561a27064e67d06d024404030?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=plAdFIOKijEfsSeU-9aihHOhbNcP~sosS5W~X9aELB0u5HdlmsEYjQJA0UZKFCv4HrgNvN-D9t0Fv1RljNjHNzddGL9qXbdEHeaIQzWWpB26CmVXACneoTk1yKtsimn4L4yZhz6t6lPtw9Jd19zX6DDtsMiZrU-y0ZWBBEO0cqb7XRfqedjRCrGmx6ikEc6UkdA-rXiQySoEWqOIoOl0sW4OPKqvAmB1QwR0PxNrpGUUu5I0QylRgUaK~DtnPFEHb8plnrfz5R~HiFU8gphiEYknrYA6fRqPJQDE5T0RA2kwOq0gU3rUwjfjqk1wnmVhND~4LDaQR-8KDA63SebBxg__",
-    bgColor: "bg-[#F0DB4F]",
-  },
-];
+
+// const cardsData = [
+//   {
+//     title: "فرق ری‌اکت با نکست جی‌اس چیست؟",
+//     author: "محسن اسفندیاری",
+//     date: "17 اردیبهشت 1403",
+//     views: 290,
+//     imgUrl:
+//       "https://s3-alpha-sig.figma.com/img/e186/5b86/bca1c8cd3132e2639f0ded1c76c11d46?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=muFxYD2fdDTghyT3akyfQRGLCXbK5cs8xGUHKkZBUrsmRNfzuCQOuiIPk0Msp2WUV-UzndCzpzBWLyinFXJiNutEDil5SvTT7rFNwFJC83ue1cYKFMxewp-I8szWezADhT0F1RGZjQAwxXSmaANjCcJoYRQxjw-lSgO4N-m9fpQ~t~urlMfcClORI9m-AFltZsKO6uawoGuVxWPrHUWu2hTNlzVE9-4-W75e-MLX0G1Eh9tzRqZ5nsocQBZ-eW68Gta4f01ZznlkulJS3z6pKmo8PcAQUHbvsZBndS8CpoBuJuYP4j-XPnrV0P7~GFBXsZNILbR1jZXVDpQ4C0dt7A__",
+//     bgColor: "bg-[#87DFFF]",
+//   },
+//   {
+//     title: "فیگما یا ادوبی ایکس‌دی؟",
+//     author: "محمدحسین خلیل‌پور",
+//     date: "17 اردیبهشت 1403",
+//     views: 318,
+//     imgUrl:
+//       "https://s3-alpha-sig.figma.com/img/72eb/0bda/c649ce20dfb0409d36134908c7d16a53?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=VKvXDw8XmMqPX-avBXZ3r-CHzU9Gajrp1YuONERMXpFwVwsZ621ROUvmGg0l0M5Uk3WLvvw2rJNVCzHrcBZFnMZ7223KYF1zthqjB~agrpfX1me4Htn4sYgPWzfOwWcoeMc-8Ft~KokEaEwmlvGatv8eiEtEq7qJdFYL2XiYwSwyu6q6HpeqpSxry78jz0IRAoiTvIYk2P9IFUBoe0ld3XB~XIPFhnHivN8S7q7uvba6q8faq91bBMcoe6dbzjhSVpBQOyKyOeSw4CO4ds4OMV-PV~7gwlyWBn85CIdU5oudgmBhTkRo5lytZ9g8DyzRqkHuWOr7Wez3jdvHYkD02g__",
+//     bgColor: "bg-[#FF6C6C]",
+//   },
+//   {
+//     title: "زبان جاوا اسکریپت در چه حوزه ای به کار میره؟",
+//     author: "محمدحسین بحرالعلومی",
+//     date: "17 اردیبهشت 1403",
+//     views: 318,
+//     imgUrl:
+//       "https://s3-alpha-sig.figma.com/img/6405/b314/68db8ea561a27064e67d06d024404030?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=plAdFIOKijEfsSeU-9aihHOhbNcP~sosS5W~X9aELB0u5HdlmsEYjQJA0UZKFCv4HrgNvN-D9t0Fv1RljNjHNzddGL9qXbdEHeaIQzWWpB26CmVXACneoTk1yKtsimn4L4yZhz6t6lPtw9Jd19zX6DDtsMiZrU-y0ZWBBEO0cqb7XRfqedjRCrGmx6ikEc6UkdA-rXiQySoEWqOIoOl0sW4OPKqvAmB1QwR0PxNrpGUUu5I0QylRgUaK~DtnPFEHb8plnrfz5R~HiFU8gphiEYknrYA6fRqPJQDE5T0RA2kwOq0gU3rUwjfjqk1wnmVhND~4LDaQR-8KDA63SebBxg__",
+//     bgColor: "bg-[#F0DB4F]",
+//   },
+//   {
+//     title: "فرق ری‌اکت با نکست جی‌اس چیست؟",
+//     author: "محسن اسفندیاری",
+//     date: "17 اردیبهشت 1403",
+//     views: 290,
+//     imgUrl:
+//       "https://s3-alpha-sig.figma.com/img/e186/5b86/bca1c8cd3132e2639f0ded1c76c11d46?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=muFxYD2fdDTghyT3akyfQRGLCXbK5cs8xGUHKkZBUrsmRNfzuCQOuiIPk0Msp2WUV-UzndCzpzBWLyinFXJiNutEDil5SvTT7rFNwFJC83ue1cYKFMxewp-I8szWezADhT0F1RGZjQAwxXSmaANjCcJoYRQxjw-lSgO4N-m9fpQ~t~urlMfcClORI9m-AFltZsKO6uawoGuVxWPrHUWu2hTNlzVE9-4-W75e-MLX0G1Eh9tzRqZ5nsocQBZ-eW68Gta4f01ZznlkulJS3z6pKmo8PcAQUHbvsZBndS8CpoBuJuYP4j-XPnrV0P7~GFBXsZNILbR1jZXVDpQ4C0dt7A__",
+//     bgColor: "bg-[#87DFFF]",
+//   },
+//   {
+//     title: "فیگما یا ادوبی ایکس‌دی؟",
+//     author: "محمدحسین خلیل‌پور",
+//     date: "17 اردیبهشت 1403",
+//     views: 318,
+//     imgUrl:
+//       "https://s3-alpha-sig.figma.com/img/72eb/0bda/c649ce20dfb0409d36134908c7d16a53?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=VKvXDw8XmMqPX-avBXZ3r-CHzU9Gajrp1YuONERMXpFwVwsZ621ROUvmGg0l0M5Uk3WLvvw2rJNVCzHrcBZFnMZ7223KYF1zthqjB~agrpfX1me4Htn4sYgPWzfOwWcoeMc-8Ft~KokEaEwmlvGatv8eiEtEq7qJdFYL2XiYwSwyu6q6HpeqpSxry78jz0IRAoiTvIYk2P9IFUBoe0ld3XB~XIPFhnHivN8S7q7uvba6q8faq91bBMcoe6dbzjhSVpBQOyKyOeSw4CO4ds4OMV-PV~7gwlyWBn85CIdU5oudgmBhTkRo5lytZ9g8DyzRqkHuWOr7Wez3jdvHYkD02g__",
+//     bgColor: "bg-[#FF6C6C]",
+//   },
+//   {
+//     title: "زبان جاوا اسکریپت در چه حوزه ای به کار میره؟",
+//     author: "محمدحسین بحرالعلومی",
+//     date: "17 اردیبهشت 1403",
+//     views: 318,
+//     imgUrl:
+//       "https://s3-alpha-sig.figma.com/img/6405/b314/68db8ea561a27064e67d06d024404030?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=plAdFIOKijEfsSeU-9aihHOhbNcP~sosS5W~X9aELB0u5HdlmsEYjQJA0UZKFCv4HrgNvN-D9t0Fv1RljNjHNzddGL9qXbdEHeaIQzWWpB26CmVXACneoTk1yKtsimn4L4yZhz6t6lPtw9Jd19zX6DDtsMiZrU-y0ZWBBEO0cqb7XRfqedjRCrGmx6ikEc6UkdA-rXiQySoEWqOIoOl0sW4OPKqvAmB1QwR0PxNrpGUUu5I0QylRgUaK~DtnPFEHb8plnrfz5R~HiFU8gphiEYknrYA6fRqPJQDE5T0RA2kwOq0gU3rUwjfjqk1wnmVhND~4LDaQR-8KDA63SebBxg__",
+//     bgColor: "bg-[#F0DB4F]",
+//   },
+// ];
+
+const getAllBlogs = async () => {
+  try {
+    const result = await GetAllBlogsByPg();
+
+    setNews(result.news);
+
+    // console.log("result", result);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+useEffect(() => {
+  getAllBlogs();
+}, []);
+
+
+
 const BlogsCards = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false); // For controlling slide effect
@@ -181,7 +202,7 @@ const BlogsCards = () => {
       )}
 
       <div className="flex flex-wrap justify-around">
-        {cardsData.map((card, index) => (
+        {news.map((card, index) => (
           <div
             key={index}
             className={`lg:basis-[47%] basis-[90%] rounded-3xl mb-7`}
@@ -191,7 +212,7 @@ const BlogsCards = () => {
                 className={`mb-4 w-full h-[22rem] rounded-[2.5rem] object-cover ${card.bgColor} flex justify-center items-center`}
               >
                 <img
-                  src={card.imgUrl}
+                  src={card.currentImageAddressTumb}
                   alt={card.title}
                   className={`w-60 h-60 object-contain`}
                 />
@@ -202,11 +223,11 @@ const BlogsCards = () => {
             </Link>
             <div className="text-gray-600 flex flex-row justify-between">
               <p className="text-sm/[1.3rem] dark:text-slate-400">
-                {card.author}
+                {card.addUserFullName}
               </p>
               <div className="flex flex-row gap-4">
                 <p className="flex text-xs/[1.4rem] gap-2 dark:text-slate-400">
-                  {card.date}
+                  {card.insertDate}
                   <svg
                     width="20"
                     height="20"
@@ -252,7 +273,7 @@ const BlogsCards = () => {
                   </svg>
                 </p>
                 <p className="flex text-xs/[1.4rem] gap-2 dark:text-slate-400">
-                  {card.views}
+                  {card.currentView}
                   <svg
                     width="20"
                     height="20"

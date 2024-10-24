@@ -6,6 +6,6 @@ export const GetAllCoursesByPg = async () => {
     return res;
   } catch (error) {
     console.log(error);
-    return error;
+    return error;npm
   }
 };
