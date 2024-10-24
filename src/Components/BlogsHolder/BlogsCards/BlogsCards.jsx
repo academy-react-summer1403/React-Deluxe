@@ -1,7 +1,8 @@
 import { ConfigProvider, Modal, Pagination } from "antd";
-import  { useEffect , useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { GetAllBlogsByPg } from "../../../core/services/api/Blogs.api"
+import { GetAllBlogsByPg } from "../../../core/services/api/Blogs.api";
+
 
 
 // const cardsData = [
@@ -61,42 +62,38 @@ import { GetAllBlogsByPg } from "../../../core/services/api/Blogs.api"
 //   },
 // ];
 
-const getAllBlogs = async () => {
-  try {
-    const result = await GetAllBlogsByPg();
-
-    setNews(result.news);
-
-    // console.log("result", result);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-useEffect(() => {
-  getAllBlogs();
-}, []);
-
-
 
 const BlogsCards = () => {
+  const [news, setNews] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false); // For controlling slide effect
+  const [isAnimating, setIsAnimating] = useState(false); 
+
+  
+  const getAllBlogs = async () => {
+    try {
+      const result = await GetAllBlogsByPg();
+      setNews(result.news); 
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getAllBlogs();
+  }, []);
 
   const openModal = () => {
     setIsModalOpen(true);
-    // Add a slight delay before triggering the slide-up animation
     setTimeout(() => {
       setIsAnimating(true);
-    }, 10); // Delay for the transition to trigger properly
+    }, 10);
   };
 
   const closeModal = () => {
     setIsAnimating(false);
-    // Delay closing modal until the slide-down animation finishes
     setTimeout(() => {
       setIsModalOpen(false);
-    }, 300); // Match the transition duration (300ms)
+    }, 300);
   };
 
   return (
@@ -111,7 +108,6 @@ const BlogsCards = () => {
         </button>
       </div>
 
-      {/* On smaller screens, we show a single button to trigger the modal */}
       <div className="lg:hidden flex justify-end items-center gap-2 mb-4 ml-12">
         <button
           className="text-white bg-blue-500 py-3 px-4 rounded-full flex gap-2"
@@ -127,37 +123,37 @@ const BlogsCards = () => {
             <path
               d="M11 8H20"
               stroke="#FCFCFC"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <path
               d="M12 12H18"
               stroke="#FCFCFC"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <path
               d="M14 16H16"
               stroke="#FCFCFC"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <path
               d="M10 4H21"
               stroke="#FCFCFC"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <path
               d="M5.5 21V3M5.5 21C4.79977 21 3.49153 19.0057 3 18.5M5.5 21C6.20023 21 7.50847 19.0057 8 18.5"
               stroke="#FCFCFC"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
           ترتیب
@@ -168,14 +164,13 @@ const BlogsCards = () => {
       {isModalOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-end"
-          onClick={closeModal} // Close modal when background is clicked
+          onClick={closeModal}
         >
-          {/* Modal Content (Slide-up effect) */}
           <div
             className={`w-full bg-white rounded-t-3xl p-4 transform transition-transform duration-300 flex flex-col ${
               isAnimating ? "translate-y-0" : "translate-y-full"
             }`}
-            onClick={(e) => e.stopPropagation()} // Prevent modal close on content click
+            onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-center">
               <div className="bg-gray-300 rounded-3xl w-16 h-2 mb-6"></div>
@@ -238,37 +233,28 @@ const BlogsCards = () => {
                     <path
                       d="M15 1.66663V3.33329M5 1.66663V3.33329"
                       stroke="#707070"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                     <path
                       d="M9.99658 10.8334H10.0041M9.99658 14.1667H10.0041M13.3262 10.8334H13.3337M6.66699 10.8334H6.67447M6.66699 14.1667H6.67447"
                       stroke="#707070"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                     <path
                       d="M2.91699 6.66663H17.0837"
                       stroke="#707070"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                     <path
                       d="M2.08301 10.2027C2.08301 6.57162 2.08301 4.75607 3.12644 3.62803C4.16987 2.5 5.84925 2.5 9.20801 2.5H10.7913C14.1501 2.5 15.8295 2.5 16.8729 3.62803C17.9163 4.75607 17.9163 6.57162 17.9163 10.2027V10.6307C17.9163 14.2617 17.9163 16.0773 16.8729 17.2053C15.8295 18.3333 14.1501 18.3333 10.7913 18.3333H9.20801C5.84925 18.3333 4.16987 18.3333 3.12644 17.2053C2.08301 16.0773 2.08301 14.2617 2.08301 10.6307V10.2027Z"
                       stroke="#707070"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                    <path
-                      d="M2.5 6.66663H17.5"
-                      stroke="#707070"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="1.5"
                     />
                   </svg>
                 </p>
@@ -277,19 +263,23 @@ const BlogsCards = () => {
                   <svg
                     width="20"
                     height="20"
-                    viewBox="0 0 20 20"
+                    viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      d="M17.9537 9.20413C18.207 9.55938 18.3337 9.73704 18.3337 9.99996C18.3337 10.2629 18.207 10.4405 17.9537 10.7958C16.8152 12.3921 13.908 15.8333 10.0003 15.8333C6.09264 15.8333 3.18541 12.3921 2.04703 10.7958C1.79367 10.4405 1.66699 10.2629 1.66699 9.99996C1.66699 9.73704 1.79367 9.55938 2.04703 9.20413C3.18541 7.60783 6.09264 4.16663 10.0003 4.16663C13.908 4.16663 16.8152 7.60783 17.9537 9.20413Z"
+                      d="M1.5 12C1.5 12 5.5 4.5 12 4.5C18.5 4.5 22.5 12 22.5 12C22.5 12 18.5 19.5 12 19.5C5.5 19.5 1.5 12 1.5 12Z"
                       stroke="#707070"
-                      stroke-width="1.5"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                     <path
-                      d="M12.5 10C12.5 8.61925 11.3807 7.5 10 7.5C8.61925 7.5 7.5 8.61925 7.5 10C7.5 11.3807 8.61925 12.5 10 12.5C11.3807 12.5 12.5 11.3807 12.5 10Z"
+                      d="M12 15.75C13.7949 15.75 15.25 14.2949 15.25 12.5C15.25 10.7051 13.7949 9.25 12 9.25C10.2051 9.25 8.75 10.7051 8.75 12.5C8.75 14.2949 10.2051 15.75 12 15.75Z"
                       stroke="#707070"
-                      stroke-width="1.5"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
                 </p>
@@ -298,11 +288,8 @@ const BlogsCards = () => {
           </div>
         ))}
       </div>
-      <ConfigProvider direction="rtl">
-        <Pagination align="center" defaultCurrent={1} total={50} />
-      </ConfigProvider>
     </div>
   );
 };
 
-export { BlogsCards };
+export  {BlogsCards};
