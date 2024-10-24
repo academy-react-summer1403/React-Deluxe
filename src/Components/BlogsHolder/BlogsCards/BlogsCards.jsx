@@ -287,6 +287,9 @@ const BlogsCards = () => {
             </div>
           </div>
         ))}
+          <ConfigProvider direction="rtl">
+        <Pagination align="center" defaultCurrent={1} total={50} />
+      </ConfigProvider>
       </div>
     </div>
   );
