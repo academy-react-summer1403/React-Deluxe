@@ -2,7 +2,7 @@ import { ConfigProvider, Modal, Pagination } from "antd";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { GetAllCoursesByPg } from "../../core/services/api/Courses.api";
-import Pic from "../../assets/pic3.png";
+import Pic from "../../assets/react.png";
 
 // const coursesData = [
 //   {
