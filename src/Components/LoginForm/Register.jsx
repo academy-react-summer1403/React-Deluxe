@@ -3,11 +3,28 @@ import { Button, Input } from "antd";
 import "antd/dist/reset.css";
 import { LoginPanel } from "./LoginPanel";
 import { Link } from "react-router-dom";
-
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { SendVerifySMS } from "../../core/services/api/Register.api/SendSMS(Step1).api";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = ({ onBack }) => {
   const [currentTab, setCurrentTab] = useState("1");
 
+  const notify = () => toast("SMS sent successfully");
+
+  const onSubmit = async (values) => {
+    // <SendVerifySMS phoneNumber={values} />;
+    // console.log(values);
+    try {
+      await SendVerifySMS({ phoneNumber: values.phoneNumber });
+
+      notify();
+      // console.log("SMS sent successfully");
+    } catch (error) {
+      console.error("Error sending SMS", error);
+    }
+  };
   return (
     <div className="dark:bg-indigo-950 flex flex-col md:flex-row h-screen justify-center items-start bg-white">
       <div className="flex flex-col w-full md:w-1/2 justify-start items-center p-5 md:p-10 text-black mt-10">
@@ -83,17 +100,48 @@ const Register = ({ onBack }) => {
             <label className="block text-lg mt-12  font-bold text-right mb-2 text-gray-700 dark:text-white">
               شماره همراه
             </label>
-            <Input
-              className="rounded-3xl text-lg h-11 mb-4 w-full bg-white text-black dark:text-white mt-4"
-              placeholder="شماره همراه خود را وارد کنید"
-            />
-            <Button
-              type="primary"
-              className="w-full h-12 text-lg bg-blue-500 text-white rounded-3xl font-bold dark:text-white"
-              onClick={() => setCurrentTab("2")}
+            <Formik
+              initialValues={{ phoneNumber: "" }}
+              onSubmit={(values) => {
+                onSubmit(values);
+                setCurrentTab("2");
+              }}
             >
-              ارسال کد تایید
-            </Button>
+              <Form>
+                <div>
+                  <Field
+                    className="rounded-3xl text-lg h-11 mb-4 w-full bg-white text-black dark:text-white mt-4 px-4 border border-gray-300 hover:border-blue-500 transition"
+                    name="phoneNumber"
+                    placeholder="شماره همراه خود را وارد کنید"
+                  />
+                  <ErrorMessage
+                    name="phoneNumber"
+                    component={"p"}
+                    className="text-red-600 font-semibold"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="w-full h-12 text-lg bg-blue-500 text-white rounded-3xl font-bold dark:text-white"
+                  // onClick={() => setCurrentTab("2")}
+                >
+                  ارسال کد تایید
+                </button>
+                <ToastContainer
+                  position="top-center"
+                  autoClose={5000}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  theme="light"
+                  transition:Bounce
+                />
+              </Form>
+            </Formik>
           </div>
         )}
 
@@ -155,20 +203,20 @@ const Register = ({ onBack }) => {
             </Link>
           </div>
         )}
-          <Link to={"/auth/signin"}>
+        <Link to={"/auth/signin"}>
           <p
             type="primary"
             className="w-full mt-3 h-12 text-lg py-2 px-4 border-gray-300 dark:bg-indigo-950 text-blue-500 rounded-3xl font-bold hover:underline"
           >
-              اگر حساب کاربری دارید وارد شوید 
+            اگر حساب کاربری دارید وارد شوید
           </p>
         </Link>
-           <Link to={"/"}>
+        <Link to={"/"}>
           <Button
             type="primary"
             className="w-36 mt-8 h-12 text-lg py-2 px-4 border-gray-300   bg-white text-blue-500 rounded-3xl font-bold"
           >
-             صفحه اصلی 
+            صفحه اصلی
           </Button>
         </Link>
       </div>
