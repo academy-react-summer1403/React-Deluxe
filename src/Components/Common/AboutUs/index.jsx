@@ -11,6 +11,7 @@ const index = () => {
     <div className=" bg-white flex flex-col items-center py-8 px-4 dark:bg-indigo-950">
       <div className="relative mb-8">
         <div>
+
           <img src={ReactLogo} />
         </div>
       </div>
@@ -31,6 +32,7 @@ const index = () => {
                 alt={member.name}
                 className="w-28 h-28 md:w-36 md:h-36 rounded-full mt-4 md:mt-8"
               />
+
             </div>
             <h3 className="text-lg md:text-xl font-bold mt-11 dark:text-white">
               {member.name}
