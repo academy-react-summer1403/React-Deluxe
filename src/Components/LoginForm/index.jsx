@@ -10,15 +10,10 @@ import { setItem } from "../../core/services/common/storage";
 
 const LoginPage = () => {
   const [currentTab, setCurrentTab] = useState("1");
-  const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
 
   if (showRegister) {
     return <Register onBack={() => setShowRegister(false)} />;
-  }
-
-  if (showForgotPassword) {
-    return <ForgotPassword onBack={() => setShowForgotPassword(false)} />;
   }
 
   const notify = (msg) =>
@@ -158,13 +153,12 @@ const LoginPage = () => {
                       مرا به خاطر بسپار
                     </label>
                   </div>
-                  <a
-                    href="#"
+                  <Link
+                    to={"/auth/forgetPass"}
                     className="text-blue-500 mt-2 text-lg hover:underline font-bold dark:text-white"
-                    onClick={() => setShowForgotPassword(true)}
                   >
                     رمز عبور را فراموش کردید؟
-                  </a>
+                  </Link>
                 </div>
                 <button
                   className="mt-5 flex items-center justify-center text-center h-11 bg-blue-500 text-white rounded-3xl w-full font-bold dark:text-white"

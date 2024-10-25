@@ -2,7 +2,10 @@ import { useState } from "react";
 import { Button, Input } from "antd";
 import "antd/dist/reset.css";
 import { LoginPanel } from "../LoginPanel";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { ForgetPass } from "../../../core/services/api/ForgetPass.api/ForgetPass.api";
+import { toast } from "react-toastify";
 
 const InputField = ({ label, placeholder }) => (
   <div className="mb-4">
@@ -16,8 +19,32 @@ const InputField = ({ label, placeholder }) => (
   </div>
 );
 
-const ForgotPassword = ({ onBack }) => {
+const notify = (msg) =>
+  toast.success(msg, {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+
+const ForgotPassword = () => {
+  const navigate = useNavigate();
   const [currentTab, setCurrentTab] = useState("1");
+
+  const onSubmit = async (values) => {
+    try {
+      const res = await ForgetPass({ email: values.email });
+      setCurrentTab("2");
+      if ((res.success = true))
+        toast.success("ایمیل با موفقیت فراستاده شد!", {
+          position: "top-center",
+        });
+    } catch (error) {}
+  };
 
   return (
     <div className="flex flex-col md:flex-row h-screen justify-center items-start bg-white  dark:bg-indigo-950">
@@ -72,17 +99,44 @@ const ForgotPassword = ({ onBack }) => {
               اگر رمزعبور خود را فراموش کرده‌اید، ایمیل خود را وارد کنید تا لینک
               تغییر رمزعبور برای شما ارسال شود.
             </p>
-            <InputField className="h-10" label="ایمیل" placeholder="ایمیل خود را وارد کنید" />
-            <Button
-              type="primary"
-              className="w-full h-11 text-lg bg-blue-500 text-white rounded-3xl font-bold mt-3"
-              onClick={() => setCurrentTab("2")}
+            <Formik
+              initialValues={{
+                email: "",
+              }}
+              onSubmit={(values) => {
+                onSubmit(values);
+              }}
             >
-              ارسال لینک
-            </Button>
+              <Form>
+                <div className="mb-4">
+                  <label className="block text-lg font-bold text-right mb-2 text-gray-700">
+                    ایمیل
+                  </label>
+                  <Field
+                    className="rounded-3xl w-full bg-white text-lg text-black px-4 py-2 border border-gray-300 dark:text-white"
+                    placeholder="ایمیل خود را وارد کنید"
+                    name="email"
+                  />
+                  <ErrorMessage
+                    name="email"
+                    component={"p"}
+                    className="text-red-600 font-semibold"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="w-full h-11 text-lg bg-blue-500 text-white rounded-3xl font-bold mt-3"
+                >
+                  ارسال لینک
+                </button>
+              </Form>
+            </Formik>
+
             <Button
-              className="w-32 h-11 text-lg mt-8 border border-solid border-gray-300 text-blue-500 rounded-3xl font-bold "
-              onClick={onBack}
+              className="w-32 h-11 text-lg mt-8 border border-solid border-gray-300 text-blue-500 rounded-3xl font-bold"
+              onClick={() => {
+                navigate("/auth/SignIn");
+              }}
             >
               بازگشت
             </Button>
