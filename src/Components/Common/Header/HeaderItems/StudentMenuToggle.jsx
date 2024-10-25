@@ -367,7 +367,7 @@ const StudentMenuWithToggle = () => {
           </div>
 
           {/* Logout Section */}
-          <div className="px-6 pt-[370px] pb-4">
+          <div className="px-6 pt-28 pb-4">
             <Link
               to={"/auth/signin"}
               href="#"
