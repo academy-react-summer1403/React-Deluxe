@@ -1,8 +1,7 @@
 import http from "../../interceptor";
 
-export const SendVerifySMS = async ({ phoneNumber }) => {
+export const SendVerifyMessage = async ({ phoneNumber }) => {
   try {
-    // Perform the actual HTTP request (commented out for now)
     await http.post("/Sign/SendVerifyMessage", { phoneNumber });
 
     console.log("Sending SMS to:", phoneNumber);

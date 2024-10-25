@@ -2,29 +2,63 @@ import { useState } from "react";
 import { Button, Input } from "antd";
 import "antd/dist/reset.css";
 import { LoginPanel } from "./LoginPanel";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { SendVerifySMS } from "../../core/services/api/Register.api/SendSMS(Step1).api";
-import { toast, ToastContainer } from "react-toastify";
+import { Bounce, toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { SendVerifyMessage } from "../../core/services/api/Register.api/SendVerifyMessage.api";
+import { setItem } from "../../core/services/common/storage";
+import { VerifyMessage } from "../../core/services/api/Register.api/VerifyMessage.api";
+import { RegisterApi } from "../../core/services/api/Register.api/RegisterApi.api";
 
 const Register = ({ onBack }) => {
   const [currentTab, setCurrentTab] = useState("1");
+  const navigate = useNavigate();
 
-  const notify = () => toast("SMS sent successfully");
+  const notify = (msg) =>
+    toast.success(msg, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
 
   const onSubmit = async (values) => {
-    // <SendVerifySMS phoneNumber={values} />;
-    // console.log(values);
-    try {
-      await SendVerifySMS({ phoneNumber: values.phoneNumber });
+    setItem("phoneNumber", values.phoneNumber);
 
-      notify();
-      // console.log("SMS sent successfully");
+    try {
+      await SendVerifyMessage({ phoneNumber: values.phoneNumber });
+
+      notify("📨 SMS sent successfully");
     } catch (error) {
       console.error("Error sending SMS", error);
     }
   };
+
+  const onSubmitCode = async (values) => {
+    // setItem("verifyCode", values.verifyCode);
+
+    try {
+      await VerifyMessage({ verifyCode: values.verifyCode });
+      notify("Code Appected");
+    } catch (error) {
+      console.error("کد اشتباه است یا زمان آن گذشته است", error);
+    }
+  };
+
+  const onSubmitRegister = async (values) => {
+    navigate("/auth/signin");
+    try {
+      await RegisterApi({ gmail: values.gmail, password: values.password });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="dark:bg-indigo-950 flex flex-col md:flex-row h-screen justify-center items-start bg-white">
       <div className="flex flex-col w-full md:w-1/2 justify-start items-center p-5 md:p-10 text-black mt-10">
@@ -127,19 +161,6 @@ const Register = ({ onBack }) => {
                 >
                   ارسال کد تایید
                 </button>
-                <ToastContainer
-                  position="top-center"
-                  autoClose={5000}
-                  hideProgressBar={false}
-                  newestOnTop={false}
-                  closeOnClick
-                  rtl={false}
-                  pauseOnFocusLoss
-                  draggable
-                  pauseOnHover
-                  theme="light"
-                  transition:Bounce
-                />
               </Form>
             </Formik>
           </div>
@@ -156,17 +177,34 @@ const Register = ({ onBack }) => {
             <label className="block text-lg mt-10 font-bold text-right mb-2 text-gray-700 dark:text-white">
               کد تایید
             </label>
-            <Input
-              className="rounded-3xl h-11 text-lg mt-4 mb-4 w-full bg-white text-black dark:text-white"
-              placeholder="کد تایید خود را وارد کنید"
-            />
-            <Button
-              type="primary"
-              className="w-full h-12 mt-2 text-lg bg-blue-500 text-white rounded-3xl font-bold dark:text-white"
-              onClick={() => setCurrentTab("3")}
+            <Formik
+              initialValues={{ verifyCode: "" }}
+              onSubmit={(values) => {
+                onSubmitCode(values);
+                setCurrentTab("3");
+              }}
             >
-              تایید
-            </Button>
+              <Form>
+                <div>
+                  <Field
+                    className="rounded-3xl h-11 text-lg mt-4 mb-4 w-full bg-white text-black dark:text-white px-4 border border-gray-300 hover:border-blue-500 transition"
+                    placeholder="کد تایید خود را وارد کنید"
+                    name="verifyCode"
+                  />
+                  <ErrorMessage
+                    name="verifyCode"
+                    component={"p"}
+                    className="text-red-600 font-semibold"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="w-full h-12 mt-2 text-lg bg-blue-500 text-white rounded-3xl font-bold dark:text-white"
+                >
+                  تایید
+                </button>
+              </Form>
+            </Formik>
           </div>
         )}
 
@@ -178,29 +216,55 @@ const Register = ({ onBack }) => {
             <p className="text-lg mt-5 mb-4 w-full text-right text-gray-500 dark:text-white">
               لطفا اطلاعات شخصی خود را وارد کنید.
             </p>
-            <label className="block text-lg mt-8 font-bold text-right mb-2 text-gray-700 dark:text-white">
-              ایمیل
-            </label>
-            <Input
-              className="rounded-3xl h-11 text-lg mb-4 w-full bg-white text-black dark:text-white"
-              placeholder="ایمیل خود را وارد کنید"
-            />
-            <label className="block text-lg font-bold text-right mb-2 text-gray-700 dark:text-white">
-              رمز عبور جدید
-            </label>
-            <Input
-              className="rounded-3xl h-11 text-lg mb-4 w-full bg-white text-black dark:text-white"
-              placeholder="رمز عبور جدید خود را وارد کنید"
-              type="password"
-            />
-            <Link to={"/auth/signin"}>
-              <Button
-                type="primary"
-                className="w-full h-12 text-lg bg-blue-500 text-white rounded-3xl font-bold"
-              >
-                تایید
-              </Button>
-            </Link>
+
+            <Formik
+              initialValues={{ gmail: "", password: "" }}
+              onSubmit={(values) => {
+                onSubmitRegister(values);
+              }}
+            >
+              <Form>
+                <div>
+                  <div>
+                    <label className="block text-lg mt-8 font-bold text-right mb-2 text-gray-700 dark:text-white">
+                      ایمیل
+                    </label>
+                    <Field
+                      className="rounded-3xl h-11 text-lg mb-4 w-full bg-white text-black dark:text-white px-4 border border-gray-300 hover:border-blue-500 transition"
+                      placeholder="ایمیل خود را وارد کنید"
+                      name="gmail"
+                    />
+                    <ErrorMessage
+                      name="gmail"
+                      component={"p"}
+                      className="text-red-600 font-semibold"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-lg font-bold text-right mb-2 text-gray-700 dark:text-white">
+                      رمز عبور جدید
+                    </label>
+                    <Field
+                      className="rounded-3xl h-11 text-lg mb-4 w-full bg-white text-black dark:text-white px-4 border border-gray-300 hover:border-blue-500 transition"
+                      placeholder="رمز عبور جدید خود را وارد کنید"
+                      type="password"
+                      name="password"
+                    />
+                    <ErrorMessage
+                      name="password"
+                      component={"p"}
+                      className="text-red-600 font-semibold"
+                    />
+                  </div>
+                </div>
+                <button
+                  type="primary"
+                  className="w-full h-12 text-lg bg-blue-500 text-white rounded-3xl font-bold"
+                >
+                  تایید
+                </button>
+              </Form>
+            </Formik>
           </div>
         )}
         <Link to={"/auth/signin"}>

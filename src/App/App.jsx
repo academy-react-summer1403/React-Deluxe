@@ -4,6 +4,8 @@ import "./App.css";
 import { RouterProvider } from "react-router-dom";
 import { commonRoutes } from "../config/router/common.router";
 import { ErrorBoundary } from "../Screens/Errors/ErrorBoundry/ErrorBoundry";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   // const [isLoggedIn, setIsLoggedIn] = useState();
@@ -11,6 +13,7 @@ function App() {
   return (
     <ErrorBoundary>
       <RouterProvider router={publicRoutes} />
+      <ToastContainer />
     </ErrorBoundary>
   );
 }
