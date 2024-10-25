@@ -31,8 +31,8 @@ const WelcomeHeader = () => {
       {/* Welcome and Date/Time Section */}
       <div className="flex flex-col items-start">
         <div className="flex gap-5 items-center space-x-2">
-          <h2 className="text-xl font-semibold"> سلام پارسا، روزت بخیر 👋</h2>{" "}
-          <p className="text-gray-500 hidden dark:text-gray-50 text-xs mt-1">
+          <h2 className="text-xl font-semibold "> سلام پارسا، روزت بخیر 👋</h2>{" "}
+          <p className="text-gray-500 hidden sm:block md:hidden lg:block dark:text-gray-50 text-xs mt-1">
             امیدوارم امروز روز خوبی رو داشته باشید
           </p>
         </div>
@@ -116,7 +116,7 @@ const WelcomeHeader = () => {
             </svg>
             <div className="">
               <p>تاریخ</p>
-              <p className="font-bold text-black dark:text-white">
+              <p className="font-bold text-black w-24 dark:text-white">
                 {" "}
                 {formatDate(currentTime)}
               </p>
@@ -126,10 +126,10 @@ const WelcomeHeader = () => {
       </div>
       {/* Bio Section */}
       <div className="flex flex-col justify-center w-96">
-        <p className="text-gray-700 hidden xl:block dark:text-gray-100 text-base">
+        <p className="text-gray-700 hidden md:block dark:text-gray-100 text-base">
           سلام ، من پارسام
         </p>
-        <p className="text-sm hidden xl:block text-gray-500 dark:text-gray-50">
+        <p className="text-sm hidden md:block text-gray-500 dark:text-gray-50">
           اینم بیو پروفایلمه واقعا نمیدونم چی بنویسم خودتون بیایید منو بشناسید
           حال ندارم بخدا خستم
         </p>

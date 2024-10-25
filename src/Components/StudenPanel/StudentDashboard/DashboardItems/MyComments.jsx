@@ -2,7 +2,7 @@ import React from "react";
 
 const MyComments = () => {
   return (
-    <div className="relative flex flex-col bg-gray-50 dark:bg-indigo-900 dark:text-white p-6 rounded-lg shadow-md w-1/3 ">
+    <div className="relative flex flex-col bg-gray-50 dark:bg-indigo-900 w-full dark:text-white p-6 rounded-lg shadow-md lg:w-1/3 ">
       <div className="flex justify-between">
         <h2 className="text-lg font-semibold">نظرات شما</h2>
         <div className="flex-row flex gap-2">

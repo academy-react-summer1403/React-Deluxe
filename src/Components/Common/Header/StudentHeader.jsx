@@ -7,7 +7,7 @@ import { StudentMenuWithToggle } from "./HeaderItems/StudentMenuToggle";
 
 const StudentHeader = () => {
   return (
-    <header className="bg-gray-950 text-white  p-3 flex items-center h-auto md:justify-between justify-center  sm:justify-evenly">
+    <header className="bg-gray-950 min-w-[395px] text-white gap-4 sm:gap-0  p-3 flex items-center h-auto md:justify-between justify-start  ">
       <div className="xl:hidden">
         <StudentMenuWithToggle />
       </div>
@@ -121,10 +121,15 @@ const StudentHeader = () => {
       </div>
 
       {/* Center Links */}
-      <nav className="hidden md:flex justify-evenly w-[500px] text-lg">
-        <Link to={"/"}>صفحه اصلی</Link>
-        <a href=""> گزارش</a>
-        <Link to={"/aboutUs"} href="">
+      <nav className="sm:flex justify-evenly sm:w-[500px] text-lg">
+        <Link className=" pr-5 " to={"/"}>
+          صفحه اصلی
+        </Link>
+        <a className="hidden sm:flex" href="">
+          {" "}
+          گزارش
+        </a>
+        <Link className="hidden sm:flex" to={"/aboutUs"} href="">
           ارتباط باما
         </Link>
       </nav>

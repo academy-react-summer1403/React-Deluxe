@@ -45,17 +45,17 @@ const MyReserves = () => {
           </div>
         </Link>
       </div>
-      <ul className="flex p-2 rounded-xl text-sm text-gray-500  mx-5 dark:bg-indigo-950 dark:text-white  bg-gray-100 gap-12 justify-start">
-        <li className="hidden">#</li>
+      <ul className="flex p-2 rounded-xl text-sm text-gray-500  mx-5 dark:bg-indigo-950 dark:text-white  bg-gray-100 sm:gap-24 gap-12 justify-start">
+        <li className="hidden lg:block">#</li>
         <li className=""> نام دوره</li>
-        <li className="hidden">مدرس</li>
-        <li className="mr-6">وضعیت</li>
+        <li className="hidden sm:block">مدرس</li>
+        <li className="mr-8">وضعیت</li>
       </ul>
       <div className="mt-4 mx-5 space-y-4">
         {ReserveData.map((Reserve, index) => (
           <div
             key={index}
-            className="  flex flex-row  relative  items-center rounded-3xl justify-start gap-5    "
+            className="  flex flex-row  relative  items-center rounded-3xl justify-start gap-5 lg:gap-12   "
           >
             <div
               className={`h-12 lg:flex hidden justify-center items-center rounded-xl w-24  mb-4 ${Reserve.color}`}
@@ -63,14 +63,14 @@ const MyReserves = () => {
               <img src={Reserve.icon} alt={""} className={`size-8 `} />
             </div>
 
-            <h3 className=" text-xl dark:text-white font-semibold mb-2  truncate w-24 ">
+            <h3 className=" text-xl  dark:text-white font-semibold mb-2  truncate w-24 ">
               {Reserve.title}
             </h3>
 
-            <p className="hidden  dark:text-white text-[12px] w-56  font-bold items-center w-54 mr-3   ">
+            <p className="hidden sm:block dark:text-white text-[12px] w-40 font-bold items-center w-54 mr-3   ">
               {Reserve.teacher}
             </p>
-            <span className="px-3 py-0 text-base lg:w-40   bg-red-400 text-white rounded-full">
+            <span className="px-3 py-0 text-base lg:w-40 inline-flex justify-center   bg-red-400 text-white rounded-full">
               {Reserve.state}
             </span>
             <div className="flex flex-row gap-2">
