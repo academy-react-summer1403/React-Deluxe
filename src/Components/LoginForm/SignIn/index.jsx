@@ -29,9 +29,13 @@ const LoginPage = () => {
             onClick={() => setCurrentTab("1")}
           >
             <div
-              className={`h-1 w-full ${currentTab === "1" ? "bg-blue-500" : "bg-transparent"}`}
+              className={`h-1 w-full ${
+                currentTab === "1" ? "bg-blue-500" : "bg-transparent"
+              }`}
             />
-            <span className="mt-2 min-h-[30px] dark:text-white">وارد کردن شماره همراه</span>
+            <span className="mt-2 min-h-[30px] dark:text-white">
+              وارد کردن شماره همراه
+            </span>
           </div>
 
           <div className="w-6" />
@@ -44,18 +48,25 @@ const LoginPage = () => {
             onClick={() => setCurrentTab("2")}
           >
             <div
-              className={`h-1 w-full ${currentTab === "2" ? "bg-blue-500" : "bg-transparent"}`}
+              className={`h-1 w-full ${
+                currentTab === "2" ? "bg-blue-500" : "bg-transparent"
+              }`}
             />
-            <span className="mt-2 min-h-[30px] dark:text-white">تایید کد ارسال شده دو مرحله‌ای</span>
+            <span className="mt-2 min-h-[30px] dark:text-white">
+              تایید کد ارسال شده دو مرحله‌ای
+            </span>
           </div>
         </div>
 
         {/* Content of the tabs */}
         {currentTab === "1" && (
           <div className="w-full max-w-xs sm:max-w-md lg:max-w-lg text-center mt-14">
-            <h2 className="text-2xl font-bold text-right dark:text-white">خوش برگشتی!</h2>
+            <h2 className="text-2xl font-bold text-right dark:text-white">
+              خوش برگشتی!
+            </h2>
             <p className="text-gray-600 text-sm text-right mt-3 w-full md:w-96 dark:text-white">
-              لطفا شماره همراه یا ایمیل و رمز عبور خود را برای ورود به حساب کاربری وارد کنید.
+              لطفا شماره همراه یا ایمیل و رمز عبور خود را برای ورود به حساب
+              کاربری وارد کنید.
             </p>
             <label className="block mt-5 text-sm font-bold text-right text-gray-700  dark:text-white">
               شماره همراه یا ایمیل
@@ -75,7 +86,10 @@ const LoginPage = () => {
             <div className="flex items-center mt-2 justify-between w-full">
               <div className="flex items-center">
                 <input type="checkbox" id="rememberMe" className="mr-2" />
-                <label htmlFor="rememberMe" className="text-sm pr-1 font-bold text-black  dark:text-white">
+                <label
+                  htmlFor="rememberMe"
+                  className="text-sm pr-1 font-bold text-black  dark:text-white"
+                >
                   مرا به خاطر بسپار
                 </label>
               </div>
@@ -95,7 +109,7 @@ const LoginPage = () => {
             </button>
             <div className="mt-2 w-full font-bold">
               <p className="text-sm  dark:text-white">
-                حساب کاربری ندارید؟{" "}
+                حساب کاربری ندارید؟
                 <a
                   href="#"
                   className="text-blue-500 hover:underline font-bold text-sm"
@@ -118,7 +132,9 @@ const LoginPage = () => {
 
         {currentTab === "2" && (
           <div className="w-full max-w-xs sm:max-w-md lg:max-w-lg text-center mt-14">
-            <h2 className="text-2xl font-bold text-right  dark:text-white">تایید کد دو مرحله‌ای!</h2>
+            <h2 className="text-2xl font-bold text-right  dark:text-white">
+              تایید کد دو مرحله‌ای!
+            </h2>
             <p className="text-gray-600 text-sm mt-3  text-right  dark:text-white">
               کد دو مرحله‌ای به شماره همراه شما ارسال شد. لطفا کد را وارد کنید.
             </p>
@@ -129,9 +145,7 @@ const LoginPage = () => {
               className="mt-4 rounded-3xl h-9 w-full bg-white text-black px-4 py-2 border border-gray-300"
               placeholder="کد دو مرحله‌ای خود را وارد کنید"
             />
-            <button
-              className="mt-4 flex items-center justify-center text-center h-10 bg-blue-500 text-white rounded-3xl w-full font-bold  dark:text-white"
-            >
+            <button className="mt-4 flex items-center justify-center text-center h-10 bg-blue-500 text-white rounded-3xl w-full font-bold  dark:text-white">
               ورود به حساب
             </button>
             <button
@@ -143,7 +157,6 @@ const LoginPage = () => {
           </div>
         )}
       </div>
-
 
       <div className="hidden md:flex w-full lg:w-1/2">
         <LoginPanel className="mt-0" />
