@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getItem } from "../common/storage";
 
 const baseURL = import.meta.env.VITE_BASE_URL;
 
@@ -23,7 +24,9 @@ const onError = (err) => {
 instance.interceptors.response.use(onSuccess, onError);
 
 instance.interceptors.request.use((opt) => {
-  // token
+  const token = getItem("token");
+
+  if (token) opt.headers.Authorization = "Bearer " + token;
   // opt.headers["Test-Header-Key"] = "This key will be sent alongside other header keys";
   return opt;
 });

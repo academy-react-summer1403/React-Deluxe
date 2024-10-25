@@ -1,4 +1,4 @@
-import { getItem } from "../../common/storage";
+import { getItem, removeItem } from "../../common/storage";
 import http from "../../interceptor";
 
 export const RegisterApi = async ({ gmail, password }) => {
@@ -12,6 +12,7 @@ export const RegisterApi = async ({ gmail, password }) => {
       gmail: gmail,
       phoneNumber: phoneNumber,
     });
+    // removeItem("phoneNumber");
   } catch (error) {
     console.log(error);
     return error;
