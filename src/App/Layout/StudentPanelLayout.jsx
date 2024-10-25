@@ -9,7 +9,7 @@ const StudentPanelLayout = () => {
       <div>
         <StudentMenu />
       </div>
-      <div className="flex-col p-0 flex w-[1040px]">
+      <div className="flex-col p-0 flex ">
         <div>
           <StudentHeader />
         </div>

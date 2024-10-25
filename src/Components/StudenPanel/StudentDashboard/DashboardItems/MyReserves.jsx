@@ -18,7 +18,7 @@ const ReserveData = [
 
 const MyReserves = () => {
   return (
-    <div className="bg-gray-50 dark:bg-indigo-900 pb-60 dark:text-white shadow-lg  p-2 rounded-3xl  w-2/3 flex-1">
+    <div className="bg-gray-50 dark:bg-indigo-900 pb-60 dark:text-white shadow-lg  p-2 rounded-3xl  lg:w-2/3 ">
       <div className="flex flex-row px-4 justify-between">
         <h2 className="text-base font-semibold">رزرو من</h2>
         <Link to={"/MyReserve"}>
@@ -45,20 +45,20 @@ const MyReserves = () => {
           </div>
         </Link>
       </div>
-      <ul className="flex p-2 rounded-xl text-sm text-gray-500  mx-5 dark:bg-indigo-950 dark:text-white  bg-gray-100 gap-24 justify-start">
-        <li>#</li>
-        <li> نام دوره</li>
-        <li className="">مدرس</li>
+      <ul className="flex p-2 rounded-xl text-sm text-gray-500  mx-5 dark:bg-indigo-950 dark:text-white  bg-gray-100 gap-12 justify-start">
+        <li className="hidden">#</li>
+        <li className=""> نام دوره</li>
+        <li className="hidden">مدرس</li>
         <li className="mr-6">وضعیت</li>
       </ul>
       <div className="mt-4 mx-5 space-y-4">
         {ReserveData.map((Reserve, index) => (
           <div
             key={index}
-            className="  flex flex-row  relative  items-center rounded-3xl justify-start gap-16    "
+            className="  flex flex-row  relative  items-center rounded-3xl justify-start gap-5    "
           >
             <div
-              className={`h-12 flex justify-center items-center rounded-xl w-24  mb-4 ${Reserve.color}`}
+              className={`h-12 lg:flex hidden justify-center items-center rounded-xl w-24  mb-4 ${Reserve.color}`}
             >
               <img src={Reserve.icon} alt={""} className={`size-8 `} />
             </div>
@@ -67,10 +67,10 @@ const MyReserves = () => {
               {Reserve.title}
             </h3>
 
-            <p className="  dark:text-white text-[12px] w-56  font-bold items-center w-54 mr-3   ">
+            <p className="hidden  dark:text-white text-[12px] w-56  font-bold items-center w-54 mr-3   ">
               {Reserve.teacher}
             </p>
-            <span className="px-3 py-0 text-base w-40   bg-red-400 text-white rounded-full">
+            <span className="px-3 py-0 text-base lg:w-40   bg-red-400 text-white rounded-full">
               {Reserve.state}
             </span>
             <div className="flex flex-row gap-2">

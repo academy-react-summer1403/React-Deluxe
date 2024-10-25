@@ -8,7 +8,7 @@ const WelcomeHeader = () => {
       setCurrentTime(new Date());
     }, 1000);
 
-    return () => clearInterval(timer); // Cleanup on component unmount
+    return () => clearInterval(timer);
   }, []);
 
   const formatTime = (date) => {
@@ -27,12 +27,12 @@ const WelcomeHeader = () => {
   };
 
   return (
-    <div className="flex justify-between items-start p-2 dark:bg-indigo-900 bg-white dark:text-white rounded-xl ">
+    <div className="flex justify-between items-start p-2  dark:bg-indigo-900 bg-white dark:text-white rounded-xl ">
       {/* Welcome and Date/Time Section */}
       <div className="flex flex-col items-start">
         <div className="flex gap-5 items-center space-x-2">
           <h2 className="text-xl font-semibold"> سلام پارسا، روزت بخیر 👋</h2>{" "}
-          <p className="text-gray-500 dark:text-gray-50 text-xs mt-1">
+          <p className="text-gray-500 hidden dark:text-gray-50 text-xs mt-1">
             امیدوارم امروز روز خوبی رو داشته باشید
           </p>
         </div>
@@ -126,10 +126,10 @@ const WelcomeHeader = () => {
       </div>
       {/* Bio Section */}
       <div className="flex flex-col justify-center w-96">
-        <p className="text-gray-700 dark:text-gray-100 text-base">
+        <p className="text-gray-700 hidden xl:block dark:text-gray-100 text-base">
           سلام ، من پارسام
         </p>
-        <p className="text-sm text-gray-500 dark:text-gray-50">
+        <p className="text-sm hidden xl:block text-gray-500 dark:text-gray-50">
           اینم بیو پروفایلمه واقعا نمیدونم چی بنویسم خودتون بیایید منو بشناسید
           حال ندارم بخدا خستم
         </p>

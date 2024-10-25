@@ -27,7 +27,7 @@ const MyComments = () => {
       </div>
       <div className="absolute  top-[68px]  w-64 h-1 bg-gray-300 overflow-hidden"></div>
       <div className="flex justify-center">
-        <div className=" items-center px-2 z-10 w-32 bg-gray-100 dark:bg-indigo-900 dark:text-white">
+        <div className=" items-center px-2 z-10 w-32 bg-gray-50 dark:bg-indigo-900 dark:text-white">
           دوره‌ها و بلاگ ها
         </div>
       </div>

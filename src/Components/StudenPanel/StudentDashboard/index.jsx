@@ -7,10 +7,10 @@ import { UserProgress } from "./DashboardItems/Progress";
 
 const index = () => {
   return (
-    <div className="bg-white     flex-1 dark:bg-indigo-950 p-3 space-y-8 rounded-3xl ">
+    <div className="bg-white flex-shrink   xl:mr-0 mx-2.5   dark:bg-indigo-950 p-3 space-y-8 rounded-3xl ">
       <WelcomeHeader />
 
-      <div className="flex flex-col lg:flex-row justify-between space-y-8 gap-4 lg:space-y-0">
+      <div className="flex flex-row justify-between space-y-8 gap-4 lg:space-y-0">
         <MyCourses />
         <UserProgress />
       </div>

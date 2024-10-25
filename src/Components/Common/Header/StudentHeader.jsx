@@ -1,13 +1,16 @@
 import React from "react";
 import { HiOutlineBell } from "react-icons/hi2";
-import { BsMoon } from "react-icons/bs";
 
 import DarkModeToggle from "../DarkMode";
 import { Link } from "react-router-dom";
+import { StudentMenuWithToggle } from "./HeaderItems/StudentMenuToggle";
 
 const StudentHeader = () => {
   return (
-    <header className="bg-gray-950 text-white  p-3 flex items-center h-auto justify-between">
+    <header className="bg-gray-950 text-white  p-3 flex items-center h-auto md:justify-between justify-center  sm:justify-evenly">
+      <div className="xl:hidden">
+        <StudentMenuWithToggle />
+      </div>
       {/* User Profile */}
       <div className="flex items-center ">
         <svg
@@ -126,12 +129,12 @@ const StudentHeader = () => {
         </Link>
       </nav>
 
-      <div className="flex gap-2 pl-8">
+      <div className="hidden lg:flex gap-2 pl-8">
         {/* Left Icons (Dark Mode and Notifications) */}
         <div className="flex items-center  space-x-4">
           {/* Notification Bell */}
-          <div className="relative">
-            <button className="bg-gray-700 p-2 rounded-full hover:bg-gray-600">
+          <div className="relative hidden sm:block">
+            <button className="bg-gray-700  p-2 rounded-full hover:bg-gray-600">
               <HiOutlineBell className="text-xl font-bold text-white" />
             </button>
             {/* Notification Badge */}
