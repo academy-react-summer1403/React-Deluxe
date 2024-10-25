@@ -66,7 +66,7 @@ const ForgotPassword = ({ onBack }) => {
         {currentTab === "1" && (
           <div className="w-full max-w-lg text-center mt-14">
             <h2 className="text-xl sm:text-xl md:text-xl lg:text-2xl xl:text-2xl 2xl:text-4xl font-bold mb-2 text-right dark:text-white">
-              فراموشی رمزعبور!
+              فراموشی رمزعبور!🔐
             </h2>
             <p className="text-sm sm:text-sm md:text-sm lg:text-sm xl:text-base 2xl:text-lg mb-6 mt-8 w-80 sm:w-72 md:w-80 lg:w-96 xl:w-[400px] 2xl:w-[500px] text-right text-gray-500 dark:text-white ">
               اگر رمزعبور خود را فراموش کرده‌اید، ایمیل خود را وارد کنید تا لینک
