@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getItem } from "../common/storage";
+import { clearStorage, getItem } from "../common/storage";
 
 const baseURL = import.meta.env.VITE_BASE_URL;
 
@@ -18,6 +18,11 @@ const onError = (err) => {
   //   alert("Client error: " + err.response.status);
   // }
 
+  if (err.response.status === 401) {
+    removeItem("token");
+    window.location.pathname = "/auth/SignIn";
+  }
+
   return Promise.reject(err);
 };
 
@@ -25,6 +30,12 @@ instance.interceptors.response.use(onSuccess, onError);
 
 instance.interceptors.request.use((opt) => {
   const token = getItem("token");
+  if (token === "undefined") {
+    removeItem("token");
+  }
+  if (token === null) {
+    removeItem("token");
+  }
 
   if (token) opt.headers.Authorization = "Bearer " + token;
   // opt.headers["Test-Header-Key"] = "This key will be sent alongside other header keys";
