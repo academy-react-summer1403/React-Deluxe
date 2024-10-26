@@ -12,7 +12,7 @@ const index = () => {
   };
 
   return (
-    <div className="bg-gray-950 px-5  pb-11  h-full w-[1040px]   ">
+    <div className="bg-gray-950 px-5  pb-11  h-full">
       <div className="bg-white dark:bg-indigo-950 dark:text-white rounded-3xl py-10 px-3">
         <div className="flex">
           <div className="w-[200px]    ml-5 p-4">
