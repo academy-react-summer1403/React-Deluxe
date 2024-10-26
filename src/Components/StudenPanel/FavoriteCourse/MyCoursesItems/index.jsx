@@ -77,12 +77,12 @@ const index = () => {
     <div className="bg-gray-50 dark:bg-indigo-900 flex flex-col gap-24 p-2 rounded-3xl    ">
       <div>
         <ul className="flex p-2 rounded-xl text-sm text-gray-500  m-5 dark:bg-indigo-950 dark:text-white  bg-gray-100 gap-24 justify-start">
-          <li>#</li>
+          <li className="hidden md:block ">#</li>
           <li> نام دوره</li>
-          <li className="w-[50px]">مدرس</li>
+          <li className="w-[50px] hidden sm:block">مدرس</li>
           <li className="mr-2">تاریخ برگزاری</li>
-          <li className="mr-2">تاریخ اتمام</li>
-          <li>سطح</li>
+          <li className="mr-2 hidden lg:block">تاریخ اتمام</li>
+          <li className="hidden sm:block">سطح</li>
         </ul>
         <div className="mt-4 mx-5 space-y-4">
           {coursesData.map((course, index) => (
@@ -91,14 +91,14 @@ const index = () => {
               className="  flex flex-row  relative  items-center rounded-3xl justify-start gap-8    "
             >
               <div
-                className={`h-12 flex justify-center items-center rounded-xl w-20  mb-4 ${course.color}`}
+                className={`h-12 hidden md:flex justify-center items-center rounded-xl w-20  mb-4 ${course.color}`}
               >
                 <img src={course.icon} alt={""} className={`size-8 `} />
               </div>
               <h3 className=" text-xl dark:text-white font-semibold mb-2  truncate w-[111px]">
                 {course.title}
               </h3>
-              <p className="  dark:text-white text-[12px]  font-bold items-center w-[125px]  ">
+              <p className="  dark:text-white hidden sm:block text-[12px]  font-bold items-center w-[125px]  ">
                 {course.teacher}
               </p>
               <span
@@ -107,11 +107,11 @@ const index = () => {
                 {course.date}
               </span>
               <span
-                className={`inline-flex items-center w-[125px] dark:text-white `}
+                className={`hidden lg:inline-flex items-center w-[125px] dark:text-white `}
               >
                 {course.enddate}
               </span>
-              <span className="px-3 py-0 text-base     bg-[#FF37F5] text-white rounded-full">
+              <span className="px-3 py-0 text-base  hidden sm:block   bg-[#FF37F5] text-white rounded-full">
                 {course.tag2}
               </span>{" "}
               <div className="flex gap-2">

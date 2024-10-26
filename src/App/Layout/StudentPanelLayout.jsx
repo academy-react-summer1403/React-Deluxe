@@ -5,7 +5,7 @@ import { StudentMenu } from "../../Components/Common/StudentMenu/StudentMenu";
 
 const StudentPanelLayout = () => {
   return (
-    <div className="flex justify-center h-[994px]  dark:bg-indigo-950">
+    <div className="flex justify-center h-[994px] xl:px-[250px]  dark:bg-indigo-950">
       <div className="w-1/4 hidden xl:block">
         <StudentMenu />
       </div>
@@ -13,7 +13,7 @@ const StudentPanelLayout = () => {
         <div>
           <StudentHeader />
         </div>
-        <div>
+        <div className="">
           <Outlet />
         </div>
       </div>

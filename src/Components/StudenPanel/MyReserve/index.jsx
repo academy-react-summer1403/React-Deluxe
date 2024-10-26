@@ -81,12 +81,12 @@ const index = () => {
               </div>
               <DateRangePicker />
             </div>
-            <div className="py-2">ترتیب</div>
-            <div className="border-red-600 border text-red-600 rounded-3xl px-4 py-2 flex gap-2 items-center ">
+            <div className="py-2 hidden sm:block">ترتیب</div>
+            <div className="border-red-600 border text-red-600 justify-center rounded-3xl px-4 py-2 hidden sm:flex gap-2 items-center ">
               <RxCross1 className="text-red-500" />
               تایید شده
             </div>
-            <div className="border-gray-700 border rounded-3xl px-4 py-2 flex items-center">
+            <div className="border-gray-700 border rounded-3xl px-4 py-2 hidden sm:flex justify-center items-center">
               تایید نشده
             </div>
           </div>
