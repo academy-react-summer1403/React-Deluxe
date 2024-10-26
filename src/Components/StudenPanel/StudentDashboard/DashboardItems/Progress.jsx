@@ -5,7 +5,7 @@ const UserProgress = ({ percentage }) => {
   const progress = percentage || 75;
 
   return (
-    <div className="flex flex-col  justify-center w-72 h-72 bg-gray-50 shadow-md dark:bg-indigo-900 dark:text-white rounded-3xl px-4 ">
+    <div className="lg:flex flex-col hidden  justify-center w-72 h-72  bg-gray-50 shadow-md dark:bg-indigo-900 dark:text-white rounded-3xl px-4 ">
       <div className="flex-row flex justify-between gap-1">
         <p className="text-sm ">وضعیت اطلاعات حساب کاربری</p>
         <Link to={"/myprofile"}>

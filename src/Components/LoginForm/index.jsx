@@ -90,7 +90,7 @@ const LoginPage = () => {
         {currentTab === "1" && (
           <div className="w-full max-w-xs sm:max-w-md lg:max-w-lg text-center mt-14">
             <h2 className="text-3xl font-bold text-right dark:text-white">
-              خوش برگشتی!
+              خوش برگشتی! 👋
             </h2>
             <p className="text-gray-600 text-lg text-right mt-5 w-full md:w-96 dark:text-white">
               لطفا شماره همراه یا ایمیل و رمز عبور خود را برای ورود به حساب
