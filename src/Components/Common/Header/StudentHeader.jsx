@@ -1,13 +1,16 @@
 import React from "react";
 import { HiOutlineBell } from "react-icons/hi2";
-import { BsMoon } from "react-icons/bs";
 
 import DarkModeToggle from "../DarkMode";
 import { Link } from "react-router-dom";
+import { StudentMenuWithToggle } from "./HeaderItems/StudentMenuToggle";
 
 const StudentHeader = () => {
   return (
-    <header className="bg-gray-950 text-white  p-3 flex items-center h-auto justify-between">
+    <header className="bg-gray-950 min-w-[395px] text-white gap-4 sm:gap-0  p-3 flex items-center h-auto md:justify-between justify-start  ">
+      <div className="xl:hidden">
+        <StudentMenuWithToggle />
+      </div>
       {/* User Profile */}
       <div className="flex items-center ">
         <svg
@@ -118,20 +121,25 @@ const StudentHeader = () => {
       </div>
 
       {/* Center Links */}
-      <nav className="hidden md:flex justify-evenly w-[500px] text-lg">
-        <Link to={"/"}>صفحه اصلی</Link>
-        <a href=""> گزارش</a>
-        <Link to={"/aboutUs"} href="">
+      <nav className="sm:flex justify-evenly sm:w-[500px] text-lg">
+        <Link className=" pr-5 " to={"/"}>
+          صفحه اصلی
+        </Link>
+        <a className="hidden sm:flex" href="">
+          {" "}
+          گزارش
+        </a>
+        <Link className="hidden sm:flex" to={"/aboutUs"} href="">
           ارتباط باما
         </Link>
       </nav>
 
-      <div className="flex gap-2 pl-8">
+      <div className="hidden lg:flex gap-2 pl-8">
         {/* Left Icons (Dark Mode and Notifications) */}
         <div className="flex items-center  space-x-4">
           {/* Notification Bell */}
-          <div className="relative">
-            <button className="bg-gray-700 p-2 rounded-full hover:bg-gray-600">
+          <div className="relative hidden sm:block">
+            <button className="bg-gray-700  p-2 rounded-full hover:bg-gray-600">
               <HiOutlineBell className="text-xl font-bold text-white" />
             </button>
             {/* Notification Badge */}

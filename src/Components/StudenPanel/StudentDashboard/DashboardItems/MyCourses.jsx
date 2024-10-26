@@ -26,7 +26,7 @@ const coursesData = [
 
 const MyCourses = () => {
   return (
-    <div className="bg-gray-50 dark:bg-indigo-900 dark:text-white shadow-md p-2 rounded-3xl  w-4/5 flex-1">
+    <div className="bg-gray-50 dark:bg-indigo-900 dark:text-white shadow-md p-2 rounded-3xl w-full  lg:w-4/5 ">
       <div className="flex flex-row px-4 justify-between">
         <h2 className="text-base font-semibold">دوره من</h2>
         <Link to={"/MyCourse"}>
@@ -54,11 +54,11 @@ const MyCourses = () => {
         </Link>
       </div>
       <ul className="flex p-2 rounded-xl text-xm text-gray-500  mx-5 dark:bg-indigo-950 dark:text-white  bg-gray-100 gap-24 justify-start">
-        <li>#</li>
+        <li className="hidden lg:block">#</li>
         <li> نام دوره</li>
-        <li className="w-[50px]">مدرس</li>
-        <li className="mr-2">تاریخ برگزاری</li>
-        <li>سطح</li>
+        <li className="w-[50px] hidden sm:block">مدرس</li>
+        <li className="mr-2 ">تاریخ برگزاری</li>
+        <li className="hidden  md:block">سطح</li>
       </ul>
       <div className="mt-4 mx-5 space-y-4">
         {coursesData.map((course, index) => (
@@ -67,7 +67,7 @@ const MyCourses = () => {
             className="  flex flex-row  relative  items-center rounded-3xl justify-start gap-10    "
           >
             <div
-              className={`h-12 flex justify-center items-center rounded-xl w-16  mb-4 ${course.color}`}
+              className={`h-12 hidden lg:flex justify-center items-center rounded-xl w-16  mb-4 ${course.color}`}
             >
               <img src={course.icon} alt={""} className={`size-8 `} />
             </div>
@@ -76,7 +76,7 @@ const MyCourses = () => {
               {course.title}
             </h3>
 
-            <p className="  dark:text-white text-[11px] inline-flex  font-bold items-center w-[125px]  ">
+            <p className="  dark:text-white hidden sm:block text-[11px] lg:inline-flex  font-bold items-center w-[125px]  ">
               {course.teacher}
             </p>
             <span
@@ -84,7 +84,7 @@ const MyCourses = () => {
             >
               {course.date}
             </span>
-            <span className="px-2 py-0 text-base   bg-[#FF37F5] text-white rounded-full">
+            <span className="px-2 py-0 text-base  hidden md:block bg-[#FF37F5] text-white rounded-full">
               {course.tag2}
             </span>
             <BsEye className="text-base dark:text-white" />

@@ -5,7 +5,7 @@ import { DateRangePicker } from "./MyCoursesItems/DateRange";
 
 const index = () => {
   return (
-    <div className="container  h-[921px]  bg-gray-950 ">
+    <div className="container  h-[921px]  bg-gray-950 w-[1040px]">
       <div className="bg-white dark:bg-indigo-950 p-8 mx-5 dark:text-white space-y-8 rounded-3xl ">
         <h2>بلاگ های موردعلاقه</h2>
         <div className="flex flex-col">
