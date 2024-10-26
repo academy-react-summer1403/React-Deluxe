@@ -45,7 +45,7 @@ const MyReserves = () => {
           </div>
         </Link>
       </div>
-      <ul className="flex p-2 rounded-xl text-sm text-gray-500  mx-5 dark:bg-indigo-950 dark:text-white  bg-gray-100 sm:gap-24 gap-12 justify-start">
+      <ul className="flex p-2 rounded-xl text-sm text-gray-500  mx-5 dark:bg-indigo-950 dark:text-white  bg-gray-100 xl:gap-32 sm:gap-24 gap-12 justify-start">
         <li className="hidden lg:block">#</li>
         <li className=""> نام دوره</li>
         <li className="hidden sm:block">مدرس</li>
