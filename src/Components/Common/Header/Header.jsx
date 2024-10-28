@@ -156,8 +156,11 @@ const Header = () => {
               </div>
             </Link>
           </div>
-          <div className="items-center hidden lg:flex size-11 justify-center border-solid border-black bg-slate-100 rounded-full">
+          <div className="items-center relative hidden lg:flex size-11 justify-center border-solid dark:bg-white border border-gray-300 rounded-full">
             <PiBellThin />
+            <span className="absolute bottom-0 right-0 text-xs bg-red-500 text-white rounded-full px-1">
+              ۲
+            </span>
           </div>
           <div className="hidden items-center lg:flex size-11 justify-center bg-black  dark:bg-white text-white dark:text-black rounded-full">
             <DarkModeToggle />
