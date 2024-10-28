@@ -71,6 +71,10 @@ export const commonRoutes = createBrowserRouter([
         path: "/auth/forgetPass",
         element: <ForgetPass />,
       },
+      {
+        path: "/auth/forgetPass/:ConfigValue",
+        element: <ForgetPass />,
+      },
     ],
   },
   {
