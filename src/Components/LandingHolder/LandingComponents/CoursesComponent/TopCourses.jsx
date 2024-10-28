@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { CoursesCarsoual, CoursesItems } from "./CoursesItems/Courses";
+import { CoursesCarsoual , CoursesItems } from "./CoursesItems/Courses";
 
 const TopCourses = () => {
   return (
