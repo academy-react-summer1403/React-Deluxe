@@ -10,7 +10,7 @@ import { Footer } from "../Common/Footer";
 
 const LandingHolder = () => {
   return (
-    <div className=" relative dark:bg-indigo-950">
+    <div className=" relative dark:bg-[#041124]">
       {/* <Header /> */}
       <HeroSection />
       <GoalsSection />

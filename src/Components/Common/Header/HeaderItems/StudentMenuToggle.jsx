@@ -20,7 +20,7 @@ const StudentMenuWithToggle = () => {
       {/* Button to toggle menu */}
       <button
         onClick={toggleMenu}
-        className="dark:text-black text-white p-3 rounded-full "
+        className="dark:text-black dark:bg-white text-white p-3 rounded-full "
       >
         <FiMenu />
       </button>

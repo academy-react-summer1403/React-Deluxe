@@ -114,9 +114,9 @@ const StudentHeader = () => {
           </defs>
         </svg>
 
-        <div className="text-right flex flex-col  items-center pr-4">
-          <div className="text-sm font-semibold">پارسا آقایی</div>
-          <div className="text-sm text-gray-300">دانشجو</div>
+        <div className="text-right flex flex-col  items-start pr-4">
+          <div className="text-sm font-semibold">سید عظیم حسینی</div>
+          <div className="text-sm  text-gray-300">دانشجو</div>
         </div>
       </div>
 
@@ -139,8 +139,8 @@ const StudentHeader = () => {
         <div className="flex items-center  space-x-4">
           {/* Notification Bell */}
           <div className="relative hidden sm:block">
-            <button className="bg-gray-700  p-2 rounded-full hover:bg-gray-600">
-              <HiOutlineBell className="text-xl font-bold text-white" />
+            <button className="bg-gray-700 dark:text-black dark:bg-white  p-2 rounded-full hover:bg-gray-600">
+              <HiOutlineBell className="text-xl font-bold dark:text-black  text-white" />
             </button>
             {/* Notification Badge */}
             <span className="absolute bottom-0 right-0 text-xs bg-red-500 text-white rounded-full px-1">

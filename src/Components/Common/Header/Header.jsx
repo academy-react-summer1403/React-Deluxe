@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <header className="bg-white dark:bg-indigo-950  p-4 ">
+    <header className="bg-white dark:bg-[#041124]  p-4 ">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center space-x-4">
           <img
@@ -156,8 +156,11 @@ const Header = () => {
               </div>
             </Link>
           </div>
-          <div className="items-center hidden lg:flex size-11 justify-center border-solid border-black bg-slate-100 rounded-full">
+          <div className="items-center relative hidden lg:flex size-11 justify-center border-solid dark:bg-white border border-gray-300 rounded-full">
             <PiBellThin />
+            <span className="absolute bottom-0 right-0 text-xs bg-red-500 text-white rounded-full px-1">
+              ۲
+            </span>
           </div>
           <div className="hidden items-center lg:flex size-11 justify-center bg-black  dark:bg-white text-white dark:text-black rounded-full">
             <DarkModeToggle />

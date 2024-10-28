@@ -41,7 +41,7 @@ const CourseDesc = () => {
   const { pathname } = useLocation();
 
   return (
-    <div className="p-6 mb-6 bg-white rounded-lg dark:bg-indigo-950">
+    <div className="p-6 mb-6 bg-white rounded-lg dark:bg-[#041124]">
       <h3 className="mb-4 text-xl font-bold text-gray-500 dark:text-gray-300">
         توضیحات دوره
       </h3>

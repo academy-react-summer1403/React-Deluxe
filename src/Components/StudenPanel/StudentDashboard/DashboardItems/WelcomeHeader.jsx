@@ -27,11 +27,11 @@ const WelcomeHeader = () => {
   };
 
   return (
-    <div className="flex justify-between items-start p-2  dark:bg-indigo-900 bg-white dark:text-white rounded-xl ">
+    <div className="flex justify-between items-start p-2  dark:bg-indigo-950 bg-white dark:text-white rounded-xl ">
       {/* Welcome and Date/Time Section */}
       <div className="flex flex-col items-start">
         <div className="flex gap-5 items-center space-x-2">
-          <h2 className="text-xl font-semibold "> سلام پارسا، روزت بخیر 👋</h2>{" "}
+          <h2 className="text-xl font-semibold "> سلام عظیم، روزت بخیر 👋</h2>{" "}
           <p className="text-gray-500 hidden sm:block md:hidden lg:block dark:text-gray-50 text-xs mt-1">
             امیدوارم امروز روز خوبی رو داشته باشید
           </p>
@@ -127,7 +127,7 @@ const WelcomeHeader = () => {
       {/* Bio Section */}
       <div className="flex flex-col justify-center w-96">
         <p className="text-gray-700 hidden md:block dark:text-gray-100 text-base">
-          سلام ، من پارسام
+          سلام ، من عظیمم
         </p>
         <p className="text-sm hidden md:block text-gray-500 dark:text-gray-50">
           اینم بیو پروفایلمه واقعا نمیدونم چی بنویسم خودتون بیایید منو بشناسید
