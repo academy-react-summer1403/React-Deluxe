@@ -85,7 +85,7 @@ const ForgotPassword = () => {
   }, []);
 
   return (
-    <div className="flex flex-col md:flex-row h-screen justify-center items-start bg-white  dark:bg-indigo-950">
+    <div className="flex flex-col md:flex-row h-screen justify-center items-start bg-white  dark:bg-[#041124]">
       <div className="w-full sm:w-full md:w-2/3 lg:w-1/2 xl:w-1/2 2xl:w-1/2 flex flex-col justify-center items-center p-11 sm:p-5 md:p-10 lg:p-12 xl:p-14 2xl:p-16 text-black mt-9">
         {/* Tabs */}
         <div className="flex flex-col md:flex-row justify-between w-full max-w-lg mb-4">

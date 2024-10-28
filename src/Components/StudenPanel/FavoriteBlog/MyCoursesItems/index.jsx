@@ -2,6 +2,7 @@ import { ConfigProvider, Pagination } from "antd";
 import React from "react";
 import { BsEye } from "react-icons/bs";
 import { RxCross1 } from "react-icons/rx";
+import { Link } from "react-router-dom";
 const coursesData = [
   {
     title: " فیگما",
@@ -73,9 +74,9 @@ const coursesData = [
 
 const index = () => {
   return (
-    <div className="bg-gray-50 dark:bg-indigo-900 flex flex-col gap-24 p-2 rounded-3xl    ">
+    <div className="bg-gray-50 dark:bg-indigo-950 flex flex-col gap-24 p-2 rounded-3xl    ">
       <div>
-        <ul className="flex p-2 rounded-xl text-sm text-gray-500  m-5 dark:bg-indigo-950 dark:text-white  bg-gray-100 gap-24 justify-start">
+        <ul className="flex p-2 rounded-xl text-sm text-gray-500  m-5 dark:bg-[#041124] dark:text-white  bg-gray-100 gap-24 justify-start">
           <li className="hidden md:block ">#</li>
           <li> نام دوره</li>
           <li className="w-[50px] hidden sm:block">مدرس</li>
@@ -114,7 +115,9 @@ const index = () => {
                 {course.tag2}
               </span>{" "}
               <div className="flex gap-2">
-                <BsEye className="text-base" />
+                <Link to={"/blogDetails"}>
+                  <BsEye className="text-base" />
+                </Link>
 
                 <RxCross1 className="text-red-500" />
               </div>

@@ -88,7 +88,7 @@ const CourseInfo = () => {
     <>
       <div
         dir="rtl"
-        className="flex flex-col p-6 bg-white rounded-lg dark:bg-indigo-950 lg:flex-row"
+        className="flex flex-col p-6 bg-white rounded-lg dark:bg-[#041124] lg:flex-row"
       >
         {/* Right Section: Course Image */}
         <div className="flex justify-center h-[27rem] order-last mt-10 lg:mt-0 lg:order-none lg:w-1/2 lg:h-[27rem] bg-[#FF6C6C] dark:bg-indigo-800 rounded-[1.8rem]">
@@ -108,7 +108,7 @@ const CourseInfo = () => {
 
           {/* 2nd Row: Course Info Section */}
           <div className="flex flex-wrap justify-between mb-4 text-center lg:text-right">
-            <div className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-r-3xl lg:basis-[50%] xl:basis-[50%] border lg:border-0 lg:border-t lg:border-r lg:border-b border-slate-200 bg-slate-100 dark:border-gray-500 overflow-hidden dark:bg-indigo-900">
+            <div className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-r-3xl lg:basis-[50%] xl:basis-[50%] border lg:border-0 lg:border-t lg:border-r lg:border-b border-slate-200 bg-slate-100 dark:border-gray-500 overflow-hidden dark:bg-indigo-950">
               {infoBlock1Data.map((item, index) => (
                 <InfoBlock
                   key={index}
@@ -120,7 +120,7 @@ const CourseInfo = () => {
                 />
               ))}
             </div>
-            <div className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-l-3xl lg:basis-[50%] xl:basis-[50%] border border-slate-200 bg-slate-100 dark:border-gray-500 overflow-hidden dark:bg-indigo-900">
+            <div className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-l-3xl lg:basis-[50%] xl:basis-[50%] border border-slate-200 bg-slate-100 dark:border-gray-500 overflow-hidden dark:bg-indigo-950">
               {infoBlock2Data.map((item, index) => (
                 <InfoBlock
                   key={index}
@@ -134,7 +134,7 @@ const CourseInfo = () => {
             </div>
 
             {/* 3rd Row: Additional Info Section */}
-            <div className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-r-3xl lg:basis-[50%] border lg:border-0 lg:border-t lg:border-r lg:border-b border-slate-200 bg-slate-100 dark:border-gray-500 overflow-hidden dark:bg-indigo-900">
+            <div className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-r-3xl lg:basis-[50%] border lg:border-0 lg:border-t lg:border-r lg:border-b border-slate-200 bg-slate-100 dark:border-gray-500 overflow-hidden dark:bg-indigo-950">
               {infoBlock3Data.map((item, index) => (
                 <InfoBlock
                   key={index}
@@ -146,7 +146,7 @@ const CourseInfo = () => {
                 />
               ))}
             </div>
-            <div className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-l-3xl lg:basis-[50%] border border-slate-200 bg-slate-100 dark:border-gray-500 overflow-hidden dark:bg-indigo-900">
+            <div className="basis-full flex flex-wrap justify-between mb-4 rounded-3xl lg:rounded-none lg:rounded-l-3xl lg:basis-[50%] border border-slate-200 bg-slate-100 dark:border-gray-500 overflow-hidden dark:bg-indigo-950">
               {infoBlock4Data.map((item, index) => (
                 <InfoBlock
                   key={index}
@@ -192,14 +192,14 @@ const CourseInfo = () => {
               <button className="bg-[#3772ff] dark:bg-indigo-800 text-white w-12 h-12 rounded-full flex justify-center items-center">
                 <AiOutlineLike className="size-5" />
               </button>
-              <button className="bg-white dark:bg-indigo-950 text-[#1B1B1B] dark:text-white border border-gray-200 dark:border-gray-600 w-12 h-12 rounded-full flex justify-center items-center">
+              <button className="bg-white dark:bg-[#041124] text-[#1B1B1B] dark:text-white border border-gray-200 dark:border-gray-600 w-12 h-12 rounded-full flex justify-center items-center">
                 <AiOutlineDislike className="size-5" />
               </button>
             </div>
           </div>
         </div>
       </div>
-      <div className="fixed bottom-0 right-auto z-10 flex items-center justify-evenly w-full h-20 bg-white lg:hidden dark:bg-indigo-950">
+      <div className="fixed bottom-0 right-auto z-10 flex items-center justify-evenly w-full h-20 bg-white lg:hidden dark:bg-[#041124]">
         <button className="bg-[#3772FF] dark:bg-indigo-800 text-white px-8 py-2 rounded-full mr-2 flex items-center">
           <FaBook className="mx-2" />
           رزرو دوره

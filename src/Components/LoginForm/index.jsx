@@ -45,10 +45,10 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row h-screen justify-center items-start bg-white dark:bg-indigo-950">
-      <div className="flex flex-col w-full md:w-1/2 justify-start items-center p-5 md:p-10 text-black dark:bg-indigo-950 mt-11">
+    <div className="flex flex-col md:flex-row h-screen justify-center items-start bg-white dark:bg-[#041124]">
+      <div className="flex flex-col w-full md:w-1/2 justify-start items-center p-5 md:p-10 text-black dark:bg-[#041124] mt-11">
         {/* Tabs */}
-        <div className="flex flex-col md:flex-row  justify-between w-full max-w-md mb-4 dark:bg-indigo-950">
+        <div className="flex flex-col md:flex-row  justify-between w-full max-w-md mb-4 dark:bg-[#041124]">
           <div
             className={`cursor-pointer text-center pb-1 w-full md:w-1/2 flex flex-col items-center ${
               currentTab === "1" ? "text-black font-bold" : "text-gray-400"
