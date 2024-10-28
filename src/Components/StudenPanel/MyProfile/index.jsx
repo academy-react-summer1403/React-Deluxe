@@ -12,7 +12,7 @@ const index = () => {
   };
 
   return (
-    <div className="bg-gray-950 px-5  pb-11  h-full w-[1040px]   ">
+    <div className="bg-gray-950 px-5  pb-11  h-full">
       <div className="bg-white dark:bg-indigo-950 dark:text-white rounded-3xl py-10 px-3">
         <div className="flex">
           <div className="w-[200px]    ml-5 p-4">
@@ -130,7 +130,7 @@ const index = () => {
                     />
                   </div>
                 </div>
-                <div className="flex gap-10 w-full">
+                <div className="flex flex-col md:flex-row gap-10 w-full">
                   <div className="mb-4 w-1/2 ">
                     <label className="block text-sm font-bold mb-2">
                       تاریخ تولد
@@ -236,7 +236,7 @@ const index = () => {
                   </svg>
                   اضافه کردن عکس
                 </button>
-                <div className="flex flex-cols-2 gap-2 mt-5  h-[400px]">
+                <div className="flex flex-row flex-wrap gap-2 mt-5  h-[400px]">
                   {/* تصاویر در گالری */}
                   <div className="flex flex-row w-32 h-32">
                     <img src={Pic1} className="rounded-lg shadow-md" />
