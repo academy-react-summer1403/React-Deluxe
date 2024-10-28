@@ -9,5 +9,7 @@ export const ForgetPass = async ({ email }) => {
     return res;
     // console.log("http://localhost:5173" + window.location.pathname);
     // console.log(window.location.href);
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 };
