@@ -40,11 +40,11 @@ const Services = () => {
         </h2>
 
         {/* First Row */}
-        <div className="flex flex-col md:flex-row justify-between flex-wrap gap-4 md:gap-8">
+        <div className="flex flex-col md:flex-row justify-between px-2 flex-wrap gap-4 md:gap-8">
           {servicesData.slice(0, 2).map((service, index) => (
             <div
               key={index}
-              className="flex flex-row flex-shrink-0 md:items-center   hover:bg-gradient-to-r dark:from-pink-500 dark:via-blue-500 dark:to-teal-500 from-pink-100 via-blue-100 to-teal-100 p-4 border w-full md:w-1/2 rounded-3xl bg-gray-100 dark:bg-gray-700 border-gray-300 hover:border-blue-300 flex-1"
+              className="flex flex-row flex-shrink-0 md:items-center   hover:bg-gradient-to-r dark:from-indigo-950 dark:via-blue-800 dark:to-indigo-950 from-pink-100 via-blue-100 to-teal-100 p-4 border w-full md:w-1/2 rounded-3xl bg-gray-100 dark:bg-gray-700 border-gray-300 hover:border-blue-300 flex-1"
             >
               <div
                 className={`flex-shrink-0 border size-14 ${service.border} bg-white rounded-full dark:bg-gray-200  mx-2`}
@@ -64,11 +64,11 @@ const Services = () => {
         </div>
 
         {/* Second Row */}
-        <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-8 mt-4">
+        <div className="flex flex-col md:flex-row justify-between px-2 gap-4 md:gap-8 mt-4">
           {servicesData.slice(2, 4).map((service, index) => (
             <div
               key={index}
-              className={`flex flex-row flex-shrink-0 md:items-center p-4 hover:bg-gradient-to-r dark:from-pink-500 dark:via-blue-500 dark:to-teal-500 from-pink-100 via-blue-100 to-teal-100  border w-full md:w-1/2 rounded-3xl bg-gray-100 dark:bg-gray-700 border-gray-300 hover:border-blue-300 flex-1`}
+              className={`flex flex-row flex-shrink-0 md:items-center p-4 hover:bg-gradient-to-r dark:from-indigo-950 dark:via-blue-800 dark:to-indigo-950 from-pink-100 via-blue-100 to-teal-100  border w-full md:w-1/2 rounded-3xl bg-gray-100 dark:bg-gray-700 border-gray-300 hover:border-blue-300 flex-1`}
             >
               <div
                 className={`flex-shrink-0 border size-14 ${service.border} bg-white rounded-full dark:bg-gray-200  mx-2`}

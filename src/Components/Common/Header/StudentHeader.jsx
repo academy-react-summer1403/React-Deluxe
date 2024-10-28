@@ -114,9 +114,9 @@ const StudentHeader = () => {
           </defs>
         </svg>
 
-        <div className="text-right flex flex-col  items-center pr-4">
-          <div className="text-sm font-semibold">پارسا آقایی</div>
-          <div className="text-sm text-gray-300">دانشجو</div>
+        <div className="text-right flex flex-col  items-start pr-4">
+          <div className="text-sm font-semibold">سید عظیم حسینی</div>
+          <div className="text-sm  text-gray-300">دانشجو</div>
         </div>
       </div>
 

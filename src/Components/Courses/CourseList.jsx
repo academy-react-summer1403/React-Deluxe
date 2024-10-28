@@ -233,7 +233,7 @@ const CourseList = () => {
         >
           {/* Modal Content (Slide-up effect) */}
           <div
-            className={`w-full  dark:bg-indigo-900 bg-white  rounded-t-3xl p-4 transform transition-transform duration-300 flex flex-col ${
+            className={`w-full  dark:bg-indigo-950 bg-white  rounded-t-3xl p-4 transform transition-transform duration-300 flex flex-col ${
               isAnimating ? "translate-y-0" : "translate-y-full"
             }`}
             onClick={(e) => e.stopPropagation()}
@@ -272,7 +272,7 @@ const CourseList = () => {
         {courses.map((course, index) => (
           <div
             key={index}
-            className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-900 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
+            className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-950 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
           >
             <Link to={"/courseDetails"}>
               <div

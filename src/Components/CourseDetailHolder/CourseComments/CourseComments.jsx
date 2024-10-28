@@ -51,7 +51,7 @@ const CourseComment = () => {
     likes,
     dislikes,
   }) => (
-    <div className="bg-gray-100 dark:bg-indigo-900 pt-4 px-4 rounded-3xl shadow-md mb-6 basis-full lg:basis-[24%] h-64 flex flex-col justify-between">
+    <div className="bg-gray-100 dark:bg-indigo-950 pt-4 px-4 rounded-3xl shadow-md mb-6 basis-full lg:basis-[24%] h-64 flex flex-col justify-between">
       <div>
         <p className="font-bold text-[#1B1B1B] dark:text-white mb-2">{title}</p>
         <p className="text-[#7C7C7C] dark:text-gray-300 text-sm">{comment}</p>
@@ -99,12 +99,12 @@ const CourseComment = () => {
   );
 
   return (
-    <div className="p-6 mb-6 bg-white dark:bg-indigo-950">
+    <div className="p-6 mb-6 bg-white dark:bg-[#041124]">
       <h3 className="mb-4 text-xl font-bold text-gray-500 dark:text-gray-300">
         نظرات دانشجو ها و اساتید
       </h3>
       <div className="flex flex-wrap justify-between">
-        <div className="bg-[#3772FF] dark:bg-indigo-900 p-4 rounded-3xl shadow-md mb-4 basis-full lg:basis-[24%] h-64 flex flex-col justify-center items-center">
+        <div className="bg-[#3772FF] dark:bg-indigo-950 p-4 rounded-3xl shadow-md mb-4 basis-full lg:basis-[24%] h-64 flex flex-col justify-center items-center">
           <TbMessagePlus className="mb-3 size-8" color="white" />
           <p className="mb-5 font-bold text-white dark:text-gray-100">
             نظر شما

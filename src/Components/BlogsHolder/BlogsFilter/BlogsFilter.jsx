@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 
 const BlogsFilter = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -80,7 +80,7 @@ const BlogsFilter = () => {
       </div>
 
       {/* Filter form hidden on small screens */}
-      <div className="hidden lg:block bg-white rounded-3xl p-4 w-80 text-right border-2 mt-20 h-fit dark:bg-indigo-950 ">
+      <div className="hidden lg:block bg-white rounded-3xl p-4 w-80 text-right border-2 mt-20 h-fit dark:bg-[#041124] ">
         <h2 className="text-xl font-semibold mb-4 dark:text-white">فیلتر</h2>
 
         {/* Search */}
@@ -261,7 +261,7 @@ const BlogsFilter = () => {
           onClick={toggleModal} // Close modal when background is clicked
         >
           <div
-            className={`w-full bg-white dark:bg-indigo-950 px-8 pb-8 pt-4 rounded-t-3xl transition-transform duration-300 flex flex-col ${
+            className={`w-full bg-white dark:bg-[#041124] px-8 pb-8 pt-4 rounded-t-3xl transition-transform duration-300 flex flex-col ${
               isAnimating ? "translate-y-0" : "translate-y-full"
             }`}
             onClick={(e) => e.stopPropagation()} // Prevent closing modal when clicking inside it

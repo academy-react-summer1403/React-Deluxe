@@ -7,7 +7,7 @@ const MyComments = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="relative flex flex-col bg-gray-50 dark:bg-indigo-900 w-full dark:text-white p-6 rounded-lg shadow-md lg:w-1/3 ">
+    <div className="relative flex flex-col bg-gray-50 dark:bg-indigo-950 w-full dark:text-white p-6 rounded-lg shadow-md lg:w-1/3 ">
       <CourseCommentsModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
@@ -41,7 +41,7 @@ const MyComments = () => {
       <div className="flex justify-center ">
         <div className="absolute  top-[68px]  w-[90%]  h-1 bg-gray-300 overflow-hidden"></div>
         <div className="flex justify-center">
-          <div className=" items-center px-2 z-10 w-32 bg-gray-50 dark:bg-indigo-900 dark:text-white">
+          <div className=" items-center px-2 z-10 w-32 bg-gray-50 dark:bg-indigo-950 dark:text-white">
             دوره‌ها و بلاگ ها
           </div>
         </div>

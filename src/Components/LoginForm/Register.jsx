@@ -60,10 +60,10 @@ const Register = ({ onBack }) => {
   };
 
   return (
-    <div className="dark:bg-indigo-950 flex flex-col md:flex-row h-screen justify-center items-start bg-white">
+    <div className="dark:bg-[#041124] flex flex-col md:flex-row h-screen justify-center items-start bg-white">
       <div className="flex flex-col w-full md:w-1/2 justify-start items-center p-5 md:p-10 text-black mt-10">
         {/* Tabs */}
-        <div className="flex flex-col md:flex-row justify-between w-full max-w-xl h-20 mb-4 dark:bg-indigo-950">
+        <div className="flex flex-col md:flex-row justify-between w-full max-w-xl h-20 mb-4 dark:bg-[#041124]">
           {/* First tab */}
           <div
             className={`cursor-pointer text-center pb-1 w-full md:w-1/3 flex flex-col items-center ${
@@ -270,7 +270,7 @@ const Register = ({ onBack }) => {
         <Link to={"/auth/signin"}>
           <p
             type="primary"
-            className="w-full mt-3 h-12 text-lg py-2 px-4 border-gray-300 dark:bg-indigo-950 text-blue-500 rounded-3xl font-bold hover:underline"
+            className="w-full mt-3 h-12 text-lg py-2 px-4 border-gray-300 dark:bg-[#041124] text-blue-500 rounded-3xl font-bold hover:underline"
           >
             اگر حساب کاربری دارید وارد شوید
           </p>
@@ -285,7 +285,7 @@ const Register = ({ onBack }) => {
         </Link>
       </div>
 
-      <div className="hidden lg:flex w-full lg:w-1/2 p-9 dark:bg-indigo-950">
+      <div className="hidden lg:flex w-full lg:w-1/2 p-9 dark:bg-[#041124]">
         <LoginPanel />
       </div>
     </div>

@@ -58,7 +58,7 @@ const CoursesItems = () => {
       {coursesData.map((course, index) => (
         <div
           key={index}
-          className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-900 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
+          className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-950 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
         >
           <Link
             onClick={() => {
@@ -113,7 +113,7 @@ const CoursesCarsoual = () => (
           {coursesData.slice(0, 1).map((course, index) => (
             <div
               key={index}
-              className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-900 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
+              className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-950 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
             >
               <Link to={"/courseDetails"}>
                 <div
@@ -155,7 +155,7 @@ const CoursesCarsoual = () => (
           {coursesData.slice(1, 2).map((course, index) => (
             <div
               key={index}
-              className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-900 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
+              className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-950 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
             >
               <Link to={"/courseDetails"}>
                 <div
@@ -197,7 +197,7 @@ const CoursesCarsoual = () => (
           {coursesData.slice(2, 3).map((course, index) => (
             <div
               key={index}
-              className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-900 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
+              className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-950 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
             >
               <Link to={"/courseDetails"}>
                 <div
@@ -240,7 +240,7 @@ const CoursesCarsoual = () => (
           {coursesData.slice(3, 4).map((course, index) => (
             <div
               key={index}
-              className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-900 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
+              className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-950 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
             >
               <Link to={"/courseDetails"}>
                 <div

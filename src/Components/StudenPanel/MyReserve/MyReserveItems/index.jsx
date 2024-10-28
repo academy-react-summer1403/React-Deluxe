@@ -2,6 +2,7 @@ import { ConfigProvider, Pagination } from "antd";
 import React from "react";
 import { BsEye } from "react-icons/bs";
 import { RxCross1 } from "react-icons/rx";
+import { Link } from "react-router-dom";
 const ReserveData = [
   {
     title: " فیگما",
@@ -86,9 +87,9 @@ const ReserveData = [
 
 const index = () => {
   return (
-    <div className="bg-gray-50 dark:bg-indigo-900  p-2 rounded-3xl flex flex-col gap-24   flex-1">
+    <div className="bg-gray-50 dark:bg-indigo-950  p-2 rounded-3xl flex flex-col gap-24   flex-1">
       <div>
-        <ul className="flex p-2 rounded-xl text-sm text-gray-500  m-5 dark:bg-indigo-950 dark:text-white  bg-gray-100 gap-20 lg:gap-24 justify-start">
+        <ul className="flex p-2 rounded-xl text-sm text-gray-500  m-5 dark:bg-[#041124] dark:text-white  bg-gray-100 gap-20 lg:gap-24 justify-start">
           <li className="hidden md:block">#</li>
           <li> نام دوره</li>
           <li className="w-[50px] hidden sm:block ">مدرس</li>
@@ -132,7 +133,9 @@ const index = () => {
                 {Reserve.status}
               </span>
               <div className="flex gap-2">
-                <BsEye className="text-base" />
+                <Link to={"/courseDetails"}>
+                  <BsEye className="text-base" />
+                </Link>
 
                 <RxCross1 className="text-red-500" />
               </div>

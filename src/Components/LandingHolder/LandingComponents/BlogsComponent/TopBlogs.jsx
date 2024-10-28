@@ -47,7 +47,7 @@ const BlogsCarsoual = () => (
           {blogsData.slice(0, 1).map((blog, index) => (
             <div
               key={index}
-              className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-900 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
+              className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-950 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
             >
               <Link to={"/blogDetails"}>
                 <div
@@ -90,7 +90,7 @@ const BlogsCarsoual = () => (
           {blogsData.slice(1, 2).map((blog, index) => (
             <div
               key={index}
-              className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-900 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
+              className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-950 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
             >
               <Link to={"/blogDetails"}>
                 <div
@@ -133,7 +133,7 @@ const BlogsCarsoual = () => (
           {blogsData.slice(2, 3).map((blog, index) => (
             <div
               key={index}
-              className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-900 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
+              className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-950 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
             >
               <Link to={"/blogDetails"}>
                 <div
@@ -184,7 +184,7 @@ const TopBlogs = () => {
           {blogsData.map((blog, index) => (
             <div
               key={index}
-              className=" bg-gray-50 dark:bg-indigo-900 rounded-3xl  flex-1 "
+              className=" bg-gray-50 dark:bg-indigo-950 rounded-3xl  flex-1 "
             >
               <Link
                 onClick={() => {

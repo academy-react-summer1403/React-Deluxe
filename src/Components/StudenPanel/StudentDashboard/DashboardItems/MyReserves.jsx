@@ -18,7 +18,7 @@ const ReserveData = [
 
 const MyReserves = () => {
   return (
-    <div className="bg-gray-50 dark:bg-indigo-900 pb-60 dark:text-white shadow-lg  p-2 rounded-3xl  lg:w-2/3 ">
+    <div className="bg-gray-50 dark:bg-indigo-950 pb-60 dark:text-white shadow-lg  p-2 rounded-3xl  lg:w-2/3 ">
       <div className="flex flex-row px-4 justify-between">
         <h2 className="text-base font-semibold">رزرو من</h2>
         <Link to={"/MyReserve"}>
@@ -45,7 +45,7 @@ const MyReserves = () => {
           </div>
         </Link>
       </div>
-      <ul className="flex p-2 rounded-xl text-sm text-gray-500  mx-5 dark:bg-indigo-950 dark:text-white  bg-gray-100 xl:gap-32 sm:gap-24 gap-12 justify-start">
+      <ul className="flex p-2 rounded-xl text-sm text-gray-500  mx-5 dark:bg-[#041124] dark:text-white  bg-gray-100 xl:gap-32 sm:gap-24 gap-12 justify-start">
         <li className="hidden lg:block">#</li>
         <li className=""> نام دوره</li>
         <li className="hidden sm:block">مدرس</li>
@@ -74,7 +74,9 @@ const MyReserves = () => {
               {Reserve.state}
             </span>
             <div className="flex flex-row gap-2">
-              <BsEye className="text-base dark:text-white" />
+              <Link to={"/courseDetails"}>
+                <BsEye className="text-base dark:text-white" />
+              </Link>
 
               <RxCross1 className="text-red-500" />
             </div>

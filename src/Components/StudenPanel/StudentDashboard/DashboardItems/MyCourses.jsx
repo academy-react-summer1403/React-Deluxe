@@ -26,7 +26,7 @@ const coursesData = [
 
 const MyCourses = () => {
   return (
-    <div className="bg-gray-50 dark:bg-indigo-900 dark:text-white shadow-md p-2 rounded-3xl w-full  lg:w-4/5 ">
+    <div className="bg-gray-50 dark:bg-indigo-950 dark:text-white shadow-md p-2 rounded-3xl w-full  lg:w-4/5 ">
       <div className="flex flex-row px-4 justify-between">
         <h2 className="text-base font-semibold">دوره من</h2>
         <Link to={"/MyCourse"}>
@@ -53,7 +53,7 @@ const MyCourses = () => {
           </div>
         </Link>
       </div>
-      <ul className="flex p-2 rounded-xl text-xm text-gray-500  mx-5 dark:bg-indigo-950 dark:text-white  bg-gray-100 gap-24 justify-start">
+      <ul className="flex p-2 rounded-xl text-xm text-gray-500  mx-5 dark:bg-[#041124] dark:text-white  bg-gray-100 gap-24 justify-start">
         <li className="hidden lg:block">#</li>
         <li> نام دوره</li>
         <li className="w-[50px] hidden sm:block">مدرس</li>
@@ -87,7 +87,9 @@ const MyCourses = () => {
             <span className="px-2 py-0 text-base  hidden md:block bg-[#FF37F5] text-white rounded-full">
               {course.tag2}
             </span>
-            <BsEye className="text-base dark:text-white" />
+            <Link to={"/courseDetails"}>
+              <BsEye className="text-base dark:text-white" />
+            </Link>
           </div>
         ))}
       </div>
