@@ -44,7 +44,7 @@ const Services = () => {
           {servicesData.slice(0, 2).map((service, index) => (
             <div
               key={index}
-              className="flex flex-row flex-shrink-0 md:items-center   hover:bg-gradient-to-r from-pink-100 via-blue-100 to-teal-100 p-4 border w-full md:w-1/2 rounded-3xl bg-gray-100 dark:bg-gray-700 border-gray-300 hover:border-blue-300 flex-1"
+              className="flex flex-row flex-shrink-0 md:items-center   hover:bg-gradient-to-r dark:from-pink-500 dark:via-blue-500 dark:to-teal-500 from-pink-100 via-blue-100 to-teal-100 p-4 border w-full md:w-1/2 rounded-3xl bg-gray-100 dark:bg-gray-700 border-gray-300 hover:border-blue-300 flex-1"
             >
               <div
                 className={`flex-shrink-0 border size-14 ${service.border} bg-white rounded-full dark:bg-gray-200  mx-2`}
@@ -68,7 +68,7 @@ const Services = () => {
           {servicesData.slice(2, 4).map((service, index) => (
             <div
               key={index}
-              className={`flex flex-row flex-shrink-0 md:items-center p-4 hover:bg-gradient-to-r from-pink-100 via-blue-100 to-teal-100  border w-full md:w-1/2 rounded-3xl bg-gray-100 dark:bg-gray-700 border-gray-300 hover:border-blue-300 flex-1`}
+              className={`flex flex-row flex-shrink-0 md:items-center p-4 hover:bg-gradient-to-r dark:from-pink-500 dark:via-blue-500 dark:to-teal-500 from-pink-100 via-blue-100 to-teal-100  border w-full md:w-1/2 rounded-3xl bg-gray-100 dark:bg-gray-700 border-gray-300 hover:border-blue-300 flex-1`}
             >
               <div
                 className={`flex-shrink-0 border size-14 ${service.border} bg-white rounded-full dark:bg-gray-200  mx-2`}
