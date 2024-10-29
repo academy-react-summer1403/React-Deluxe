@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { GetAllCoursesByPg } from "../../core/services/api/Courses.api";
 import Pic from "../../assets/react.png";
+import Logo from "../../assets/logo (3).png";
 
 // const coursesData = [
 //   {
@@ -279,10 +280,7 @@ const CourseList = () => {
                 className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${course.color}`}
               >
                 <img
-                  src={
-                    course.tumbImageAddress ??
-                    "https://s3.7learn.com/c677195/7learn_67NGEjxE/Ov2SUGJJ2lVzPOPY.png"
-                  }
+                  src={course.tumbImageAddress ?? Logo}
                   alt={""}
                   className={`size-48 `}
                 />
