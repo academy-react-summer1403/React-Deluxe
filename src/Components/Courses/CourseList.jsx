@@ -279,7 +279,10 @@ const CourseList = () => {
                 className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${course.color}`}
               >
                 <img
-                  src={course.tumbImageAddress ?? Pic}
+                  src={
+                    course.tumbImageAddress ??
+                    "https://s3.7learn.com/c677195/7learn_67NGEjxE/Ov2SUGJJ2lVzPOPY.png"
+                  }
                   alt={""}
                   className={`size-48 `}
                 />
