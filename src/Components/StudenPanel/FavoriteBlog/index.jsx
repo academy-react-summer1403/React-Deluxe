@@ -9,7 +9,7 @@ const index = () => {
       <div className="bg-white dark:bg-[#041124] p-8 mx-5 dark:text-white space-y-8 rounded-3xl ">
         <h2 className="text-2xl font-bold">بلاگ های موردعلاقه</h2>
         <div className="flex flex-col">
-          <div className="flex mb-6 gap-4">
+          <div className="flex flex-col sm:flex-row mb-6 gap-4">
             <div className="flex flex-col gap-2">
               <div className="flex gap-2 items-center ">
                 <svg

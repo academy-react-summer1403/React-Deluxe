@@ -3,7 +3,7 @@ import { SearchOutlined } from "@ant-design/icons";
 
 const SearchInput = () => {
   return (
-    <div className="flex items-center bg-gray-100 dark:bg-gray-800  rounded-lg">
+    <div className="flex items-center w-fit bg-gray-100 dark:bg-gray-800  rounded-lg">
       <input
         type="text"
         placeholder="دوره مورد نظر را جست‌جو کنید..."

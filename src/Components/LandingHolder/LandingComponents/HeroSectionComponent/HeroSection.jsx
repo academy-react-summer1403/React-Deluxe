@@ -62,7 +62,7 @@ const HeroSection = () => {
               </h1>
             </div>
             <div>
-              <p className=" text-base dark:text-gray-200 ">
+              <p className=" text-base pt-4 dark:text-gray-200 ">
                 آکادمی آموزش تخصصی برنامه نویسی بحر
               </p>
               <p className=" text-base mb-6 dark:text-gray-200">

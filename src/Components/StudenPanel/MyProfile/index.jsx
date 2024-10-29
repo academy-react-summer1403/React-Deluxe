@@ -13,9 +13,9 @@ const index = () => {
 
   return (
     <div className="bg-gray-950 px-5  pb-11  h-full">
-      <div className="bg-white dark:bg-[#041124] dark:text-white rounded-3xl py-10 px-3">
+      <div className="bg-white dark:bg-[#041124] dark:text-white rounded-3xl py-12 px-3">
         <div className="flex">
-          <div className="w-[200px]    ml-5 p-4">
+          <div className="w-[200px]    ml-5 px-4">
             <h2 className="text-2xl pb-4 font-bold mb-4 ">پروفایل من</h2>
             <ul className=" border-l h-[707px] space-y-4 text-sm">
               <li>
@@ -76,8 +76,8 @@ const index = () => {
           <div className="w-3/5 pl-6">
             {activeSection === "profile" && (
               <form className="flex flex-col mt-14 gap-1">
-                <div className="mb-4 flex space-x-4 gap-10 rounded-xl">
-                  <div className="w-1/2">
+                <div className="mb-4 flex flex-col md:flex-row space-x-4 gap-10 rounded-xl">
+                  <div className="md:w-1/2">
                     <label className="block text-sm font-bold mb-2"> نام</label>
                     <input
                       type="text"
@@ -85,7 +85,7 @@ const index = () => {
                       placeholder="نام خود را وارد کنید"
                     />
                   </div>
-                  <div className="w-1/2">
+                  <div className="md:w-1/2">
                     <label className="block text-sm font-bold mb-2">
                       {" "}
                       نام خانوادگی
@@ -108,8 +108,8 @@ const index = () => {
                   />
                 </div>
 
-                <div className="mb-4 flex space-x-4 gap-10 rounded-xl">
-                  <div className="w-1/2">
+                <div className="mb-4 flex flex-col md:flex-row space-x-4 gap-10 rounded-xl">
+                  <div className="md:w-1/2">
                     <label className="block text-sm font-bold mb-2">
                       شماره همراه
                     </label>
@@ -119,7 +119,7 @@ const index = () => {
                       placeholder="شماره خود را وارد کنید"
                     />
                   </div>
-                  <div className="w-1/2">
+                  <div className="md:w-1/2">
                     <label className="block text-sm font-bold mb-2">
                       کد ملی
                     </label>
@@ -164,7 +164,9 @@ const index = () => {
                           className="form-radio text-blue-500"
                         />
                       </label>
-                      <span className="text-blue-500 w-20">انتخاب کنید</span>
+                      <span className="hidden sm:block text-blue-500 w-20">
+                        انتخاب کنید
+                      </span>
                     </div>
                   </div>
                 </div>
