@@ -1,16 +1,16 @@
-// import { useState } from "react";
+import { useState } from "react";
 
-// const CategoryMenu = () => {
-//   const [activeCategory, setActiveCategory] = useState("جدیدترین");
-//   const [isModalOpen, setIsModalOpen] = useState(false);
-//   const handleCategoryClick = (category) => {
-//     setActiveCategory(category);
-//     setIsModalOpen(false);
-//   };
+const CategoryMenu = () => {
+  const [activeCategory, setActiveCategory] = useState("جدیدترین");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleCategoryClick = (category) => {
+    setActiveCategory(category);
+    setIsModalOpen(false);
+  };
 
-//   const toggleModal = () => {
-//     setIsModalOpen(!isModalOpen);
-//   };
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
 
   return (
     <div className="flex flex-col items-start mb-6 mr-8">
@@ -22,7 +22,7 @@
           onClick={() => handleCategoryClick("جدیدترین")}
           className={`px-4 py-2 h-10 rounded-full border border-transparent ${
             activeCategory === "جدیدترین"
-              ? "bg-red-500 text-white"
+              ? "text-white"
               : "border-gray-600 bg-white text-gray-800 hover:border-red-500 hover:text-red-500"
           }`}
         >
@@ -59,9 +59,16 @@
           ارزان‌ترین
         </button>
       </div>
+    </div>
+  );
+};
 
-//       <div className="md:hidden mb-4 lg:hidden flex justify-start">
-//         <button
+{
+  /* <div className="md:hidden mb-4 lg:hidden flex justify-start"> */
+}
+{
+  /* <button */
+}
 //           onClick={toggleModal}
 //           className="px-6 py-2 mx-28  bg-red-500 text-white rounded-full "
 //         >
@@ -130,4 +137,4 @@
 //   );
 // };
 
-// export { CategoryMenu };
+export { CategoryMenu };

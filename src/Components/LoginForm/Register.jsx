@@ -167,7 +167,7 @@ const Register = ({ onBack }) => {
         )}
 
         {currentTab === "2" && (
-          <div className="w-full max-w-xs sm:max-w-md lg:max-w-lg text-center">
+          <div className="w-full max-w-xs sm:max-w-md lg:max-w-lg text-center pt-12 ">
             <h2 className="text-2xl font-bold mb-2 text-right dark:text-white mt-8 sm:mt-24">
               تایید کد ارسال شده
             </h2>
@@ -209,7 +209,7 @@ const Register = ({ onBack }) => {
         )}
 
         {currentTab === "3" && (
-          <div className="w-full max-w-xs sm:max-w-md lg:max-w-lg text-center ">
+          <div className="w-full max-w-xs sm:max-w-md lg:max-w-lg text-center pt-11 ">
             <h2 className="text-3xl mt-10 font-bold mb-2 text-right dark:text-white sm:mt-24">
               وارد کردن اطلاعات شخصی
             </h2>
