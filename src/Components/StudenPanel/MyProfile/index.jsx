@@ -16,7 +16,7 @@ const index = () => {
       <div className="bg-white dark:bg-[#041124] dark:text-white rounded-3xl py-10 px-3">
         <div className="flex">
           <div className="w-[200px]    ml-5 p-4">
-            <h2 className="text-xl font-bold mb-4">پروفایل من</h2>
+            <h2 className="text-2xl pb-4 font-bold mb-4 ">پروفایل من</h2>
             <ul className=" border-l h-[707px] space-y-4 text-sm">
               <li>
                 <a

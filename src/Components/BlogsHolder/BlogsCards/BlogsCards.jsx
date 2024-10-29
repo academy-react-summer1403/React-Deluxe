@@ -192,16 +192,16 @@ const BlogsCards = () => {
         </div>
       )}
 
-      <div className="flex flex-wrap justify-around">
-        <div className="flex flex-wrap">
+      <div className="flex flex-wrap  justify-around">
+        <div className="flex gap-2 flex-wrap">
           {news.map((card, index) => (
             <div
               key={index}
-              className={`lg:basis-[47%] basis-[90%] rounded-3xl mb-7`}
+              className={`lg:basis-[47%] p-4 bg-slate-50  basis-[90%] rounded-3xl mb-7`}
             >
               <Link to={"/BlogDetails"} className="cursor-pointer ">
                 <div
-                  className={`mb-4 w-full h-[22rem] rounded-[2.5rem] object-cover ${card.bgColor} flex justify-center items-center`}
+                  className={`mb-4 w-full h-[22rem]  rounded-[2.5rem]  object-cover ${card.bgColor} flex justify-center items-center`}
                 >
                   <img
                     src={card.currentImageAddressTumb}
