@@ -125,7 +125,7 @@ const Register = ({ onBack }) => {
         {/* محتویات تب‌ها */}
         {currentTab === "1" && (
           <div className="w-full max-w-xs sm:max-w-md lg:max-w-lg text-center">
-            <h2 className="text-3xl font-bold mb-2 text-right dark:text-white mt-10 sm:mt-24">
+            <h2 className="text-3xl font-bold mb-2 text-right dark:text-white mt-10 sm:mt-24 pt-11  ">
               خوش آمدید!😍
             </h2>
             <p className="text-lg  mt-4 mb-4 w-full text-right text-gray-500 dark:text-white">
