@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { IoMoonOutline } from "react-icons/io5";
+import { LuSun } from "react-icons/lu";
 
 const DarkModeToggle = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -31,7 +32,7 @@ const DarkModeToggle = () => {
 
   return (
     <button onClick={toggleDarkMode} className="p-2 rounded-full ">
-      {isDarkMode ? <IoMoonOutline /> : <IoMoonOutline />}
+      {isDarkMode ? <IoMoonOutline /> : <LuSun />}
     </button>
   );
 };
