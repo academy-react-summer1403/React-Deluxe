@@ -45,12 +45,32 @@ const contentStyle = {
 
 
 
-const BlogsCarsoual = () => (
+const BlogsCarsoual = () => {
+  
+  const [TopBlogSlice,setTopBlogs ] = useState([]);
+
+  const getTopBlogs = async () => {
+    try {
+      const result = await GetTopBlogsByPg();
+  
+      setTopBlogs(result);
+      
+      console.log(TopBlogSlice)
+  
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getTopBlogs();
+  },[]);
+
+  return(
   <Carousel autoplay>
     <div>
       <h3 style={contentStyle}>
         <div className="md:hidden flex flex-wrap justify-center gap-2">
-          {TopBlog.slice(0, 1).map((blog, index) => (
+          {TopBlogSlice.slice(0, 1).map((blog, index) => (
             <div
               key={index}
               className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-950 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
@@ -76,11 +96,11 @@ const BlogsCarsoual = () => (
                   <span
                     className={`inline-flex items-center dark:text-white text-xs gap-2 w-32 `}
                   >
-                    <i /> {blog.date}
+                    <i /> {blog.insertDate}
                     <BsCalendar4Week />
                   </span>
                   <span className="inline-flex items-center dark:text-white text-xs gap-2">
-                    <i /> {blog.views} <BsEye />
+                    <i /> {blog.currentView} <BsEye />
                   </span>
                 </div>
               </div>
@@ -93,7 +113,7 @@ const BlogsCarsoual = () => (
       <h3 style={contentStyle}>
         {" "}
         <div className="md:hidden flex flex-wrap justify-center gap-2">
-          {TopBlog.slice(1, 2).map((blog, index) => (
+          {TopBlogSlice.slice(1, 2).map((blog, index) => (
             <div
               key={index}
               className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-950 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
@@ -119,11 +139,11 @@ const BlogsCarsoual = () => (
                   <span
                     className={`inline-flex items-center dark:text-white text-xs gap-2 w-32 `}
                   >
-                    <i /> {blog.date}
+                    <i /> {blog.insertDate}
                     <BsCalendar4Week />
                   </span>
                   <span className="inline-flex items-center dark:text-white text-xs gap-2">
-                    <i /> {blog.views} <BsEye />
+                    <i /> {blog.currentView} <BsEye />
                   </span>
                 </div>
               </div>
@@ -136,7 +156,7 @@ const BlogsCarsoual = () => (
       <h3 style={contentStyle}>
         {" "}
         <div className="md:hidden flex flex-wrap justify-center gap-2">
-          {TopBlog.slice(2, 3).map((blog, index) => (
+          {TopBlogSlice.slice(2, 3).map((blog, index) => (
             <div
               key={index}
               className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-950 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
@@ -160,11 +180,11 @@ const BlogsCarsoual = () => (
                   <span
                     className={`inline-flex items-center dark:text-white text-xs gap-2 w-32 `}
                   >
-                    <i /> {blog.date}
+                    <i /> {blog.insertDate}
                     <BsCalendar4Week />
                   </span>
                   <span className="inline-flex items-center dark:text-white text-xs gap-2">
-                    <i /> {blog.views} <BsEye />
+                    <i /> {blog.currentView} <BsEye />
                   </span>
                 </div>
               </div>
@@ -174,7 +194,8 @@ const BlogsCarsoual = () => (
       </h3>
     </div>
   </Carousel>
-);
+)};
+
 const TopBlogs = () => {
   const scrollTop = () => {
     document.documentElement.scrollTop = 0;
@@ -189,9 +210,9 @@ const TopBlogs = () => {
     try {
       const result = await GetTopBlogsByPg();
   
-      setTopBlogs(result);
+      setTopBlogs(result.news);
       
-      console.log(TopBlog)
+      console.log(result.news);
   
     } catch (error) {
       console.log(error);

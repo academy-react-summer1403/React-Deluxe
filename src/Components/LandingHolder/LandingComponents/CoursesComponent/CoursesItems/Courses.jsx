@@ -132,7 +132,6 @@ useEffect(() => {
 };
 
 
-
 const CoursesCarsoual = () => {
 
   const [TopCourses,setTopCourses ] = useState([]);
