@@ -62,7 +62,7 @@ const HeroSection = () => {
               </h1>
             </div>
             <div>
-              <p className=" text-base dark:text-gray-200 ">
+              <p className=" text-base pt-4 dark:text-gray-200 ">
                 آکادمی آموزش تخصصی برنامه نویسی بحر
               </p>
               <p className=" text-base mb-6 dark:text-gray-200">
@@ -88,7 +88,7 @@ const HeroSection = () => {
         <div className="flex justify-center w-full items-center">
           <div className="relative w-full">
             <div className="absolute bottom-1 w-full h-1 bg-gray-300 overflow-hidden">
-              <div className="absolute z-10 w-full h-1 right-3/4 bg-blue-500"></div>
+              <div className="absolute z-10 w-full h-1  bg-blue-500"></div>
             </div>
             <div className="flex justify-around  items-center relative">
               {/* <div className="flex justify-between items-center relative">
@@ -102,7 +102,7 @@ const HeroSection = () => {
                   alt="Figma"
                   className="size-20 "
                 />
-                <div className="flex items-center justify-center size-3.5 rounded-full bg-gray-300 hover:bg-blue-500">
+                <div className="flex items-center justify-center size-3.5 rounded-full z-20 bg-blue-500">
                   <div className="size-1.5 rounded-full bg-white"></div>
                 </div>
               </div>
@@ -112,7 +112,7 @@ const HeroSection = () => {
                   alt="React"
                   className="size-20 "
                 />
-                <div className="flex items-center justify-center size-3.5 rounded-full bg-gray-300 hover:bg-blue-500">
+                <div className="flex items-center justify-center size-3.5 rounded-full z-20 bg-blue-500">
                   <div className="size-1.5 rounded-full bg-white"></div>
                 </div>
               </div>
@@ -122,7 +122,7 @@ const HeroSection = () => {
                   alt="JavaScript"
                   className="size-20"
                 />
-                <div className="flex items-center justify-center size-3.5 rounded-full bg-gray-300 hover:bg-blue-500">
+                <div className="flex items-center justify-center size-3.5 rounded-full z-20 bg-blue-500">
                   <div className="size-1.5 rounded-full bg-white"></div>
                 </div>
               </div>
@@ -132,7 +132,7 @@ const HeroSection = () => {
                   alt="CSS3"
                   className="size-20 "
                 />
-                <div className="flex items-center justify-center size-3.5 rounded-full bg-gray-300 hover:bg-blue-500">
+                <div className="flex items-center justify-center size-3.5 rounded-full z-20 bg-blue-500">
                   <div className="size-1.5 rounded-full bg-white"></div>
                 </div>
               </div>

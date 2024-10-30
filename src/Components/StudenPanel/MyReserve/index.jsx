@@ -8,9 +8,9 @@ const index = () => {
   return (
     <div className="h-full pb-8  bg-gray-950">
       <div className="bg-white dark:bg-[#041124] p-8 mx-5 dark:text-white space-y-8 rounded-3xl ">
-        <h2>رزرو من</h2>
+        <h2 className="text-2xl font-bold">رزرو من</h2>
         <div className="flex flex-col">
-          <div className="flex items-end mb-6 gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-end items-start mb-6 gap-4">
             <div className="flex flex-col gap-2">
               <div className="flex gap-2 items-center ">
                 <svg
@@ -81,12 +81,12 @@ const index = () => {
               </div>
               <DateRangePicker />
             </div>
-            <div className="py-2 hidden sm:block">ترتیب</div>
-            <div className="border-red-600 border text-red-600 justify-center rounded-3xl px-4 py-2 hidden sm:flex gap-2 items-center ">
+            <div className="py-2 hidden lg:block">ترتیب</div>
+            <div className="border-red-600 border text-red-600 whitespace-nowrap justify-center rounded-3xl px-4 py-2 hidden md:flex gap-2 items-center ">
               <RxCross1 className="text-red-500" />
               تایید شده
             </div>
-            <div className="border-gray-700 border rounded-3xl px-4 py-2 hidden sm:flex justify-center items-center">
+            <div className="border-gray-700 border rounded-3xl px-4 py-2 whitespace-nowrap hidden md:flex justify-center items-center">
               تایید نشده
             </div>
           </div>

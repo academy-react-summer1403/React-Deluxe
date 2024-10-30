@@ -1,7 +1,7 @@
 import ReactLogo from "../../../assets/logo (3).png";
 
 const teamMembers = [
-  { name: "سید عظیم حسینی", role: "مهندس پزشکی", img: "/src/assets/aziim.png" },
+  { name: "سید عظیم حسینی", role: "مهندس پزشک", img: "/src/assets/aziim.png" },
   { name: "غنچه عطایی", role: "مهندس کامپیوتر", img: "/src/assets/me.png" },
   { name: "شایان نوری", role: "مهندس کامپیوتر", img: "/src/assets/shayan.png" },
 ];
