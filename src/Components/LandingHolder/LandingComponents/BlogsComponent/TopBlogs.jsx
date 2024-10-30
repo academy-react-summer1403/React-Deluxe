@@ -44,9 +44,7 @@ const contentStyle = {
 
 
 
-
 const BlogsCarsoual = () => {
-  
   const [TopBlogSlice,setTopBlogs ] = useState([]);
 
   const getTopBlogs = async () => {
