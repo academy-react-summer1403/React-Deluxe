@@ -1,10 +1,9 @@
-import {useState , useEffect} from "react";
+import { useState, useEffect } from "react";
 import { BsCalendar4Week } from "react-icons/bs";
 import { BsEye } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { Carousel } from "antd";
-import { GetTopBlogsByPg } from "../../../../core/services/api/TopBlogs.api"
-
+import { GetTopBlogsByPg } from "../../../../core/services/api/TopBlogs.api";
 
 const contentStyle = {
   height: "",
@@ -41,160 +40,167 @@ const contentStyle = {
 //   },
 // ];
 
-
-
-
-
 const BlogsCarsoual = () => {
-  
-  const [TopBlogSlice,setTopBlogs ] = useState([]);
+  const [TopBlogSlice, setTopBlogs] = useState([]);
 
   const getTopBlogs = async () => {
     try {
       const result = await GetTopBlogsByPg();
-  
-      setTopBlogs(result);
-      
-      console.log(TopBlogSlice)
-  
+
+      setTopBlogs(result.news);
+
+      console.log(result.news);
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
     getTopBlogs();
-  },[]);
+  }, []);
 
-  return(
-  <Carousel autoplay>
-    <div>
-      <h3 style={contentStyle}>
-        <div className="md:hidden flex flex-wrap justify-center gap-2">
-          {TopBlogSlice.slice(0, 1).map((blog, index) => (
-            <div
-              key={index}
-              className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-950 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
-            >
-              <Link to={"/blogDetails"}>
-                <div
-                  className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${blog.color}`}
-                >
-                  <img src={blog.currentImageAddressTumb} alt={""} className={`size-48 `} />
-                </div>
-              </Link>
-
-              <Link to={"/blogDetails"}>
-                <h3 className="flex text-xl dark:text-white truncate w-[350px] font-semibold mb-2 ">
-                  {blog.title}
-                </h3>
-              </Link>
-              <div className="flex flex-col items-center justify-between  px-2 text-gray-500 space-x-2 rtl:space-x-reverse ">
-                <p className="flex text-gray-400 dark:text-white text-sm items-center ">
-                  {blog.keyword}
-                </p>
-                <div className=" mt-0 pt-0">
-                  <span
-                    className={`inline-flex items-center dark:text-white text-xs gap-2 w-32 `}
+  return (
+    <Carousel autoplay>
+      <div>
+        <h3 style={contentStyle}>
+          <div className="md:hidden flex flex-wrap justify-center gap-2">
+            {TopBlogSlice.slice(0, 1).map((blog, index) => (
+              <div
+                key={index}
+                className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-950 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
+              >
+                <Link to={"/blogDetails"}>
+                  <div
+                    className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${blog.color}`}
                   >
-                    <i /> {blog.insertDate}
-                    <BsCalendar4Week />
-                  </span>
-                  <span className="inline-flex items-center dark:text-white text-xs gap-2">
-                    <i /> {blog.currentView} <BsEye />
-                  </span>
+                    <img
+                      src={blog.currentImageAddressTumb}
+                      alt={""}
+                      className={`size-48 `}
+                    />
+                  </div>
+                </Link>
+
+                <Link to={"/blogDetails"}>
+                  <h3 className="flex text-xl dark:text-white truncate w-[350px] font-semibold mb-2 ">
+                    {blog.title}
+                  </h3>
+                </Link>
+                <div className="flex flex-col items-center justify-between  px-2 text-gray-500 space-x-2 rtl:space-x-reverse ">
+                  <p className="flex text-gray-400 dark:text-white text-sm items-center ">
+                    {blog.keyword}
+                  </p>
+                  <div className=" mt-0 pt-0">
+                    <span
+                      className={`inline-flex items-center dark:text-white text-xs gap-2 w-32 `}
+                    >
+                      <i /> {blog.insertDate}
+                      <BsCalendar4Week />
+                    </span>
+                    <span className="inline-flex items-center dark:text-white text-xs gap-2">
+                      <i /> {blog.currentView} <BsEye />
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </h3>
-    </div>
-    <div>
-      <h3 style={contentStyle}>
-        {" "}
-        <div className="md:hidden flex flex-wrap justify-center gap-2">
-          {TopBlogSlice.slice(1, 2).map((blog, index) => (
-            <div
-              key={index}
-              className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-950 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
-            >
-              <Link to={"/blogDetails"}>
-                <div
-                  className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${blog.color}`}
-                >
-                  <img src={blog.currentImageAddressTumb} alt={""} className={`size-48 `} />
-                </div>
-              </Link>
-
-              <Link to={"/blogDetails"}>
-                <h3 className="flex text-xl dark:text-white   font-semibold mb-2 ">
-                  {blog.title}
-                </h3>
-              </Link>
-              <div className="flex flex-col items-center justify-between  px-2 text-gray-500 space-x-2 rtl:space-x-reverse ">
-                <p className="flex text-gray-400 dark:text-white text-sm items-center ">
-                  {blog.author}
-                </p>
-                <div className=" mt-0 pt-0">
-                  <span
-                    className={`inline-flex items-center dark:text-white text-xs gap-2 w-32 `}
+            ))}
+          </div>
+        </h3>
+      </div>
+      <div>
+        <h3 style={contentStyle}>
+          {" "}
+          <div className="md:hidden flex flex-wrap justify-center gap-2">
+            {TopBlogSlice.slice(1, 2).map((blog, index) => (
+              <div
+                key={index}
+                className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-950 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
+              >
+                <Link to={"/blogDetails"}>
+                  <div
+                    className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${blog.color}`}
                   >
-                    <i /> {blog.insertDate}
-                    <BsCalendar4Week />
-                  </span>
-                  <span className="inline-flex items-center dark:text-white text-xs gap-2">
-                    <i /> {blog.currentView} <BsEye />
-                  </span>
+                    <img
+                      src={blog.currentImageAddressTumb}
+                      alt={""}
+                      className={`size-48 `}
+                    />
+                  </div>
+                </Link>
+
+                <Link to={"/blogDetails"}>
+                  <h3 className="flex text-xl dark:text-white   font-semibold mb-2 ">
+                    {blog.title}
+                  </h3>
+                </Link>
+                <div className="flex flex-col items-center justify-between  px-2 text-gray-500 space-x-2 rtl:space-x-reverse ">
+                  <p className="flex text-gray-400 dark:text-white text-sm items-center ">
+                    {blog.author}
+                  </p>
+                  <div className=" mt-0 pt-0">
+                    <span
+                      className={`inline-flex items-center dark:text-white text-xs gap-2 w-32 `}
+                    >
+                      <i /> {blog.insertDate}
+                      <BsCalendar4Week />
+                    </span>
+                    <span className="inline-flex items-center dark:text-white text-xs gap-2">
+                      <i /> {blog.currentView} <BsEye />
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </h3>
-    </div>
-    <div>
-      <h3 style={contentStyle}>
-        {" "}
-        <div className="md:hidden flex flex-wrap justify-center gap-2">
-          {TopBlogSlice.slice(2, 3).map((blog, index) => (
-            <div
-              key={index}
-              className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-950 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
-            >
-              <Link to={"/blogDetails"}>
-                <div
-                  className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${blog.color}`}
-                >
-                  <img src={blog.currentImageAddressTumb} alt={""} className={`size-48 `} />
-                </div>
-
-                <h3 className="flex text-xl dark:text-white  font-semibold mb-2 ">
-                  {blog.title}
-                </h3>
-              </Link>
-              <div className="flex flex-col items-center justify-between  px-2 text-gray-500 space-x-2 rtl:space-x-reverse ">
-                <p className="flex text-gray-400 dark:text-white text-sm items-center ">
-                  {blog.author}
-                </p>
-                <div className=" mt-0 pt-0">
-                  <span
-                    className={`inline-flex items-center dark:text-white text-xs gap-2 w-32 `}
+            ))}
+          </div>
+        </h3>
+      </div>
+      <div>
+        <h3 style={contentStyle}>
+          {" "}
+          <div className="md:hidden flex flex-wrap justify-center gap-2">
+            {TopBlogSlice.slice(2, 3).map((blog, index) => (
+              <div
+                key={index}
+                className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-950 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
+              >
+                <Link to={"/blogDetails"}>
+                  <div
+                    className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${blog.color}`}
                   >
-                    <i /> {blog.insertDate}
-                    <BsCalendar4Week />
-                  </span>
-                  <span className="inline-flex items-center dark:text-white text-xs gap-2">
-                    <i /> {blog.currentView} <BsEye />
-                  </span>
+                    <img
+                      src={blog.currentImageAddressTumb}
+                      alt={""}
+                      className={`size-48 `}
+                    />
+                  </div>
+
+                  <h3 className="flex text-xl dark:text-white  font-semibold mb-2 ">
+                    {blog.title}
+                  </h3>
+                </Link>
+                <div className="flex flex-col items-center justify-between  px-2 text-gray-500 space-x-2 rtl:space-x-reverse ">
+                  <p className="flex text-gray-400 dark:text-white text-sm items-center ">
+                    {blog.author}
+                  </p>
+                  <div className=" mt-0 pt-0">
+                    <span
+                      className={`inline-flex items-center dark:text-white text-xs gap-2 w-32 `}
+                    >
+                      <i /> {blog.insertDate}
+                      <BsCalendar4Week />
+                    </span>
+                    <span className="inline-flex items-center dark:text-white text-xs gap-2">
+                      <i /> {blog.currentView} <BsEye />
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </h3>
-    </div>
-  </Carousel>
-)};
+            ))}
+          </div>
+        </h3>
+      </div>
+    </Carousel>
+  );
+};
 
 const TopBlogs = () => {
   const scrollTop = () => {
@@ -202,26 +208,22 @@ const TopBlogs = () => {
     document.body.scrollTop = 0;
   };
 
-
-
-  const [TopBlog,setTopBlogs ] = useState([]);
+  const [TopBlog, setTopBlogs] = useState([]);
 
   const getTopBlogs = async () => {
     try {
       const result = await GetTopBlogsByPg();
-  
+
       setTopBlogs(result.news);
-      
+
       console.log(result.news);
-  
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
     getTopBlogs();
-  },[]);
-
+  }, []);
 
   return (
     <section className="py-16 ">
@@ -230,7 +232,7 @@ const TopBlogs = () => {
           بلاگ های برتر هفته
         </h2>
         <div className="md:flex hidden  md:flex-wrap justify-center gap-8 mx-2">
-          {TopBlog.map((blog, index) => (
+          {TopBlog.slice(0, 3).map((blog, index) => (
             <div
               key={index}
               className=" bg-gray-50 dark:bg-indigo-950 rounded-3xl  flex-1 "
@@ -244,7 +246,11 @@ const TopBlogs = () => {
                 <div
                   className={`h-72 mx-auto flex justify-center items-center mb-4 rounded-xl ${blog.color}`}
                 >
-                  <img src={blog.currentImageAddressTumb} alt={""} className={`size-48 `} />
+                  <img
+                    src={blog.currentImageAddressTumb}
+                    alt={""}
+                    className={`size-48 `}
+                  />
                 </div>
 
                 <h3 className="flex text-l font-bold mb-2 px-2 dark:text-white">
