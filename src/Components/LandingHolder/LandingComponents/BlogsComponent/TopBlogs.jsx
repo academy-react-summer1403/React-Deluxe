@@ -47,6 +47,7 @@ const contentStyle = {
 const BlogsCarsoual = () => {
   const [TopBlogSlice,setTopBlogs ] = useState([]);
 
+  
   const getTopBlogs = async () => {
     try {
       const result = await GetTopBlogsByPg();
