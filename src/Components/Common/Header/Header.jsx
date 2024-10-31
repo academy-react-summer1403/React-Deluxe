@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <header className="bg-white dark:bg-[#041124]  p-4 ">
+    <header className="bg-transparent dark:bg-[#041124] p-4 sticky top-0 z-10 backdrop-blur-lg">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center space-x-4">
           <img
@@ -60,7 +60,7 @@ const Header = () => {
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <g clip-path="url(#clip0_27_187)">
+                  <g clipPath="url(#clip0_27_187)">
                     <rect width="40" height="40" rx="20" fill="#4354ED" />
                     <path
                       d="M37.6375 34.3234C37.4244 32.6415 37.5076 29.6008 39.6125 29.6008C40.5417 29.6008 41.351 30.3501 41.351 31.4425C41.351 32.3351 41.361 32.8247 41.361 33.574C41.361 35.6822 39.2395 36.1218 39.2395 36.1218L37.6342 34.3234H37.6375Z"

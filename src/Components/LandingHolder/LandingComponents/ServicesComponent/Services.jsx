@@ -32,15 +32,19 @@ const Services = () => {
   return (
     <section className="py-16">
       <div className="container mx-auto text-center ">
-        <h2 className="text-3xl font-bold dark:text-white">
+        <h2
+          data-aos="zoom-out"
+          className="text-3xl/[3.5rem] font-bold dark:text-white"
+        >
           خدماتی که ما در طی دوره‌ها
-        </h2>
-        <h2 className="text-3xl font-bold mb-8  dark:text-white">
-          به شما ارائه می‌دهیم
+          <br /> به شما ارائه می‌دهیم
         </h2>
 
         {/* First Row */}
-        <div className="flex flex-col md:flex-row justify-between px-2 flex-wrap gap-4 md:gap-8">
+        <div
+          data-aos="slide-right"
+          className="flex flex-col md:flex-row justify-between px-2 flex-wrap gap-4 md:gap-8"
+        >
           {servicesData.slice(0, 2).map((service, index) => (
             <div
               key={index}
@@ -64,7 +68,10 @@ const Services = () => {
         </div>
 
         {/* Second Row */}
-        <div className="flex flex-col md:flex-row justify-between px-2 gap-4 md:gap-8 mt-4">
+        <div
+          data-aos="slide-left"
+          className="flex flex-col md:flex-row justify-between px-2 gap-4 md:gap-8 mt-4"
+        >
           {servicesData.slice(2, 4).map((service, index) => (
             <div
               key={index}

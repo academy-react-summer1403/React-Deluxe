@@ -201,7 +201,7 @@ const BlogsCards = () => {
             >
               <Link to={"/BlogDetails"} className="cursor-pointer ">
                 <div
-                  className={`mb-4 w-full h-[22rem]  rounded-[2.5rem]  object-cover ${card.bgColor} flex justify-center items-center`}
+                  className={`mb-4 w-full h-[22rem] rounded-[2.5rem] object-cover flex justify-center items-center`}
                 >
                   <img
                     src={card.currentImageAddressTumb}

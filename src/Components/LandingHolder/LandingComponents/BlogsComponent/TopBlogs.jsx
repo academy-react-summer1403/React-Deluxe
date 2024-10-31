@@ -43,7 +43,6 @@ const contentStyle = {
 const BlogsCarsoual = () => {
   const [TopBlogSlice, setTopBlogs] = useState([]);
 
-  
   const getTopBlogs = async () => {
     try {
       const result = await GetTopBlogsByPg();
@@ -229,10 +228,16 @@ const TopBlogs = () => {
   return (
     <section className="py-16 ">
       <div className="container mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-8 dark:text-white">
+        <h2
+          data-aos="fade-up"
+          className="text-3xl font-bold mb-8 dark:text-white"
+        >
           بلاگ های برتر هفته
         </h2>
-        <div className="md:flex hidden  md:flex-wrap justify-center gap-8 mx-2">
+        <div
+          data-aos="flip-down"
+          className="md:flex hidden  md:flex-wrap justify-center gap-8 mx-2"
+        >
           {TopBlog.slice(0, 3).map((blog, index) => (
             <div
               key={index}
