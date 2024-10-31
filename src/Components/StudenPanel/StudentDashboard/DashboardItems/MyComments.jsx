@@ -31,9 +31,9 @@ const MyComments = () => {
             <path
               d="M6.5 1C6.5 1 1.50001 4.68242 1.5 6C1.49999 7.31767 6.5 11 6.5 11"
               stroke="#3772FF"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
         </div>
@@ -334,9 +334,9 @@ const MyComments = () => {
                     <path
                       d="M33.6198 50.3433C33.1333 48.3229 31.1158 45.8855 31.1158 45.8855C31.1158 45.8855 34.4544 47.4175 34.5937 45.4667C34.733 43.5169 32.437 44.3526 30.9766 45.606C27.0809 43.2384 25.4802 43.6562 26.3149 46.3034C27.1495 48.9505 30.7677 45.9552 30.7677 45.9552C29.7359 47.9423 29.0317 50.0823 28.6805 52.294"
                       stroke="#E6EAF0"
-                      stroke-width="1.34482"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="1.34482"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </g>
                   <defs>
