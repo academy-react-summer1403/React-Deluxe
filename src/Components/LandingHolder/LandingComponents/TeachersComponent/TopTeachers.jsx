@@ -77,7 +77,7 @@ const TopTeachers = () => {
                       className="h-24 mx-auto mb-4 rounded-full"
                     />
                   </div>
-                  <h3 className="text-l text-white  font-semibold mb-2">
+                  <h3 className="text-l text-white  font-semibold mb-2 pt-8">
                     {teacher.fullName}
                   </h3>
                   <p className="dark:text-slate-300  text-gray-500">
