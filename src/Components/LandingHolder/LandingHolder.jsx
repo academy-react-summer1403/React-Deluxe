@@ -10,7 +10,7 @@ import { Footer } from "../Common/Footer";
 
 const LandingHolder = () => {
   return (
-    <div className=" relative dark:bg-[#041124]">
+    <div data-aos="zoom-out-up" className=" relative dark:bg-[#041124]">
       {/* <Header /> */}
       <HeroSection />
       <GoalsSection />
