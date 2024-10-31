@@ -24,10 +24,16 @@ const teachersData = [
 
 const TopTeachers = () => {
   return (
-    <section className="py-16 bg-gray-950 dark:bg-slate-800 mb-1 rounded-3xl  h-auto place-items-center ">
+    <section
+      data-aos="fade-in"
+      className="py-16 bg-gray-950 dark:bg-slate-800 mb-1 rounded-3xl  h-auto place-items-center "
+    >
       <div className="container mx-auto text-center">
         <div className="flex flex-col xl:flex-row justify-between ">
-          <div className="flex flex-col items-start text-justify  xl:w-2/5 mx-10">
+          <div
+            data-aos="slide-left"
+            className="flex flex-col items-start text-justify  xl:w-2/5 mx-10"
+          >
             <h2 className="text-3xl font-bold text-white mb-8">
               اساتید برتر هفته آکادمی
             </h2>
@@ -43,7 +49,10 @@ const TopTeachers = () => {
               صفحه اساتید
             </button>
           </div>
-          <div className="bg-gray-900 dark:bg-slate-600 rounded-2xl flex items-center justify-center  py-10 mx-10 h-80 flex-1 xl:w-3/5">
+          <div
+            data-aos="slide-right"
+            className="bg-gray-900 dark:bg-slate-600 rounded-2xl flex items-center justify-center  py-10 mx-10 h-80 flex-1 xl:w-3/5"
+          >
             <div className="flex flex-col md:flex-row ">
               {teachersData.map((teacher, index) => (
                 <div
