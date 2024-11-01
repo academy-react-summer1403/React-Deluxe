@@ -52,14 +52,14 @@ const WelcomeHeader = () => {
               <path
                 d="M12 22.5C17.5228 22.5 22 18.0228 22 12.5C22 6.97715 17.5228 2.5 12 2.5C6.47715 2.5 2 6.97715 2 12.5C2 18.0228 6.47715 22.5 12 22.5Z"
                 stroke="#2F2F2F"
-                stroke-width="1.5"
+                strokeWidth="1.5"
               />
               <path
                 d="M12.0078 11.0082C11.1794 11.0082 10.5078 11.6798 10.5078 12.5082C10.5078 13.3366 11.1794 14.0082 12.0078 14.0082C12.8362 14.0082 13.5078 13.3366 13.5078 12.5082C13.5078 11.6798 12.8362 11.0082 12.0078 11.0082ZM12.0078 11.0082V7.49902M15.0147 15.5198L13.0661 13.5712"
                 stroke="#2F2F2F"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
             <div>
@@ -81,37 +81,37 @@ const WelcomeHeader = () => {
               <path
                 d="M18 2.5V4.5M6 2.5V4.5"
                 stroke="#2F2F2F"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path
                 d="M11.9955 13.5H12.0045M11.9955 17.5H12.0045M15.991 13.5H16M8 13.5H8.00897M8 17.5H8.00897"
                 stroke="#2F2F2F"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path
                 d="M3.5 8.5H20.5"
                 stroke="#2F2F2F"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path
                 d="M2.5 12.7432C2.5 8.38594 2.5 6.20728 3.75212 4.85364C5.00424 3.5 7.01949 3.5 11.05 3.5H12.95C16.9805 3.5 18.9958 3.5 20.2479 4.85364C21.5 6.20728 21.5 8.38594 21.5 12.7432V13.2568C21.5 17.6141 21.5 19.7927 20.2479 21.1464C18.9958 22.5 16.9805 22.5 12.95 22.5H11.05C7.01949 22.5 5.00424 22.5 3.75212 21.1464C2.5 19.7927 2.5 17.6141 2.5 13.2568V12.7432Z"
                 stroke="#2F2F2F"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path
                 d="M3 8.5H21"
                 stroke="#2F2F2F"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
             <div className="">

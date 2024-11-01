@@ -95,3 +95,20 @@ button:focus-visible {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 9px;
+  border: 1px solid #2fbd8e;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 0;
+  background: #ff0000;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0;
+  background: #ff0000;
+}
+
