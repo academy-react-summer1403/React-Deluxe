@@ -58,7 +58,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 
-export const AccordionTab = ({ options, onSelectionChange }) => {
+export const AccordionTab = ({ options, onSelectionChange, labelTitle }) => {
   const [isOpen, setIsOpen] = useState(false); // Controls the accordion open/close
   const [selectedOptions, setSelectedOptions] = useState([]); // Tracks selected options
   const contentRef = useRef(null); // Ref to measure content height
@@ -74,12 +74,13 @@ export const AccordionTab = ({ options, onSelectionChange }) => {
       return newSelected;
     });
   };
-
   // Toggles the accordion open/close
   const toggleAccordion = () => setIsOpen(!isOpen);
 
   // Set content height based on isOpen state
   const contentHeight = isOpen ? contentRef.current.scrollHeight : 0;
+
+  // console.log(options);
 
   return (
     <div className="accordion border border-gray-300 px-2 rounded-md w-full bg-slate-200 dark:bg-gray-700">
@@ -90,7 +91,7 @@ export const AccordionTab = ({ options, onSelectionChange }) => {
       >
         {selectedOptions.length > 0
           ? `${selectedOptions.join(" , ")}`
-          : "دسته مورد نظر را انتخاب کنید"}
+          : labelTitle + " مورد نظر را انتخاب کنید"}
       </div>
 
       {/* Accordion content with animated height */}
@@ -107,11 +108,35 @@ export const AccordionTab = ({ options, onSelectionChange }) => {
             >
               <input
                 type="checkbox"
-                checked={selectedOptions.includes(option)}
-                onChange={() => handleOptionToggle(option)}
+                checked={selectedOptions.includes(
+                  labelTitle === "دسته"
+                    ? option.techName
+                    : labelTitle === "سطح"
+                    ? option.levelName
+                    : labelTitle === "اساتید"
+                    ? option.fullName
+                    : option
+                )}
+                onChange={() =>
+                  handleOptionToggle(
+                    labelTitle === "دسته"
+                      ? option.techName
+                      : labelTitle === "سطح"
+                      ? option.levelName
+                      : labelTitle === "اساتید"
+                      ? option.fullName
+                      : option
+                  )
+                }
                 className="mr-2"
               />
-              {option}
+              {labelTitle === "دسته"
+                ? option.techName
+                : labelTitle === "سطح"
+                ? option.levelName
+                : labelTitle === "اساتید"
+                ? option.fullName
+                : option}
             </label>
           ))}
         </div>

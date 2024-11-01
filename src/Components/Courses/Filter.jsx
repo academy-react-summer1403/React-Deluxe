@@ -1,7 +1,10 @@
 import { Checkbox, Collapse } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AccordionTab } from "./CoursesComponents/FilterAccordion/Accordion";
 import { PricePicker } from "./CoursesComponents/FilterPricePicker/PricePicker";
+import { GetCoursesCategory } from "../../core/services/api/Courses/CoursesCategory/GetCoursesCategory";
+import { GetCoursesLevels } from "../../core/services/api/Courses/CoursesCategory/GetCoursesLevels";
+import { GetCoursesTeachers } from "../../core/services/api/Courses/CoursesCategory/GetCoursesTeachers";
 
 const Filter = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -13,6 +16,9 @@ const Filter = () => {
   const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false);
   const [isLevelDropdownOpen, setIsLevelDropdownOpen] = useState(false); // State for level dropdown
   const [isTeacherDropdownOpen, setIsTeacherDropdownOpen] = useState(false); // State for teacher dropdown
+  const [categories, setCategories] = useState([]);
+  const [levels, setLevels] = useState([]);
+  const [teachers, setTeachers] = useState([]);
 
   const { Panel } = Collapse;
 
@@ -55,6 +61,42 @@ const Filter = () => {
     setTeacher(selectedTeacher);
     setIsTeacherDropdownOpen(false);
   };
+
+  const GetCategory = async () => {
+    try {
+      const res = await GetCoursesCategory();
+      console.log(res);
+      setCategories(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const GetLevel = async () => {
+    try {
+      const res = await GetCoursesLevels();
+      console.log(res);
+      setLevels(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const GetTeacher = async () => {
+    try {
+      const res = await GetCoursesTeachers();
+      console.log(res);
+      setTeachers(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    GetCategory();
+    GetLevel();
+    GetTeacher();
+  }, []);
 
   const catOptions = [
     "طراحی سایت",
@@ -224,8 +266,9 @@ const Filter = () => {
             </Panel>
           </Collapse> */}
           <AccordionTab
-            options={catOptions}
+            options={categories}
             onSelectionChange={handleSelectionChange}
+            labelTitle={"دسته"}
           />
           {/* {isCategoryDropdownOpen && (
             <div className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-1">
@@ -299,8 +342,9 @@ const Filter = () => {
             </div>
           )} */}
           <AccordionTab
-            options={catOptions}
+            options={levels}
             onSelectionChange={handleSelectionChange}
+            labelTitle={"سطح"}
           />
         </div>
 
@@ -372,8 +416,9 @@ const Filter = () => {
             </div>
           )} */}
           <AccordionTab
-            options={catOptions}
+            options={teachers}
             onSelectionChange={handleSelectionChange}
+            labelTitle={"اساتید"}
           />
         </div>
 
@@ -598,7 +643,7 @@ const Filter = () => {
                   دسته بندی
                 </label>
               </div>
-              <button
+              {/* <button
                 onClick={() =>
                   setIsCategoryDropdownOpen(!isCategoryDropdownOpen)
                 }
@@ -620,7 +665,11 @@ const Filter = () => {
                     )
                   )}
                 </div>
-              )}
+              )} */}
+              <AccordionTab
+                options={catOptions}
+                onSelectionChange={handleSelectionChange}
+              />
             </div>
 
             {/* Level Dropdown */}
@@ -628,7 +677,7 @@ const Filter = () => {
               <label className="text-gray-700 mb-2 block dark:text-white">
                 سطح آموزشی
               </label>
-              <button
+              {/* <button
                 onClick={() => setIsLevelDropdownOpen(!isLevelDropdownOpen)}
                 className="w-full text-right  text-gray-500 border border-gray-300 rounded-lg py-2 px-4  bg-slate-200"
               >
@@ -646,7 +695,11 @@ const Filter = () => {
                     </div>
                   ))}
                 </div>
-              )}
+              )} */}
+              <AccordionTab
+                options={catOptions}
+                onSelectionChange={handleSelectionChange}
+              />
             </div>
 
             {/* Teachers Dropdown */}
@@ -654,7 +707,7 @@ const Filter = () => {
               <label className="text-gray-700 mb-2 block dark:text-white">
                 اساتید
               </label>
-              <button
+              {/* <button
                 onClick={() => setIsTeacherDropdownOpen(!isTeacherDropdownOpen)}
                 className="w-full text-right border  text-gray-500 border-gray-300 rounded-lg py-2 px-4  bg-slate-200"
               >
@@ -677,23 +730,23 @@ const Filter = () => {
                     </div>
                   ))}
                 </div>
-              )}
+              )} */}
+              <AccordionTab
+                options={catOptions}
+                onSelectionChange={handleSelectionChange}
+              />
             </div>
             {/* Price */}
             <div className="mb-4">
               <label className="text-gray-700 mb-2 block dark:text-white">
                 قیمت
               </label>
-              <div className="flex items-center justify-between text-sm text-gray-500 mb-2 dark:text-white">
+              {/* <div className="flex items-center justify-between text-sm text-gray-500 mb-2 dark:text-white">
                 <span>از 10,000</span>
                 <span>تا 1,000,000</span>
               </div>
-              <input
-                type="range"
-                className="w-full"
-                min="10000"
-                max="1000000"
-              />
+              <input type="range" className="w-full min="10000" max="1000000" /> */}
+              <PricePicker />
             </div>
 
             {/* Event Dates */}
