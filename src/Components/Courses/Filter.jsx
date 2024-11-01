@@ -1,6 +1,6 @@
 import { Checkbox, Collapse } from "antd";
 import { useState } from "react";
-import { Accordion } from "./CoursesComponents/Filter Accordion/Accordion";
+import { AccordionTab } from "./CoursesComponents/Filter Accordion/Accordion";
 
 const Filter = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -55,15 +55,18 @@ const Filter = () => {
     setIsTeacherDropdownOpen(false);
   };
 
-  const options = ["Option 1", "Option 2", "Option 3", "Option 4"];
+  const catOptions = [
+    "طراحی سایت",
+    "برنامه‌نویسی",
+    "طراحی سایت",
+    "برنامه‌نویسی",
+  ];
 
   // Mock API call handler when selections change
   const handleSelectionChange = (selectedOptions) => {
     console.log("Selected options:", selectedOptions);
     // Insert API call logic here
   };
-
-  const items = ["Option 1", "Option 2", "Option 3", "Option 4"];
 
   return (
     <div className="absolute right-12 lg:right-0 lg:relative w-[128px] flex lg:w-[20rem]">
@@ -197,7 +200,7 @@ const Filter = () => {
               دسته بندی
             </label>
           </div>
-          <button
+          {/* <button
             onClick={() => setIsCategoryDropdownOpen(!isCategoryDropdownOpen)}
             className="w-full text-gray-500 text-right border border-gray-300 rounded-lg py-2 px-4 bg-slate-200"
           >
@@ -218,9 +221,12 @@ const Filter = () => {
                 </Checkbox>
               ))}
             </Panel>
-          </Collapse>
-          <AccordionTab options={items} />
-          {isCategoryDropdownOpen && (
+          </Collapse> */}
+          <AccordionTab
+            options={catOptions}
+            onSelectionChange={handleSelectionChange}
+          />
+          {/* {isCategoryDropdownOpen && (
             <div className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-1">
               {["طراحی سایت", "برنامه‌نویسی", "دوره طراحی UX"].map((cat) => (
                 <div
@@ -232,7 +238,7 @@ const Filter = () => {
                 </div>
               ))}
             </div>
-          )}
+          )} */}
         </div>
 
         {/* Level Dropdown */}
@@ -272,7 +278,7 @@ const Filter = () => {
             </label>
           </div>
 
-          <button
+          {/* <button
             onClick={() => setIsLevelDropdownOpen(!isLevelDropdownOpen)}
             className="w-full text-right  text-gray-500 border border-gray-300 rounded-lg py-2 px-4  bg-slate-200"
           >
@@ -290,7 +296,11 @@ const Filter = () => {
                 </div>
               ))}
             </div>
-          )}
+          )} */}
+          <AccordionTab
+            options={catOptions}
+            onSelectionChange={handleSelectionChange}
+          />
         </div>
 
         {/* Teachers Dropdown */}
@@ -336,7 +346,7 @@ const Filter = () => {
             </label>
           </div>
 
-          <button
+          {/* <button
             onClick={() => setIsTeacherDropdownOpen(!isTeacherDropdownOpen)}
             className="w-full text-right  text-gray-500 border border-gray-300 rounded-lg py-2 px-4  bg-slate-200"
           >
@@ -359,7 +369,11 @@ const Filter = () => {
                 </div>
               ))}
             </div>
-          )}
+          )} */}
+          <AccordionTab
+            options={catOptions}
+            onSelectionChange={handleSelectionChange}
+          />
         </div>
 
         {/* Price */}
@@ -457,21 +471,6 @@ const Filter = () => {
             ۲۹ اردیبهشت ۱۴۰۳ - ۵ خرداد ۱۴۰۳
           </p>
         </div>
-        <Collapse accordion>
-          <Panel header="Option 1" key="1">
-            <Checkbox>Item 1</Checkbox>
-            <Checkbox>Item 2</Checkbox>
-            <Checkbox>Item 3</Checkbox>
-          </Panel>
-          {/* <Panel header="Option 2" key="2">
-            <Checkbox>Item 4</Checkbox>
-            <Checkbox>Item 5</Checkbox>
-          </Panel>
-          <Panel header="Option 3" key="3">
-            <Checkbox>Item 6</Checkbox>
-            <Checkbox>Item 7</Checkbox>
-          </Panel> */}
-        </Collapse>
       </div>
 
       {/* Modal for filters */}
