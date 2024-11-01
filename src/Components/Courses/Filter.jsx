@@ -1,6 +1,7 @@
 import { Checkbox, Collapse } from "antd";
 import { useState } from "react";
-import { AccordionTab } from "./CoursesComponents/Filter Accordion/Accordion";
+import { AccordionTab } from "./CoursesComponents/FilterAccordion/Accordion";
+import { PricePicker } from "./CoursesComponents/FilterPricePicker/PricePicker";
 
 const Filter = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -417,11 +418,8 @@ const Filter = () => {
             </label>
           </div>
 
-          <div className="flex items-center justify-between text-sm text-gray-500 mb-2 dark:text-white">
-            <span>از 10,000</span>
-            <span>تا 1,000,000</span>
-          </div>
-          <input type="range" className="w-full" min="10000" max="1000000" />
+          {/* <input type="range" className="w-full" min="10000" max="1000000" /> */}
+          <PricePicker />
         </div>
 
         {/* Event Dates */}
