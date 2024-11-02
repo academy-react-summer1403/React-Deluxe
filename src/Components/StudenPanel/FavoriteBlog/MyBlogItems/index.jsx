@@ -1,12 +1,11 @@
 import { ConfigProvider, Pagination } from "antd";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BsEye } from "react-icons/bs";
 import { RxCross1 } from "react-icons/rx";
-import { myReserve } from "../../../../core/services/api/StudentPanel/MyReserve.api";
 import { Link } from "react-router-dom";
-import Logo from "../../../../assets/logo (3).png";
+import { favoriteNews } from "../../../../core/services/api/StudentPanel/FavoriteNews.api";
 import { getRandomColor } from "../../../Common/ColorGenerator";
-// const ReserveData = [
+// const coursesData = [
 //   {
 //     title: " فیگما",
 //     price: "۴۵۰,۰۰۰ تومان",
@@ -17,8 +16,6 @@ import { getRandomColor } from "../../../Common/ColorGenerator";
 //     color: "bg-red-400",
 //     date: "۲۹ اردیبهشت ۱۴۰۳",
 //     enddate: "۲۹ شهریور ۱۴۰۳",
-//     tagCol: "bg-blue-500",
-//     status: "تایید شده",
 //   },
 //   {
 //     title: " جاوا اسکریپت",
@@ -30,8 +27,6 @@ import { getRandomColor } from "../../../Common/ColorGenerator";
 //     color: "bg-yellow-300",
 //     date: "۲۹ اردیبهشت ۱۴۰۳",
 //     enddate: "۲۹ شهریور ۱۴۰۳",
-//     tagCol: "bg-red-500",
-//     status: "تایید نشده",
 //   },
 //   {
 //     title: " ری‌اکت جی‌اس",
@@ -43,8 +38,6 @@ import { getRandomColor } from "../../../Common/ColorGenerator";
 //     color: "bg-cyan-200",
 //     date: "۲۹ اردیبهشت ۱۴۰۳",
 //     enddate: "۲۹ شهریور ۱۴۰۳",
-//     tagCol: "bg-red-500",
-//     status: "تایید نشده",
 //   },
 //   {
 //     title: " فیگما",
@@ -56,9 +49,6 @@ import { getRandomColor } from "../../../Common/ColorGenerator";
 //     color: "bg-red-400",
 //     date: "۲۹ اردیبهشت ۱۴۰۳",
 //     enddate: "۲۹ شهریور ۱۴۰۳",
-//     tagCol: "bg-red-500",
-
-//     status: "تایید نشده",
 //   },
 //   {
 //     title: " جاوااسکریپت",
@@ -70,8 +60,6 @@ import { getRandomColor } from "../../../Common/ColorGenerator";
 //     color: "bg-yellow-300",
 //     date: "۲۹ اردیبهشت ۱۴۰۳",
 //     enddate: "۲۹ شهریور ۱۴۰۳",
-//     tagCol: "bg-red-500",
-//     status: "تایید نشده",
 //   },
 //   {
 //     title: " طراحی سایت",
@@ -83,39 +71,40 @@ import { getRandomColor } from "../../../Common/ColorGenerator";
 //     color: "bg-blue-600",
 //     date: "۲۹ اردیبهشت ۱۴۰۳",
 //     enddate: "۲۹ شهریور ۱۴۰۳",
-//     tagCol: "bg-red-500",
-//     status: "تایید نشده",
 //   },
 // ];
 
 const index = () => {
-  const [reserveData, setReserveData] = useState([]);
+  const [newsData, setNewsData] = useState([]);
 
-  const getMyReserve = async () => {
+  const getNewsData = async () => {
     try {
-      const result = await myReserve();
+      const result = await favoriteNews();
 
-      setReserveData(result);
+      setNewsData(result.myFavoriteNews);
+
       console.log(result);
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
-    getMyReserve();
+    getNewsData();
   }, []);
+
   return (
-    <div className="bg-gray-50 dark:bg-indigo-950  h-[900px] p-2 rounded-3xl flex flex-col gap-24  justify-between flex-1">
+    <div className="bg-gray-50 dark:bg-indigo-950 flex h-[40rem] justify-between flex-col gap-24 p-2 rounded-3xl    ">
       <div>
-        <ul className="flex p-2 rounded-xl text-sm text-gray-500  m-5 dark:bg-[#041124] dark:text-white  bg-gray-100 gap-14 sm:gap-20 md:gap-24 lg:gap-24 justify-start">
-          <li className="hidden md:block">#</li>
-          <li className="w-[121px] md:w-[131px] lg:w-[231px]"> نام دوره</li>
-          <li className="mr-2 hidden sm:block">تاریخ برگزاری</li>
-          <li className="mr-2 hidden lg:block">تاریخ اتمام</li>
-          <li>تایید</li>
+        <ul className="flex p-2 rounded-xl text-sm text-gray-500  m-5 dark:bg-[#041124] dark:text-white  bg-gray-100 gap-24 justify-start">
+          <li className="hidden md:block ">#</li>
+          <li> نام دوره</li>
+          <li className="w-[50px] hidden sm:block">مدرس</li>
+          <li className="mr-2 ">تاریخ برگزاری</li>
+          <li className="mr-2 hidden sm:block">تاریخ اتمام</li>
+          <li className="hidden lg:block">سطح</li>
         </ul>
         <div className="mt-4 mx-5 space-y-4">
-          {reserveData?.map((Reserve, index) => (
+          {newsData.map((news, index) => (
             <div
               key={index}
               className="  flex flex-row  relative  items-center rounded-3xl justify-start gap-9    "
@@ -124,40 +113,32 @@ const index = () => {
                 className={`h-12 hidden md:flex justify-center items-center rounded-xl w-20  mb-4 ${getRandomColor()}`}
               >
                 <img
-                  src={Reserve.icon ?? Logo}
+                  src={news.currentImageAddressTumb}
                   alt={""}
                   className={`size-8 `}
                 />
               </div>
-
-              <h3 className=" text-xl dark:text-white font-semibold mb-2  truncate w-[151px] sm:w-[301px]">
-                {Reserve.courseName}
+              <h3 className=" text-xl dark:text-white font-semibold mb-2  truncate w-[111px]">
+                {news.title}
               </h3>
-
+              <p className="  dark:text-white text-[12px] hidden sm:block font-bold items-center w-[125px]  ">
+                {news.currentRate}
+              </p>
               <span
-                className={`hidden sm:inline-flex items-center w-[127px] dark:text-white `}
+                className={`inline-flex items-center w-[125px] dark:text-white `}
               >
-                {Reserve.reserverDate.slice(0, 10)}
+                {news.updateDate.slice(0, 10)}
               </span>
-
               <span
                 className={`hidden lg:inline-flex items-center w-[125px] dark:text-white `}
               >
-                {Reserve.enddate}
+                {news.currentView}
               </span>
-              <span
-                className={`md:px-3 py-0 text-sm sm:text-base ${
-                  Reserve.accept === false ? "bg-red-500" : "bg-blue-500"
-                }  w-[130px] flex justify-center   text-white rounded-full`}
-              >
-                {Reserve.accept === false ? (
-                  <span>تایید نشد </span>
-                ) : (
-                  <span>تایید شد </span>
-                )}
-              </span>
+              <span className=" py-0 text-base  hidden sm:block     text-black rounded-full">
+                {news.currentLikeCount}
+              </span>{" "}
               <div className="flex gap-2">
-                <Link to={"/courseDetails"}>
+                <Link to={"/blogDetails"}>
                   <BsEye className="text-base" />
                 </Link>
 
@@ -170,7 +151,7 @@ const index = () => {
       <div className="">
         <ConfigProvider direction="rtl" className="mt-10">
           {" "}
-          {reserveData.length > 8 && (
+          {newsData.length > 8 && (
             <Pagination align="center" defaultCurrent={1} total={50} />
           )}
         </ConfigProvider>

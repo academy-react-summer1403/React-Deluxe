@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Carousel } from "antd";
 import { GetTopCoursesByPg } from "../../../../../core/services/api/Landing.api";
+import { getRandomColor } from "../../../../Common/ColorGenerator";
 
 const contentStyle = {
   height: "",
@@ -90,7 +91,7 @@ const CoursesItems = () => {
             to={"/courseDetails"}
           >
             <div
-              className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${course.color}`}
+              className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${getRandomColor()}`}
             >
               <img
                 src={course.tumbImageAddress}
@@ -160,7 +161,7 @@ const CoursesCarsoual = () => {
               >
                 <Link to={"/courseDetails"}>
                   <div
-                    className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${course.color}`}
+                    className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${getRandomColor()}`}
                   >
                     <img
                       src={course.tumbImageAddress}

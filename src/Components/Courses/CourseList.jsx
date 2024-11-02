@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { GetAllCoursesByPg } from "../../core/services/api/Courses.api";
 import Pic from "../../assets/react.png";
 import Logo from "../../assets/logo (3).png";
+import { getRandomColor } from "../Common/ColorGenerator";
 
 // const coursesData = [
 //   {
@@ -277,7 +278,7 @@ const CourseList = () => {
           >
             <Link to={"/courseDetails"}>
               <div
-                className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${course.color}`}
+                className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${getRandomColor()}`}
               >
                 <img
                   src={course.tumbImageAddress ?? Logo}

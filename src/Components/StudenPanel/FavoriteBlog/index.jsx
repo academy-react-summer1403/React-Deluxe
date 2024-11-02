@@ -1,12 +1,12 @@
 import React from "react";
-import MyCoursesItems from "./MyCoursesItems";
-import { SearchInput } from "./MyCoursesItems/Search";
-import { DateRangePicker } from "./MyCoursesItems/DateRange";
+import MyBlogItems from "./MyBlogItems";
+import { SearchInput } from "./MyBlogItems/Search";
+import { DateRangePicker } from "./MyBlogItems/DateRange";
 
 const index = () => {
   return (
     <div className="h-[921px]  bg-gray-950">
-      <div className="bg-white dark:bg-[#041124] p-8 mx-5 dark:text-white space-y-8 rounded-3xl ">
+      <div className="bg-white dark:bg-[#041124] h-[99%] p-8 mx-5 dark:text-white space-y-8 rounded-3xl ">
         <h2 className="text-2xl font-bold">بلاگ های موردعلاقه</h2>
         <div className="flex flex-col">
           <div className="flex flex-col sm:flex-row mb-6 gap-4">
@@ -81,7 +81,7 @@ const index = () => {
               <DateRangePicker />
             </div>
           </div>
-          <MyCoursesItems />
+          <MyBlogItems />
         </div>
       </div>
     </div>
