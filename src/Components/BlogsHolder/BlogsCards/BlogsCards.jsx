@@ -94,7 +94,7 @@ const BlogsCards = () => {
 
   return (
     <div className="mb-8 w-[72rem]">
-      <div className="hidden lg:flex justify-start items-center gap-2 mb-4 mr-7">
+      {/* <div className="hidden lg:flex justify-start items-center gap-2 mb-4 mr-7">
         <span className="text-xl ml-2 dark:text-white">ترتیب </span>
         <button className=" text-white bg-blue-500 py-2 px-4 rounded-full">
           جدیدترین
@@ -102,7 +102,20 @@ const BlogsCards = () => {
         <button className="text-blue-500 border border-blue-500 py-2 px-4 rounded-full">
           محبوب‌ترین
         </button>
-      </div>
+      </div> */}
+      <ul className="hidden lg:flex justify-start items-center gap-2 mb-4 mr-7">
+        <li className="text-xl ml-2 dark:text-white">ترتیب</li>
+        <li>
+          <button className="text-white bg-blue-500 py-2 px-4 rounded-full">
+            جدیدترین
+          </button>
+        </li>
+        <li>
+          <button className="text-blue-500 border border-blue-500 py-2 px-4 rounded-full">
+            محبوب‌ترین
+          </button>
+        </li>
+      </ul>
 
       <div className="lg:hidden flex justify-end items-center gap-2 mb-4 ml-12">
         <button
