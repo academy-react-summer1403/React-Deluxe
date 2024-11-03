@@ -1,22 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Checkbox, Collapse } from "antd";
+// import { GetBlogsCategory } from "../../core/services/api/Blogs/GetBlogsCategory";
+import { AccordionTabs } from "../Accordion/Accordion";
 
 const BlogsFilter = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [category, setCategory] = useState("");
-  const [level, setLevel] = useState("");
-  const [teacher, setTeacher] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false);
-  const [isLevelDropdownOpen, setIsLevelDropdownOpen] = useState(false); // State for level dropdown
-  const [isTeacherDropdownOpen, setIsTeacherDropdownOpen] = useState(false); // State for teacher dropdown
+  const [categories, setCategories] = useState([]);
+
+  const { Panel } = Collapse;
 
   const handleSearch = () => {
     const filters = {
       searchTerm,
       category,
-      level,
-      teacher,
     };
     console.log("Searching with filters:", filters);
     setIsModalOpen(false); // Close modal after search
@@ -32,7 +32,7 @@ const BlogsFilter = () => {
       setIsModalOpen(true);
       setTimeout(() => {
         setIsAnimating(true);
-      }, 10); // Delay to allow transition to trigger properly
+      }, 10);
     }
   };
 
@@ -41,24 +41,40 @@ const BlogsFilter = () => {
     setIsCategoryDropdownOpen(false);
   };
 
-  const handleLevelSelect = (selectedLevel) => {
-    setLevel(selectedLevel);
-    setIsLevelDropdownOpen(false);
+  const GetCategory = async () => {
+    try {
+      const res = await GetBlogsCategory();
+      console.log(res);
+      setCategories(res);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const handleTeacherSelect = (selectedTeacher) => {
-    setTeacher(selectedTeacher);
-    setIsTeacherDropdownOpen(false);
+  useEffect(() => {
+    GetCategory();
+  }, []);
+
+  const catOptions = [
+    "طراحی سایت",
+    "برنامه‌نویسی",
+    "طراحی سایت",
+    "برنامه‌نویسی",
+  ];
+
+  // Mock API call handler when selections change
+  const handleSelectionChange = (selectedOptions) => {
+    console.log("Selected options:", selectedOptions);
+    // Insert API call logic here
   };
 
   return (
-    // GHONCHE CODE!!!!!!!!!!!!!!!! vvvvvvvv
     <div className="absolute right-12 lg:right-0 lg:relative w-[128px] flex lg:w-[20rem]">
       {/* Button to show filters only on small screens */}
       <div className="mb-4 lg:hidden">
         <button
           onClick={toggleModal}
-          className="px-4 py-3 bg-red-500 text-white rounded-full flex gap-2"
+          className="px-4 py-3 bg-blue-500 text-white rounded-full flex gap-2"
         >
           <svg
             width="20"
@@ -80,7 +96,7 @@ const BlogsFilter = () => {
       </div>
 
       {/* Filter form hidden on small screens */}
-      <div className="hidden lg:block bg-white rounded-3xl p-4 w-80 text-right border-2 mt-20 h-fit dark:bg-[#041124] ">
+      <div className="hidden lg:block bg-white rounded-3xl p-4 w-72 text-right border-2 mt-20 h-fit dark:bg-[#041124] ">
         <h2 className="text-xl font-semibold mb-4 dark:text-white">فیلتر</h2>
 
         {/* Search */}
@@ -114,7 +130,7 @@ const BlogsFilter = () => {
           <input
             type="text"
             className="w-full pr-4 pl-12 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 text-right bg-slate-200 text-gray-500"
-            placeholder="بلاگ مورد نظر را جستجو کنید..."
+            placeholder="فیلتر مورد نظر را جستجو کنید..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -184,25 +200,46 @@ const BlogsFilter = () => {
               دسته بندی
             </label>
           </div>
-          <button
-            onClick={() => setIsCategoryDropdownOpen(!isCategoryDropdownOpen)}
-            className="w-full text-gray-500 text-right border border-gray-300 rounded-lg py-2 px-4 bg-slate-200"
+          {/* <button
+          onClick={() => setIsCategoryDropdownOpen(!isCategoryDropdownOpen)}
+          className="w-full text-gray-500 text-right border border-gray-300 rounded-lg py-2 px-4 bg-slate-200"
+        >
+          {category ? category : "دسته مورد نظر را انتخاب کنید"}
+        </button>
+        <Collapse accordion>
+          <Panel
+            className="w-full text-gray-500 text-right border border-gray-300 rounded-lg bg-slate-200"
+            header="Option 1"
+            key="1"
           >
-            {category ? category : "دسته مورد نظر را انتخاب کنید"}
-          </button>
-          {isCategoryDropdownOpen && (
-            <div className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-1">
-              {["طراحی سایت", "برنامه‌نویسی", "دوره طراحی UX"].map((cat) => (
-                <div
-                  key={cat}
-                  onClick={() => handleCategorySelect(cat)}
-                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
-                >
-                  {cat}
-                </div>
-              ))}
-            </div>
-          )}
+            {["طراحی سایت", "برنامه‌نویسی", "دوره طراحی UX"].map((opt) => (
+              <Checkbox
+                key={opt}
+                className="px-4 py-2 w-full hover:bg-gray-200 cursor-pointer rounded-lg transition-all duration-300 border border-slate-200 mt-2"
+              >
+                {opt}
+              </Checkbox>
+            ))}
+          </Panel>
+        </Collapse> */}
+          <AccordionTabs
+            options={categories}
+            onSelectionChange={handleSelectionChange}
+            labelTitle={"دسته"}
+          />
+          {/* {isCategoryDropdownOpen && (
+          <div className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-1">
+            {["طراحی سایت", "برنامه‌نویسی", "دوره طراحی UX"].map((cat) => (
+              <div
+                key={cat}
+                onClick={() => handleCategorySelect(cat)}
+                className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
+              >
+                {cat}
+              </div>
+            ))}
+          </div>
+        )} */}
         </div>
 
         {/* Event Dates */}
@@ -245,7 +282,7 @@ const BlogsFilter = () => {
               />
             </svg>
             <label className="text-gray-700 mb-2 block dark:text-white">
-              تاریخ انتشار
+              تاریخ برگزاری - اتمام
             </label>
           </div>
           <p className="text-sm text-gray-500 mt-3 bg-gray-200 py-2 px-4 rounded-lg">
@@ -381,29 +418,33 @@ const BlogsFilter = () => {
                   دسته بندی
                 </label>
               </div>
-              <button
-                onClick={() =>
-                  setIsCategoryDropdownOpen(!isCategoryDropdownOpen)
-                }
-                className="w-full text-gray-500 text-right border border-gray-300 rounded-lg py-2 px-4 bg-slate-200"
-              >
-                {category ? category : "دسته مورد نظر را انتخاب کنید"}
-              </button>
-              {isCategoryDropdownOpen && (
-                <div className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-1">
-                  {["طراحی سایت", "برنامه‌نویسی", "دوره طراحی UX"].map(
-                    (cat) => (
-                      <div
-                        key={cat}
-                        onClick={() => handleCategorySelect(cat)}
-                        className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
-                      >
-                        {cat}
-                      </div>
-                    )
-                  )}
-                </div>
-              )}
+              {/* <button
+              onClick={() =>
+                setIsCategoryDropdownOpen(!isCategoryDropdownOpen)
+              }
+              className="w-full text-gray-500 text-right border border-gray-300 rounded-lg py-2 px-4 bg-slate-200"
+            >
+              {category ? category : "دسته مورد نظر را انتخاب کنید"}
+            </button>
+            {isCategoryDropdownOpen && (
+              <div className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-1">
+                {["طراحی سایت", "برنامه‌نویسی", "دوره طراحی UX"].map(
+                  (cat) => (
+                    <div
+                      key={cat}
+                      onClick={() => handleCategorySelect(cat)}
+                      className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
+                    >
+                      {cat}
+                    </div>
+                  )
+                )}
+              </div>
+            )} */}
+              <AccordionTabs
+                options={catOptions}
+                onSelectionChange={handleSelectionChange}
+              />
             </div>
 
             {/* Event Dates */}
@@ -446,7 +487,7 @@ const BlogsFilter = () => {
                   />
                 </svg>
                 <label className="text-gray-700 dark:text-white">
-                  تاریخ انتشار
+                  تاریخ برگزاری - اتمام
                 </label>
               </div>
               <p className="text-sm text-gray-500 mt-3 border border-gray-300 bg-slate-200 py-2 px-4 rounded-lg">
