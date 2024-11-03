@@ -7,14 +7,14 @@ import { UserProgress } from "./DashboardItems/Progress";
 
 const index = () => {
   return (
-    <div className="bg-white xl:h-[906px] overflow-hidden  xl:mr-0 mr-3   dark:bg-[#041124] p-3 space-y-8 rounded-3xl ">
+    <div className="bg-white xl:h-max overflow-hidden  xl:mr-0 mr-3   dark:bg-[#041124] p-3 space-y-8 rounded-3xl ">
       <WelcomeHeader />
 
       <div className="flex flex-row justify-between space-y-8 gap-4 lg:space-y-0">
         <MyCourses />
         <UserProgress />
       </div>
-      <div className="flex flex-col lg:flex-row justify-between gap-6 space-y-8 lg:space-y-0">
+      <div className="flex flex-col lg:flex-row justify-between gap-6 space-y-8 lg:space-y-0 h-full">
         <MyReserves />
         <MyComments />
       </div>

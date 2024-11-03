@@ -18,7 +18,7 @@ const ReserveData = [
 
 const MyReserves = () => {
   return (
-    <div className="bg-gray-50 dark:bg-indigo-950 pb-60 dark:text-white shadow-lg  p-2 rounded-3xl  lg:w-2/3 ">
+    <div className="bg-gray-50 dark:bg-indigo-950 dark:text-white shadow-lg  p-2 rounded-3xl  lg:w-2/3 h-full max-h-[20.5rem] overflow-y-hidden">
       <div className="flex flex-row px-4 justify-between">
         <h2 className="text-base font-semibold">رزرو من</h2>
         <Link to={"/MyReserve"}>
