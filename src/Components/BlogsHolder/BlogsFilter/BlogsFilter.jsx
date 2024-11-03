@@ -27,7 +27,7 @@ const BlogsFilter = () => {
       setIsAnimating(false);
       setTimeout(() => {
         setIsModalOpen(false);
-      }, 300); // Match the duration of the slide-down transition
+      }, 300);
     } else {
       setIsModalOpen(true);
       setTimeout(() => {
@@ -50,13 +50,12 @@ const BlogsFilter = () => {
       console.log(error);
     }
   };
-
   useEffect(() => {
     GetCategory();
   }, []);
 
   const catOptions = [
-    "طراحی سایت",
+    " ارزهای دیجیتال",
     "برنامه‌نویسی",
     "طراحی سایت",
     "برنامه‌نویسی",

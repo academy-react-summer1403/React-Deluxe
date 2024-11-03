@@ -1,4 +1,4 @@
-import  { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 export const AccordionTabs = ({ options, onSelectionChange, labelTitle }) => {
   const [isOpen, setIsOpen] = useState(false); // Controls the accordion open/close
@@ -53,14 +53,20 @@ export const AccordionTabs = ({ options, onSelectionChange, labelTitle }) => {
                 checked={selectedOptions.includes(
                   labelTitle === "دسته"
                     ? option.techName
-                    
+                    : labelTitle === "سطح"
+                    ? option.levelName
+                    : labelTitle === "اساتید"
+                    ? option.fullName
                     : option
                 )}
                 onChange={() =>
                   handleOptionToggle(
                     labelTitle === "دسته"
                       ? option.techName
-                      
+                      : labelTitle === "سطح"
+                      ? option.levelName
+                      : labelTitle === "اساتید"
+                      ? option.fullName
                       : option
                   )
                 }
@@ -68,6 +74,10 @@ export const AccordionTabs = ({ options, onSelectionChange, labelTitle }) => {
               />
               {labelTitle === "دسته"
                 ? option.techName
+                : labelTitle === "سطح"
+                ? option.levelName
+                : labelTitle === "اساتید"
+                ? option.fullName
                 : option}
             </label>
           ))}
