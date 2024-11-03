@@ -5,6 +5,7 @@ import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import { AiOutlineLike } from "react-icons/ai";
 import { AiOutlineDislike } from "react-icons/ai";
 import { CourseCommentsModal } from "./CourseCommentsModal";
+import { useQueryShortcut } from "../../../core/services/api/ReactQuery/useQueryShortcut";
 
 const CourseComment = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -41,6 +42,10 @@ const CourseComment = () => {
       dislikes: 0,
     },
   ];
+
+  const res = useQueryShortcut("CourseCommentsById");
+  const data = res?.slice(0, 3);
+  console.log("Comments DATAAAAAAH", data);
 
   const Comment = ({
     title,
@@ -113,16 +118,16 @@ const CourseComment = () => {
             برای نظر دادن کلیک کنید
           </p>
         </div>
-        {commentsData.map((item, index) => (
+        {data?.map((item, index) => (
           <Comment
             key={index}
             title={item.title}
-            comment={item.comment}
-            profilePic={item.profilePic}
-            name={item.name}
-            date={item.date}
-            likes={item.likes}
-            dislikes={item.dislikes}
+            comment={item.describe}
+            profilePic={item.pictureAddress}
+            name={item.author}
+            date={item.insertDate.toString().slice(0, 10)}
+            likes={item.likeCount}
+            dislikes={item.disslikeCount}
           />
         ))}
       </div>

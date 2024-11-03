@@ -275,7 +275,7 @@ const CourseList = () => {
             key={index}
             className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-950 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
           >
-            <Link to={"/courseDetails"}>
+            <Link to={`/courseDetails/${course.courseId}`}>
               <div
                 className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${course.color}`}
               >
@@ -285,10 +285,8 @@ const CourseList = () => {
                   className={`size-48 `}
                 />
               </div>
-            </Link>
 
-            <Link to={"/courseDetails"}>
-              <h3 className="flex text-xl dark:text-white font-semibold mb-2 ">
+              <h3 className="flex justify-center text-xl dark:text-white font-semibold mb-2">
                 {course.title}
               </h3>
             </Link>

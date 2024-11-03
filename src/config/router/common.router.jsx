@@ -37,7 +37,7 @@ export const commonRoutes = createBrowserRouter([
         element: <Courses />,
       },
       {
-        path: "/courseDetails",
+        path: "/courseDetails/:id",
         element: <CourseDetails />,
       },
       {

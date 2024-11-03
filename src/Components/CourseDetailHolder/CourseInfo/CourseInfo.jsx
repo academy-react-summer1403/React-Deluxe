@@ -7,8 +7,8 @@ import { AiOutlineLike } from "react-icons/ai";
 import { AiOutlineDislike } from "react-icons/ai";
 import { InfoBlock } from "./Components/InfoBlock";
 
-const CourseInfo = () => {
-  const [starValue, setStarValue] = useState(1);
+const CourseInfo = ({ data }) => {
+  const [starValue, setStarValue] = useState(`${data.currentRate}`);
 
   const infoBlock1Data = [
     {
@@ -18,7 +18,7 @@ const CourseInfo = () => {
       title: "وضعیت",
       statusClasses:
         "text-white bg-[#ff5353] rounded-full px-2 text-base font-light whitespace-nowrap w-fit h-6 mt-2",
-      status: "درحال برگزاری",
+      status: `${data.courseStatusName}`,
     },
     {
       wrapperClasses:
@@ -27,7 +27,7 @@ const CourseInfo = () => {
       title: "دسته بندی",
       statusClasses:
         "text-white bg-[#3772ff] rounded-full px-2 text-base font-light w-fit h-6 mt-2",
-      status: "برنامه نویسی",
+      status: `${data.techs[0]}`,
     },
   ];
   const infoBlock2Data = [
@@ -38,7 +38,7 @@ const CourseInfo = () => {
       title: "سطح آموزشی",
       statusClasses:
         "text-white bg-[#ff37f5] rounded-full px-2 text-base font-light w-fit h-6 mt-2",
-      status: "پیشرفته",
+      status: `${data.courseLevelName}`,
     },
     {
       wrapperClasses: "basis-[50%] lg:basis-[50%] w-32 h-20 p-2",
@@ -46,7 +46,7 @@ const CourseInfo = () => {
       title: "مدرس",
       statusClasses:
         "text-base/[1.2rem] font-light whitespace-wrap dark:text-white mt-2",
-      status: "محمدحسین بحرالعلومی",
+      status: `${data.teacherName}`,
     },
   ];
   const infoBlock3Data = [
@@ -55,15 +55,15 @@ const CourseInfo = () => {
         "basis-[50%] border-l border-slate-200 dark:border-gray-500 w-32 h-20 p-2",
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
       title: "تاریخ برگزاری",
-      statusClasses: "text-base/[2.5rem] font-light dark:text-white",
-      status: "29 اردیبهشت 1403",
+      statusClasses: "text-base/[1rem] mt-3 font-light dark:text-white",
+      status: `${data.startTime}`,
     },
     {
       wrapperClasses: "basis-[50%] w-32 h-20 p-2",
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
       title: "تاریخ اتمام",
-      statusClasses: "text-base/[2.5rem] font-light dark:text-white",
-      status: "29 خرداد 1403",
+      statusClasses: "text-base/[1rem] mt-3 font-light dark:text-white",
+      status: `${data.endTime}`,
     },
   ];
   const infoBlock4Data = [
@@ -73,14 +73,14 @@ const CourseInfo = () => {
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
       title: "تعداد لایک",
       statusClasses: "text-base/[2.5rem] font-light dark:text-white",
-      status: "220 نفر",
+      status: `${data.likeCount} نفر`,
     },
     {
       wrapperClasses: "basis-[50%] w-32 h-20 p-2",
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
       title: "تعداد دیس‌لایک",
       statusClasses: "text-base/[2.5rem] font-light dark:text-white",
-      status: "20 نفر",
+      status: `${data.dissLikeCount} نفر`,
     },
   ];
 
@@ -91,11 +91,12 @@ const CourseInfo = () => {
         className="flex flex-col p-6 bg-white rounded-lg dark:bg-[#041124] lg:flex-row"
       >
         {/* Right Section: Course Image */}
-        <div className="flex justify-center h-[27rem] order-last mt-10 lg:mt-0 lg:order-none lg:w-1/2 lg:h-[27rem] bg-[#FF6C6C] dark:bg-indigo-800 rounded-[1.8rem]">
+        <div className="flex justify-center h-[27rem] order-last mt-10 lg:mt-0 lg:order-none lg:w-1/2 lg:h-[27rem] bg-transparent rounded-[1.8rem]">
           <img
-            src="https://s3-alpha-sig.figma.com/img/72eb/0bda/c649ce20dfb0409d36134908c7d16a53?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=VKvXDw8XmMqPX-avBXZ3r-CHzU9Gajrp1YuONERMXpFwVwsZ621ROUvmGg0l0M5Uk3WLvvw2rJNVCzHrcBZFnMZ7223KYF1zthqjB~agrpfX1me4Htn4sYgPWzfOwWcoeMc-8Ft~KokEaEwmlvGatv8eiEtEq7qJdFYL2XiYwSwyu6q6HpeqpSxry78jz0IRAoiTvIYk2P9IFUBoe0ld3XB~XIPFhnHivN8S7q7uvba6q8faq91bBMcoe6dbzjhSVpBQOyKyOeSw4CO4ds4OMV-PV~7gwlyWBn85CIdU5oudgmBhTkRo5lytZ9g8DyzRqkHuWOr7Wez3jdvHYkD02g__"
+            src={data.imageAddress}
+            // "https://s3-alpha-sig.figma.com/img/72eb/0bda/c649ce20dfb0409d36134908c7d16a53?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=VKvXDw8XmMqPX-avBXZ3r-CHzU9Gajrp1YuONERMXpFwVwsZ621ROUvmGg0l0M5Uk3WLvvw2rJNVCzHrcBZFnMZ7223KYF1zthqjB~agrpfX1me4Htn4sYgPWzfOwWcoeMc-8Ft~KokEaEwmlvGatv8eiEtEq7qJdFYL2XiYwSwyu6q6HpeqpSxry78jz0IRAoiTvIYk2P9IFUBoe0ld3XB~XIPFhnHivN8S7q7uvba6q8faq91bBMcoe6dbzjhSVpBQOyKyOeSw4CO4ds4OMV-PV~7gwlyWBn85CIdU5oudgmBhTkRo5lytZ9g8DyzRqkHuWOr7Wez3jdvHYkD02g__"
             alt="Course"
-            className="rounded-lg shadow-md w-64 object-contain"
+            className="rounded-[2rem] shadow-md object-fill w-full"
           />
         </div>
 
@@ -103,7 +104,7 @@ const CourseInfo = () => {
         <div className="flex flex-col flex-grow mt-4 lg:mr-6 lg:w-1/2">
           {/* 1st Row: Course Title */}
           <h1 className="text-3xl font-bold text-[#1B1B1B] dark:text-white mb-4">
-            دوره جاوااسکریپت
+            {data.title}
           </h1>
 
           {/* 2nd Row: Course Info Section */}
@@ -167,13 +168,18 @@ const CourseInfo = () => {
                 {" "}
                 ( {starValue} ){" "}
               </span>
-              <Rate className="mb-1" onChange={setStarValue} defaultValue={1} />
+              <Rate
+                className="mb-1"
+                disabled
+                onChange={setStarValue}
+                defaultValue={data.currentRate}
+              />
               <span className="text-[#7C7C7C] dark:text-gray-300 mr-2">
-                + (۴۰) نظرات
+                + ({data.commentCount}) نظرات
               </span>
             </div>
             <div className="hidden text-2xl font-bold text-black dark:text-white lg:block">
-              ۲۵,۰۰۰
+              {data.cost}
               <span className="text-sm mr-1">تومان</span>
             </div>
           </div>
@@ -205,7 +211,7 @@ const CourseInfo = () => {
           رزرو دوره
         </button>
         <div className="text-2xl font-bold text-black dark:text-white">
-          ۲۵,۰۰۰
+          {data.cost}
           <span className="text-sm mr-1">تومان</span>
         </div>
       </div>
