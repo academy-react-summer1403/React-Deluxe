@@ -47,8 +47,8 @@ const CopyLink = () => {
   );
 };
 
-const BlogInfo = () => {
-  const [starValue, setStarValue] = useState(1);
+const BlogInfo = ({ data }) => {
+  // const [starValue, setStarValue] = useState(`${data?.currentRate}`);
 
   const infoBlock1Data = [
     {
@@ -57,15 +57,15 @@ const BlogInfo = () => {
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
       title: "دسته بندی",
       statusClasses:
-        "text-white bg-[#3772ff] rounded-full px-2 text-base font-light w-fit h-6 mt-2",
-      status: "برنامه نویسی",
+        "text-white bg-[#3772ff] rounded-full px-2 text-base font-light w-fit h-6 mt-2 text-wrap",
+      status: `${data?.newsCatregoryName}`,
     },
     {
       wrapperClasses: "basis-[50%] w-32 h-20 p-2",
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
       title: "بازدیدکنندگان",
       statusClasses: "text-base/[2.5rem] font-light dark:text-white",
-      status: "264 نفر",
+      status: `${data?.currentView} نفر`,
     },
   ];
   const infoBlock2Data = [
@@ -75,7 +75,7 @@ const BlogInfo = () => {
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
       title: "تاریخ انتشار",
       statusClasses: "text-base/[2.5rem] font-light dark:text-white",
-      status: "29 اردیبهشت 1403",
+      status: `${data?.insertDate.toString().slice(0, 10)}`,
     },
     {
       wrapperClasses: "basis-[50%] lg:basis-[50%] w-32 h-20 p-2",
@@ -83,7 +83,7 @@ const BlogInfo = () => {
       title: "منتشرکننده",
       statusClasses:
         "text-base/[1.2rem] font-light whitespace-wrap dark:text-white mt-2",
-      status: "محمدحسین خلیل‌پور",
+      status: `${data?.addUserFullName}`,
     },
   ];
   const infoBlock3Data = [
@@ -93,14 +93,14 @@ const BlogInfo = () => {
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
       title: "تعداد لایک",
       statusClasses: "text-base/[2.5rem] font-light dark:text-white",
-      status: "220 نفر",
+      status: `${data?.currentLikeCount} نفر`,
     },
     {
       wrapperClasses: "basis-[50%] w-32 h-20 p-2",
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
       title: "تعداد دیس‌لایک",
       statusClasses: "text-base/[2.5rem] font-light dark:text-white",
-      status: "20 نفر",
+      status: `${data?.currentDissLikeCount} نفر`,
     },
   ];
 
@@ -123,7 +123,7 @@ const BlogInfo = () => {
         <div className="flex flex-col flex-grow mt-4 lg:mr-6 lg:w-1/2">
           {/* 1st Row: Course Title */}
           <h1 className="text-3xl font-bold text-[#1B1B1B] dark:text-white mb-4">
-            دوره جاوااسکریپت
+            {data?.title}
           </h1>
 
           {/* 2nd Row: Course Info Section */}
@@ -169,21 +169,27 @@ const BlogInfo = () => {
           </div>
 
           {/* 4th Row: Price and Rating Section */}
-          <div className="flex flex-row items-center justify-around mb-4 lg:justify-between">
+          <div className="flex flex-row items-center justify-around mb-4 lg:justify-start">
             <div className="flex items-center">
               <span className="text-[#7C7C7C] dark:text-gray-300 ml-2">
-                {" "}
-                ( {starValue} ){" "}
+                ( {data?.currentRate} )
               </span>
-              <Rate className="mb-1" onChange={setStarValue} defaultValue={1} />
+              {data && (
+                <Rate
+                  disabled
+                  className="mb-1"
+                  // onChange={setStarValue}
+                  defaultValue={data?.currentRate}
+                />
+              )}
               <span className="text-[#7C7C7C] dark:text-gray-300 mr-2">
-                + (۴۰) نظرات
+                + ({data?.commentsCount}) نظرات
               </span>
             </div>
-            <div className="hidden text-2xl font-bold text-black dark:text-white lg:block">
+            {/* <div className="hidden text-2xl font-bold text-black dark:text-white lg:block">
               ۲۵,۰۰۰
               <span className="text-sm mr-1">تومان</span>
-            </div>
+            </div> */}
           </div>
 
           {/* 5th Row: Action Buttons */}

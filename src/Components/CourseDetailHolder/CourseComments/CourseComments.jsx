@@ -6,8 +6,11 @@ import { AiOutlineLike } from "react-icons/ai";
 import { AiOutlineDislike } from "react-icons/ai";
 import { CourseCommentsModal } from "./CourseCommentsModal";
 import { useQueryShortcut } from "../../../core/services/api/ReactQuery/useQueryShortcut";
+import { useLocation } from "react-router-dom";
 
-const CourseComment = () => {
+const CourseComment = ({ dataBlog }) => {
+  const { pathname } = useLocation();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const commentsData = [
@@ -45,7 +48,9 @@ const CourseComment = () => {
 
   const res = useQueryShortcut("CourseCommentsById");
   const data = res?.slice(0, 3);
-  console.log("Comments DATAAAAAAH", data);
+  console.log("Comments DATAAAAAAH", data ? data : "");
+
+  const blogComments = dataBlog?.slice(0, 3);
 
   const Comment = ({
     title,
@@ -118,18 +123,31 @@ const CourseComment = () => {
             برای نظر دادن کلیک کنید
           </p>
         </div>
-        {data?.map((item, index) => (
-          <Comment
-            key={index}
-            title={item.title}
-            comment={item.describe}
-            profilePic={item.pictureAddress}
-            name={item.author}
-            date={item.insertDate.toString().slice(0, 10)}
-            likes={item.likeCount}
-            dislikes={item.disslikeCount}
-          />
-        ))}
+        {pathname.includes("courseDetails")
+          ? data?.map((item, index) => (
+              <Comment
+                key={index}
+                title={item.title}
+                comment={item.describe}
+                profilePic={item.pictureAddress}
+                name={item.author}
+                date={item.insertDate.toString().slice(0, 10)}
+                likes={item.likeCount}
+                dislikes={item.disslikeCount}
+              />
+            ))
+          : blogComments?.map((item, id) => (
+              <Comment
+                key={id}
+                title={item.title}
+                comment={item.describe}
+                profilePic={item.pictureAddress}
+                name={item.autor}
+                date={item.inserDate.toString().slice(0, 10)}
+                likes={item.likeCount}
+                dislikes={item.dissLikeCount}
+              />
+            ))}
       </div>
       <div className="flex justify-center">
         <button

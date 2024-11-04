@@ -46,10 +46,10 @@ const CourseDesc = ({ data }) => {
         توضیحات دوره
       </h3>
       <p className="leading-relaxed text-gray-800 dark:text-gray-200">
-        {data.miniDescribe}
+        {data?.miniDescribe}
         <br />
         <br />
-        {data.describe}
+        {data?.describe}
         <br />
         <br />
       </p>
@@ -59,7 +59,7 @@ const CourseDesc = ({ data }) => {
           <Rate
             className="mr-4"
             defaultValue={
-              data.currentUserSetRate ? data.currentUserRateNumber : 0
+              data?.currentUserSetRate ? data?.currentUserRateNumber : 0
             }
           />
         </div>

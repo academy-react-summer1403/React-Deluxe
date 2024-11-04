@@ -269,33 +269,36 @@ const CourseList = () => {
         </div>
       )}
 
-      <div className="flex flex-wrap justify-center gap-8 ">
-        {courses.map((course, index) => (
+      <div className="flex flex-wrap justify-center gap-4 ">
+        {courses?.map((course, index) => (
           <div
             key={index}
-            className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-950 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
+            className="p-6 bg-sky-50 flex flex-col dark:bg-indigo-950 relative rounded-3xl justify-center items-center flex-1 min-w-[300px] max-w-[350px] "
           >
-            <Link to={`/courseDetails/${course.courseId}`}>
+            <Link className="w-full" to={`/courseDetails/${course.courseId}`}>
               <div
-                className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${course.color}`}
+                className={`flex justify-center items-center rounded-3xl w-full h-60 mb-4 ${
+                  course.tumbImageAddress ? "" : "bg-slate-200"
+                }`}
               >
                 <img
                   src={course.tumbImageAddress ?? Logo}
                   alt={""}
-                  className={`size-48 `}
+                  className={`size-full rounded-3xl`}
                 />
               </div>
 
-              <h3 className="flex justify-center text-xl dark:text-white font-semibold mb-2">
+              <h3 className="flex text-xl dark:text-white font-semibold mb-2">
                 {course.title}
               </h3>
             </Link>
-            <div className="flex flex-nowrap gap-7">
+            <div className="flex flex-nowrap gap-7 w-full justify-between">
               <p className=" text-gray-400 dark:text-white text-xs items-center ">
                 {course.teacherName}
               </p>
               <span className="text-gray-500 dark:text-white text-sm font-semibold mb-4">
                 {course.cost}
+                <span className="text-[0.6rem] mr-0.5">تومان</span>
               </span>
             </div>
             <div className="mt-4">

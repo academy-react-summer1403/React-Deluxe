@@ -10,7 +10,7 @@ import { FullPageLoading } from "./../Common/Loading/FullPageLoading/FullPageLoa
 import { useQueryShortcut } from "../../core/services/api/ReactQuery/useQueryShortcut";
 
 const CourseDetailHolder = () => {
-  const queryclient = useQueryClient();
+  const queryClient = useQueryClient();
   const params = useParams();
 
   getQuery("CourseDetailById", `/Home/GetCourseDetails?CourseId=${params.id}`);
@@ -20,7 +20,7 @@ const CourseDetailHolder = () => {
     window.scrollTo(0, 0);
 
     return () => {
-      queryclient.clear(["CourseDetailById", "CourseCommentsById"]);
+      queryClient.clear(["CourseDetailById", "CourseCommentsById"]);
     };
   }, []);
 
