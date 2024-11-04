@@ -1,10 +1,10 @@
 import React from "react";
-import MyProfile from "../../Components/StudenPanel/MyProfile";
+import { Profile } from "../../Components/StudenPanel/MyProfile";
 
 const index = () => {
   return (
     <div>
-      <MyProfile />
+      <Profile />
     </div>
   );
 };
