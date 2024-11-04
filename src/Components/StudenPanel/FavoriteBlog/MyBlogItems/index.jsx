@@ -1,10 +1,11 @@
-import { ConfigProvider, Pagination } from "antd";
+import { ConfigProvider, Pagination, Rate } from "antd";
 import React, { useEffect, useState } from "react";
 import { BsEye } from "react-icons/bs";
 import { RxCross1 } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import { favoriteNews } from "../../../../core/services/api/StudentPanel/FavoriteNews.api";
 import { getRandomColor } from "../../../Common/ColorGenerator";
+import { SlLike } from "react-icons/sl";
 // const coursesData = [
 //   {
 //     title: " فیگما",
@@ -98,10 +99,10 @@ const index = () => {
         <ul className="flex p-2 rounded-xl text-sm text-gray-500  m-5 dark:bg-[#041124] dark:text-white  bg-gray-100 gap-24 justify-start">
           <li className="hidden md:block ">#</li>
           <li> نام دوره</li>
-          <li className="w-[50px] hidden sm:block">مدرس</li>
-          <li className="mr-2 ">تاریخ برگزاری</li>
-          <li className="mr-2 hidden sm:block">تاریخ اتمام</li>
-          <li className="hidden lg:block">سطح</li>
+          <li className="w-[50px] hidden sm:block">امتیاز</li>
+          <li className="mr-2 ">تاریخ </li>
+          <li className="mr-2 hidden sm:block">تعداد بازدید </li>
+          <li className="hidden lg:block">تداد لایک</li>
         </ul>
         <div className="mt-4 mx-5 space-y-4">
           {newsData.map((news, index) => (
@@ -118,25 +119,26 @@ const index = () => {
                   className={`size-8 `}
                 />
               </div>
-              <h3 className=" text-xl dark:text-white font-semibold mb-2  truncate w-[111px]">
+              <h3 className=" text-xl dark:text-white font-semibold mb-2  truncate w-[151px]">
                 {news.title}
               </h3>
-              <p className="  dark:text-white text-[12px] hidden sm:block font-bold items-center w-[125px]  ">
-                {news.currentRate}
+              <p className="  dark:text-white text-[12px] hidden sm:block font-bold items-center w-[150px]  ">
+                <Rate defaultValue={news.currentRate} disabled />
               </p>
               <span
-                className={`inline-flex items-center w-[125px] dark:text-white `}
+                className={`inline-flex items-center w-[110px] dark:text-white `}
               >
                 {news.updateDate.slice(0, 10)}
               </span>
               <span
-                className={`hidden lg:inline-flex items-center w-[125px] dark:text-white `}
+                className={`hidden lg:inline-flex gap-2 items-center  dark:text-white `}
               >
+                <BsEye />
                 {news.currentView}
               </span>
-              <span className=" py-0 text-base  hidden sm:block     text-black rounded-full">
-                {news.currentLikeCount}
-              </span>{" "}
+              <span className=" py-0 text-base  hidden sm:inline-flex    gap-2  text-black rounded-full">
+                <SlLike /> {news.currentLikeCount}
+              </span>
               <div className="flex gap-2">
                 <Link to={"/blogDetails"}>
                   <BsEye className="text-base" />
