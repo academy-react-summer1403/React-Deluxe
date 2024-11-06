@@ -7,6 +7,7 @@ import { AiOutlineDislike } from "react-icons/ai";
 import { CourseCommentsModal } from "./CourseCommentsModal";
 import { useQueryShortcut } from "../../../core/services/api/ReactQuery/useQueryShortcut";
 import { useLocation } from "react-router-dom";
+import { ThumbsDownIcon, ThumbsUpIcon } from "hugeicons-react";
 
 const CourseComment = ({ dataBlog }) => {
   const { pathname } = useLocation();
@@ -76,7 +77,7 @@ const CourseComment = ({ dataBlog }) => {
             <img
               src={profilePic}
               alt="Avatar"
-              className="object-cover w-full h-full rounded-full"
+              className="object-cover w-10 h-10 max-w-none rounded-full"
             />
           </div>
           {/* User Name and Date */}
@@ -94,13 +95,13 @@ const CourseComment = ({ dataBlog }) => {
         <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
           {/* Like Button */}
           <div className="flex items-center gap-1 text-lg">
-            <AiOutlineLike className="text-xl cursor-pointer" />
+            <ThumbsUpIcon size={20} color={"#374151"} variant={"stroke"} />{" "}
             <span className="text-xs font-medium">{likes}</span>
           </div>
 
           {/* Dislike Button */}
           <div className="flex items-center gap-1 text-lg">
-            <AiOutlineDislike className="text-xl cursor-pointer" />
+            <ThumbsDownIcon size={20} color={"#374151"} variant={"stroke"} />{" "}
             <span className="text-xs font-medium">{dislikes}</span>
           </div>
         </div>

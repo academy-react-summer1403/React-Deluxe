@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { GetAllCoursesByPg } from "../../core/services/api/Courses.api";
 import Pic from "../../assets/react.png";
 import Logo from "../../assets/logo (3).png";
+import { useQueryShortcut } from "./../../core/services/api/ReactQuery/useQueryShortcut";
 
 // const coursesData = [
 //   {
@@ -116,16 +117,18 @@ import Logo from "../../assets/logo (3).png";
 //   },
 // ];
 
-const CourseList = () => {
+const CourseList = ({ searchTerm, selectedOptionId }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [courses, setCourses] = useState([]);
 
-  console.log(courses);
+  const courseData = useQueryShortcut("GetCoursesByPG");
 
-  const getAllCourse = async () => {
+  // const data = useQueryShortcut("BlogDetailById");
+
+  const getAllCourse = async (searchTerm, selectedOptionId) => {
     try {
-      const result = await GetAllCoursesByPg();
+      const result = await GetAllCoursesByPg(searchTerm, selectedOptionId);
 
       setCourses(result.courseFilterDtos);
 
@@ -136,8 +139,8 @@ const CourseList = () => {
   };
 
   useEffect(() => {
-    getAllCourse();
-  }, []);
+    getAllCourse(searchTerm, selectedOptionId);
+  }, [searchTerm, selectedOptionId]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -270,6 +273,7 @@ const CourseList = () => {
       )}
 
       <div className="flex flex-wrap justify-center gap-4 ">
+        {/* {courseData?.courseFilterDtos.map((course, index) => ( */}
         {courses?.map((course, index) => (
           <div
             key={index}

@@ -56,14 +56,14 @@ const CourseInfo = ({ data }) => {
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
       title: "تاریخ برگزاری",
       statusClasses: "text-base/[1rem] mt-3 font-light dark:text-white",
-      status: `${data.startTime}`,
+      status: `${data.startTime.toString().slice(0, 10)}`,
     },
     {
       wrapperClasses: "basis-[50%] w-32 h-20 p-2",
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
       title: "تاریخ اتمام",
       statusClasses: "text-base/[1rem] mt-3 font-light dark:text-white",
-      status: `${data.endTime}`,
+      status: `${data.endTime.toString().slice(0, 10)}`,
     },
   ];
   const infoBlock4Data = [

@@ -1,61 +1,3 @@
-// import React, { useState } from "react";
-
-// export const AccordionTab = ({ options, onSelectionChange }) => {
-//   const [isOpen, setIsOpen] = useState(false); // Controls the accordion open/close
-//   const [selectedOptions, setSelectedOptions] = useState([]); // Tracks selected options
-
-//   // Toggles option selection and updates the parent component
-//   const handleOptionToggle = (option) => {
-//     setSelectedOptions((prev) => {
-//       const newSelected = prev.includes(option)
-//         ? prev.filter((item) => item !== option)
-//         : [...prev, option];
-
-//       onSelectionChange(newSelected); // External callback for API calls
-//       return newSelected;
-//     });
-//   };
-
-//   // Toggles the accordion open/close
-//   const toggleAccordion = () => setIsOpen(!isOpen);
-
-//   return (
-//     <div className="accordion border rounded-md w-full bg-gray-100 dark:bg-gray-700">
-//       {/* Accordion header displaying selected options */}
-//       <div
-//         className="header cursor-pointer py-2 px-4 rounded-md border border-gray-300 bg-slate-200 text-gray-500"
-//         onClick={toggleAccordion}
-//       >
-//         {selectedOptions.length > 0
-//           ? `Selected: ${selectedOptions.join(", ")}`
-//           : "Select Options"}
-//       </div>
-
-//       {/* Accordion content with selectable options */}
-//       {isOpen && (
-//         <div className="transition-all duration-300">
-//           <div className="content mt-2 space-y-1 transition-all duration-500">
-//             {options.map((option, index) => (
-//               <label
-//                 key={index}
-//                 className="flex items-center cursor-pointer p-2 bg-white rounded-md shadow-sm hover:bg-gray-200 dark:bg-gray-600 dark:hover:bg-gray-500"
-//               >
-//                 <input
-//                   type="checkbox"
-//                   checked={selectedOptions.includes(option)}
-//                   onChange={() => handleOptionToggle(option)}
-//                   className="mr-2"
-//                 />
-//                 {option}
-//               </label>
-//             ))}
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
 import React, { useState, useRef, useEffect } from "react";
 
 export const AccordionTab = ({ options, onSelectionChange, labelTitle }) => {
@@ -64,15 +6,17 @@ export const AccordionTab = ({ options, onSelectionChange, labelTitle }) => {
   const contentRef = useRef(null); // Ref to measure content height
 
   // Toggles option selection and updates the parent component
-  const handleOptionToggle = (option) => {
+  const handleOptionToggle = (optionId, optionTitle) => {
+    //
     setSelectedOptions((prev) => {
-      const newSelected = prev.includes(option)
-        ? prev.filter((item) => item !== option)
-        : [...prev, option];
+      const newSelected = prev.includes(optionTitle)
+        ? prev.filter((item) => item !== optionTitle)
+        : [...prev, optionTitle];
 
-      onSelectionChange(newSelected); // External callback for API calls
       return newSelected;
     });
+
+    onSelectionChange(optionId); // External callback for API calls
   };
   // Toggles the accordion open/close
   const toggleAccordion = () => setIsOpen(!isOpen);
@@ -108,17 +52,18 @@ export const AccordionTab = ({ options, onSelectionChange, labelTitle }) => {
             >
               <input
                 type="checkbox"
-                checked={selectedOptions.includes(
-                  labelTitle === "دسته"
-                    ? option.techName
-                    : labelTitle === "سطح"
-                    ? option.levelName
-                    : labelTitle === "اساتید"
-                    ? option.fullName
-                    : option
-                )}
+                // checked={selectedOptions.includes(
+                //   labelTitle === "دسته"
+                //     ? option.techName
+                //     : labelTitle === "سطح"
+                //     ? option.levelName
+                //     : labelTitle === "اساتید"
+                //     ? option.fullName
+                //     : option
+                // )}
                 onChange={() =>
                   handleOptionToggle(
+                    option.id,
                     labelTitle === "دسته"
                       ? option.techName
                       : labelTitle === "سطح"
@@ -145,55 +90,58 @@ export const AccordionTab = ({ options, onSelectionChange, labelTitle }) => {
   );
 };
 
-// import React, { useState, useEffect } from "react";
-// import { Accordion, AccordionItem, Checkbox } from "@nextui-org/react";
+// import React, { useState, useRef } from "react";
 
-// export const AccordionTab = ({ options }) => {
-//   const [selectedOptions, setSelectedOptions] = useState([]);
+// export const AccordionTab = ({ options, field, form, labelTitle }) => {
+//   const [isOpen, setIsOpen] = useState(false);
+//   const contentRef = useRef(null);
 
-//   // API call on selection change
-//   useEffect(() => {
-//     if (selectedOptions.length > 0) {
-//       // Replace with your API call function
-//       fetchData(selectedOptions);
-//     }
-//   }, [selectedOptions]);
+//   // Toggles option selection and updates the Formik field
+//   const handleOptionToggle = (option) => {
+//     const selectedOptions = field.value || [];
+//     const newSelectedOptions = selectedOptions.includes(option)
+//       ? selectedOptions.filter((item) => item !== option)
+//       : [...selectedOptions, option];
 
-//   // Update selected options
-//   const handleToggleOption = (option) => {
-//     setSelectedOptions((prevSelected) =>
-//       prevSelected.includes(option)
-//         ? prevSelected.filter((item) => item !== option)
-//         : [...prevSelected, option]
-//     );
+//     form.setFieldValue(field.name, newSelectedOptions);
 //   };
 
-//   // Dummy API call function
-//   const fetchData = async (options) => {
-//     console.log("Selected options for API call:", options);
-//     // Make your API request here
-//   };
+//   const toggleAccordion = () => setIsOpen(!isOpen);
+//   const contentHeight = isOpen ? contentRef.current.scrollHeight : 0;
 
 //   return (
-//     <Accordion expanded>
-//       <AccordionItem
-//         title={
-//           selectedOptions.length > 0
-//             ? `Selected: ${selectedOptions.join(", ")}`
-//             : "Select Options"
-//         }
+//     <div className="accordion border border-gray-300 px-2 rounded-md w-full bg-slate-200 dark:bg-gray-700">
+//       <div
+//         className="header cursor-pointer bg-slate-200 p-2 rounded-md text-gray-500 text-right"
+//         onClick={toggleAccordion}
 //       >
-//         {options.map((option) => (
-//           <Checkbox
-//             key={option}
-//             checked={selectedOptions.includes(option)}
-//             onChange={() => handleToggleOption(option)}
-//             color="primary"
-//           >
-//             {option}
-//           </Checkbox>
-//         ))}
-//       </AccordionItem>
-//     </Accordion>
+//         {field.value && field.value.length > 0
+//           ? `${field.value.join(" , ")}`
+//           : labelTitle + " مورد نظر را انتخاب کنید"}
+//       </div>
+
+//       <div
+//         ref={contentRef}
+//         className="content overflow-hidden transition-all duration-300 max-h-[8.3rem] overflow-y-auto"
+//         style={{ height: `${contentHeight}px` }}
+//       >
+//         <div className="mt-2 space-y-1 flex flex-col gap-1">
+//           {options.map((option, index) => (
+//             <label
+//               key={index}
+//               className="flex gap-2 items-center cursor-pointer p-2 m-0 bg-white rounded-md shadow-sm hover:bg-gray-200 dark:bg-gray-600 dark:hover:bg-gray-500"
+//             >
+//               <input
+//                 type="checkbox"
+//                 checked={(field.value || []).includes(option)}
+//                 onChange={() => handleOptionToggle(option)}
+//                 className="mr-2"
+//               />
+//               {option}
+//             </label>
+//           ))}
+//         </div>
+//       </div>
+//     </div>
 //   );
 // };

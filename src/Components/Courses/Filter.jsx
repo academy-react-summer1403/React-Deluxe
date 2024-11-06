@@ -6,8 +6,13 @@ import { GetCoursesCategory } from "../../core/services/api/Courses/CoursesCateg
 import { GetCoursesLevels } from "../../core/services/api/Courses/CoursesCategory/GetCoursesLevels";
 import { GetCoursesTeachers } from "../../core/services/api/Courses/CoursesCategory/GetCoursesTeachers";
 
-const Filter = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+const Filter = ({
+  categorySelResult,
+  searchTerm,
+  setSearchTerm,
+  selectedOptionId,
+  setSelectedOptionId,
+}) => {
   const [category, setCategory] = useState("");
   const [level, setLevel] = useState("");
   const [teacher, setTeacher] = useState("");
@@ -20,6 +25,7 @@ const Filter = () => {
   const [levels, setLevels] = useState([]);
   const [teachers, setTeachers] = useState([]);
 
+  console.log(searchTerm);
   const { Panel } = Collapse;
 
   const handleSearch = () => {
@@ -106,10 +112,19 @@ const Filter = () => {
   ];
 
   // Mock API call handler when selections change
-  const handleSelectionChange = (selectedOptions) => {
-    console.log("Selected options:", selectedOptions);
+  const handleSelectionChange = (optionId) => {
+    console.log(optionId);
+    setSelectedOptionId((prev) => {
+      const selectedId = prev.includes(optionId)
+        ? prev.filter((item) => item !== optionId)
+        : [...prev, optionId];
+
+      return selectedId;
+    });
+    // console.log("Selected options:", selectedOptionId);
     // Insert API call logic here
   };
+  categorySelResult(selectedOptionId);
 
   return (
     <div className="absolute right-12 lg:right-0 lg:relative w-[128px] flex lg:w-[20rem]">
@@ -267,9 +282,10 @@ const Filter = () => {
           </Collapse> */}
           <AccordionTab
             options={categories}
-            onSelectionChange={handleSelectionChange}
+            onSelectionChange={(optionId) => handleSelectionChange(optionId)}
             labelTitle={"دسته"}
           />
+
           {/* {isCategoryDropdownOpen && (
             <div className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-1">
               {["طراحی سایت", "برنامه‌نویسی", "دوره طراحی UX"].map((cat) => (
