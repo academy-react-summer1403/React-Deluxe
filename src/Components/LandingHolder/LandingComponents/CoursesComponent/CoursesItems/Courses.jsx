@@ -77,12 +77,12 @@ const CoursesItems = () => {
   return (
     <div
       data-aos="flip-up"
-      className="hidden md:flex flex-wrap justify-center gap-8"
+      className="hidden md:flex flex-wrap justify-center gap-4"
     >
       {TopCourses.map((course, index) => (
         <div
           key={index}
-          className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-950 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
+          className="p-4 bg-sky-50 flex flex-col dark:bg-indigo-950 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
         >
           <Link
             onClick={() => {

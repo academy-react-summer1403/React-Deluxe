@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { GetAllCoursesByPg } from "../../core/services/api/Courses.api";
 import Pic from "../../assets/react.png";
 import Logo from "../../assets/logo (3).png";
+import { useQueryShortcut } from "./../../core/services/api/ReactQuery/useQueryShortcut";
 import { getRandomColor } from "../Common/ColorGenerator";
 
 // const coursesData = [
@@ -117,16 +118,18 @@ import { getRandomColor } from "../Common/ColorGenerator";
 //   },
 // ];
 
-const CourseList = () => {
+const CourseList = ({ searchTerm, selectedOptionId }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [courses, setCourses] = useState([]);
 
-  console.log(courses);
+  const courseData = useQueryShortcut("GetCoursesByPG");
 
-  const getAllCourse = async () => {
+  // const data = useQueryShortcut("BlogDetailById");
+
+  const getAllCourse = async (searchTerm, selectedOptionId) => {
     try {
-      const result = await GetAllCoursesByPg();
+      const result = await GetAllCoursesByPg(searchTerm, selectedOptionId);
 
       setCourses(result.courseFilterDtos);
 
@@ -137,8 +140,8 @@ const CourseList = () => {
   };
 
   useEffect(() => {
-    getAllCourse();
-  }, []);
+    getAllCourse(searchTerm, selectedOptionId);
+  }, [searchTerm, selectedOptionId]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -270,35 +273,35 @@ const CourseList = () => {
         </div>
       )}
 
-      <div className="flex flex-wrap justify-center gap-8 ">
-        {courses.map((course, index) => (
+      <div className="flex flex-wrap justify-center gap-4 ">
+        {/* {courseData?.courseFilterDtos.map((course, index) => ( */}
+        {courses?.map((course, index) => (
           <div
             key={index}
-            className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-950 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
+            className="p-6 bg-sky-50 flex flex-col dark:bg-indigo-950 relative rounded-3xl justify-center items-center flex-1 min-w-[300px] max-w-[350px] "
           >
-            <Link to={"/courseDetails"}>
+            <Link className="w-full" to={`/courseDetails/${course.courseId}`}>
               <div
                 className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${getRandomColor()}`}
               >
                 <img
                   src={course.tumbImageAddress ?? Logo}
                   alt={""}
-                  className={`size-48 `}
+                  className={`size-full rounded-3xl`}
                 />
               </div>
-            </Link>
 
-            <Link to={"/courseDetails"}>
-              <h3 className="flex text-xl dark:text-white font-semibold mb-2 ">
+              <h3 className="flex text-xl dark:text-white font-semibold mb-2">
                 {course.title}
               </h3>
             </Link>
-            <div className="flex flex-nowrap gap-7">
+            <div className="flex flex-nowrap gap-7 w-full justify-between">
               <p className=" text-gray-400 dark:text-white text-xs items-center ">
                 {course.teacherName}
               </p>
               <span className="text-gray-500 dark:text-white text-sm font-semibold mb-4">
                 {course.cost}
+                <span className="text-[0.6rem] mr-0.5">تومان</span>
               </span>
             </div>
             <div className="mt-4">

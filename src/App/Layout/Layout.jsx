@@ -8,7 +8,7 @@ const Layout = () => {
     <div className="dark:bg-[#041124]">
       <Header />
       <div className="flex justify-center">
-        <div className="max-w-[1400px] min-w-0">
+        <div className="max-w-[1400px] min-w-0 w-full">
           <Outlet />
         </div>
       </div>

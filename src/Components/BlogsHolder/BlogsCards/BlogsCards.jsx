@@ -2,6 +2,7 @@ import { ConfigProvider, Modal, Pagination } from "antd";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { GetAllBlogsByPg } from "../../../core/services/api/Blogs.api";
+import Logo from "../../../assets/logo (3).png";
 import { getRandomColor } from "../../Common/ColorGenerator";
 
 // const cardsData = [
@@ -70,6 +71,7 @@ const BlogsCards = () => {
     try {
       const result = await GetAllBlogsByPg();
       setNews(result.news);
+      console.log(result);
     } catch (error) {
       console.log(error);
     }
@@ -211,16 +213,16 @@ const BlogsCards = () => {
           {news.map((card, index) => (
             <div
               key={index}
-              className={`lg:basis-[47%] p-4 bg-slate-50  basis-[90%] rounded-3xl mb-7`}
+              className={`lg:basis-[47%] p-4 bg-sky-50  basis-[90%] rounded-3xl mb-7`}
             >
-              <Link to={"/BlogDetails"} className="cursor-pointer ">
+              <Link to={`/BlogDetails/${card.id}`} className="cursor-pointer ">
                 <div
                   className={`mb-4 w-full h-[22rem] rounded-[2.5rem] object-cover flex justify-center ${getRandomColor()} items-center`}
                 >
                   <img
-                    src={card.currentImageAddressTumb}
+                    src={card.currentImageAddressTumb ?? Logo}
                     alt={card.title}
-                    className={`w-60 h-60 object-contain`}
+                    className={`size-full rounded-[2rem]`}
                   />
                 </div>
                 <h3 className="text-2xl font-bold mb-2 dark:text-slate-300">
@@ -233,7 +235,7 @@ const BlogsCards = () => {
                 </p>
                 <div className="flex flex-row gap-4">
                   <p className="flex text-xs/[1.4rem] gap-2 dark:text-slate-400">
-                    {card.insertDate}
+                    {card.insertDate.toString().slice(0, 10)}
                     <svg
                       width="20"
                       height="20"

@@ -5,8 +5,13 @@ import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import { AiOutlineLike } from "react-icons/ai";
 import { AiOutlineDislike } from "react-icons/ai";
 import { CourseCommentsModal } from "./CourseCommentsModal";
+import { useQueryShortcut } from "../../../core/services/api/ReactQuery/useQueryShortcut";
+import { useLocation } from "react-router-dom";
+import { ThumbsDownIcon, ThumbsUpIcon } from "hugeicons-react";
 
-const CourseComment = () => {
+const CourseComment = ({ dataBlog }) => {
+  const { pathname } = useLocation();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const commentsData = [
@@ -42,6 +47,12 @@ const CourseComment = () => {
     },
   ];
 
+  const res = useQueryShortcut("CourseCommentsById");
+  const data = res?.slice(0, 3);
+  console.log("Comments DATAAAAAAH", data ? data : "");
+
+  const blogComments = dataBlog?.slice(0, 3);
+
   const Comment = ({
     title,
     comment,
@@ -66,7 +77,7 @@ const CourseComment = () => {
             <img
               src={profilePic}
               alt="Avatar"
-              className="object-cover w-full h-full rounded-full"
+              className="object-cover w-10 h-10 max-w-none rounded-full"
             />
           </div>
           {/* User Name and Date */}
@@ -84,13 +95,13 @@ const CourseComment = () => {
         <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
           {/* Like Button */}
           <div className="flex items-center gap-1 text-lg">
-            <AiOutlineLike className="text-xl cursor-pointer" />
+            <ThumbsUpIcon size={20} color={"#374151"} variant={"stroke"} />{" "}
             <span className="text-xs font-medium">{likes}</span>
           </div>
 
           {/* Dislike Button */}
           <div className="flex items-center gap-1 text-lg">
-            <AiOutlineDislike className="text-xl cursor-pointer" />
+            <ThumbsDownIcon size={20} color={"#374151"} variant={"stroke"} />{" "}
             <span className="text-xs font-medium">{dislikes}</span>
           </div>
         </div>
@@ -113,18 +124,31 @@ const CourseComment = () => {
             برای نظر دادن کلیک کنید
           </p>
         </div>
-        {commentsData.map((item, index) => (
-          <Comment
-            key={index}
-            title={item.title}
-            comment={item.comment}
-            profilePic={item.profilePic}
-            name={item.name}
-            date={item.date}
-            likes={item.likes}
-            dislikes={item.dislikes}
-          />
-        ))}
+        {pathname.includes("courseDetails")
+          ? data?.map((item, index) => (
+              <Comment
+                key={index}
+                title={item.title}
+                comment={item.describe}
+                profilePic={item.pictureAddress}
+                name={item.author}
+                date={item.insertDate.toString().slice(0, 10)}
+                likes={item.likeCount}
+                dislikes={item.disslikeCount}
+              />
+            ))
+          : blogComments?.map((item, id) => (
+              <Comment
+                key={id}
+                title={item.title}
+                comment={item.describe}
+                profilePic={item.pictureAddress}
+                name={item.autor}
+                date={item.inserDate.toString().slice(0, 10)}
+                likes={item.likeCount}
+                dislikes={item.dissLikeCount}
+              />
+            ))}
       </div>
       <div className="flex justify-center">
         <button

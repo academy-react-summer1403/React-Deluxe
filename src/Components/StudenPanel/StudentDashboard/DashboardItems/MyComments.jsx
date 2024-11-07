@@ -7,7 +7,7 @@ const MyComments = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="relative flex flex-col bg-gray-50 dark:bg-indigo-950 w-full dark:text-white p-6 rounded-lg shadow-md lg:w-1/3 ">
+    <div className="relative flex flex-col bg-gray-50 dark:bg-indigo-950 w-full dark:text-white p-6 rounded-lg shadow-md lg:w-1/3 h-full max-h-[20.5rem] overflow-y-scroll">
       <CourseCommentsModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
