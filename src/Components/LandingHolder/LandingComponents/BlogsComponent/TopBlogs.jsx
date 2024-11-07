@@ -4,6 +4,7 @@ import { BsEye } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { Carousel } from "antd";
 import { GetTopBlogsByPg } from "../../../../core/services/api/TopBlogs.api";
+import { getRandomColor } from "../../../Common/ColorGenerator";
 
 const contentStyle = {
   height: "",
@@ -70,7 +71,7 @@ const BlogsCarsoual = () => {
               >
                 <Link to={"/blogDetails"}>
                   <div
-                    className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${blog.color}`}
+                    className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 `}
                   >
                     <img
                       src={blog.currentImageAddressTumb}
@@ -117,7 +118,7 @@ const BlogsCarsoual = () => {
               >
                 <Link to={"/blogDetails"}>
                   <div
-                    className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${blog.color}`}
+                    className={`h-56 flex justify-center items-center ${getRandomColor()} rounded-3xl w-64 mx-auto mb-4 `}
                   >
                     <img
                       src={blog.currentImageAddressTumb}
@@ -164,7 +165,7 @@ const BlogsCarsoual = () => {
               >
                 <Link to={"/blogDetails"}>
                   <div
-                    className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${blog.color}`}
+                    className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${getRandomColor()}`}
                   >
                     <img
                       src={blog.currentImageAddressTumb}

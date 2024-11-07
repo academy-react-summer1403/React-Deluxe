@@ -5,6 +5,7 @@ import { GetAllCoursesByPg } from "../../core/services/api/Courses.api";
 import Pic from "../../assets/react.png";
 import Logo from "../../assets/logo (3).png";
 import { useQueryShortcut } from "./../../core/services/api/ReactQuery/useQueryShortcut";
+import { getRandomColor } from "../Common/ColorGenerator";
 
 // const coursesData = [
 //   {
@@ -281,9 +282,7 @@ const CourseList = ({ searchTerm, selectedOptionId }) => {
           >
             <Link className="w-full" to={`/courseDetails/${course.courseId}`}>
               <div
-                className={`flex justify-center items-center rounded-3xl w-full h-60 mb-4 ${
-                  course.tumbImageAddress ? "" : "bg-slate-200"
-                }`}
+                className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${getRandomColor()}`}
               >
                 <img
                   src={course.tumbImageAddress ?? Logo}

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { GetAllBlogsByPg } from "../../../core/services/api/Blogs.api";
 import Logo from "../../../assets/logo (3).png";
+import { getRandomColor } from "../../Common/ColorGenerator";
 
 // const cardsData = [
 //   {
@@ -216,7 +217,7 @@ const BlogsCards = () => {
             >
               <Link to={`/BlogDetails/${card.id}`} className="cursor-pointer ">
                 <div
-                  className={`mb-4 w-full h-[22rem] rounded-[2.5rem] object-cover flex justify-center items-center`}
+                  className={`mb-4 w-full h-[22rem] rounded-[2.5rem] object-cover flex justify-center ${getRandomColor()} items-center`}
                 >
                   <img
                     src={card.currentImageAddressTumb ?? Logo}
