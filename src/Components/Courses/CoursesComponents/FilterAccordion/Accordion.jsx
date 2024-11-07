@@ -41,7 +41,7 @@ export const AccordionTab = ({ options, onSelectionChange, labelTitle }) => {
       {/* Accordion content with animated height */}
       <div
         ref={contentRef}
-        className="content overflow-hidden transition-all duration-300 max-h-[8.3rem] overflow-y-auto"
+        className="content overflow-hidden transition-all duration-300 max-h-44 overflow-y-auto"
         style={{ height: `${contentHeight}px` }}
       >
         <div className="mt-2 space-y-1 flex flex-col gap-1">
