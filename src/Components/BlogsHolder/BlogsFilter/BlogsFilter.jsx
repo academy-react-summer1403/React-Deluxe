@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react";
 import { Checkbox, Collapse } from "antd";
-// import { GetBlogsCategory } from "../../core/services/api/Blogs/GetBlogsCategory";
-import { AccordionTabs } from "../Accordion/Accordion";
 
-const BlogsFilter = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+import { GetBlogsCategory } from "../../../core/services/api/Blogs/GetBlogsCategory";
+import { AccordionTab } from "./../../Courses/CoursesComponents/FilterAccordion/Accordion";
+
+const BlogsFilter = ({
+  searchTerm,
+  setSearchTerm,
+  selectedCategoryBlog,
+  setSelectedCategoryBlog,
+}) => {
   const [category, setCategory] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -62,9 +67,16 @@ const BlogsFilter = () => {
     "برنامه‌نویسی",
   ];
 
-  // Mock API call handler when selections change
-  const handleSelectionChange = (selectedOptions) => {
-    console.log("Selected options:", selectedOptions);
+  const handleSelectionChange = (optionId) => {
+    console.log(optionId);
+    setSelectedCategoryBlog((prev) => {
+      const selectedId = prev.includes(optionId)
+        ? prev.filter((item) => item !== optionId)
+        : [...prev, optionId];
+
+      return selectedId;
+    });
+    // console.log("Selected options:", selectedOptionId);
     // Insert API call logic here
   };
 
@@ -222,10 +234,10 @@ const BlogsFilter = () => {
             ))}
           </Panel>
         </Collapse> */}
-          <AccordionTabs
+          <AccordionTab
             options={categories}
-            onSelectionChange={handleSelectionChange}
-            labelTitle={"دسته"}
+            onSelectionChange={(optionId) => handleSelectionChange(optionId)}
+            labelTitle={"دسته بلاگ"}
           />
           {/* {isCategoryDropdownOpen && (
           <div className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-1">

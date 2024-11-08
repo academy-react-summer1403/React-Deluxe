@@ -1,8 +1,14 @@
 import { Field, Form, Formik } from "formik";
-import { CommentRemove01Icon, SentIcon, SmileIcon } from "hugeicons-react";
+import {
+  CommentRemove01Icon,
+  MailReply02Icon,
+  MessagePreview02Icon,
+  SentIcon,
+  SmileIcon,
+} from "hugeicons-react";
 import React, { useState } from "react";
 
-const CourseCommentsModal = ({ isOpen, onClose }) => {
+const CourseCommentsModal = ({ isOpen, onClose, courseComments, dataBlog }) => {
   const commentsData = [
     {
       id: 1,
@@ -14,16 +20,16 @@ const CourseCommentsModal = ({ isOpen, onClose }) => {
         "واقعاً مفید بود. هم اساتیدش و هم کلاس‌ها منظم برگزار شدن و اصلاً از ساعت عقب نیفتادم و تونستم به مقدار زیادی پیشرفت کنم توی کنوانسیون جاوا اسکریپت.",
       likes: 29,
       replies: [
-        {
-          id: 2,
-          user: "امیرحسین سپهریان",
-          avatar: "https://via.placeholder.com/40",
-          date: "۱۳ مهر ۱۴۰۳",
-          comment: "خوب بود ولی نبود",
-          description:
-            "دوره منظم بود، ولی هم کلاس‌ها منظم برگزار شدن و اصلاً از ساعت عقب نمی‌افتادم و تونستم به مقدار زیادی پیشرفت کنم توی کنوانسیون جاوا اسکریپت.",
-          likes: 18,
-        },
+        // {
+        //   id: 2,
+        //   user: "امیرحسین سپهریان",
+        //   avatar: "https://via.placeholder.com/40",
+        //   date: "۱۳ مهر ۱۴۰۳",
+        //   comment: "خوب بود ولی نبود",
+        //   description:
+        //     "دوره منظم بود، ولی هم کلاس‌ها منظم برگزار شدن و اصلاً از ساعت عقب نمی‌افتادم و تونستم به مقدار زیادی پیشرفت کنم توی کنوانسیون جاوا اسکریپت.",
+        //   likes: 18,
+        // },
       ],
     },
   ];
@@ -66,6 +72,8 @@ const CourseCommentsModal = ({ isOpen, onClose }) => {
     }
   };
 
+  console.log(courseComments);
+
   const addComment = (style) => {
     return (
       <Formik
@@ -103,12 +111,12 @@ const CourseCommentsModal = ({ isOpen, onClose }) => {
     );
   };
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50">
+    <div className="fixed inset-0 flex justify-center z-50">
       <div
         className="absolute inset-0 bg-black opacity-50"
         onClick={onClose}
       ></div>
-      <div className="relative w-full max-w-3xl p-8 bg-white dark:bg-gray-800 rounded-[2rem] shadow-lg">
+      <div className="relative w-full max-w-3xl p-8 bg-white dark:bg-gray-800 rounded-[2rem] shadow-lg overflow-y-scroll">
         {/* Header */}
         <div className="flex justify-between items-center mb-2 pb-2">
           <div className="font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
@@ -176,7 +184,7 @@ const CourseCommentsModal = ({ isOpen, onClose }) => {
 
         {/* Comments Section */}
         <div className="space-y-6">
-          {commentsData.map((comment) => (
+          {courseComments.map((comment) => (
             <div key={comment.id} className="space-y-4">
               {/* Main Comment */}
               <div className="flex items-start space-x-2">
@@ -184,25 +192,25 @@ const CourseCommentsModal = ({ isOpen, onClose }) => {
                   <div className="flex items-center justify-between">
                     <div className="flex mb-2 gap-2">
                       <img
-                        src={comment.avatar}
+                        src={comment.pictureAddress}
                         alt="avatar"
                         className="w-12 h-12 rounded-full"
                       />
                       <div className="flex flex-col gap-1 justify-center">
                         <div className="text-sm font-semibold text-gray-900 dark:text-white">
-                          {comment.user}
+                          {comment.author}
                         </div>
                         <div className="text-xs text-gray-500 dark:text-gray-400">
-                          {comment.date}
+                          {comment.insertDate.slice(0, 10)}
                         </div>
                       </div>
                     </div>
                   </div>
                   <h1 className="mt-1 text-lg font-bold text-gray-900 dark:text-gray-300">
-                    {comment.comment}
+                    {comment.title}
                   </h1>
                   <p className="text-sm font-medium text-gray-800 dark:text-gray-400">
-                    {comment.description}
+                    {comment.describe}
                   </p>
                   <div className="flex gap-3 space-x-2">
                     <div className="text-sm text-black hover:text-green-500 dark:text-gray-400 dark:hover:text-green-400 flex items-center gap-1">
@@ -228,7 +236,7 @@ const CourseCommentsModal = ({ isOpen, onClose }) => {
                           strokeLinejoin="round"
                         />
                       </svg>
-                      {comment.likes}
+                      {comment.likeCount}
                     </div>
                     <div className="text-sm text-black hover:text-green-500 dark:text-gray-400 dark:hover:text-green-400 flex items-center gap-1">
                       <svg
@@ -253,7 +261,7 @@ const CourseCommentsModal = ({ isOpen, onClose }) => {
                           strokeLinejoin="round"
                         />
                       </svg>
-                      {comment.likes}
+                      {comment.disslikeCount}
                     </div>
                     {isReplyOpen ? (
                       <>
@@ -271,19 +279,37 @@ const CourseCommentsModal = ({ isOpen, onClose }) => {
                         </button>
                       </>
                     ) : (
-                      <button
-                        className="text-[#3772FF] border border-[#3772FF] rounded-full py-2 px-3"
-                        onClick={handleReply}
-                      >
-                        جواب دادن
-                      </button>
+                      <div className="flex gap-4">
+                        <button
+                          className="text-[#3772FF] border border-[#3772FF] rounded-full py-2 px-3 flex gap-1"
+                          onClick={handleReply}
+                        >
+                          <MailReply02Icon
+                            size={20}
+                            color={"#3772ff"}
+                            variant={"stroke"}
+                          />
+                          جواب دادن
+                        </button>
+                        <button
+                          className="text-[#3772FF] border border-[#3772FF] rounded-full py-2 px-3 flex gap-1"
+                          onClick={handleReply}
+                        >
+                          <MessagePreview02Icon
+                            size={20}
+                            color={"#3772ff"}
+                            variant={"stroke"}
+                          />
+                          مشاهده جواب ها
+                        </button>
+                      </div>
                     )}
                   </div>
                 </div>
               </div>
 
               {/* Replies */}
-              {comment.replies && comment.replies.length > 0 && (
+              {/* {comment.replies && comment.replies.length > 0 && (
                 <div className="mt-4 space-y-4 flex gap-4">
                   <div className="bg-[#3772FF] h-auto w-2 rounded-full py-8"></div>
                   {comment.replies.map((reply) => (
@@ -391,7 +417,7 @@ const CourseCommentsModal = ({ isOpen, onClose }) => {
                     </div>
                   ))}
                 </div>
-              )}
+              )} */}
             </div>
           ))}
         </div>

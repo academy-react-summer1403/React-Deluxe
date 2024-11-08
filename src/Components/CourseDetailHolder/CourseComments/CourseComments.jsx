@@ -47,8 +47,8 @@ const CourseComment = ({ dataBlog }) => {
     },
   ];
 
-  const res = useQueryShortcut("CourseCommentsById");
-  const data = res?.slice(0, 3);
+  const courseComments = useQueryShortcut("CourseCommentsById");
+  const data = courseComments?.slice(0, 3);
   console.log("Comments DATAAAAAAH", data ? data : "");
 
   const blogComments = dataBlog?.slice(0, 3);
@@ -161,6 +161,8 @@ const CourseComment = ({ dataBlog }) => {
       <CourseCommentsModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
+        courseComments={courseComments}
+        dataBlog={dataBlog}
       />
     </div>
   );

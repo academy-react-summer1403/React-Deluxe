@@ -11,8 +11,11 @@ const MainPage = () => {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedOptionId, setSelectedOptionId] = useState("");
+  const [levelsOptionId, setLevelsOptionId] = useState("");
+  const [teachersOptionId, setTeacherOptionId] = useState("");
+  const [priceRange, setPriceRange] = useState([0, 1000000000]); // Initial values for range
 
-  // console.log("SelectOption", selectedOptionId);
+  console.log("TeacherOption", teachersOptionId);
 
   const categoryList = (value) => {
     setCategoryValue(value);
@@ -24,17 +27,6 @@ const MainPage = () => {
     // // return value?.join(",");
   };
 
-  // useEffect(() => {
-  //   queryClient.clear(["GetCoursesByPG"]);
-  //   getQuery(
-  //     "GetCoursesByPG",
-  //     `/Home/GetCoursesWithPagination?PageNumber=1&RowsOfPage=12&
-  //       SortingCol=Active&SortType=DESC&CostDown=&CostUp=&TechCount=0&ListTech=${
-  //         categoryValue ? categoryValue?.join(",") : 1
-  //       }&courseLevelId=&CourseTypeId=&StartDate=&EndDate=&TeacherId=`
-  //   );
-  // }, [categoryValue]);
-
   return (
     <>
       <CourseHolder />
@@ -45,11 +37,20 @@ const MainPage = () => {
           setSearchTerm={setSearchTerm}
           selectedOptionId={selectedOptionId}
           setSelectedOptionId={setSelectedOptionId}
+          levelsOptionId={levelsOptionId}
+          setLevelsOptionId={setLevelsOptionId}
+          teachersOptionId={teachersOptionId}
+          setTeacherOptionId={setTeacherOptionId}
+          priceRange={priceRange}
+          setPriceRange={setPriceRange}
         />
         <CourseList
           searchTerm={searchTerm}
           categoryValue={categoryValue}
           selectedOptionId={selectedOptionId}
+          levelsOptionId={levelsOptionId}
+          teachersOptionId={teachersOptionId}
+          priceRange={priceRange}
         />
       </div>
     </>

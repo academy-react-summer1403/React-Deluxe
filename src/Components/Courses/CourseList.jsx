@@ -1,4 +1,4 @@
-import { ConfigProvider, Modal, Pagination } from "antd";
+import { ConfigProvider, Flex, Modal, Pagination, Radio } from "antd";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { GetAllCoursesByPg } from "../../core/services/api/Courses.api";
@@ -118,18 +118,42 @@ import { getRandomColor } from "../Common/ColorGenerator";
 //   },
 // ];
 
-const CourseList = ({ searchTerm, selectedOptionId }) => {
+const CourseList = ({
+  searchTerm,
+  selectedOptionId,
+  levelsOptionId,
+  teachersOptionId,
+  priceRange,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [courses, setCourses] = useState([]);
+
+  const [selectedSort, setSelectedSort] = useState({});
+  const [selectedId, setSelectedId] = useState();
+  console.log(selectedSort);
 
   const courseData = useQueryShortcut("GetCoursesByPG");
 
   // const data = useQueryShortcut("BlogDetailById");
 
-  const getAllCourse = async (searchTerm, selectedOptionId) => {
+  const getAllCourse = async (
+    searchTerm,
+    selectedOptionId,
+    levelsOptionId,
+    teachersOptionId,
+    priceRange,
+    selectedSort
+  ) => {
     try {
-      const result = await GetAllCoursesByPg(searchTerm, selectedOptionId);
+      const result = await GetAllCoursesByPg(
+        searchTerm,
+        selectedOptionId,
+        levelsOptionId,
+        teachersOptionId,
+        priceRange,
+        selectedSort
+      );
 
       setCourses(result.courseFilterDtos);
 
@@ -140,8 +164,22 @@ const CourseList = ({ searchTerm, selectedOptionId }) => {
   };
 
   useEffect(() => {
-    getAllCourse(searchTerm, selectedOptionId);
-  }, [searchTerm, selectedOptionId]);
+    getAllCourse(
+      searchTerm,
+      selectedOptionId,
+      levelsOptionId,
+      teachersOptionId,
+      priceRange,
+      selectedSort
+    );
+  }, [
+    searchTerm,
+    selectedOptionId,
+    levelsOptionId,
+    teachersOptionId,
+    priceRange,
+    selectedSort,
+  ]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -159,22 +197,42 @@ const CourseList = ({ searchTerm, selectedOptionId }) => {
     }, 300); // Match the transition duration (300ms)
   };
 
+  const options = [
+    { id: 1, label: "گران ترین", value: { key: "cost", order: "DESC" } },
+    { id: 2, label: "ارزان ترین", value: { key: "cost", order: "ASC" } },
+    { id: 3, label: "محبوب ترین", value: { key: "likeCount", order: "DESC" } },
+    { id: 4, label: "جدید ترین", value: { key: "lastUpdate", order: "DESC" } },
+  ];
+
+  const handleOptionChange = (value, id) => {
+    setSelectedSort(value);
+    setSelectedId(id);
+  };
+
   return (
     <div className="mb-8 w-[72rem]">
       <div className="hidden lg:flex justify-start items-center gap-2 mb-4 mr-7">
-        <span className="text-xl ml-2 dark:text-white">ترتیب </span>
-        <button className=" text-white bg-red-500 py-2 px-4 rounded-full">
-          جدیدترین
-        </button>
-        <button className="text-red-500 border border-red-500 py-2 px-4 rounded-full">
-          محبوب‌ترین
-        </button>
-        <button className="text-red-500 border border-red-500 py-2 px-4 rounded-full">
-          گران ترین
-        </button>
-        <button className="text-red-500 border border-red-500 py-2 px-4 rounded-full">
-          ارزان‌ترین
-        </button>
+        <span className="text-xl ml-2 dark:text-white">ترتیب</span>
+        {options.map((option) => (
+          <label
+            key={option.id}
+            className={`py-2 px-4 rounded-full cursor-pointer ${
+              selectedId === option.id
+                ? "bg-red-500 text-white"
+                : "border border-red-500 text-red-500"
+            }`}
+          >
+            <input
+              type="radio"
+              name="sortOption"
+              value={option.id}
+              checked={selectedId === option.id}
+              onChange={() => handleOptionChange(option.value, option.id)}
+              className="hidden"
+            />
+            {option.label}
+          </label>
+        ))}
       </div>
 
       {/* On smaller screens, we show a single button to trigger the modal */}

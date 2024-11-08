@@ -12,6 +12,12 @@ const Filter = ({
   setSearchTerm,
   selectedOptionId,
   setSelectedOptionId,
+  levelsOptionId,
+  setLevelsOptionId,
+  teachersOptionId,
+  setTeacherOptionId,
+  priceRange,
+  setPriceRange,
 }) => {
   const [category, setCategory] = useState("");
   const [level, setLevel] = useState("");
@@ -124,7 +130,27 @@ const Filter = ({
     // console.log("Selected options:", selectedOptionId);
     // Insert API call logic here
   };
-  categorySelResult(selectedOptionId);
+  // categorySelResult(selectedOptionId);
+
+  const handleLevelChange = (optionId) => {
+    // console.log(optionId);
+    setLevelsOptionId(optionId);
+    // console.log("Selected options:", selectedOptionId);
+    // Insert API call logic here
+  };
+
+  const handleTeacherChange = (optionId) => {
+    // console.log(optionId);
+    setTeacherOptionId((prev) => {
+      const selectedId = prev.includes(optionId)
+        ? prev.filter((item) => item !== optionId)
+        : [...prev, optionId];
+
+      return selectedId;
+    });
+    // console.log("Selected options:", selectedOptionId);
+    // Insert API call logic here
+  };
 
   return (
     <div className="absolute right-12 lg:right-0 lg:relative w-[128px] flex lg:w-[20rem]">
@@ -258,47 +284,11 @@ const Filter = ({
               دسته بندی
             </label>
           </div>
-          {/* <button
-            onClick={() => setIsCategoryDropdownOpen(!isCategoryDropdownOpen)}
-            className="w-full text-gray-500 text-right border border-gray-300 rounded-lg py-2 px-4 bg-slate-200"
-          >
-            {category ? category : "دسته مورد نظر را انتخاب کنید"}
-          </button>
-          <Collapse accordion>
-            <Panel
-              className="w-full text-gray-500 text-right border border-gray-300 rounded-lg bg-slate-200"
-              header="Option 1"
-              key="1"
-            >
-              {["طراحی سایت", "برنامه‌نویسی", "دوره طراحی UX"].map((opt) => (
-                <Checkbox
-                  key={opt}
-                  className="px-4 py-2 w-full hover:bg-gray-200 cursor-pointer rounded-lg transition-all duration-300 border border-slate-200 mt-2"
-                >
-                  {opt}
-                </Checkbox>
-              ))}
-            </Panel>
-          </Collapse> */}
           <AccordionTab
             options={categories}
             onSelectionChange={(optionId) => handleSelectionChange(optionId)}
             labelTitle={"دسته"}
           />
-
-          {/* {isCategoryDropdownOpen && (
-            <div className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-1">
-              {["طراحی سایت", "برنامه‌نویسی", "دوره طراحی UX"].map((cat) => (
-                <div
-                  key={cat}
-                  onClick={() => handleCategorySelect(cat)}
-                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
-                >
-                  {cat}
-                </div>
-              ))}
-            </div>
-          )} */}
         </div>
 
         {/* Level Dropdown */}
@@ -337,29 +327,9 @@ const Filter = ({
               سطح آموزشی
             </label>
           </div>
-
-          {/* <button
-            onClick={() => setIsLevelDropdownOpen(!isLevelDropdownOpen)}
-            className="w-full text-right  text-gray-500 border border-gray-300 rounded-lg py-2 px-4  bg-slate-200"
-          >
-            {level ? level : "سطح مورد نظر را انتخاب کنید"}
-          </button>
-          {isLevelDropdownOpen && (
-            <div className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-1">
-              {["مقدماتی", "پیشرفته"].map((lvl) => (
-                <div
-                  key={lvl}
-                  onClick={() => handleLevelSelect(lvl)}
-                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
-                >
-                  {lvl}
-                </div>
-              ))}
-            </div>
-          )} */}
           <AccordionTab
             options={levels}
-            onSelectionChange={handleSelectionChange}
+            onSelectionChange={(optionId) => handleLevelChange(optionId)}
             labelTitle={"سطح"}
           />
         </div>
@@ -406,34 +376,9 @@ const Filter = ({
               اساتید
             </label>
           </div>
-
-          {/* <button
-            onClick={() => setIsTeacherDropdownOpen(!isTeacherDropdownOpen)}
-            className="w-full text-right  text-gray-500 border border-gray-300 rounded-lg py-2 px-4  bg-slate-200"
-          >
-            {teacher ? teacher : "استاد مورد نظر را انتخاب کنید"}
-          </button>
-          {isTeacherDropdownOpen && (
-            <div className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-1">
-              {[
-                "محمدحسین",
-                "محمدامین شالبیافر",
-                "محمدحسین خیراندیش",
-                "فاطمه نیکوکار",
-              ].map((tchr) => (
-                <div
-                  key={tchr}
-                  onClick={() => handleTeacherSelect(tchr)}
-                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
-                >
-                  {tchr}
-                </div>
-              ))}
-            </div>
-          )} */}
           <AccordionTab
             options={teachers}
-            onSelectionChange={handleSelectionChange}
+            onSelectionChange={(optionId) => handleTeacherChange(optionId)}
             labelTitle={"اساتید"}
           />
         </div>
@@ -480,7 +425,7 @@ const Filter = ({
           </div>
 
           {/* <input type="range" className="w-full" min="10000" max="1000000" /> */}
-          <PricePicker />
+          <PricePicker priceRange={priceRange} setPriceRange={setPriceRange} />
         </div>
 
         {/* Event Dates */}

@@ -8,15 +8,19 @@ export const AccordionTab = ({ options, onSelectionChange, labelTitle }) => {
   // Toggles option selection and updates the parent component
   const handleOptionToggle = (optionId, optionTitle) => {
     //
-    setSelectedOptions((prev) => {
-      const newSelected = prev.includes(optionTitle)
-        ? prev.filter((item) => item !== optionTitle)
-        : [...prev, optionTitle];
+    {
+      labelTitle === "دسته"
+        ? setSelectedOptions((prev) => {
+            const newSelected = prev.includes(optionTitle)
+              ? prev.filter((item) => item !== optionTitle)
+              : [...prev, optionTitle];
 
-      return newSelected;
-    });
+            return newSelected;
+          })
+        : setSelectedOptions(optionTitle);
+    }
 
-    onSelectionChange(optionId); // External callback for API calls
+    onSelectionChange(optionId);
   };
   // Toggles the accordion open/close
   const toggleAccordion = () => setIsOpen(!isOpen);
@@ -33,8 +37,12 @@ export const AccordionTab = ({ options, onSelectionChange, labelTitle }) => {
         className="header cursor-pointer bg-slate-200 p-2 rounded-md text-gray-500 text-right"
         onClick={toggleAccordion}
       >
-        {selectedOptions.length > 0
-          ? `${selectedOptions.join(" , ")}`
+        {labelTitle === "دسته"
+          ? selectedOptions.length > 0
+            ? `${selectedOptions.join(" , ")}`
+            : labelTitle + " مورد نظر را انتخاب کنید"
+          : selectedOptions.length > 0
+          ? selectedOptions
           : labelTitle + " مورد نظر را انتخاب کنید"}
       </div>
 
@@ -51,7 +59,8 @@ export const AccordionTab = ({ options, onSelectionChange, labelTitle }) => {
               className="flex gap-2 items-center cursor-pointer p-2 m-0 bg-white rounded-md shadow-sm hover:bg-gray-200 dark:bg-gray-600 dark:hover:bg-gray-500"
             >
               <input
-                type="checkbox"
+                type={labelTitle === "دسته" ? "checkbox" : "radio"}
+                name={labelTitle}
                 // checked={selectedOptions.includes(
                 //   labelTitle === "دسته"
                 //     ? option.techName
@@ -63,13 +72,15 @@ export const AccordionTab = ({ options, onSelectionChange, labelTitle }) => {
                 // )}
                 onChange={() =>
                   handleOptionToggle(
-                    option.id,
+                    labelTitle === "اساتید" ? option.teacherId : option.id,
                     labelTitle === "دسته"
                       ? option.techName
                       : labelTitle === "سطح"
                       ? option.levelName
                       : labelTitle === "اساتید"
                       ? option.fullName
+                      : labelTitle === "دسته بلاگ"
+                      ? option.categoryName
                       : option
                   )
                 }
@@ -81,6 +92,8 @@ export const AccordionTab = ({ options, onSelectionChange, labelTitle }) => {
                 ? option.levelName
                 : labelTitle === "اساتید"
                 ? option.fullName
+                : labelTitle === "دسته بلاگ"
+                ? option.categoryName
                 : option}
             </label>
           ))}
