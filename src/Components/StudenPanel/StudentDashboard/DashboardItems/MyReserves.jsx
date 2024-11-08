@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { BsEye } from "react-icons/bs";
 import { RxCross1 } from "react-icons/rx";
+import { getQuery } from "../../../../core/services/api/ReactQuery/getQuery";
+import { useQueryShortcut } from "./../../../../core/services/api/ReactQuery/useQueryShortcut";
 const ReserveData = [
   {
     title: " فیگما",
@@ -17,6 +19,9 @@ const ReserveData = [
 ];
 
 const MyReserves = () => {
+  getQuery("ReserveCourses", "/SharePanel/GetMyCoursesReserve");
+  const data = useQueryShortcut("ReserveCourses");
+
   return (
     <div className="bg-gray-50 dark:bg-indigo-950 dark:text-white shadow-lg  p-2 rounded-3xl  lg:w-2/3 h-full max-h-[20.5rem] overflow-y-hidden">
       <div className="flex flex-row px-4 justify-between">
@@ -52,9 +57,9 @@ const MyReserves = () => {
         <li className="mr-8">وضعیت</li>
       </ul>
       <div className="mt-4 mx-5 space-y-4">
-        {ReserveData.map((Reserve, index) => (
+        {data?.map((Reserve) => (
           <div
-            key={index}
+            key={Reserve.reserveId}
             className="  flex flex-row  relative  items-center rounded-3xl justify-start gap-5 lg:gap-12   "
           >
             <div
@@ -64,14 +69,18 @@ const MyReserves = () => {
             </div>
 
             <h3 className=" text-xl  dark:text-white font-semibold mb-2  truncate w-24 ">
-              {Reserve.title}
+              {Reserve.courseName}
             </h3>
 
             <p className="hidden sm:block dark:text-white text-[12px] w-40 font-bold items-center w-54 mr-3   ">
-              {Reserve.teacher}
+              {Reserve.reserverDate.slice(0, 10)}
             </p>
-            <span className="px-3 py-0 text-base lg:w-40 inline-flex justify-center   bg-red-400 text-white rounded-full">
-              {Reserve.state}
+            <span
+              className={`px-3 py-0 text-base lg:w-40 inline-flex justify-center ${
+                Reserve.accept ? "bg-green-400" : "bg-red-400"
+              } text-white rounded-full`}
+            >
+              {Reserve.accept ? "تایید شد" : "تایید نشد"}
             </span>
             <div className="flex flex-row gap-2">
               <Link to={"/courseDetails"}>
