@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useQueryShortcut } from "../../../../core/services/api/ReactQuery/useQueryShortcut";
 
 const WelcomeHeader = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
+
+  const data = useQueryShortcut("ProfileInfo");
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -31,7 +34,10 @@ const WelcomeHeader = () => {
       {/* Welcome and Date/Time Section */}
       <div className="flex flex-col items-start">
         <div className="flex gap-5 items-center space-x-2">
-          <h2 className="text-xl font-semibold "> سلام عظیم، روزت بخیر 👋</h2>{" "}
+          <h2 className="text-xl font-semibold ">
+            {" "}
+            سلام {data?.fName}، روزت بخیر 👋
+          </h2>{" "}
           <p className="text-gray-500 hidden sm:block md:hidden lg:block dark:text-gray-50 text-xs mt-1">
             امیدوارم امروز روز خوبی رو داشته باشید
           </p>
@@ -127,11 +133,7 @@ const WelcomeHeader = () => {
       {/* Bio Section */}
       <div className="flex flex-col justify-center w-96">
         <p className="text-gray-700 hidden md:block dark:text-gray-100 text-base">
-          سلام ، من عظیمم
-        </p>
-        <p className="text-sm hidden md:block text-gray-500 dark:text-gray-50">
-          اینم بیو پروفایلمه واقعا نمیدونم چی بنویسم خودتون بیایید منو بشناسید
-          حال ندارم بخدا خستم
+          {data?.userAbout}
         </p>
       </div>
     </div>
