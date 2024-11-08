@@ -1,63 +1,13 @@
-// import React, { useState } from "react";
-
-// export const PricePicker = () => {
-//   const [minValue, setMinValue] = useState(20);
-//   const [maxValue, setMaxValue] = useState(80);
-
-//   const handleMinChange = (event) => {
-//     const value = Math.min(Number(event.target.value), maxValue - 1);
-//     setMinValue(value);
-//   };
-
-//   const handleMaxChange = (event) => {
-//     const value = Math.max(Number(event.target.value), minValue + 1);
-//     setMaxValue(value);
-//   };
-
-//   return (
-//     <div className="p-4">
-//       <h3 className="text-lg font-bold mb-2">Select Price Range</h3>
-//       <div className="relative">
-//         <input
-//           type="range"
-//           min="0"
-//           max="100"
-//           value={minValue}
-//           onChange={handleMinChange}
-//           className="range range-xs bg-blue-500 absolute"
-//         />
-//         <input
-//           type="range"
-//           min="0"
-//           max="100"
-//           value={maxValue}
-//           onChange={handleMaxChange}
-//           className="range range-xs bg-green-500 absolute"
-//         />
-//       </div>
-//       <div className="mt-20">
-//         Selected Range: ${minValue} - ${maxValue}
-//       </div>
-//     </div>
-//   );
-// };
-
 import React, { useState } from "react";
 import { ConfigProvider, Slider, theme } from "antd";
 // import "antd/dist/antd.css";
 
-export const PricePicker = () => {
-  const [priceRange, setPriceRange] = useState([0, 1000000000]); // Initial values for range
-
+export const PricePicker = ({ priceRange, setPriceRange }) => {
   return (
     <ConfigProvider
       theme={{
         components: {
           Slider: {
-            // controlSize: "10",
-            // handleColor: "#ec4899",
-            // handleSize: 20,
-            // railSize: 8,
             controlSize: 12, // Overall height of the slider
             dotActiveBorderColor: "#4a90e2",
             dotBorderColor: "#d9d9d9",
@@ -92,7 +42,7 @@ export const PricePicker = () => {
             max={1000000000}
             step={10000}
             defaultValue={priceRange}
-            onChange={setPriceRange}
+            onChangeComplete={setPriceRange}
 
             // tooltip={{ open: true }}
           />
