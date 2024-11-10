@@ -6,6 +6,7 @@ import Pic4 from "../../../assets/pic4.png";
 import { profileInfo } from "../../../core/services/api/StudentPanel/ProfileInfo.api";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
+import { useQueryShortcut } from "./../../../core/services/api/ReactQuery/useQueryShortcut";
 
 const Profile = () => {
   const [activeSection, setActiveSection] = useState("profile");
@@ -27,6 +28,20 @@ const Profile = () => {
   });
 
   const formikRef = useRef(null);
+
+  const data = useQueryShortcut("ProfileInfo");
+
+  // const initialValues = (data) => {
+  //   firstName: "",
+  //   lastName: "",
+  //   about: "",
+  //   phone: "",
+  //   nationalCode: "",
+  //   birthDate: "",
+  //   gender: "",
+  //   email: data.email,
+  //   address: "",
+  // }
 
   return (
     <div className="bg-gray-950 px-5  pb-11  h-full">
@@ -215,17 +230,18 @@ const Profile = () => {
                 //   </div>
                 // </form>
                 <Formik
+                  enableReinitialize
                   innerRef={formikRef}
                   initialValues={{
-                    firstName: "",
-                    lastName: "",
-                    about: "",
-                    phone: "",
-                    nationalCode: "",
-                    birthDate: "",
-                    gender: "",
-                    email: "",
-                    address: "",
+                    firstName: data?.fName,
+                    lastName: data?.lName,
+                    about: data?.userAbout,
+                    phone: data?.phoneNumber,
+                    nationalCode: data?.nationalCode,
+                    birthDate: data?.birthDay.slice(0, 10),
+                    gender: data?.gender,
+                    email: data?.email,
+                    address: data?.homeAdderess,
                   }}
                   validationSchema={validationSchema}
                   onSubmit={(values) => {

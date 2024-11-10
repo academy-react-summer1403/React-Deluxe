@@ -101,6 +101,7 @@ const index = () => {
       console.log(error);
     }
   };
+  // console.log("reserveData", reserveData);
   useEffect(() => {
     getMyReserve();
   }, []);
@@ -157,7 +158,7 @@ const index = () => {
                 )}
               </span>
               <div className="flex gap-2">
-                <Link to={"/courseDetails"}>
+                <Link to={`/courseDetails/${Reserve.courseId}`}>
                   <BsEye className="text-base" />
                 </Link>
 
