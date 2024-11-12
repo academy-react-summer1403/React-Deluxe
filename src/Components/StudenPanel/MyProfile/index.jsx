@@ -7,6 +7,10 @@ import { profileInfo } from "../../../core/services/api/StudentPanel/ProfileInfo
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useQueryShortcut } from "./../../../core/services/api/ReactQuery/useQueryShortcut";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { UpdateProfileInfo } from "../../../core/services/api/StudentPanel/UpdateProfileInfo.api";
+import http from "../../../core/services/interceptor";
+import { toast } from "react-toastify";
 
 const Profile = () => {
   const [activeSection, setActiveSection] = useState("profile");
@@ -16,15 +20,15 @@ const Profile = () => {
   };
 
   const validationSchema = Yup.object({
-    firstName: Yup.string().required("نام ضروری است"),
-    lastName: Yup.string().required("نام خانوادگی ضروری است"),
-    about: Yup.string(),
-    phone: Yup.string(),
-    nationalCode: Yup.string(),
-    birthDate: Yup.date(),
-    gender: Yup.string(),
-    email: Yup.string().email("ایمیل نامعتبر است").required("ایمیل ضروری است"),
-    address: Yup.string(),
+    FName: Yup.string().required("نام ضروری است"),
+    LName: Yup.string().required("نام خانوادگی ضروری است"),
+    UserAbout: Yup.string(),
+    // phoneNumber: Yup.string(),
+    NationalCode: Yup.string(),
+    BirthDay: Yup.date(),
+    Gender: Yup.string(),
+    // email: Yup.string().email("ایمیل نامعتبر است").required("ایمیل ضروری است"),
+    HomeAdderess: Yup.string(),
   });
 
   const formikRef = useRef(null);
@@ -43,6 +47,51 @@ const Profile = () => {
   //   address: "",
   // }
 
+  const queryClient = useQueryClient();
+
+  const UpdateProfileInfo2 = async (formData) => {
+    console.log("FormData", formData);
+    const res = await http.put("/SharePanel/UpdateProfileInfo", formData);
+    return res; //???!!!!???????!!!!!!!!!!??????
+  };
+
+  const mutation = useMutation({
+    mutationKey: ["updateProfile"],
+    mutationFn: UpdateProfileInfo2,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["ProfileInfo"]);
+      toast.success("بروزرسانی با موفقیت انجام شد!", {
+        position: "top-center",
+      });
+    },
+    onError: () => {
+      toast.error("خطا در بروزرسانی اطلاعات پروفایل!", {
+        position: "top-center",
+      });
+    },
+  });
+  // console.log(mutation.isPending);
+
+  const handleFormikSubmit = async (values, { setSubmitting }) => {
+    // await mutation.mutateAsync(values);
+    console.log("Raw Formik Values", values);
+    const formData = new FormData();
+    formData.append("FName", values.FName);
+    formData.append("LName", values.LName);
+    formData.append("UserAbout", values.UserAbout);
+    // formData.append("PhoneNumber", values.PhoneNumber);
+    formData.append("NationalCode", values.NationalCode);
+    formData.append("BirthDay", values.BirthDay);
+    formData.append("Gender", values.Gender);
+    // formData.append("Email", values.Email);
+    formData.append("HomeAdderess", values.HomeAdderess);
+
+    await mutation.mutateAsync(formData, {
+      onSuccess: () => setSubmitting(false),
+      onError: () => setSubmitting(false),
+    });
+  };
+
   return (
     <div className="bg-gray-950 px-5  pb-11  h-full">
       <div className="bg-white dark:bg-[#041124] dark:text-white rounded-3xl py-12 px-3">
@@ -55,7 +104,7 @@ const Profile = () => {
                   <a
                     href="#"
                     onClick={() => handleSectionClick("profile")}
-                    className={` ${
+                    className={`${
                       activeSection === "profile"
                         ? "text-blue-500 font-semibold bg-gray-100 py-1.5 px-3 rounded-3xl"
                         : "text-gray-500 dark:text-white px-3"
@@ -233,20 +282,18 @@ const Profile = () => {
                   enableReinitialize
                   innerRef={formikRef}
                   initialValues={{
-                    firstName: data?.fName,
-                    lastName: data?.lName,
-                    about: data?.userAbout,
-                    phone: data?.phoneNumber,
-                    nationalCode: data?.nationalCode,
-                    birthDate: data?.birthDay.slice(0, 10),
-                    gender: data?.gender,
-                    email: data?.email,
-                    address: data?.homeAdderess,
+                    FName: data?.fName,
+                    LName: data?.lName,
+                    UserAbout: data?.userAbout,
+                    // phoneNumber: data?.phoneNumber,
+                    NationalCode: data?.nationalCode,
+                    BirthDay: data?.birthDay.slice(0, 10),
+                    Gender: data?.gender,
+                    // email: data?.email,
+                    HomeAdderess: data?.homeAdderess,
                   }}
                   validationSchema={validationSchema}
-                  onSubmit={(values) => {
-                    console.log(values);
-                  }}
+                  onSubmit={handleFormikSubmit}
                 >
                   {({ handleSubmit }) => (
                     <Form
@@ -260,12 +307,12 @@ const Profile = () => {
                           </label>
                           <Field
                             type="text"
-                            name="firstName"
+                            name="FName"
                             className="w-full px-3 py-2 border dark:border-gray-700 dark:bg-indigo-950 border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500"
                             placeholder="نام خود را وارد کنید"
                           />
                           <ErrorMessage
-                            name="firstName"
+                            name="FName"
                             component="div"
                             className="text-red-500 text-xs"
                           />
@@ -277,12 +324,12 @@ const Profile = () => {
                           </label>
                           <Field
                             type="text"
-                            name="lastName"
+                            name="LName"
                             className="w-full px-3 py-2 border dark:border-gray-700 dark:bg-indigo-950 border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500"
                             placeholder="نام خانوادگی خود را وارد کنید"
                           />
                           <ErrorMessage
-                            name="lastName"
+                            name="LName"
                             component="div"
                             className="text-red-500 text-xs"
                           />
@@ -295,24 +342,24 @@ const Profile = () => {
                         </label>
                         <Field
                           as="textarea"
-                          name="about"
+                          name="UserAbout"
                           className="w-full h-40 px-3 py-2 border dark:border-gray-700 dark:bg-indigo-950 border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500"
                           placeholder="چند کلمه در مورد خودتان بنویسید"
                         />
                       </div>
 
                       <div className="mb-4 flex flex-col md:flex-row space-x-4 gap-10 rounded-xl">
-                        <div className="md:w-1/2">
+                        {/* <div className="md:w-1/2">
                           <label className="block text-sm font-bold mb-2">
                             شماره همراه
                           </label>
                           <Field
                             type="text"
-                            name="phone"
+                            name="phoneNumber"
                             className="w-full px-3 py-2 border dark:border-gray-700 dark:bg-indigo-950 border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500"
                             placeholder="شماره خود را وارد کنید"
                           />
-                        </div>
+                        </div> */}
 
                         <div className="md:w-1/2">
                           <label className="block text-sm font-bold mb-2">
@@ -320,7 +367,7 @@ const Profile = () => {
                           </label>
                           <Field
                             type="text"
-                            name="nationalCode"
+                            name="NationalCode"
                             className="w-full px-3 py-2 border dark:border-gray-700 dark:bg-indigo-950 border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500"
                             placeholder="کد ملی خود را وارد کنید"
                           />
@@ -334,7 +381,7 @@ const Profile = () => {
                           </label>
                           <Field
                             type="date"
-                            name="birthDate"
+                            name="BirthDay"
                             className="w-full px-3 py-2 border dark:border-gray-700 dark:bg-indigo-950 border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500"
                           />
                         </div>
@@ -348,8 +395,8 @@ const Profile = () => {
                               <span className="ml-2">مرد</span>
                               <Field
                                 type="radio"
-                                name="gender"
-                                value="male"
+                                name="Gender"
+                                value="true"
                                 className="form-radio text-blue-500"
                               />
                             </label>
@@ -357,8 +404,8 @@ const Profile = () => {
                               <span className="ml-2">زن</span>
                               <Field
                                 type="radio"
-                                name="gender"
-                                value="female"
+                                name="Gender"
+                                value="false"
                                 className="form-radio text-blue-500"
                               />
                             </label>
@@ -369,7 +416,7 @@ const Profile = () => {
                         </div>
                       </div>
 
-                      <div className="mb-4">
+                      {/* <div className="mb-4">
                         <label className="block text-sm font-bold mb-2">
                           ایمیل
                         </label>
@@ -384,7 +431,7 @@ const Profile = () => {
                           component="div"
                           className="text-red-500 text-xs"
                         />
-                      </div>
+                      </div> */}
 
                       <div className="mb-4">
                         <label className="block text-sm font-bold mb-2">
@@ -392,7 +439,7 @@ const Profile = () => {
                         </label>
                         <Field
                           type="text"
-                          name="address"
+                          name="HomeAdderess"
                           className="w-full px-3 py-2 border dark:border-gray-700 dark:bg-indigo-950 border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500"
                           placeholder="آدرس خود را وارد کنید"
                         />
@@ -501,13 +548,16 @@ const Profile = () => {
             </div>
           </div>
           <div className="flex justify-start mr-56">
+            {/* {({ isSubmitting }) => ( */}
             <button
               type="button"
               onClick={() => formikRef.current?.submitForm()}
+              disabled={mutation.isPending}
               className="ml-52 px-6 py-2 bg-blue-500 text-white font-bold rounded-3xl hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              اعمال تغییرات
+              {mutation.isPending ? "اعمالینگ..." : "اعمال تغییرات"}
             </button>
+            {/* )} */}
           </div>
         </div>
       </div>
