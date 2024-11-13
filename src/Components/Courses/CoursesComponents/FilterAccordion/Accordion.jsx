@@ -9,7 +9,7 @@ export const AccordionTab = ({ options, onSelectionChange, labelTitle }) => {
   const handleOptionToggle = (optionId, optionTitle) => {
     //
     {
-      labelTitle === "دسته"
+      labelTitle === "دسته" || labelTitle === "دسته بلاگ"
         ? setSelectedOptions((prev) => {
             const newSelected = prev.includes(optionTitle)
               ? prev.filter((item) => item !== optionTitle)
@@ -37,7 +37,7 @@ export const AccordionTab = ({ options, onSelectionChange, labelTitle }) => {
         className="header cursor-pointer bg-slate-200 p-2 rounded-md text-gray-500 text-right"
         onClick={toggleAccordion}
       >
-        {labelTitle === "دسته"
+        {labelTitle === "دسته" || labelTitle === "دسته بلاگ"
           ? selectedOptions.length > 0
             ? `${selectedOptions.join(" , ")}`
             : labelTitle + " مورد نظر را انتخاب کنید"
@@ -53,13 +53,17 @@ export const AccordionTab = ({ options, onSelectionChange, labelTitle }) => {
         style={{ height: `${contentHeight}px` }}
       >
         <div className="mt-2 space-y-1 flex flex-col gap-1">
-          {options.map((option, index) => (
+          {options?.map((option, index) => (
             <label
               key={index}
               className="flex gap-2 items-center cursor-pointer p-2 m-0 bg-white rounded-md shadow-sm hover:bg-gray-200 dark:bg-gray-600 dark:hover:bg-gray-500"
             >
               <input
-                type={labelTitle === "دسته" ? "checkbox" : "radio"}
+                type={
+                  labelTitle === "دسته" || labelTitle === "دسته بلاگ"
+                    ? "checkbox"
+                    : "radio"
+                }
                 name={labelTitle}
                 // checked={selectedOptions.includes(
                 //   labelTitle === "دسته"

@@ -8,9 +8,9 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useQueryShortcut } from "./../../../core/services/api/ReactQuery/useQueryShortcut";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { UpdateProfileInfo } from "../../../core/services/api/StudentPanel/UpdateProfileInfo.api";
 import http from "../../../core/services/interceptor";
 import { toast } from "react-toastify";
+import { UpdateProfileInfo } from "./../../../core/services/api/StudentPanel/UpdateProfileInfo.api";
 
 const Profile = () => {
   const [activeSection, setActiveSection] = useState("profile");
@@ -49,15 +49,15 @@ const Profile = () => {
 
   const queryClient = useQueryClient();
 
-  const UpdateProfileInfo2 = async (formData) => {
-    console.log("FormData", formData);
-    const res = await http.put("/SharePanel/UpdateProfileInfo", formData);
-    return res; //???!!!!???????!!!!!!!!!!??????
-  };
+  // const UpdateProfileInfo2 = async (formData) => {
+  //   console.log("FormData", formData);
+  //   const res = await http.put("/SharePanel/UpdateProfileInfo", formData);
+  //   return res; //???!!!!???????!!!!!!!!!!??????
+  // };
 
   const mutation = useMutation({
     mutationKey: ["updateProfile"],
-    mutationFn: UpdateProfileInfo2,
+    mutationFn: UpdateProfileInfo,
     onSuccess: () => {
       queryClient.invalidateQueries(["ProfileInfo"]);
       toast.success("بروزرسانی با موفقیت انجام شد!", {

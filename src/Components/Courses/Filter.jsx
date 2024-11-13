@@ -141,13 +141,14 @@ const Filter = ({
 
   const handleTeacherChange = (optionId) => {
     // console.log(optionId);
-    setTeacherOptionId((prev) => {
-      const selectedId = prev.includes(optionId)
-        ? prev.filter((item) => item !== optionId)
-        : [...prev, optionId];
+    // setTeacherOptionId((prev) => {
+    //   const selectedId = prev.includes(optionId)
+    //     ? prev.filter((item) => item !== optionId)
+    //     : [...prev, optionId];
 
-      return selectedId;
-    });
+    //   return selectedId;
+    // });
+    setTeacherOptionId(optionId);
     // console.log("Selected options:", selectedOptionId);
     // Insert API call logic here
   };

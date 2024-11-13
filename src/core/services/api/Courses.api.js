@@ -24,7 +24,8 @@ export const GetAllCoursesByPg = async (
       queryParams.courseLevelId = levelsOptionId;
     }
     if (teachersOptionId !== "" && teachersOptionId !== null) {
-      queryParams.TeacherId = teachersOptionId?.join(",");
+      // queryParams.TeacherId = teachersOptionId?.join(",");
+      queryParams.TeacherId = teachersOptionId;
     }
     queryParams.CostDown = priceRange[0];
     queryParams.CostUp = priceRange[1];

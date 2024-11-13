@@ -13,28 +13,50 @@ const BlogsCards = ({ searchTerm, selectedCategoryBlog }) => {
   const [selectedSort, setSelectedSort] = useState({});
   const [selectedId, setSelectedId] = useState();
   console.log(selectedSort);
+  const [currentPg, setCurrentPg] = useState(1);
+  console.log("currentPg", currentPg);
+  const [currentPgSize, setCurrentPgSize] = useState(10);
+  console.log("currentPgSize", currentPgSize);
+  const [totalBlogCount, setTotalBlogCount] = useState();
 
   const getAllBlogs = async (
     selectedSort,
     searchTerm,
-    selectedCategoryBlog
+    selectedCategoryBlog,
+    currentPg,
+    currentPgSize
   ) => {
     try {
       const result = await GetAllBlogsByPg(
         selectedSort,
         searchTerm,
-        selectedCategoryBlog
+        selectedCategoryBlog,
+        currentPg,
+        currentPgSize
       );
       setNews(result.news);
       console.log(result);
+      setTotalBlogCount(result.totalCount);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    getAllBlogs(selectedSort, searchTerm, selectedCategoryBlog);
-  }, [selectedSort, searchTerm, selectedCategoryBlog]);
+    getAllBlogs(
+      selectedSort,
+      searchTerm,
+      selectedCategoryBlog,
+      currentPg,
+      currentPgSize
+    );
+  }, [
+    selectedSort,
+    searchTerm,
+    selectedCategoryBlog,
+    currentPg,
+    currentPgSize,
+  ]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -62,6 +84,11 @@ const BlogsCards = ({ searchTerm, selectedCategoryBlog }) => {
   const handleOptionChange = (value, id) => {
     setSelectedSort(value);
     setSelectedId(id);
+  };
+
+  const onChangePg = (page, pageSize) => {
+    setCurrentPg(page);
+    setCurrentPgSize(pageSize);
   };
 
   return (
@@ -178,8 +205,8 @@ const BlogsCards = ({ searchTerm, selectedCategoryBlog }) => {
         </div>
       )}
 
-      <div className="flex flex-wrap  justify-around">
-        <div className="flex gap-2 flex-wrap w-full">
+      <div className="flex flex-wrap">
+        <div className="flex gap-2 flex-wrap w-full justify-around">
           {news?.map((card, index) => (
             <div
               key={index}
@@ -272,8 +299,24 @@ const BlogsCards = ({ searchTerm, selectedCategoryBlog }) => {
           ))}
         </div>
       </div>
-      <ConfigProvider direction="rtl">
+      {/* <ConfigProvider direction="rtl">
         <Pagination align="center" defaultCurrent={1} total={50} />
+      </ConfigProvider> */}
+      <ConfigProvider direction="rtl" theme={{ token: {} }}>
+        <Pagination
+          align="center"
+          defaultCurrent={1}
+          defaultPageSize={10}
+          current={currentPg}
+          onChange={onChangePg}
+          total={totalBlogCount}
+          showTotal={(total, range) =>
+            `${range[0]}تا${range[1]} از ${total} دوره`
+          }
+          showSizeChanger
+          pageSizeOptions={[5, 10, 20, 50, 75, 100]}
+          responsive
+        />
       </ConfigProvider>
     </div>
   );

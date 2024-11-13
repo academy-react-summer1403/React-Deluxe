@@ -52,6 +52,7 @@ const CourseComment = ({ dataBlog }) => {
   console.log("Comments DATAAAAAAH", data ? data : "");
 
   const blogComments = dataBlog?.slice(0, 3);
+  console.log("dataBlog for Comments", dataBlog);
 
   const Comment = ({
     title,
@@ -72,7 +73,7 @@ const CourseComment = ({ dataBlog }) => {
         {/* Right Section - User Info */}
         <div className="flex items-center">
           {/* Avatar */}
-          <div className="w-10 h-10 rounded-full bg-fuchsia-700">
+          <div className="w-10 h-10 rounded-full bg-blue-500">
             {/* Placeholder for avatar, you can replace with img tag */}
             <img
               src={profilePic}

@@ -6,9 +6,23 @@ import { PiShoppingBagOpen } from "react-icons/pi";
 import { AiOutlineLike } from "react-icons/ai";
 import { AiOutlineDislike } from "react-icons/ai";
 import { InfoBlock } from "./Components/InfoBlock";
+import {
+  Archive02Icon,
+  Book02Icon,
+  ThumbsDownIcon,
+  ThumbsUpIcon,
+} from "hugeicons-react";
+import { useMutation } from "@tanstack/react-query";
+import { CourseReserve } from "../../../core/services/api/Courses/CourseReserve.api";
+import { toast } from "react-toastify";
+import { CourseFavorite } from "../../../core/services/api/Courses/CourseFavorite.api";
+import { LikeCourse } from "../../../core/services/api/Courses/LikeCourse.api";
+import { DisslikeCourse } from "../../../core/services/api/Courses/DisslikeCourse.api";
 
 const CourseInfo = ({ data }) => {
   const [starValue, setStarValue] = useState(`${data.currentRate}`);
+  const [isLiked, setIsLiked] = useState();
+  const [isDissliked, setIsDissliked] = useState();
 
   const infoBlock1Data = [
     {
@@ -83,6 +97,95 @@ const CourseInfo = ({ data }) => {
       status: `${data.dissLikeCount} نفر`,
     },
   ];
+
+  const mutation = useMutation({
+    mutationKey: ["AddCourseReserve"],
+    mutationFn: CourseReserve,
+    onSuccess: () => {
+      toast.success("دوره با موفقیت رزرو شد!", { position: "top-center" });
+    },
+    onError: (error) => {
+      toast.error(error.response.data.ErrorMessage[0], {
+        position: "top-center",
+      });
+      // console.log(error.response.data.ErrorMessage[0]);
+    },
+  });
+
+  const handleReserve = async (courseId) => {
+    // console.log(courseId);
+    await mutation.mutateAsync(courseId);
+  };
+
+  const favoriteMutation = useMutation({
+    mutationKey: ["AddCourseFavorite"],
+    mutationFn: CourseFavorite,
+    onSuccess: () => {
+      toast.success("دوره به عنوان علاقمندی شما اضافه شد!", {
+        position: "top-center",
+      });
+    },
+    onError: (error) => {
+      toast.error(error.response.data.ErrorMessage[0], {
+        position: "top-center",
+      });
+      // console.log("error Favorite", error);
+    },
+  });
+
+  const handleFavorite = async (courseId) => {
+    console.log(courseId);
+    await favoriteMutation.mutateAsync(courseId);
+  };
+
+  const likeMutation = useMutation({
+    mutationKey: ["LikeCourse"],
+    mutationFn: LikeCourse,
+    onSuccess: () => {
+      toast.success("دوره لایک شد!", {
+        position: "top-center",
+      });
+      // setIsLiked(true);
+      // setIsDissliked(false);
+      data.currentUserLike = 1;
+      data.currentUserDissLike = 0;
+    },
+    onError: (error) => {
+      toast.error(error.response.data.ErrorMessage[0], {
+        position: "top-center",
+      });
+      // console.log("error Like", error);
+    },
+  });
+
+  const handleLike = async (courseId) => {
+    // console.log(courseId);
+    await likeMutation.mutateAsync(courseId);
+  };
+
+  const DisslikeMutation = useMutation({
+    mutationKey: ["DislikeCourse"],
+    mutationFn: DisslikeCourse,
+    onSuccess: () => {
+      toast.success("دوره دیسلایک شد!", {
+        position: "top-center",
+      });
+      // setIsDissliked(true);
+      // setIsLiked(false);
+      data.currentUserDissLike = 1;
+      data.currentUserLike = 0;
+    },
+    onError: (error) => {
+      toast.error(error.response.data.ErrorMessage[0], {
+        position: "top-center",
+      });
+      // console.log("error Disslike", error);
+    },
+  });
+
+  const handleDisslike = async (courseId) => {
+    await DisslikeMutation.mutateAsync(courseId);
+  };
 
   return (
     <>
@@ -186,21 +289,67 @@ const CourseInfo = ({ data }) => {
 
           {/* 5th Row: Action Buttons */}
           <div className="flex flex-row justify-evenly lg:justify-between md:gap-2 lg:gap-0 lg:text-ellipsis text-base lg:text-sm xl:text-base lg:overflow-hidden">
-            <button className="bg-[#3772FF] dark:bg-indigo-800 text-white px-8 lg:px-4 xl:px-8 xl:py-2 sm:text-base rounded-full mr-2 hidden lg:flex items-center">
-              <FaBook className="xl:mx-2" />
-              رزرو دوره
+            <button
+              className="bg-[#3772FF] dark:bg-indigo-800 text-white px-8 lg:px-4 xl:px-8 xl:py-2 sm:text-base rounded-full mr-2 hidden lg:flex items-center gap-2"
+              onClick={() => handleReserve(data.courseId)}
+            >
+              {mutation.isPending ? (
+                "در حال رزرو..."
+              ) : (
+                <>
+                  <Book02Icon size={20} color={"#ffffff"} /> رزرو دوره
+                </>
+              )}
             </button>
-            <button className="bg-[#2f2f2f] dark:bg-indigo-800 text-white px-2 whitespace-nowrap text-sm sm:text-base lg:px-4 xl:px-8 xl:py-2 rounded-full lg:mx-auto flex items-center">
-              <PiShoppingBagOpen className="mx-0 size-5 xl:mx-2" />
-              اضافه به لیست مورد علاقه
+            <button
+              className="bg-[#2f2f2f] dark:bg-indigo-800 text-white px-2 whitespace-nowrap text-sm sm:text-base lg:px-4 xl:px-8 xl:py-2 rounded-full lg:mx-auto flex items-center gap-2"
+              onClick={() => handleFavorite(data.courseId)}
+            >
+              {favoriteMutation.isPending ? (
+                "درحال اضافه کردن به لیست..."
+              ) : (
+                <>
+                  <Archive02Icon
+                    size={20}
+                    color={"#ffffff"}
+                    variant={"stroke"}
+                  />
+                  اضافه به لیست مورد علاقه
+                </>
+              )}
             </button>
             <div className="flex gap-3">
-              <button className="bg-[#3772ff] dark:bg-indigo-800 text-white w-12 h-12 rounded-full flex justify-center items-center">
-                <AiOutlineLike className="size-5" />
-              </button>
-              <button className="bg-white dark:bg-[#041124] text-[#1B1B1B] dark:text-white border border-gray-200 dark:border-gray-600 w-12 h-12 rounded-full flex justify-center items-center">
-                <AiOutlineDislike className="size-5" />
-              </button>
+              {data.currentUserLike == 1 ? (
+                <button
+                  className="bg-[#3772ff] dark:bg-indigo-800 text-white w-12 h-12 rounded-full flex justify-center items-center"
+                  onClick={() => handleLike(data.courseId)}
+                >
+                  <ThumbsUpIcon size={20} color={"#fff"} variant={"stroke"} />{" "}
+                </button>
+              ) : (
+                <button
+                  className="bg-white dark:bg-[#041124] text-black dark:text-white border border-gray-200 dark:border-gray-600 w-12 h-12 rounded-full flex justify-center items-center"
+                  onClick={() => handleLike(data.courseId)}
+                >
+                  <ThumbsUpIcon size={20} color={"#000"} variant={"stroke"} />{" "}
+                </button>
+              )}
+
+              {data.currentUserDissLike == 1 ? (
+                <button
+                  className="bg-red-500 dark:bg-[#041124] text-[#1B1B1B] dark:text-white border border-gray-200 dark:border-gray-600 w-12 h-12 rounded-full flex justify-center items-center"
+                  onClick={() => handleDisslike(data.courseId)}
+                >
+                  <ThumbsDownIcon size={20} color={"#fff"} variant={"stroke"} />{" "}
+                </button>
+              ) : (
+                <button
+                  className="bg-white dark:bg-[#041124] text-[#1B1B1B] dark:text-white border border-gray-200 dark:border-gray-600 w-12 h-12 rounded-full flex justify-center items-center"
+                  onClick={() => handleDisslike(data.courseId)}
+                >
+                  <ThumbsDownIcon size={20} color={"#000"} variant={"stroke"} />{" "}
+                </button>
+              )}
             </div>
           </div>
         </div>
