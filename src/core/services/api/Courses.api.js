@@ -6,7 +6,9 @@ export const GetAllCoursesByPg = async (
   levelsOptionId,
   teachersOptionId,
   priceRange,
-  selectedSort
+  selectedSort,
+  currentPg,
+  currentPgSize
 ) => {
   try {
     const queryParams = {};
@@ -22,13 +24,20 @@ export const GetAllCoursesByPg = async (
       queryParams.courseLevelId = levelsOptionId;
     }
     if (teachersOptionId !== "" && teachersOptionId !== null) {
-      queryParams.TeacherId = teachersOptionId?.join(",");
+      // queryParams.TeacherId = teachersOptionId?.join(",");
+      queryParams.TeacherId = teachersOptionId;
     }
     queryParams.CostDown = priceRange[0];
     queryParams.CostUp = priceRange[1];
     if (selectedSort !== "" && selectedSort !== null) {
       queryParams.SortingCol = selectedSort?.key;
       queryParams.SortType = selectedSort?.order;
+    }
+    if (currentPg !== "" && currentPg !== null) {
+      queryParams.PageNumber = currentPg;
+    }
+    if (currentPgSize !== "" && currentPgSize !== null) {
+      queryParams.RowsOfPage = currentPgSize;
     }
 
     const res = await http.get("/Home/GetCoursesWithPagination", {

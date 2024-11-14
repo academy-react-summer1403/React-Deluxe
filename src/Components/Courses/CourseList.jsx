@@ -131,7 +131,12 @@ const CourseList = ({
 
   const [selectedSort, setSelectedSort] = useState({});
   const [selectedId, setSelectedId] = useState();
-  console.log(selectedSort);
+  // console.log(selectedSort);
+  const [currentPg, setCurrentPg] = useState(1);
+  console.log("currentPg", currentPg);
+  const [currentPgSize, setCurrentPgSize] = useState(10);
+  console.log("currentPgSize", currentPgSize);
+  const [totalCourseCount, setTotalCourseCount] = useState();
 
   const courseData = useQueryShortcut("GetCoursesByPG");
 
@@ -143,7 +148,9 @@ const CourseList = ({
     levelsOptionId,
     teachersOptionId,
     priceRange,
-    selectedSort
+    selectedSort,
+    currentPg,
+    currentPgSize
   ) => {
     try {
       const result = await GetAllCoursesByPg(
@@ -152,10 +159,13 @@ const CourseList = ({
         levelsOptionId,
         teachersOptionId,
         priceRange,
-        selectedSort
+        selectedSort,
+        currentPg,
+        currentPgSize
       );
 
       setCourses(result.courseFilterDtos);
+      setTotalCourseCount(result.totalCount);
 
       // console.log("result", result);
     } catch (error) {
@@ -170,7 +180,9 @@ const CourseList = ({
       levelsOptionId,
       teachersOptionId,
       priceRange,
-      selectedSort
+      selectedSort,
+      currentPg,
+      currentPgSize
     );
   }, [
     searchTerm,
@@ -179,6 +191,8 @@ const CourseList = ({
     teachersOptionId,
     priceRange,
     selectedSort,
+    currentPg,
+    currentPgSize,
   ]);
 
   const openModal = () => {
@@ -209,9 +223,14 @@ const CourseList = ({
     setSelectedId(id);
   };
 
+  const onChangePg = (page, pageSize) => {
+    setCurrentPg(page);
+    setCurrentPgSize(pageSize);
+  };
+
   return (
-    <div className="mb-8 w-[72rem]">
-      <div className="hidden lg:flex justify-start items-center gap-2 mb-4 mr-7">
+    <div className="mb-8 w-[72rem] flex flex-col gap-6">
+      <div className="hidden lg:flex justify-start items-center gap-2 mr-7">
         <span className="text-xl ml-2 dark:text-white">ترتیب</span>
         {options.map((option) => (
           <label
@@ -373,8 +392,21 @@ const CourseList = ({
           </div>
         ))}
       </div>
-      <ConfigProvider direction="rtl">
-        <Pagination align="center" defaultCurrent={1} total={50} />
+      <ConfigProvider direction="rtl" theme={{ token: {} }}>
+        <Pagination
+          align="center"
+          defaultCurrent={1}
+          defaultPageSize={10}
+          current={currentPg}
+          onChange={onChangePg}
+          total={totalCourseCount}
+          showTotal={(total, range) =>
+            `${range[0]}تا${range[1]} از ${total} دوره`
+          }
+          showSizeChanger
+          pageSizeOptions={[10, 20, 50, 75, 100]}
+          responsive
+        />
       </ConfigProvider>
     </div>
   );

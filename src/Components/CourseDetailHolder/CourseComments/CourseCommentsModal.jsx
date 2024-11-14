@@ -6,7 +6,9 @@ import {
   SentIcon,
   SmileIcon,
 } from "hugeicons-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import Pic from "../../../assets/logo (3)highQ.png";
 
 const CourseCommentsModal = ({ isOpen, onClose, courseComments, dataBlog }) => {
   const commentsData = [
@@ -37,10 +39,25 @@ const CourseCommentsModal = ({ isOpen, onClose, courseComments, dataBlog }) => {
   if (!isOpen) return null;
 
   const [isCommentOpen, setIsCommentOpen] = useState(false);
-
   const [isReplyOpen, setIsReplyOpen] = useState(false);
-
   const [isReplyReplyOpen, setIsReplyReplyOpen] = useState(false);
+  const [isCourseComment, setIsCourseComment] = useState();
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    {
+      pathname.includes("courseDetails")
+        ? setIsCourseComment(true)
+        : setIsCourseComment(false);
+    }
+  }, []);
+
+  // {
+  //   pathname.includes("courseDetails")
+  //     ? setIsCourseComment(true)
+  //     : setIsCourseComment(false);
+  // }
+  console.log(isCourseComment);
 
   const handleComment = () => {
     setIsCommentOpen(!isCommentOpen);
@@ -184,24 +201,26 @@ const CourseCommentsModal = ({ isOpen, onClose, courseComments, dataBlog }) => {
 
         {/* Comments Section */}
         <div className="space-y-6">
-          {courseComments.map((comment) => (
-            <div key={comment.id} className="space-y-4">
+          {(isCourseComment ? courseComments : dataBlog)?.map((comment, id) => (
+            <div key={id} className="space-y-4">
               {/* Main Comment */}
               <div className="flex items-start space-x-2">
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
                     <div className="flex mb-2 gap-2">
                       <img
-                        src={comment.pictureAddress}
+                        src={comment.pictureAddress ?? Pic}
                         alt="avatar"
                         className="w-12 h-12 rounded-full"
                       />
                       <div className="flex flex-col gap-1 justify-center">
                         <div className="text-sm font-semibold text-gray-900 dark:text-white">
-                          {comment.author}
+                          {isCourseComment ? comment.author : comment.autor}
                         </div>
                         <div className="text-xs text-gray-500 dark:text-gray-400">
-                          {comment.insertDate.slice(0, 10)}
+                          {isCourseComment
+                            ? comment.insertDate.slice(0, 10)
+                            : comment.inserDate.slice(0, 10)}
                         </div>
                       </div>
                     </div>
@@ -261,7 +280,9 @@ const CourseCommentsModal = ({ isOpen, onClose, courseComments, dataBlog }) => {
                           strokeLinejoin="round"
                         />
                       </svg>
-                      {comment.disslikeCount}
+                      {isCourseComment
+                        ? comment.disslikeCount
+                        : comment.dissLikeCount}
                     </div>
                     {isReplyOpen ? (
                       <>

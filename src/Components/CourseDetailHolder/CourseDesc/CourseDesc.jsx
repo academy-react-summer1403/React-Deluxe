@@ -1,8 +1,11 @@
 // CourseDescription.jsx
+import { useMutation } from "@tanstack/react-query";
 import { Rate } from "antd";
 import React, { useEffect, useState } from "react";
 import { IoIosLink } from "react-icons/io";
 import { useLocation } from "react-router-dom";
+import { RateCourse } from "../../../core/services/api/Courses/RateCourse.api";
+import { toast } from "react-toastify";
 
 const CopyLink = () => {
   const [copied, setCopied] = useState(false);
@@ -40,6 +43,26 @@ const CopyLink = () => {
 const CourseDesc = ({ data }) => {
   const { pathname } = useLocation();
 
+  const mutation = useMutation({
+    mutationKey: ["CourseRating"],
+    mutationFn: RateCourse,
+    onSuccess: () => {
+      toast.success("امتیاز با موفقیت ثبت شد!", {
+        position: "top-center",
+      });
+    },
+    onError: (error) => {
+      toast.error(error.response.data.ErrorMessage[0], {
+        position: "top-center",
+      });
+    },
+  });
+
+  const handleRate = async (Rate) => {
+    // console.log(data.courseId);
+    await mutation.mutateAsync({ Rate: Rate, courseId: data.courseId });
+  };
+
   return (
     <div className="p-6 mb-6 bg-white rounded-lg dark:bg-[#041124]">
       <h3 className="mb-4 text-xl font-bold text-gray-500 dark:text-gray-300">
@@ -61,6 +84,7 @@ const CourseDesc = ({ data }) => {
             defaultValue={
               data?.currentUserSetRate ? data?.currentUserRateNumber : 0
             }
+            onChange={handleRate}
           />
         </div>
         {pathname.includes("courseDetails") ? <CopyLink /> : ""}

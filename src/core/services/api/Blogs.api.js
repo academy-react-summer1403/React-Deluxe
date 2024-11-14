@@ -3,7 +3,9 @@ import http from "../interceptor";
 export const GetAllBlogsByPg = async (
   selectedSort,
   searchTerm,
-  selectedCategoryBlog
+  selectedCategoryBlog,
+  currentPg,
+  currentPgSize
 ) => {
   try {
     const queryParams = {};
@@ -18,8 +20,14 @@ export const GetAllBlogsByPg = async (
     if (selectedCategoryBlog !== "" && selectedCategoryBlog !== null) {
       queryParams.NewsCategoryId = selectedCategoryBlog?.join(",");
     }
+    if (currentPg !== "" && currentPg !== null) {
+      queryParams.PageNumber = currentPg;
+    }
+    if (currentPgSize !== "" && currentPgSize !== null) {
+      queryParams.RowsOfPage = currentPgSize;
+    }
 
-    const res = await http.get("/News?RowsOfPage=10", {
+    const res = await http.get("/News", {
       params: queryParams,
     });
     console.log("QueryBlogs", queryParams);

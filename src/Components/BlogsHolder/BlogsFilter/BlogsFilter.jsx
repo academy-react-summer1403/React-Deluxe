@@ -453,7 +453,7 @@ const BlogsFilter = ({
                 )}
               </div>
             )} */}
-              <AccordionTabs
+              <AccordionTab
                 options={catOptions}
                 onSelectionChange={handleSelectionChange}
               />

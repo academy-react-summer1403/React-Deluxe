@@ -89,6 +89,7 @@ const index = () => {
       console.log(error);
     }
   };
+  // console.log("newsData", newsData);
   useEffect(() => {
     getNewsData();
   }, []);
@@ -140,7 +141,7 @@ const index = () => {
                 <SlLike /> {news.currentLikeCount}
               </span>
               <div className="flex gap-2">
-                <Link to={"/blogDetails"}>
+                <Link to={`/BlogDetails/${news.favoriteId}`}>
                   <BsEye className="text-base" />
                 </Link>
 

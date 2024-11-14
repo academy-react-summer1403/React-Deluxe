@@ -21,6 +21,7 @@ const index = () => {
       console.log(error);
     }
   };
+  // console.log("CoursesData", CoursesData);
   useEffect(() => {
     getCoursesData();
   }, []);
@@ -36,7 +37,7 @@ const index = () => {
           <li className="hidden sm:block">سطح</li>
         </ul>
         <div className="mt-4 mx-5 space-y-4">
-          {CoursesData.map((course, index) => (
+          {CoursesData?.map((course, index) => (
             <div
               key={index}
               className="  flex flex-row  relative  items-center rounded-3xl justify-start gap-8    "
@@ -78,7 +79,7 @@ const index = () => {
                 {course.levelName}
               </span>{" "}
               <div className="flex gap-2">
-                <Link to={"/courseDetails"}>
+                <Link to={`/courseDetails/${course.courseId}`}>
                   <BsEye className="text-base" />
                 </Link>
                 <TbBookDownload />
