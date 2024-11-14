@@ -52,7 +52,7 @@ const HeroSection = () => {
       <div className="container mx-auto text-center w-full ">
         <div className="flex flex-col lg:flex-row items-center justify-start lg:justify-evenly   mb-10">
           {/* Stats Section */}
-          <div className="w-80 order-2 lg:order-1 flex gap-4   flex-wrap justify-start mb-5">
+          <div className="w-[19rem] order-2 lg:order-1 flex gap-4   flex-wrap justify-start mb-5">
             <div className="flex items-center mx-4">
               <Avatar.Group>
                 <Avatar src="https://s3-alpha-sig.figma.com/img/555c/b373/5701db8d4318f0d93edd1f4b64493b37?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=gbNRux8srZxwElhth9ojNNhAqLL73X0Tf3-7jteE~gFNDjm9aquaEfH7MEXxcZx4reT-P~~lQrYvhkFk1NzgB6CRBCXYi~5bS9xZxyXlfbWxX8--p8VRuDyBTOMRpzlsWP8KBtwrYYmw1aIJXrGB37PEQOUNNGPU~9URImIUvrQCfG1JM9PBHbSnd93PTGFErAp-6ajHzaruNUsJqbf1xvjBezbdZvRAJVvyncpmwTfL76Qy5auh8SsE2Owzdj7yzFubADQYBT8S2nPpIujx2B6PuZRxywMivGs7KtPwclW4FllDHxGXPYdWW36oaE0abNqmAE7Rw~HMZYsN08hC4Q__" />
@@ -92,10 +92,14 @@ const HeroSection = () => {
               </p>
             </div>
           </div>
-          <div className="flex order-3 flex-wrap flex-col">
+          <div className="w-72 flex order-3 flex-wrap flex-col">
             <div>
-              <h3 className="lg:flex  mr-2 dark:text-white">همین حالا </h3>
-              <h3 className="mr-2 dark:text-white">شروع کن به یادگیری!</h3>
+              <h3 className="lg:flex justify-center text-base/6 mr-2 dark:text-white">
+                همین حالا
+                <br />
+                شروع کن به یادگیری!
+              </h3>
+              <h3 className="mr-2 dark:text-white"></h3>
             </div>
             <Link to={"/courses"}>
               <button className="mb-8 mt-2 text-white rounded-full bg-gray-900 dark:bg-blue-500 px-5 py-1.5">
