@@ -7,6 +7,17 @@ import { AiOutlineLike } from "react-icons/ai";
 import { AiOutlineDislike } from "react-icons/ai";
 import { InfoBlock } from "./Components/InfoBlock";
 import { IoIosLink } from "react-icons/io";
+import Pic from "../../../assets/logo (3)highQ.png";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { BlogFavorite } from "../../../core/services/api/Blogs/Favorite/BlogFavorite.api";
+import { toast } from "react-toastify";
+import { QueryClient } from "@tanstack/react-query";
+import { BlogFavoriteDelete } from "../../../core/services/api/Blogs/Favorite/BlogFavoriteDelete.api";
+import { Archive02Icon, ThumbsDownIcon, ThumbsUpIcon } from "hugeicons-react";
+import { LikeBlog } from "../../../core/services/api/Blogs/Like/LikeBlog.api";
+import { DisslikeBlog } from "../../../core/services/api/Blogs/Like/DisslikeBlog.api";
+import { DatePersianizer } from "./../../../core/utils/DatePersianizer";
+import { digitsEnToFa } from "@persian-tools/persian-tools";
 
 const CopyLink = () => {
   const [copied, setCopied] = useState(false);
@@ -49,7 +60,6 @@ const CopyLink = () => {
 
 const BlogInfo = ({ data }) => {
   // const [starValue, setStarValue] = useState(`${data?.currentRate}`);
-
   const infoBlock1Data = [
     {
       wrapperClasses:
@@ -65,7 +75,7 @@ const BlogInfo = ({ data }) => {
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
       title: "بازدیدکنندگان",
       statusClasses: "text-base/[2.5rem] font-light dark:text-white",
-      status: `${data?.currentView} نفر`,
+      status: `${digitsEnToFa(`${data?.currentView}`)} نفر`,
     },
   ];
   const infoBlock2Data = [
@@ -75,7 +85,7 @@ const BlogInfo = ({ data }) => {
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
       title: "تاریخ انتشار",
       statusClasses: "text-base/[2.5rem] font-light dark:text-white",
-      status: `${data?.insertDate.toString().slice(0, 10)}`,
+      status: `${DatePersianizer(data?.insertDate)}`,
     },
     {
       wrapperClasses: "basis-[50%] lg:basis-[50%] w-32 h-20 p-2",
@@ -93,16 +103,108 @@ const BlogInfo = ({ data }) => {
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
       title: "تعداد لایک",
       statusClasses: "text-base/[2.5rem] font-light dark:text-white",
-      status: `${data?.currentLikeCount} نفر`,
+      status: `${digitsEnToFa(`${data?.currentLikeCount}`)} نفر`,
     },
     {
       wrapperClasses: "basis-[50%] w-32 h-20 p-2",
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
       title: "تعداد دیس‌لایک",
       statusClasses: "text-base/[2.5rem] font-light dark:text-white",
-      status: `${data?.currentDissLikeCount} نفر`,
+      status: `${digitsEnToFa(`${data?.currentDissLikeCount}`)} نفر`,
     },
   ];
+
+  const queryClient = useQueryClient();
+
+  const favoriteMutation = useMutation({
+    mutationKey: ["AddBlogFavorite"],
+    mutationFn: BlogFavorite,
+    onSuccess: () => {
+      toast.success("!بلاگ مورد نظر شما به لیست علاقمندی ها اضافه شد", {
+        position: "top-center",
+      });
+      data.isCurrentUserFavorite = 1;
+      queryClient.invalidateQueries(["BlogDetailById"]);
+    },
+    onError: (error) => {
+      toast.error(error.response.data.ErrorMessage[0], {
+        position: "top-center",
+      });
+    },
+  });
+
+  const handleFavorite = async (NewsId) => {
+    console.log(NewsId);
+    await favoriteMutation.mutateAsync(NewsId);
+  };
+
+  const favoriteDeleteMutation = useMutation({
+    mutationKey: ["DeleteBlogFavorite"],
+    mutationFn: BlogFavoriteDelete,
+    onSuccess: () => {
+      toast.success("!بلاگ مورد نظر شما از لیست علاقمندی ها حذف شد", {
+        position: "top-center",
+      });
+      data.isCurrentUserFavorite = 0;
+      queryClient.invalidateQueries(["BlogDetailById"]);
+    },
+    onError: (error) => {
+      toast.error(error.response.data.ErrorMessage[0], {
+        position: "top-center",
+      });
+    },
+  });
+
+  const handleFavoriteDelete = async (favoriteId) => {
+    console.log(favoriteId);
+    await favoriteDeleteMutation.mutateAsync(favoriteId);
+  };
+
+  const likeMutation = useMutation({
+    mutationKey: ["LikeBlog"],
+    mutationFn: LikeBlog,
+    onSuccess: () => {
+      toast.success("!بلاگ مورد نظر لایک شد", {
+        position: "top-center",
+      });
+      data.currentUserIsLike = 1;
+      data.currentUserIsDissLike = 0;
+      // queryClient.invalidateQueries(["BlogDetailById"]);
+    },
+    onError: (error) => {
+      toast.error(error.response.data.ErrorMessage[0], {
+        position: "top-center",
+      });
+    },
+  });
+
+  const handleLike = async (NewsId) => {
+    // console.log(NewsId);
+    await likeMutation.mutateAsync(NewsId);
+  };
+
+  const disslikeMutation = useMutation({
+    mutationKey: ["DisslikeBlog"],
+    mutationFn: DisslikeBlog,
+    onSuccess: () => {
+      toast.success("!بلاگ مورد نظر دیس لایک شد", {
+        position: "top-center",
+      });
+      data.currentUserIsLike = 0;
+      data.currentUserIsDissLike = 1;
+      // queryClient.invalidateQueries(["BlogDetailById"]);
+    },
+    onError: (error) => {
+      toast.error(error.response.data.ErrorMessage[0], {
+        position: "top-center",
+      });
+    },
+  });
+
+  const handleDisslike = async (NewsId) => {
+    // console.log(NewsId);
+    await disslikeMutation.mutateAsync(NewsId);
+  };
 
   return (
     <>
@@ -111,11 +213,19 @@ const BlogInfo = ({ data }) => {
         className="flex flex-col p-6 bg-white rounded-lg dark:bg-[#041124] lg:flex-row"
       >
         {/* Right Section: Course Image */}
-        <div className="flex justify-center h-[27rem] order-last mt-10 lg:mt-0 lg:order-none lg:w-1/2 lg:h-[27rem] bg-[#FF6C6C] dark:bg-indigo-800 rounded-[1.8rem]">
+        {/* <div className="flex justify-center h-[27rem] order-last mt-10 lg:mt-0 lg:order-none lg:w-1/2 lg:h-[27rem] bg-[#FF6C6C] dark:bg-indigo-800 rounded-[1.8rem]">
           <img
             src="https://s3-alpha-sig.figma.com/img/72eb/0bda/c649ce20dfb0409d36134908c7d16a53?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=VKvXDw8XmMqPX-avBXZ3r-CHzU9Gajrp1YuONERMXpFwVwsZ621ROUvmGg0l0M5Uk3WLvvw2rJNVCzHrcBZFnMZ7223KYF1zthqjB~agrpfX1me4Htn4sYgPWzfOwWcoeMc-8Ft~KokEaEwmlvGatv8eiEtEq7qJdFYL2XiYwSwyu6q6HpeqpSxry78jz0IRAoiTvIYk2P9IFUBoe0ld3XB~XIPFhnHivN8S7q7uvba6q8faq91bBMcoe6dbzjhSVpBQOyKyOeSw4CO4ds4OMV-PV~7gwlyWBn85CIdU5oudgmBhTkRo5lytZ9g8DyzRqkHuWOr7Wez3jdvHYkD02g__"
             alt="Course"
             className="rounded-lg shadow-md w-64 object-contain"
+          />
+        </div> */}
+        <div className="flex justify-center h-[27rem] order-last mt-10 lg:mt-0 lg:order-none lg:w-1/2 lg:h-[27rem] bg-transparent rounded-[1.8rem]">
+          <img
+            src={data?.currentImageAddress ?? Pic}
+            // "https://s3-alpha-sig.figma.com/img/72eb/0bda/c649ce20dfb0409d36134908c7d16a53?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=VKvXDw8XmMqPX-avBXZ3r-CHzU9Gajrp1YuONERMXpFwVwsZ621ROUvmGg0l0M5Uk3WLvvw2rJNVCzHrcBZFnMZ7223KYF1zthqjB~agrpfX1me4Htn4sYgPWzfOwWcoeMc-8Ft~KokEaEwmlvGatv8eiEtEq7qJdFYL2XiYwSwyu6q6HpeqpSxry78jz0IRAoiTvIYk2P9IFUBoe0ld3XB~XIPFhnHivN8S7q7uvba6q8faq91bBMcoe6dbzjhSVpBQOyKyOeSw4CO4ds4OMV-PV~7gwlyWBn85CIdU5oudgmBhTkRo5lytZ9g8DyzRqkHuWOr7Wez3jdvHYkD02g__"
+            alt="Course"
+            className="rounded-[2rem] shadow-md object-fill w-full"
           />
         </div>
 
@@ -172,7 +282,7 @@ const BlogInfo = ({ data }) => {
           <div className="flex flex-row items-center justify-around mb-4 lg:justify-start">
             <div className="flex items-center">
               <span className="text-[#7C7C7C] dark:text-gray-300 ml-2">
-                ( {data?.currentRate} )
+                ( {digitsEnToFa(`${data?.currentRate}`)} )
               </span>
               {data && (
                 <Rate
@@ -183,22 +293,53 @@ const BlogInfo = ({ data }) => {
                 />
               )}
               <span className="text-[#7C7C7C] dark:text-gray-300 mr-2">
-                + ({data?.commentsCount}) نظرات
+                + ({digitsEnToFa(`${data?.commentsCount}`)}) نظرات
               </span>
             </div>
-            {/* <div className="hidden text-2xl font-bold text-black dark:text-white lg:block">
-              ۲۵,۰۰۰
-              <span className="text-sm mr-1">تومان</span>
-            </div> */}
           </div>
 
           {/* 5th Row: Action Buttons */}
           <div className="flex flex-row justify-evenly lg:justify-between md:gap-2 lg:gap-0 lg:text-ellipsis text-base lg:text-sm xl:text-base lg:overflow-hidden">
             <CopyLink />
-            <button className="bg-[#2f2f2f] dark:bg-indigo-800 text-white px-2 whitespace-nowrap text-sm sm:text-base lg:px-4 xl:px-8 xl:py-2 rounded-full lg:mx-auto flex items-center">
-              <PiShoppingBagOpen className="mx-0 size-5 xl:mx-2" />
-              اضافه به لیست مورد علاقه
-            </button>
+            {data?.isCurrentUserFavorite == true ? (
+              <button
+                className="bg-red-500 dark:bg-red-700 text-white px-2 whitespace-nowrap text-sm sm:text-base lg:px-4 xl:px-8 xl:py-2 rounded-full lg:mx-auto flex items-center gap-2"
+                onClick={() =>
+                  handleFavoriteDelete(data?.currentUserFavoriteId)
+                }
+              >
+                {favoriteDeleteMutation.isPending ? (
+                  "درحال حذف کردن از لیست..."
+                ) : (
+                  <>
+                    <Archive02Icon
+                      size={20}
+                      color={"#ffffff"}
+                      variant={"stroke"}
+                    />
+                    حذف از لیست مورد علاقه
+                  </>
+                )}
+              </button>
+            ) : (
+              <button
+                className="bg-[#2f2f2f] dark:bg-indigo-800 text-white px-2 whitespace-nowrap text-sm sm:text-base lg:px-4 xl:px-8 xl:py-2 rounded-full lg:mx-auto flex items-center gap-2"
+                onClick={() => handleFavorite(data?.id)}
+              >
+                {favoriteMutation.isPending ? (
+                  "درحال اضافه کردن به لیست..."
+                ) : (
+                  <>
+                    <Archive02Icon
+                      size={20}
+                      color={"#ffffff"}
+                      variant={"stroke"}
+                    />{" "}
+                    اضافه به لیست مورد علاقه
+                  </>
+                )}
+              </button>
+            )}
             {/* <button className="bg-[#2f2f2f] dark:bg-indigo-800 text-white px-2 whitespace-nowrap text-sm sm:text-base lg:px-4 xl:px-8 xl:py-2 rounded-full lg:mx-auto flex items-center overflow-hidden text-ellipsis max-w-full">
               <PiShoppingBagOpen className="mx-0 size-5 xl:mx-2" />
               <span className="overflow-hidden text-ellipsis">
@@ -206,13 +347,46 @@ const BlogInfo = ({ data }) => {
               </span>
             </button>
             Ellipsis code!!!!!!!! */}
-            <div className="flex gap-3">
+            {/* <div className="flex gap-3">
               <button className="bg-[#3772ff] dark:bg-indigo-800 text-white w-12 h-12 rounded-full flex justify-center items-center">
                 <AiOutlineLike className="size-5" />
               </button>
               <button className="bg-white dark:bg-[#041124] text-[#1B1B1B] dark:text-white border border-gray-200 dark:border-gray-600 w-12 h-12 rounded-full flex justify-center items-center">
                 <AiOutlineDislike className="size-5" />
               </button>
+            </div> */}
+            <div className="flex gap-3">
+              {data?.currentUserIsLike == 1 ? (
+                <button
+                  className="bg-[#3772ff] dark:bg-indigo-800 text-white w-12 h-12 rounded-full flex justify-center items-center"
+                  onClick={() => handleLike(data?.id)}
+                >
+                  <ThumbsUpIcon size={20} color={"#fff"} variant={"stroke"} />{" "}
+                </button>
+              ) : (
+                <button
+                  className="bg-white dark:bg-[#041124] text-black dark:text-white border border-gray-200 dark:border-gray-600 w-12 h-12 rounded-full flex justify-center items-center"
+                  onClick={() => handleLike(data?.id)}
+                >
+                  <ThumbsUpIcon size={20} color={"#000"} variant={"stroke"} />{" "}
+                </button>
+              )}
+
+              {data?.currentUserIsDissLike == 1 ? (
+                <button
+                  className="bg-red-500 dark:bg-[#041124] text-[#1B1B1B] dark:text-white border border-gray-200 dark:border-gray-600 w-12 h-12 rounded-full flex justify-center items-center"
+                  onClick={() => handleDisslike(data?.id)}
+                >
+                  <ThumbsDownIcon size={20} color={"#fff"} variant={"stroke"} />{" "}
+                </button>
+              ) : (
+                <button
+                  className="bg-white dark:bg-[#041124] text-[#1B1B1B] dark:text-white border border-gray-200 dark:border-gray-600 w-12 h-12 rounded-full flex justify-center items-center"
+                  onClick={() => handleDisslike(data?.id)}
+                >
+                  <ThumbsDownIcon size={20} color={"#000"} variant={"stroke"} />{" "}
+                </button>
+              )}
             </div>
           </div>
         </div>

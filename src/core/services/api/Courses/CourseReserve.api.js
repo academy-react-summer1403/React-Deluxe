@@ -2,7 +2,7 @@ import http from "../../interceptor";
 
 export const CourseReserve = async (courseId) => {
   try {
-    const res = http.post("/CourseReserve/ReserveAdd", {
+    const res = await http.post("/CourseReserve/ReserveAdd", {
       courseId: courseId,
     });
     return res;

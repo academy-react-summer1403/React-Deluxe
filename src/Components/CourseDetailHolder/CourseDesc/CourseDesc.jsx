@@ -6,9 +6,12 @@ import { IoIosLink } from "react-icons/io";
 import { useLocation } from "react-router-dom";
 import { RateCourse } from "../../../core/services/api/Courses/RateCourse.api";
 import { toast } from "react-toastify";
+import { RateBlog } from "../../../core/services/api/Blogs/Rate/RateBlog.api";
 
 const CopyLink = () => {
   const [copied, setCopied] = useState(false);
+
+  const { pathname } = useLocation();
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(window.location.href);
@@ -58,10 +61,31 @@ const CourseDesc = ({ data }) => {
     },
   });
 
+  const blogMutation = useMutation({
+    mutationKey: ["BlogRating"],
+    mutationFn: RateBlog,
+    onSuccess: () => {
+      toast.success("امتیاز با موفقیت ثبت شد!", {
+        position: "top-center",
+      });
+    },
+    onError: (error) => {
+      toast.error(error.response.data.ErrorMessage[0], {
+        position: "top-center",
+      });
+    },
+  });
+
   const handleRate = async (Rate) => {
     // console.log(data.courseId);
-    await mutation.mutateAsync({ Rate: Rate, courseId: data.courseId });
+    {
+      pathname.includes("courseDetails")
+        ? await mutation.mutateAsync({ Rate: Rate, courseId: data.courseId })
+        : await blogMutation.mutateAsync({ Rate: Rate, blogId: data.id });
+    }
   };
+
+  console.log("data", data);
 
   return (
     <div className="p-6 mb-6 bg-white rounded-lg dark:bg-[#041124]">
@@ -79,13 +103,21 @@ const CourseDesc = ({ data }) => {
       <div className="flex flex-col justify-start gap-3 mt-5 lg:flex-row">
         <div className="mb-6 lg:mb-0">
           <span className="text-[#3772FF] dark:text-white">امتیاز بدید</span>
-          <Rate
-            className="mr-4"
-            defaultValue={
-              data?.currentUserSetRate ? data?.currentUserRateNumber : 0
-            }
-            onChange={handleRate}
-          />
+          {data && (
+            <Rate
+              className="mr-4"
+              defaultValue={
+                data?.currentUserSetRate == true
+                  ? data?.currentUserRateNumber
+                  : 0
+              }
+              onChange={handleRate}
+
+              // value={
+              //   data?.currentUserSetRate == true ? data?.currentUserRateNumber : 0
+              // }
+            />
+          )}
         </div>
         {pathname.includes("courseDetails") ? <CopyLink /> : ""}
       </div>

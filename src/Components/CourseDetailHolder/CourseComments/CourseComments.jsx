@@ -8,6 +8,8 @@ import { CourseCommentsModal } from "./CourseCommentsModal";
 import { useQueryShortcut } from "../../../core/services/api/ReactQuery/useQueryShortcut";
 import { useLocation } from "react-router-dom";
 import { ThumbsDownIcon, ThumbsUpIcon } from "hugeicons-react";
+import { DatePersianizer } from "./../../../core/utils/DatePersianizer";
+import { digitsEnToFa } from "@persian-tools/persian-tools";
 
 const CourseComment = ({ dataBlog }) => {
   const { pathname } = useLocation();
@@ -83,11 +85,11 @@ const CourseComment = ({ dataBlog }) => {
           </div>
           {/* User Name and Date */}
           <div className="flex flex-col gap-1 mr-2">
-            <span className="text-xs font-bold text-gray-700 dark:text-gray-300">
+            <span className="text-sm font-bold text-gray-700 dark:text-gray-300">
               {name}
             </span>
-            <span className="text-xs text-gray-500 dark:text-gray-400 lg:text-[0.5rem]/[0.5rem]">
-              {date}
+            <span className="text-xs text-gray-500 dark:text-gray-400 lg:text-[0.65rem]/[0.5rem]">
+              {DatePersianizer(date)}
             </span>
           </div>
         </div>
@@ -97,13 +99,15 @@ const CourseComment = ({ dataBlog }) => {
           {/* Like Button */}
           <div className="flex items-center gap-1 text-lg">
             <ThumbsUpIcon size={20} color={"#374151"} variant={"stroke"} />{" "}
-            <span className="text-xs font-medium">{likes}</span>
+            <span className="text-xs font-medium">{digitsEnToFa(likes)}</span>
           </div>
 
           {/* Dislike Button */}
           <div className="flex items-center gap-1 text-lg">
             <ThumbsDownIcon size={20} color={"#374151"} variant={"stroke"} />{" "}
-            <span className="text-xs font-medium">{dislikes}</span>
+            <span className="text-xs font-medium">
+              {digitsEnToFa(dislikes)}
+            </span>
           </div>
         </div>
       </div>

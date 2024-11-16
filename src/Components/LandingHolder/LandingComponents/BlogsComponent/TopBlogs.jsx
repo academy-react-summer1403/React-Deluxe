@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { Carousel } from "antd";
 import { GetTopBlogsByPg } from "../../../../core/services/api/TopBlogs.api";
 import { getRandomColor } from "../../../Common/ColorGenerator";
+import { digitsEnToFa } from "@persian-tools/persian-tools";
+import { DatePersianizer } from "../../../../core/utils/DatePersianizer";
 
 const contentStyle = {
   height: "",
@@ -272,11 +274,13 @@ const TopBlogs = () => {
                   <span
                     className={`inline-flex items-center dark:text-white text-xs gap-2 w-32 `}
                   >
-                    <i /> {blog.insertDate}
+                    <i />
+                    {/* {blog.insertDate.toString().slice(0, 10)} */}
+                    <div>{DatePersianizer(blog?.insertDate)}</div>
                     <BsCalendar4Week />
                   </span>
                   <span className="inline-flex items-center dark:text-white text-xs gap-2">
-                    <i /> {blog.currentView} <BsEye />
+                    <i /> {digitsEnToFa(blog?.currentView)} <BsEye />
                   </span>
                 </div>
               </div>

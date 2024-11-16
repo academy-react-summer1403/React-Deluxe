@@ -9,8 +9,12 @@ import {
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Pic from "../../../assets/logo (3)highQ.png";
+import { DatePersianizer } from "./../../../core/utils/DatePersianizer";
+import { digitsEnToFa } from "@persian-tools/persian-tools";
 
 const CourseCommentsModal = ({ isOpen, onClose, courseComments, dataBlog }) => {
+  // const [commentId, setCommentId] = useState([]);
+
   const commentsData = [
     {
       id: 1,
@@ -218,9 +222,11 @@ const CourseCommentsModal = ({ isOpen, onClose, courseComments, dataBlog }) => {
                           {isCourseComment ? comment.author : comment.autor}
                         </div>
                         <div className="text-xs text-gray-500 dark:text-gray-400">
-                          {isCourseComment
-                            ? comment.insertDate.slice(0, 10)
-                            : comment.inserDate.slice(0, 10)}
+                          {DatePersianizer(
+                            isCourseComment
+                              ? comment.insertDate
+                              : comment.inserDate
+                          )}
                         </div>
                       </div>
                     </div>
@@ -255,7 +261,7 @@ const CourseCommentsModal = ({ isOpen, onClose, courseComments, dataBlog }) => {
                           strokeLinejoin="round"
                         />
                       </svg>
-                      {comment.likeCount}
+                      {digitsEnToFa(comment.likeCount)}
                     </div>
                     <div className="text-sm text-black hover:text-green-500 dark:text-gray-400 dark:hover:text-green-400 flex items-center gap-1">
                       <svg
@@ -280,9 +286,11 @@ const CourseCommentsModal = ({ isOpen, onClose, courseComments, dataBlog }) => {
                           strokeLinejoin="round"
                         />
                       </svg>
-                      {isCourseComment
-                        ? comment.disslikeCount
-                        : comment.dissLikeCount}
+                      {digitsEnToFa(
+                        isCourseComment
+                          ? comment.disslikeCount
+                          : comment.dissLikeCount
+                      )}
                     </div>
                     {isReplyOpen ? (
                       <>
@@ -301,7 +309,7 @@ const CourseCommentsModal = ({ isOpen, onClose, courseComments, dataBlog }) => {
                       </>
                     ) : (
                       <div className="flex gap-4">
-                        <button
+                        {/* <button
                           className="text-[#3772FF] border border-[#3772FF] rounded-full py-2 px-3 flex gap-1"
                           onClick={handleReply}
                         >
@@ -311,8 +319,19 @@ const CourseCommentsModal = ({ isOpen, onClose, courseComments, dataBlog }) => {
                             variant={"stroke"}
                           />
                           جواب دادن
-                        </button>
-                        <button
+                        </button> */}
+                        <label htmlFor={comment.id}>جواب دادن</label>
+                        <input
+                          // onClick={() => {setCommentId()}}
+                          id={comment.id}
+                          type="radio"
+                          name="reply"
+                          className="peer hidden"
+                        />
+                        <div className="h-0 w-[400px] overflow-hidden peer-checked:h-20">
+                          {addComment()}
+                        </div>
+                        {/* <button
                           className="text-[#3772FF] border border-[#3772FF] rounded-full py-2 px-3 flex gap-1"
                           onClick={handleReply}
                         >
@@ -322,7 +341,7 @@ const CourseCommentsModal = ({ isOpen, onClose, courseComments, dataBlog }) => {
                             variant={"stroke"}
                           />
                           مشاهده جواب ها
-                        </button>
+                        </button> */}
                       </div>
                     )}
                   </div>

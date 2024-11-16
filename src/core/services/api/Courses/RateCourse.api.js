@@ -11,7 +11,7 @@ export const RateCourse = async (values) => {
     });
     return res;
   } catch (error) {
-    console.log("Error in LikeCourse:", error);
+    console.log("Error in RateCourse:", error);
     throw error;
   }
 };

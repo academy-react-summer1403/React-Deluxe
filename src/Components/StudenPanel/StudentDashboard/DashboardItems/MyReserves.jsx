@@ -4,6 +4,7 @@ import { BsEye } from "react-icons/bs";
 import { RxCross1 } from "react-icons/rx";
 import { getQuery } from "../../../../core/services/api/ReactQuery/getQuery";
 import { useQueryShortcut } from "./../../../../core/services/api/ReactQuery/useQueryShortcut";
+import { DatePersianizer } from "./../../../../core/utils/DatePersianizer";
 const ReserveData = [
   {
     title: " فیگما",
@@ -73,7 +74,7 @@ const MyReserves = () => {
             </h3>
 
             <p className="hidden sm:block dark:text-white text-[12px] w-40 font-bold items-center w-54 mr-3   ">
-              {Reserve.reserverDate.slice(0, 10)}
+              {DatePersianizer(Reserve.reserverDate)}
             </p>
             <span
               className={`px-3 py-0 text-base lg:w-40 inline-flex justify-center ${

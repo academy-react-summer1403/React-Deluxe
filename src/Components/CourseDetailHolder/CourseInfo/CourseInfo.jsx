@@ -12,22 +12,30 @@ import {
   ThumbsDownIcon,
   ThumbsUpIcon,
 } from "hugeicons-react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { CourseReserve } from "../../../core/services/api/Courses/CourseReserve.api";
 import { toast } from "react-toastify";
 import { CourseFavorite } from "../../../core/services/api/Courses/CourseFavorite.api";
 import { LikeCourse } from "../../../core/services/api/Courses/LikeCourse.api";
 import { DisslikeCourse } from "../../../core/services/api/Courses/DisslikeCourse.api";
+import { CourseReserveDelete } from "../../../core/services/api/Courses/CourseReserveDelete.api";
+import { CourseFavoriteDelete } from "../../../core/services/api/Courses/CourseFavoriteDelete.api";
+import Pic from "../../../assets/logo (3)highQ.png";
+import { DatePersianizer } from "./../../../core/utils/DatePersianizer";
+import { digitsEnToFa } from "@persian-tools/persian-tools";
+import { formatCost } from "./../../../core/utils/CostEntoFa+Commas+Split.utils";
 
 const CourseInfo = ({ data }) => {
   const [starValue, setStarValue] = useState(`${data.currentRate}`);
   const [isLiked, setIsLiked] = useState();
   const [isDissliked, setIsDissliked] = useState();
 
+  const queryClient = useQueryClient();
+
   const infoBlock1Data = [
     {
       wrapperClasses:
-        "basis-[50%] border-l border-slate-200 dark:border-gray-500 w-32 h-20 p-2 flex flex-col items-center lg:block",
+        "basis-[50%] border-l border-slate-200 dark:border-gray-500 w-32 h-20 p-2 flex flex-col items-center lg:block overflow-hidden",
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
       title: "وضعیت",
       statusClasses:
@@ -36,7 +44,7 @@ const CourseInfo = ({ data }) => {
     },
     {
       wrapperClasses:
-        "basis-[50%] w-32 h-20 p-2 text-nowrap flex flex-col items-center lg:block",
+        "basis-[50%] w-32 h-20 p-2 text-nowrap flex flex-col items-center lg:block overflow-hidden",
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
       title: "دسته بندی",
       statusClasses:
@@ -47,7 +55,7 @@ const CourseInfo = ({ data }) => {
   const infoBlock2Data = [
     {
       wrapperClasses:
-        "basis-[50%] lg:basis-[50%] border-l border-slate-200 dark:border-gray-500 w-32 h-20 p-2 flex flex-col items-center lg:block",
+        "basis-[50%] lg:basis-[50%] border-l border-slate-200 dark:border-gray-500 w-32 h-20 p-2 flex flex-col items-center lg:block overflow-hidden",
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
       title: "سطح آموزشی",
       statusClasses:
@@ -55,7 +63,8 @@ const CourseInfo = ({ data }) => {
       status: `${data.courseLevelName}`,
     },
     {
-      wrapperClasses: "basis-[50%] lg:basis-[50%] w-32 h-20 p-2",
+      wrapperClasses:
+        "basis-[50%] lg:basis-[50%] w-32 h-20 p-2 overflow-hidden",
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
       title: "مدرس",
       statusClasses:
@@ -66,35 +75,35 @@ const CourseInfo = ({ data }) => {
   const infoBlock3Data = [
     {
       wrapperClasses:
-        "basis-[50%] border-l border-slate-200 dark:border-gray-500 w-32 h-20 p-2",
+        "basis-[50%] border-l border-slate-200 dark:border-gray-500 w-32 h-20 p-2 overflow-hidden",
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
       title: "تاریخ برگزاری",
       statusClasses: "text-base/[1rem] mt-3 font-light dark:text-white",
-      status: `${data.startTime.toString().slice(0, 10)}`,
+      status: `${DatePersianizer(data?.startTime)}`,
     },
     {
-      wrapperClasses: "basis-[50%] w-32 h-20 p-2",
+      wrapperClasses: "basis-[50%] w-32 h-20 p-2 overflow-hidden",
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
       title: "تاریخ اتمام",
       statusClasses: "text-base/[1rem] mt-3 font-light dark:text-white",
-      status: `${data.endTime.toString().slice(0, 10)}`,
+      status: `${DatePersianizer(data.endTime)}`,
     },
   ];
   const infoBlock4Data = [
     {
       wrapperClasses:
-        "basis-[50%] border-l border-slate-200 dark:border-gray-500 w-32 h-20 p-2",
+        "basis-[50%] border-l border-slate-200 dark:border-gray-500 w-32 h-20 p-2 overflow-hidden",
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
       title: "تعداد لایک",
       statusClasses: "text-base/[2.5rem] font-light dark:text-white",
-      status: `${data.likeCount} نفر`,
+      status: `${digitsEnToFa(data.likeCount)} نفر`,
     },
     {
-      wrapperClasses: "basis-[50%] w-32 h-20 p-2",
+      wrapperClasses: "basis-[50%] w-32 h-20 p-2 overflow-hidden",
       titleClasses: "text-sm text-gray-400 dark:text-gray-300",
       title: "تعداد دیس‌لایک",
       statusClasses: "text-base/[2.5rem] font-light dark:text-white",
-      status: `${data.dissLikeCount} نفر`,
+      status: `${digitsEnToFa(data.dissLikeCount)} نفر`,
     },
   ];
 
@@ -103,6 +112,8 @@ const CourseInfo = ({ data }) => {
     mutationFn: CourseReserve,
     onSuccess: () => {
       toast.success("دوره با موفقیت رزرو شد!", { position: "top-center" });
+      data.isCourseReseve = 1;
+      queryClient.invalidateQueries(["CourseDetailById"]);
     },
     onError: (error) => {
       toast.error(error.response.data.ErrorMessage[0], {
@@ -117,13 +128,37 @@ const CourseInfo = ({ data }) => {
     await mutation.mutateAsync(courseId);
   };
 
+  const reserveDeleteMutation = useMutation({
+    mutationKey: ["DeleteCourseReserve"],
+    mutationFn: CourseReserveDelete,
+    onSuccess: () => {
+      toast.success("رزرو دوره با موفقیت حذف شد!", {
+        position: "top-center",
+      });
+      data.isCourseReseve = 0;
+    },
+    onError: (error) => {
+      toast.error(error.response.data.ErrorMessage[0], {
+        position: "top-center",
+      });
+      // console.log("error Delete", error);
+    },
+  });
+
+  const handleReserveDelete = async (reserveId) => {
+    // console.log(reserveId);
+    await reserveDeleteMutation.mutateAsync(reserveId);
+  };
+
   const favoriteMutation = useMutation({
     mutationKey: ["AddCourseFavorite"],
     mutationFn: CourseFavorite,
     onSuccess: () => {
-      toast.success("دوره به عنوان علاقمندی شما اضافه شد!", {
+      toast.success("دوره به لیست علاقمندی های شما اضافه شد!", {
         position: "top-center",
       });
+      data.isUserFavorite = true;
+      queryClient.invalidateQueries(["CourseDetailById"]);
     },
     onError: (error) => {
       toast.error(error.response.data.ErrorMessage[0], {
@@ -136,6 +171,30 @@ const CourseInfo = ({ data }) => {
   const handleFavorite = async (courseId) => {
     console.log(courseId);
     await favoriteMutation.mutateAsync(courseId);
+  };
+
+  const favoriteDeleteMutation = useMutation({
+    mutationKey: ["DeleteCourseFavorite"],
+    mutationFn: CourseFavoriteDelete,
+    onSuccess: () => {
+      toast.success("دوره از لیست علاقمندی های شما حذف شد!", {
+        position: "top-center",
+      });
+      data.isUserFavorite = false;
+    },
+    onError: (error) => {
+      toast.error(error.response.data.ErrorMessage[0], {
+        position: "top-center",
+      });
+      // console.log("error Delete Favorite", error);
+    },
+  });
+
+  const handleFavoriteDelete = async (favoriteId) => {
+    // console.log("favoriteId", favoriteId);
+    const formData = new FormData();
+    formData.append("CourseFavoriteId", favoriteId);
+    await favoriteDeleteMutation.mutateAsync(formData);
   };
 
   const likeMutation = useMutation({
@@ -196,7 +255,7 @@ const CourseInfo = ({ data }) => {
         {/* Right Section: Course Image */}
         <div className="flex justify-center h-[27rem] order-last mt-10 lg:mt-0 lg:order-none lg:w-1/2 lg:h-[27rem] bg-transparent rounded-[1.8rem]">
           <img
-            src={data.imageAddress}
+            src={data?.imageAddress ?? Pic}
             // "https://s3-alpha-sig.figma.com/img/72eb/0bda/c649ce20dfb0409d36134908c7d16a53?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=VKvXDw8XmMqPX-avBXZ3r-CHzU9Gajrp1YuONERMXpFwVwsZ621ROUvmGg0l0M5Uk3WLvvw2rJNVCzHrcBZFnMZ7223KYF1zthqjB~agrpfX1me4Htn4sYgPWzfOwWcoeMc-8Ft~KokEaEwmlvGatv8eiEtEq7qJdFYL2XiYwSwyu6q6HpeqpSxry78jz0IRAoiTvIYk2P9IFUBoe0ld3XB~XIPFhnHivN8S7q7uvba6q8faq91bBMcoe6dbzjhSVpBQOyKyOeSw4CO4ds4OMV-PV~7gwlyWBn85CIdU5oudgmBhTkRo5lytZ9g8DyzRqkHuWOr7Wez3jdvHYkD02g__"
             alt="Course"
             className="rounded-[2rem] shadow-md object-fill w-full"
@@ -269,7 +328,7 @@ const CourseInfo = ({ data }) => {
             <div className="flex items-center">
               <span className="text-[#7C7C7C] dark:text-gray-300 ml-2">
                 {" "}
-                ( {starValue} ){" "}
+                ( {digitsEnToFa(starValue)} ){" "}
               </span>
               <Rate
                 className="mb-1"
@@ -278,46 +337,84 @@ const CourseInfo = ({ data }) => {
                 defaultValue={data.currentRate}
               />
               <span className="text-[#7C7C7C] dark:text-gray-300 mr-2">
-                + ({data.commentCount}) نظرات
+                + ({digitsEnToFa(data.commentCount)}) نظرات
               </span>
             </div>
             <div className="hidden text-2xl font-bold text-black dark:text-white lg:block">
-              {data.cost}
+              {formatCost(data.cost)}
               <span className="text-sm mr-1">تومان</span>
             </div>
           </div>
 
           {/* 5th Row: Action Buttons */}
           <div className="flex flex-row justify-evenly lg:justify-between md:gap-2 lg:gap-0 lg:text-ellipsis text-base lg:text-sm xl:text-base lg:overflow-hidden">
-            <button
-              className="bg-[#3772FF] dark:bg-indigo-800 text-white px-8 lg:px-4 xl:px-8 xl:py-2 sm:text-base rounded-full mr-2 hidden lg:flex items-center gap-2"
-              onClick={() => handleReserve(data.courseId)}
-            >
-              {mutation.isPending ? (
-                "در حال رزرو..."
-              ) : (
-                <>
-                  <Book02Icon size={20} color={"#ffffff"} /> رزرو دوره
-                </>
-              )}
-            </button>
-            <button
-              className="bg-[#2f2f2f] dark:bg-indigo-800 text-white px-2 whitespace-nowrap text-sm sm:text-base lg:px-4 xl:px-8 xl:py-2 rounded-full lg:mx-auto flex items-center gap-2"
-              onClick={() => handleFavorite(data.courseId)}
-            >
-              {favoriteMutation.isPending ? (
-                "درحال اضافه کردن به لیست..."
-              ) : (
-                <>
-                  <Archive02Icon
-                    size={20}
-                    color={"#ffffff"}
-                    variant={"stroke"}
-                  />
-                  اضافه به لیست مورد علاقه
-                </>
-              )}
-            </button>
+            {data.isCourseReseve == 1 ? (
+              <button
+                className="bg-red-500 dark:bg-red-700 text-white px-8 lg:px-4 xl:px-8 xl:py-2 sm:text-base rounded-full mr-2 hidden lg:flex items-center gap-2"
+                onClick={() => handleReserveDelete(data.courseReseveId)}
+              >
+                {reserveDeleteMutation.isPending ? (
+                  "در حال حذف..."
+                ) : (
+                  <>
+                    <Book02Icon size={20} color={"#ffffff"} />
+                    حذف رزرو
+                  </>
+                )}
+              </button>
+            ) : (
+              <button
+                className="bg-[#3772FF] dark:bg-indigo-800 text-white px-8 lg:px-4 xl:px-8 xl:py-2 sm:text-base rounded-full mr-2 hidden lg:flex items-center gap-2"
+                onClick={() => handleReserve(data.courseId)}
+              >
+                {mutation.isPending ? (
+                  "در حال رزرو..."
+                ) : (
+                  <>
+                    <Book02Icon size={20} color={"#ffffff"} /> رزرو دوره
+                  </>
+                )}
+              </button>
+            )}
+
+            {data.isUserFavorite == true ? (
+              <button
+                className="bg-red-500 dark:bg-red-700 text-white px-2 whitespace-nowrap text-sm sm:text-base lg:px-4 xl:px-8 xl:py-2 rounded-full lg:mx-auto flex items-center gap-2"
+                onClick={() => handleFavoriteDelete(data.userFavoriteId)}
+              >
+                {favoriteDeleteMutation.isPending ? (
+                  "درحال حذف کردن از لیست..."
+                ) : (
+                  <>
+                    <Archive02Icon
+                      size={20}
+                      color={"#ffffff"}
+                      variant={"stroke"}
+                    />
+                    حذف از لیست مورد علاقه
+                  </>
+                )}
+              </button>
+            ) : (
+              <button
+                className="bg-[#2f2f2f] dark:bg-indigo-800 text-white px-2 whitespace-nowrap text-sm sm:text-base lg:px-4 xl:px-8 xl:py-2 rounded-full lg:mx-auto flex items-center gap-2"
+                onClick={() => handleFavorite(data.courseId)}
+              >
+                {favoriteMutation.isPending ? (
+                  "درحال اضافه کردن به لیست..."
+                ) : (
+                  <>
+                    <Archive02Icon
+                      size={20}
+                      color={"#ffffff"}
+                      variant={"stroke"}
+                    />
+                    اضافه به لیست مورد علاقه
+                  </>
+                )}
+              </button>
+            )}
+
             <div className="flex gap-3">
               {data.currentUserLike == 1 ? (
                 <button

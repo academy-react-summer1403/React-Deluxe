@@ -6,6 +6,7 @@ import { myReserve } from "../../../../core/services/api/StudentPanel/MyReserve.
 import { Link } from "react-router-dom";
 import Logo from "../../../../assets/logo (3).png";
 import { getRandomColor } from "../../../Common/ColorGenerator";
+import { DatePersianizer } from "./../../../../core/utils/DatePersianizer";
 // const ReserveData = [
 //   {
 //     title: " فیگما",
@@ -138,7 +139,7 @@ const index = () => {
               <span
                 className={`hidden sm:inline-flex items-center w-[127px] dark:text-white `}
               >
-                {Reserve.reserverDate.slice(0, 10)}
+                {DatePersianizer(Reserve.reserverDate)}
               </span>
 
               <span

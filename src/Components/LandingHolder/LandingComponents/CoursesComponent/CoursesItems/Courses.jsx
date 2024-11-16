@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { Carousel } from "antd";
 import { GetTopCoursesByPg } from "../../../../../core/services/api/Landing.api";
 import { getRandomColor } from "../../../../Common/ColorGenerator";
+import { digitsEnToFa, addCommas } from "@persian-tools/persian-tools";
+import { formatCost } from "./../../../../../core/utils/CostEntoFa+Commas+Split.utils";
 
 const contentStyle = {
   height: "",
@@ -116,7 +118,7 @@ const CoursesItems = () => {
               {course.teacherName}
             </p>
             <span className="text-gray-500 dark:text-white text-sm font-semibold mb-4">
-              {course.cost}
+              {formatCost(course.cost)}
             </span>
           </div>
           <div className="mt-4">
