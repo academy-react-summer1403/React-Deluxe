@@ -4,17 +4,14 @@ import { PiBellThin } from "react-icons/pi";
 import DarkModeToggle from "../DarkMode";
 import { MenuWithToggle } from "./HeaderItems/MenuToggle";
 import { Link } from "react-router-dom";
+import AcademyLogo from "../../../assets/LandingAcademy/AcademyLogo.png";
 
 const Header = () => {
   return (
     <header className="bg-transparent dark:bg-[#041124] p-4 sticky top-0 z-10 backdrop-blur-lg">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center space-x-4">
-          <img
-            src="https://s3-alpha-sig.figma.com/img/8978/2e65/1551396a2baebe523401d4b33d0ab02a?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=KQ~dcIIM~JdW9LpmW5k993TDj8dn8ZkN1Qtttuy0-aSHkPk1sIyxi2ojMCsPG8vcb2~g8uXnxbCULxQJadpQ2JwI7Dwwxpp4Wm-8hhU8GpNvno0ez-2K9VQGnYe~CrZ98sZ5XUYXmAXY7jDzgH7HPYtrW9G5L7F~9KM9PKI~bFmNq5CdwiOSQV5h5afOc2RATwQZFEMpzuDfiLxh2Jo5A-IJcbTalKpbonbw~-ujm7ivgBYsdWTqgrvF6PRGappVjgHwdWZlhcLcfWHliNwBwEGJrafUpFwxFPrl1S6XiWrCc6uvAP8O7OVF9rTsLeuddKBVEjlCZKSpz8HWAImLkw__"
-            alt=""
-            className="size-10"
-          />
+          <img src={AcademyLogo} alt="" className="size-10" />
           <h1 className="hidden sm:block text-xl font-bold text-cyan-500">
             آکادمی کد نویسی بحر
           </h1>
