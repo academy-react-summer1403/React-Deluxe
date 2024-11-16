@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ConfigProvider, Slider, theme } from "antd";
 // import "antd/dist/antd.css";
+import { formatCost } from "./../../../../core/utils/CostEntoFa+Commas+Split.utils";
 
 export const PricePicker = ({ priceRange, setPriceRange }) => {
   return (
@@ -31,8 +32,8 @@ export const PricePicker = ({ priceRange, setPriceRange }) => {
     >
       <div>
         <div className="flex items-center justify-between text-sm text-gray-500 mb-2 dark:text-white">
-          <span>از {priceRange[0]}</span>
-          <span>تا {priceRange[1]}</span>
+          <span>از {formatCost(priceRange[0])}</span>
+          <span>تا {formatCost(priceRange[1])}</span>
         </div>
         <div className="">
           <Slider

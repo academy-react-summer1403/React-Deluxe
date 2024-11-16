@@ -15,7 +15,7 @@ export const GetAllCoursesByPg = async (
     if (searchTerm !== "" && searchTerm !== null) {
       queryParams.Query = searchTerm;
     }
-    if (selectedOptionId !== "" && selectedOptionId !== null) {
+    if (selectedOptionId.length > 0 && selectedOptionId !== null) {
       queryParams.ListTech = selectedOptionId?.join(",");
       queryParams.TechCount = selectedOptionId.length;
     }

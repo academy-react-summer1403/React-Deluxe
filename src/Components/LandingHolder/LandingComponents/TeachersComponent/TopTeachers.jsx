@@ -1,5 +1,6 @@
-import {useState , useEffect } from "react";
-import { GetTopTeachersByPg } from "../../../../core/services/api/TopTeachers.api"
+import { useState, useEffect } from "react";
+import { GetTopTeachersByPg } from "../../../../core/services/api/TopTeachers.api";
+import { digitsEnToFa } from "@persian-tools/persian-tools";
 
 // const teachersData = [
 //   {
@@ -24,24 +25,22 @@ import { GetTopTeachersByPg } from "../../../../core/services/api/TopTeachers.ap
 // ];
 
 const TopTeachers = () => {
-
-  const [TopTeachers,setTopTeachers ] = useState([]);
+  const [TopTeachers, setTopTeachers] = useState([]);
 
   const getTopTeachers = async () => {
     try {
       const result = await GetTopTeachersByPg();
-  
+
       setTopTeachers(result);
-      
-      console.log(result)
-  
+
+      console.log(result);
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
     getTopTeachers();
-  },[]);
+  }, []);
 
   return (
     <section
@@ -90,7 +89,7 @@ const TopTeachers = () => {
                     {teacher.fullName}
                   </h3>
                   <p className="dark:text-slate-300  text-gray-500">
-                    رتبه: {teacher.courseCounts}
+                    رتبه: {digitsEnToFa(teacher.courseCounts)}
                   </p>
                 </div>
               ))}

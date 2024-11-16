@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { GetAllBlogsByPg } from "../../../core/services/api/Blogs.api";
 import Logo from "../../../assets/logo (3).png";
 import { getRandomColor } from "../../Common/ColorGenerator";
+import { DatePersianizer } from "./../../../core/utils/DatePersianizer";
+import { digitsEnToFa } from "@persian-tools/persian-tools";
 
 const BlogsCards = ({ searchTerm, selectedCategoryBlog }) => {
   const [news, setNews] = useState([]);
@@ -194,12 +196,26 @@ const BlogsCards = ({ searchTerm, selectedCategoryBlog }) => {
               </button>
             </div>
             <div className="flex justify-start items-center gap-2 mb-4 mr-4">
-              <button className=" text-red-500 border border-red-500 py-2 px-4 rounded-full">
-                جدیدترین
-              </button>
-              <button className="text-gray-800 border border-gray-800 py-2 px-4 rounded-full">
-                محبوب‌ترین
-              </button>
+              {options.map((option) => (
+                <label
+                  key={option.id}
+                  className={`py-2 px-4 rounded-full cursor-pointer ${
+                    selectedId === option.id
+                      ? "bg-red-500 text-white"
+                      : "border border-red-500 text-red-500"
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="sortOption"
+                    value={option.id}
+                    checked={selectedId === option.id}
+                    onChange={() => handleOptionChange(option.value, option.id)}
+                    className="hidden"
+                  />
+                  {option.label}
+                </label>
+              ))}
             </div>
           </div>
         </div>
@@ -232,7 +248,7 @@ const BlogsCards = ({ searchTerm, selectedCategoryBlog }) => {
                 </p>
                 <div className="flex flex-row gap-4">
                   <p className="flex text-xs/[1.4rem] gap-2 dark:text-slate-400">
-                    {card.insertDate.toString().slice(0, 10)}
+                    {DatePersianizer(card.insertDate)}
                     <svg
                       width="20"
                       height="20"
@@ -269,7 +285,7 @@ const BlogsCards = ({ searchTerm, selectedCategoryBlog }) => {
                     </svg>
                   </p>
                   <p className="flex text-xs/[1.4rem] gap-2 dark:text-slate-400">
-                    {card.currentView}
+                    {digitsEnToFa(card.currentView)}
                     <svg
                       width="20"
                       height="20"
@@ -311,7 +327,9 @@ const BlogsCards = ({ searchTerm, selectedCategoryBlog }) => {
           onChange={onChangePg}
           total={totalBlogCount}
           showTotal={(total, range) =>
-            `${range[0]}تا${range[1]} از ${total} دوره`
+            `${digitsEnToFa(range[0])} تا ${digitsEnToFa(
+              range[1]
+            )} از ${digitsEnToFa(total)} دوره`
           }
           showSizeChanger
           pageSizeOptions={[5, 10, 20, 50, 75, 100]}

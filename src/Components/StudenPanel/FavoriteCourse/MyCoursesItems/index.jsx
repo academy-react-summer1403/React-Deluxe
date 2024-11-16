@@ -6,6 +6,7 @@ import { TbBookDownload } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import { favoriteCourseDto } from "../../../../core/services/api/StudentPanel/FavoriteCourses.api";
 import { getRandomColor } from "../../../Common/ColorGenerator";
+import { DatePersianizer } from "./../../../../core/utils/DatePersianizer";
 
 const index = () => {
   const [CoursesData, setCoursesData] = useState([]);
@@ -60,7 +61,7 @@ const index = () => {
               <span
                 className={`hidden lg:inline-flex items-center w-[125px] dark:text-white `}
               >
-                {course.lastUpdate.slice(0, 10)}
+                {DatePersianizer(course.lastUpdate)}
               </span>
               <span
                 className={`inline-flex items-center  lg:w-[125px] dark:text-white `}

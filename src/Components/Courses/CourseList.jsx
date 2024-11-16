@@ -6,6 +6,8 @@ import Pic from "../../assets/react.png";
 import Logo from "../../assets/logo (3).png";
 import { useQueryShortcut } from "./../../core/services/api/ReactQuery/useQueryShortcut";
 import { getRandomColor } from "../Common/ColorGenerator";
+import { formatCost } from "./../../core/utils/CostEntoFa+Commas+Split.utils";
+import { digitsEnToFa } from "@persian-tools/persian-tools";
 
 // const coursesData = [
 //   {
@@ -332,19 +334,27 @@ const CourseList = ({
                 ✕ بستن
               </button>
             </div>
-            <div className="flex flex-col justify-center items-center gap-1 mb-4 ">
-              <button className=" text-red-500 border border-red-500 py-2 px-4 rounded-full  dark:text-white dark:border-white">
-                جدیدترین
-              </button>
-              <button className="text-gray-800 border border-gray-800 py-2 px-3 rounded-full  dark:text-white dark:border-white">
-                محبوب‌ترین
-              </button>
-              <button className="text-gray-800 border border-gray-800 py-2 px-4 rounded-full  dark:text-white dark:border-white">
-                ارزان ترین
-              </button>{" "}
-              <button className="text-gray-800 border border-gray-800 py-2 px-4 rounded-full  dark:text-white dark:border-white">
-                گران ترین
-              </button>
+            <div className="flex justify-center flex-wrap items-center gap-1 mb-4 ">
+              {options.map((option) => (
+                <label
+                  key={option.id}
+                  className={`py-2 px-4 rounded-full cursor-pointer text-lg ${
+                    selectedId === option.id
+                      ? "bg-red-500 text-white"
+                      : "border border-red-500 text-red-500"
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="sortOption"
+                    value={option.id}
+                    checked={selectedId === option.id}
+                    onChange={() => handleOptionChange(option.value, option.id)}
+                    className="hidden"
+                  />
+                  {option.label}
+                </label>
+              ))}
             </div>
           </div>
         </div>
@@ -377,7 +387,7 @@ const CourseList = ({
                 {course.teacherName}
               </p>
               <span className="text-gray-500 dark:text-white text-sm font-semibold mb-4">
-                {course.cost}
+                {formatCost(course.cost)}
                 <span className="text-[0.6rem] mr-0.5">تومان</span>
               </span>
             </div>
@@ -401,7 +411,9 @@ const CourseList = ({
           onChange={onChangePg}
           total={totalCourseCount}
           showTotal={(total, range) =>
-            `${range[0]}تا${range[1]} از ${total} دوره`
+            `${digitsEnToFa(range[0])} تا ${digitsEnToFa(
+              range[1]
+            )} از ${digitsEnToFa(total)} دوره`
           }
           showSizeChanger
           pageSizeOptions={[10, 20, 50, 75, 100]}

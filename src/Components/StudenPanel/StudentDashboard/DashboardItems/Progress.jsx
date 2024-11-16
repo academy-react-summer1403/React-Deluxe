@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useQueryShortcut } from "../../../../core/services/api/ReactQuery/useQueryShortcut";
 import { Progress } from "antd";
+import { digitsEnToFa } from "@persian-tools/persian-tools";
 
 const UserProgress = ({ percentage }) => {
   const progress = percentage || 75;
@@ -13,6 +14,8 @@ const UserProgress = ({ percentage }) => {
   };
 
   const data = useQueryShortcut("ProfileInfo");
+
+  // const persianpercent = digitsEnToFa(`${data?.profileCompletionPercentage}`);
 
   return (
     <div className="lg:flex flex-col hidden  justify-between py-3 w-72 h-72  bg-gray-50 shadow-md dark:bg-indigo-950 dark:text-white rounded-3xl px-4 ">
@@ -69,6 +72,7 @@ const UserProgress = ({ percentage }) => {
         </div> */}
         <Progress
           type="circle"
+          // percent={persianpercent}
           percent={data?.profileCompletionPercentage}
           strokeColor={twoColors}
           size={150}

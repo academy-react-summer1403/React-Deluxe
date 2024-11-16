@@ -3,7 +3,8 @@ import { Avatar } from "antd";
 import { HeroItem } from "./HeroSectionItems";
 import { Link } from "react-router-dom";
 import { GetLandingReport } from "../../../../core/services/api/LandingReport/LandingReport";
-
+import { digitsEnToFa } from "@persian-tools/persian-tools";
+import HTML5 from "../../../../assets/LandingProgressBar/Rectangle.png";
 // // Images (Replace with actual image paths)
 // import HTMLIcon from "/path-to-html-icon.png";
 // import CSSIcon from "/path-to-css-icon.png";
@@ -60,7 +61,8 @@ const HeroSection = () => {
                 <Avatar src="https://s3-alpha-sig.figma.com/img/5463/2d2d/8b3aae9b589a5e7462a72e6cd10174ef?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=F7XFp7WAf0o-3cm32mI1DMYSQ3W5pgt7mZ~s36F3qdpkDv7FJXjrRnQ4Rjus~oM5M7MVg4j5HqW1ZJlp9C2dBF349qBYkTxURrpyZjThuDe5cYIqM~GMIuMEgk1WSuXnOZNaYrfuFFYsYHcMHn5Dn~HXxsa5crUNStWfA4L4g9p0KMTWT6zeZ3Emlrbztb3i15sM5~2YsblDoO9uAcoqNwWEHmzW067mBEqZkaDHfszmHUYu5S1OqUHfIBAR10L~aL6WsMke280BCJQI31D~g786CmS7BGMBfitAB7V8aZ0j3RM1RyE~HjY9EnETbgs-z8FcQafpgz5Wa4azntf7Jw__" />
               </Avatar.Group>
               <span className="dark:text-white">
-                +{landingReportInfo.studentCount} دانشجوی فعال در دوره
+                +{digitsEnToFa(`${landingReportInfo.studentCount}`)} دانشجوی
+                فعال در دوره
               </span>
             </div>
             <div className="flex relative right-4 lg:right-0 items-center mx-4">
@@ -70,7 +72,8 @@ const HeroSection = () => {
                 <Avatar src="https://s3-alpha-sig.figma.com/img/b623/70d7/2a2407a4e768af8668fbcd5db0e16279?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=YSRfHsIfTWq2s~uLjhOVeupXDIkjSMUQSfo0-Xjnz0a1o3rQJVbxk2tjsAQE9iGPimYqHaZnYZjXf1yKen7XfxpkzUeQyvNHN3b~DD1LtF3ia4sgIWs2XEi1ar-Imvuf8sTafkJ2SeIBnUyfKcCGhryEQbHliPxB7g7qjoDEJ8pObDUvteEit1m-STAuEzZ~akJq8u3LI8bptWjiy3v6SUV2me3wiKkwknYo9J-6QnLv3fNSPFyOU5Ozo41lG4S~Bichsp5if6veOPMvFKwjiXVJtgJMxJPtsaF097WG7IiDg6IDpIzpf20ODu61Vch-KYJTm16w~1MDk-5qD5cV-Q__" />
               </Avatar.Group>
               <span className="dark:text-white">
-                +{landingReportInfo.teacherCount} اساتید برتر جهان
+                +{digitsEnToFa(`${landingReportInfo.teacherCount}`)} اساتید برتر
+                جهان
               </span>
             </div>
           </div>
@@ -163,11 +166,7 @@ const HeroSection = () => {
                 </div>
               </div>
               <div className="flex flex-col items-center">
-                <img
-                  src="https://s3-alpha-sig.figma.com/img/fc71/0ef5/0b850c99f94ca19273ee7e343959a869?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Tn92qFBUixxyZXwoDdCFdngZoyld1IodHyagJyZT~vPC5NUAb7pXV9jdxTb4haaDJHXngYKsE9f09WEdkVQk~8oZ3TZo5vA5gQ~LwBX668jcOlrNNOwpBJhTH8m74ouMcIlBUdaAfAcgwlg8tLSy6f8drKZHhAWO0AkiG6RNYwnlJI4FT3YbSfRRHZ0OVzd-lknq7BHebGGgZpJxRUTvxRSgSleqBad6MFPncGllv9f39goiGGwU86ee-miq5X4Q4l2alDmm-WBxTyI1yHv4Earhqn8kUnbuahFdv3AYf0WSG8dLkpX~E5ZTdMXxT1UMkpa0z9PxbBtcLiM7noDdKg__"
-                  alt="HTML5"
-                  className="size-20"
-                />
+                <img src={HTML5} alt="HTML5" className="size-20" />
                 <div className="flex items-center justify-center size-3.5 z-20   rounded-full bg-blue-500">
                   <div className="size-1.5 rounded-full bg-white"></div>
                 </div>

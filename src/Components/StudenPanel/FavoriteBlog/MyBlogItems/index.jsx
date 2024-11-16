@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { favoriteNews } from "../../../../core/services/api/StudentPanel/FavoriteNews.api";
 import { getRandomColor } from "../../../Common/ColorGenerator";
 import { SlLike } from "react-icons/sl";
+import { DatePersianizer } from "./../../../../core/utils/DatePersianizer";
+import { digitsEnToFa } from "@persian-tools/persian-tools";
 // const coursesData = [
 //   {
 //     title: " فیگما",
@@ -103,7 +105,7 @@ const index = () => {
           <li className="w-[50px] hidden sm:block">امتیاز</li>
           <li className="mr-2 ">تاریخ </li>
           <li className="mr-2 hidden sm:block">تعداد بازدید </li>
-          <li className="hidden lg:block">تداد لایک</li>
+          <li className="hidden lg:block">تعداد لایک</li>
         </ul>
         <div className="mt-4 mx-5 space-y-4">
           {newsData.map((news, index) => (
@@ -129,16 +131,16 @@ const index = () => {
               <span
                 className={`inline-flex items-center w-[110px] dark:text-white `}
               >
-                {news.updateDate.slice(0, 10)}
+                {DatePersianizer(news.updateDate)}
               </span>
               <span
                 className={`hidden lg:inline-flex gap-2 items-center  dark:text-white `}
               >
                 <BsEye />
-                {news.currentView}
+                {digitsEnToFa(news.currentView)}
               </span>
               <span className=" py-0 text-base  hidden sm:inline-flex    gap-2  text-black rounded-full">
-                <SlLike /> {news.currentLikeCount}
+                <SlLike /> {digitsEnToFa(news.currentLikeCount)}
               </span>
               <div className="flex gap-2">
                 <Link to={`/BlogDetails/${news.favoriteId}`}>
