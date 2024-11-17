@@ -94,12 +94,12 @@ const Profile = () => {
 
   return (
     <div className="bg-gray-950 px-5  pb-11  h-full">
-      <div className="bg-white dark:bg-[#041124] dark:text-white rounded-3xl py-12 px-3">
-        <div className="flex flex-col">
+      <div className="bg-white dark:bg-[#041124] dark:text-white rounded-3xl py-5 px-3 h-full">
+        <div className="flex flex-col h-full justify-between">
           <div className="flex">
             <div className="w-[200px]    ml-5 px-4">
               <h2 className="text-2xl pb-4 font-bold mb-4 ">پروفایل من</h2>
-              <ul className=" border-l h-[707px] space-y-4 text-sm">
+              <ul className=" border-l h-full space-y-4 text-sm">
                 <li>
                   <a
                     href="#"
@@ -298,7 +298,7 @@ const Profile = () => {
                   {({ handleSubmit }) => (
                     <Form
                       onSubmit={handleSubmit}
-                      className="flex flex-col mt-14 gap-1"
+                      className="flex flex-col mt-14 gap-1 max-h-[30rem] overflow-y-scroll"
                     >
                       <div className="mb-4 flex flex-col md:flex-row space-x-4 gap-10 rounded-xl">
                         <div className="md:w-1/2">
@@ -512,7 +512,7 @@ const Profile = () => {
 
               {/* بخش محل سکونت */}
               {activeSection === "location" && (
-                <div className="h-[700px] mt-14 ">
+                <div className=" mt-14 ">
                   <p className=" text-sm text-blue-600 text-right mt-4">
                     داخل نقشه موقعیت مکان محل سکونت خود را انتخاب کنید
                   </p>
@@ -522,7 +522,7 @@ const Profile = () => {
 
               {/* بخش لینک‌ها */}
               {activeSection === "links" && (
-                <div className="h-[700px] mt-14">
+                <div className="mt-14">
                   <div className="mb-4 mt-4">
                     <label className="block text-sm font-bold mb-2">
                       تلگرام
@@ -547,7 +547,7 @@ const Profile = () => {
               )}
             </div>
           </div>
-          <div className="flex justify-start mr-56">
+          <div className="flex justify-start mr-56 mt-4">
             {/* {({ isSubmitting }) => ( */}
             <button
               type="button"

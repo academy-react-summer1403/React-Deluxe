@@ -107,7 +107,7 @@ const index = () => {
     getMyReserve();
   }, []);
   return (
-    <div className="bg-gray-50 dark:bg-indigo-950  h-[900px] p-2 rounded-3xl flex flex-col gap-24  justify-between flex-1">
+    <div className="bg-gray-50 dark:bg-indigo-950 p-2 rounded-3xl flex flex-col justify-between">
       <div>
         <ul className="flex p-2 rounded-xl text-sm text-gray-500  m-5 dark:bg-[#041124] dark:text-white  bg-gray-100 gap-14 sm:gap-20 md:gap-24 lg:gap-24 justify-start">
           <li className="hidden md:block">#</li>
@@ -116,7 +116,7 @@ const index = () => {
           <li className="mr-2 hidden lg:block">تاریخ اتمام</li>
           <li>تایید</li>
         </ul>
-        <div className="mt-4 mx-5 space-y-4">
+        <div className="mt-4 mx-5 space-y-4 max-h-[20rem] overflow-y-scroll">
           {reserveData?.map((Reserve, index) => (
             <div
               key={index}

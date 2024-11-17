@@ -6,8 +6,8 @@ import { ConfigProvider, Pagination } from "antd";
 
 const index = () => {
   return (
-    <div className="h-[921px] w-full bg-gray-950   ">
-      <div className="bg-white dark:bg-[#041124] p-8 mx-5   dark:text-white space-y-8 rounded-3xl ">
+    <div className="h-full w-full bg-gray-950">
+      <div className="bg-white dark:bg-[#041124] p-8 mx-5 dark:text-white space-y-8 rounded-3xl h-[95%]">
         <h2 className="text-2xl font-bold">دوره من</h2>
         <div className="flex flex-col">
           <div className="flex flex-col sm:flex-row mb-6 gap-4">
