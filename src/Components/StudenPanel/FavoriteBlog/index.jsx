@@ -5,8 +5,8 @@ import { DateRangePicker } from "./MyBlogItems/DateRange";
 
 const index = () => {
   return (
-    <div className="h-[921px]  bg-gray-950">
-      <div className="bg-white dark:bg-[#041124] h-[99%] p-8 mx-5 dark:text-white space-y-8 rounded-3xl ">
+    <div className="bg-gray-950 h-full">
+      <div className="bg-white dark:bg-[#041124] h-[95%] p-8 mx-5 dark:text-white space-y-8 rounded-3xl ">
         <h2 className="text-2xl font-bold">بلاگ های موردعلاقه</h2>
         <div className="flex flex-col">
           <div className="flex flex-col sm:flex-row mb-6 gap-4">

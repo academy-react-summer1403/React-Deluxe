@@ -10,10 +10,8 @@ const StudentPanelLayout = () => {
         <StudentMenu />
       </div>
       <div className="flex-col p-0 flex w-full h-full">
-        <div>
-          <StudentHeader />
-        </div>
-        <div className="h-max">
+        <StudentHeader />
+        <div className="h-full">
           <Outlet />
         </div>
       </div>

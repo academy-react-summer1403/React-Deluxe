@@ -18,7 +18,7 @@ const UserProgress = ({ percentage }) => {
   // const persianpercent = digitsEnToFa(`${data?.profileCompletionPercentage}`);
 
   return (
-    <div className="lg:flex flex-col hidden  justify-between py-3 w-72 h-72  bg-gray-50 shadow-md dark:bg-indigo-950 dark:text-white rounded-3xl px-4 ">
+    <div className="lg:flex flex-col hidden  justify-between py-3 w-72 h-64 bg-gray-50 shadow-md dark:bg-indigo-950 dark:text-white rounded-3xl px-4 ">
       <div className="flex-row flex justify-between gap-1">
         <p className="text-sm ">وضعیت اطلاعات حساب کاربری</p>
         <Link to={"/myprofile"}>
@@ -79,7 +79,7 @@ const UserProgress = ({ percentage }) => {
           strokeLinecap="round"
         />
       </div>
-      <div className="mt-4 text-center">
+      <div className="mt-2 text-center">
         <p className="text-gray-500 dark:text-gray-50 text-[12px] w-full">
           اطلاعات حساب کاربری شما کامل نیست
         </p>

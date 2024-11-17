@@ -59,6 +59,8 @@ body {
   place-items: center; */
   min-width: 320px;
   min-height: 100vh;
+  scrollbar-width: thin !important;
+  scrollbar-color: red gray !important;
 }
 
 button {
@@ -96,8 +98,8 @@ button:focus-visible {
 @tailwind components;
 @tailwind utilities;
 
-::-webkit-scrollbar {
-  width: 4px;
+/* ::-webkit-scrollbar {
+  width: 1px;
   height: 9px;
   border: 1px solid #2fbd8e;
 }
@@ -110,5 +112,30 @@ button:focus-visible {
 ::-webkit-scrollbar-thumb {
   border-radius: 0;
   background: #ff0000;
+} */
+
+/* For WebKit browsers (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 12px;
 }
 
+::-webkit-scrollbar-track {
+  background: gray;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: red;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: darkred;
+}
+
+/* For Firefox */
+body,
+.my-scrollable-element {
+  scrollbar-width: thin !important;
+  scrollbar-color: red gray !important;
+}

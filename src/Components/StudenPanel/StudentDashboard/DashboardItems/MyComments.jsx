@@ -7,7 +7,7 @@ const MyComments = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="relative flex flex-col bg-gray-50 dark:bg-indigo-950 w-full dark:text-white p-6 rounded-lg shadow-md lg:w-1/3 h-full max-h-[20.5rem] overflow-y-scroll">
+    <div className="relative flex flex-col bg-gray-50 dark:bg-indigo-950 w-full dark:text-white p-6 rounded-3xl shadow-md lg:w-1/3 h-full">
       <CourseCommentsModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
@@ -47,7 +47,7 @@ const MyComments = () => {
         </div>
       </div>
       <div>
-        <div>
+        <div className="max-h-[9rem] overflow-y-scroll">
           <div className="flex items-center ">
             <svg
               width="48"

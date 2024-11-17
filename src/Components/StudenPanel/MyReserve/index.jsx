@@ -6,7 +6,7 @@ import { RxCross1 } from "react-icons/rx";
 
 const index = () => {
   return (
-    <div className="h-[922px] pb-8  bg-gray-950">
+    <div className="pb-8 bg-gray-950 h-full">
       <div className="bg-white dark:bg-[#041124] p-8 mx-5 h-full dark:text-white space-y-8 rounded-3xl ">
         <h2 className="text-2xl font-bold">رزرو من</h2>
         <div className="flex flex-col h-[90%]">

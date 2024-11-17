@@ -27,7 +27,7 @@ const index = () => {
     getCoursesData();
   }, []);
   return (
-    <div className="bg-gray-50 dark:bg-indigo-950  flex flex-col gap-96 p-2 rounded-3xl    ">
+    <div className="bg-gray-50 dark:bg-indigo-950  flex flex-col p-2 rounded-3xl    ">
       <div>
         <ul className="flex p-2 rounded-xl text-sm text-gray-500  m-5 dark:bg-[#041124] dark:text-white  bg-gray-100 gap-24 justify-start">
           <li className="hidden md:block ">#</li>
@@ -37,7 +37,7 @@ const index = () => {
           <li className="mr-2 ">نوع برگزاری</li>
           <li className="hidden sm:block">سطح</li>
         </ul>
-        <div className="mt-4 mx-5 space-y-4">
+        <div className="mt-4 mx-5 space-y-4 max-h-[20rem] overflow-y-scroll">
           {CoursesData?.map((course, index) => (
             <div
               key={index}
