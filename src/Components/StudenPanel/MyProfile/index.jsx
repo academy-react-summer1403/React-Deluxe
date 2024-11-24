@@ -4,12 +4,98 @@ import Pic2 from "../../../assets/pic2.png";
 import Pic3 from "../../../assets/pic3.png";
 import Pic4 from "../../../assets/pic4.png";
 import { profileInfo } from "../../../core/services/api/StudentPanel/ProfileInfo.api";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import * as Yup from "yup";
+import { useQueryShortcut } from "./../../../core/services/api/ReactQuery/useQueryShortcut";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import http from "../../../core/services/interceptor";
+import { toast } from "react-toastify";
+import { UpdateProfileInfo } from "./../../../core/services/api/StudentPanel/UpdateProfileInfo.api";
+import MyMap from "./Map";
 
 const Profile = () => {
   const [activeSection, setActiveSection] = useState("profile");
+  const [cordinate, setCortinate] = useState();
+  console.log(cordinate);
 
   const handleSectionClick = (section) => {
     setActiveSection(section);
+  };
+
+  const validationSchema = Yup.object({
+    FName: Yup.string().required("نام ضروری است"),
+    LName: Yup.string().required("نام خانوادگی ضروری است"),
+    UserAbout: Yup.string(),
+    // phoneNumber: Yup.string(),
+    NationalCode: Yup.string(),
+    BirthDay: Yup.date(),
+    Gender: Yup.string(),
+    // email: Yup.string().email("ایمیل نامعتبر است").required("ایمیل ضروری است"),
+    HomeAdderess: Yup.string(),
+  });
+
+  const formikRef = useRef(null);
+
+  const data = useQueryShortcut("ProfileInfo");
+
+  // const initialValues = (data) => {
+  //   firstName: "",
+  //   lastName: "",
+  //   about: "",
+  //   phone: "",
+  //   nationalCode: "",
+  //   birthDate: "",
+  //   gender: "",
+  //   email: data.email,
+  //   address: "",
+  // }
+
+  const queryClient = useQueryClient();
+
+  // const UpdateProfileInfo2 = async (formData) => {
+  //   console.log("FormData", formData);
+  //   const res = await http.put("/SharePanel/UpdateProfileInfo", formData);
+  //   return res; //???!!!!???????!!!!!!!!!!??????
+  // };
+
+  const mutation = useMutation({
+    mutationKey: ["updateProfile"],
+    mutationFn: UpdateProfileInfo,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["ProfileInfo"]);
+      toast.success("بروزرسانی با موفقیت انجام شد!", {
+        position: "top-center",
+      });
+    },
+    onError: () => {
+      toast.error("خطا در بروزرسانی اطلاعات پروفایل!", {
+        position: "top-center",
+      });
+    },
+  });
+  // console.log(mutation.isPending);
+
+  const handleFormikSubmit = async (values, { setSubmitting }, cordinate) => {
+    // await mutation.mutateAsync(values);
+    console.log("Raw Formik Values", values);
+    const formData = new FormData();
+    formData.append("FName", values.FName);
+    formData.append("LName", values.LName);
+    formData.append("UserAbout", values.UserAbout);
+    // formData.append("PhoneNumber", values.PhoneNumber);
+    formData.append("NationalCode", values.NationalCode);
+    formData.append("BirthDay", values.BirthDay);
+    formData.append("Gender", values.Gender);
+    // formData.append("Email", values.Email);
+    formData.append("HomeAdderess", values.HomeAdderess);
+
+    formData.append("latitude", cordinate.lat);
+    formData.append("longitude", cordinate.lng);
+
+    await mutation.mutateAsync(formData, {
+      onSuccess: () => setSubmitting(false),
+      onError: () => setSubmitting(false),
+    });
   };
 
   return (
@@ -260,7 +346,9 @@ const Profile = () => {
                   <p className=" text-sm text-blue-600 text-right mt-4">
                     داخل نقشه موقعیت مکان محل سکونت خود را انتخاب کنید
                   </p>
-                  <div className="w-full h-64 rounded-lg shadow-lg dark:border-gray-700 dark:bg-indigo-950 bg-gray-200"></div>
+                  <div className="w-full h-64 rounded-lg shadow-lg dark:border-gray-700 dark:bg-indigo-950 bg-gray-200">
+                    <MyMap setCortinate={setCortinate} />
+                  </div>
                 </div>
               )}
 
