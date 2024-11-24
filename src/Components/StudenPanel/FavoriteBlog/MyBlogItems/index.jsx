@@ -8,6 +8,8 @@ import { getRandomColor } from "../../../Common/ColorGenerator";
 import { SlLike } from "react-icons/sl";
 import { DatePersianizer } from "./../../../../core/utils/DatePersianizer";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
+import Logo from "../../../../assets/logo (3)highQ.png";
+
 // const coursesData = [
 //   {
 //     title: " فیگما",
@@ -114,12 +116,12 @@ const index = () => {
               className="  flex flex-row  relative  items-center rounded-3xl justify-start gap-9    "
             >
               <div
-                className={`h-12 hidden md:flex justify-center items-center rounded-xl w-20  mb-4 ${getRandomColor()}`}
+                className={`h-12 hidden md:flex justify-center items-center rounded-2xl w-20  mb-4 ${getRandomColor()}`}
               >
                 <img
-                  src={news.currentImageAddressTumb}
+                  src={news.currentImageAddressTumb ?? Logo}
                   alt={""}
-                  className={`size-8 `}
+                  className={`size-full rounded-2xl`}
                 />
               </div>
               <h3 className=" text-xl dark:text-white font-semibold mb-2  truncate w-[151px]">

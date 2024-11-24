@@ -5,6 +5,7 @@ import { GetTopCoursesByPg } from "../../../../../core/services/api/Landing.api"
 import { getRandomColor } from "../../../../Common/ColorGenerator";
 import { digitsEnToFa, addCommas } from "@persian-tools/persian-tools";
 import { formatCost } from "./../../../../../core/utils/CostEntoFa+Commas+Split.utils";
+import Logo from "../../../../../assets/logo (3)highQ.png";
 
 const contentStyle = {
   height: "",
@@ -67,7 +68,7 @@ const CoursesItems = () => {
 
       setTopCourses(result);
 
-      console.log(TopCourses);
+      console.log("TopCourses", TopCourses);
     } catch (error) {
       console.log(error);
     }
@@ -96,7 +97,13 @@ const CoursesItems = () => {
               className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${getRandomColor()}`}
             >
               <img
-                src={course.tumbImageAddress}
+                // src={course.tumbImageAddress ?? Logo}
+                src={
+                  course.tumbImageAddress !== null &&
+                  course.tumbImageAddress !== "null"
+                    ? course.tumbImageAddress
+                    : Logo
+                }
                 alt={""}
                 className={`size-48 `}
               />

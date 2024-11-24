@@ -1,0 +1,47 @@
+/* .custom-loader {
+  width: 138px;
+  height: 24px;
+  display: grid;
+}
+.custom-loader:before,
+.custom-loader:after {
+  content: "";
+  grid-area: 1/1;
+  background: radial-gradient(farthest-side, #766df4 90%, #0000) left,
+    radial-gradient(farthest-side, #766df4 90%, #0000) right;
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  animation: d2 1s infinite;
+}
+.custom-loader:after {
+  margin: 0 38px;
+  animation-direction: reverse;
+}
+
+@keyframes d2 {
+  80%,
+  100% {
+    transform: rotate(0.5turn);
+  }
+} */
+.custom-loader {
+  width: 100px;
+  height: 24px;
+  background: radial-gradient(circle closest-side, #766df4 90%, #0000) 0% 50%,
+    radial-gradient(circle closest-side, #766df4 90%, #0000) 50% 50%,
+    radial-gradient(circle closest-side, #766df4 90%, #0000) 100% 50%;
+  background-size: calc(100% / 3) 100%;
+  background-repeat: no-repeat;
+  animation: d7 1s infinite linear;
+}
+@keyframes d7 {
+  33% {
+    background-size: calc(100% / 3) 0%, calc(100% / 3) 100%, calc(100% / 3) 100%;
+  }
+  50% {
+    background-size: calc(100% / 3) 100%, calc(100% / 3) 0%, calc(100% / 3) 100%;
+  }
+  66% {
+    background-size: calc(100% / 3) 100%, calc(100% / 3) 100%, calc(100% / 3) 0%;
+  }
+}
