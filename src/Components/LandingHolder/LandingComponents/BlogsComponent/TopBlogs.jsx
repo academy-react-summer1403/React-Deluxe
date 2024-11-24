@@ -239,12 +239,12 @@ const TopBlogs = () => {
         </h2>
         <div
           data-aos="flip-down"
-          className="md:flex hidden  md:flex-wrap justify-center gap-8 mx-2"
+          className="md:flex hidden  md:flex-wrap justify-center gap-8 mx-2 "
         >
           {TopBlog.slice(0, 3).map((blog, index) => (
             <div
               key={index}
-              className=" bg-gray-50 dark:bg-indigo-950 rounded-3xl  flex-1 "
+              className="dark:bg-indigo-950 rounded-3xl  flex-1 bg-sky-50 "
             >
               <Link
                 onClick={() => {
@@ -253,12 +253,12 @@ const TopBlogs = () => {
                 to={"/blogdetails"}
               >
                 <div
-                  className={`h-72 mx-auto flex justify-center items-center mb-4 rounded-xl ${blog.color}`}
+                  className={`h-72 mx-auto flex justify-center items-center mb-4 rounded-2xl ${blog.color}`}
                 >
                   <img
-                    src={blog.currentImageAddressTumb}
+                    src={blog.addUserProfileImage}
                     alt={""}
-                    className={`size-48 `}
+                    className={`size-full rounded-2xl`}
                   />
                 </div>
 

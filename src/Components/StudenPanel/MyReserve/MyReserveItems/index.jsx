@@ -4,7 +4,7 @@ import { BsEye } from "react-icons/bs";
 import { RxCross1 } from "react-icons/rx";
 import { myReserve } from "../../../../core/services/api/StudentPanel/MyReserve.api";
 import { Link } from "react-router-dom";
-import Logo from "../../../../assets/logo (3).png";
+import Logo from "../../../../assets/logo (3)highQ.png";
 import { getRandomColor } from "../../../Common/ColorGenerator";
 import { DatePersianizer } from "./../../../../core/utils/DatePersianizer";
 // const ReserveData = [
@@ -123,12 +123,12 @@ const index = () => {
               className="  flex flex-row  relative  items-center rounded-3xl justify-start gap-9    "
             >
               <div
-                className={`h-12 hidden md:flex justify-center items-center rounded-xl w-20  mb-4 ${getRandomColor()}`}
+                className={`h-12 hidden md:flex justify-center items-center rounded-2xl w-20  mb-4 ${getRandomColor()}`}
               >
                 <img
                   src={Reserve.icon ?? Logo}
                   alt={""}
-                  className={`size-8 `}
+                  className={`size-full rounded-2xl`}
                 />
               </div>
 
