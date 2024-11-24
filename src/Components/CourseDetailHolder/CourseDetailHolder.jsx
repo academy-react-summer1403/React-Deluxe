@@ -7,7 +7,6 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { getQuery } from "../../core/services/api/ReactQuery/getQuery";
 import { FullPageLoading } from "./../Common/Loading/FullPageLoading/FullPageLoading";
-import { useQueryShortcut } from "../../core/services/api/ReactQuery/useQueryShortcut";
 
 const CourseDetailHolder = () => {
   const queryClient = useQueryClient();

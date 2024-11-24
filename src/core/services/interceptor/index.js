@@ -1,5 +1,5 @@
 import axios from "axios";
-import { clearStorage, getItem } from "../common/storage";
+import { clearStorage, getItem, removeItem } from "../common/storage";
 
 const baseURL = import.meta.env.VITE_BASE_URL;
 
@@ -17,8 +17,8 @@ const onError = (err) => {
   // if (err.response.status >= 400 && err.response.status < 500) {
   //   alert("Client error: " + err.response.status);
   // }
-
-  if (err.response.status === 401) {
+  console.log(err.response.status);
+  if (err.response.status == 401) {
     removeItem("token");
     window.location.pathname = "/auth/SignIn";
   }

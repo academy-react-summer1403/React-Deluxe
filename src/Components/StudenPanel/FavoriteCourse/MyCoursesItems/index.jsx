@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { favoriteCourseDto } from "../../../../core/services/api/StudentPanel/FavoriteCourses.api";
 import { getRandomColor } from "../../../Common/ColorGenerator";
 import { DatePersianizer } from "./../../../../core/utils/DatePersianizer";
+import Logo from "../../../../assets/logo (3)highQ.png";
 
 const index = () => {
   const [CoursesData, setCoursesData] = useState([]);
@@ -44,12 +45,12 @@ const index = () => {
               className="  flex flex-row  relative  items-center rounded-3xl justify-start gap-8    "
             >
               <div
-                className={`h-12 hidden md:flex justify-center items-center rounded-xl w-20  mb-4 ${getRandomColor()}`}
+                className={`h-12 hidden md:flex justify-center items-center rounded-2xl w-20  mb-4 ${getRandomColor()}`}
               >
                 <img
-                  src={course.tumbImageAddress}
+                  src={course.tumbImageAddress ?? Logo}
                   alt={""}
-                  className={`size-8 `}
+                  className={`size-full rounded-2xl`}
                 />
               </div>
               <h3 className=" text-xl dark:text-white font-semibold mb-2  truncate w-[111px]">
