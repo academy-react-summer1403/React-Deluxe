@@ -4,12 +4,7 @@ import { NavLink } from "react-router-dom";
 const HeaderItems = ({ Item, link }) => {
   return (
     <li>
-      <NavLink
-        to={link}
-        className={({ isActive, isPending }) =>
-          isPending ? "pending" : isActive ? "underline" : ""
-        }
-      >
+      <NavLink to={link} className="navlink">
         {Item}
       </NavLink>
     </li>

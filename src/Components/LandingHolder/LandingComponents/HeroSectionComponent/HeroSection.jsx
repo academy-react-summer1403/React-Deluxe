@@ -123,49 +123,46 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Right side content (Course icons timeline) */}
+        {/*Course icons timeline) */}
 
         <div className="flex justify-center w-full items-center">
           <div className="relative w-full">
+            {/* Background Line */}
             <div className="absolute bottom-1 w-full h-1 bg-gray-300 overflow-hidden">
-              <div className="absolute z-10 w-full h-1  bg-blue-500"></div>
+              <div
+                className="absolute z-10 h-1 w-full bg-blue-500 animate-line"
+                style={{ animationDuration: "10s" }}
+              ></div>
             </div>
-            <div className="flex justify-around  items-center relative">
-              {/* <div className="flex justify-between items-center relative">
-                {pics.map((Item, Index) => (
-                  <HeroItem key={Index} Item={Item} />
-                ))}
-              </div> */}
-              <div className="flex flex-col items-center">
-                <img src={Figma} alt="Figma" className="size-28" />
-                <div className="flex items-center justify-center size-3.5 rounded-full z-20 bg-blue-500">
-                  <div className="size-1.5 rounded-full bg-white"></div>
+
+            {/* Dots and Icons */}
+            <div className="flex justify-around items-center relative">
+              {[
+                { src: Figma, alt: "Figma", className: "animate-icon-5" },
+                { src: ReactPic, alt: "React", className: "animate-icon-4" },
+                {
+                  src: JavaScript,
+                  alt: "JavaScript",
+                  className: "animate-icon-3",
+                },
+                { src: CSS3, alt: "CSS3", className: "animate-icon-2" },
+                { src: HTML5, alt: "HTML5", className: "animate-icon-1" },
+              ].map((item, index) => (
+                <div key={index} className="flex flex-col items-center">
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    className={`size-28 transition-transform ${item.className}`}
+                  />
+                  <div
+                    className={`flex items-center justify-center size-3.5 rounded-full z-20 bg-gray-300 ${`animate-dot-${
+                      index + 1
+                    }`}`}
+                  >
+                    <div className="size-1.5 rounded-full bg-white"></div>
+                  </div>
                 </div>
-              </div>
-              <div className="flex flex-col items-center">
-                <img src={ReactPic} alt="React" className="size-28" />
-                <div className="flex items-center justify-center size-3.5 rounded-full z-20 bg-blue-500">
-                  <div className="size-1.5 rounded-full bg-white"></div>
-                </div>
-              </div>
-              <div className="flex flex-col items-center">
-                <img src={JavaScript} alt="JavaScript" className="size-28" />
-                <div className="flex items-center justify-center size-3.5 rounded-full z-20 bg-blue-500">
-                  <div className="size-1.5 rounded-full bg-white"></div>
-                </div>
-              </div>
-              <div className="flex flex-col items-center">
-                <img src={CSS3} alt="CSS3" className="size-28 " />
-                <div className="flex items-center justify-center size-3.5 rounded-full z-20 bg-blue-500">
-                  <div className="size-1.5 rounded-full bg-white"></div>
-                </div>
-              </div>
-              <div className="flex flex-col items-center">
-                <img src={HTML5} alt="HTML5" className="size-28" />
-                <div className="flex items-center justify-center size-3.5 z-20   rounded-full bg-blue-500">
-                  <div className="size-1.5 rounded-full bg-white"></div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
