@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react";
 import { Checkbox, Collapse } from "antd";
-// import { GetBlogsCategory } from "../../core/services/api/Blogs/GetBlogsCategory";
-import { AccordionTabs } from "../Accordion/Accordion";
 
-const BlogsFilter = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+import { GetBlogsCategory } from "../../../core/services/api/Blogs/GetBlogsCategory";
+import { AccordionTab } from "./../../Courses/CoursesComponents/FilterAccordion/Accordion";
+
+const BlogsFilter = ({
+  searchTerm,
+  setSearchTerm,
+  selectedCategoryBlog,
+  setSelectedCategoryBlog,
+}) => {
   const [category, setCategory] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -62,9 +67,16 @@ const BlogsFilter = () => {
     "برنامه‌نویسی",
   ];
 
-  // Mock API call handler when selections change
-  const handleSelectionChange = (selectedOptions) => {
-    console.log("Selected options:", selectedOptions);
+  const handleSelectionChange = (optionId) => {
+    console.log(optionId);
+    setSelectedCategoryBlog((prev) => {
+      const selectedId = prev.includes(optionId)
+        ? prev.filter((item) => item !== optionId)
+        : [...prev, optionId];
+
+      return selectedId;
+    });
+    // console.log("Selected options:", selectedOptionId);
     // Insert API call logic here
   };
 
@@ -200,46 +212,11 @@ const BlogsFilter = () => {
               دسته بندی
             </label>
           </div>
-          {/* <button
-          onClick={() => setIsCategoryDropdownOpen(!isCategoryDropdownOpen)}
-          className="w-full text-gray-500 text-right border border-gray-300 rounded-lg py-2 px-4 bg-slate-200"
-        >
-          {category ? category : "دسته مورد نظر را انتخاب کنید"}
-        </button>
-        <Collapse accordion>
-          <Panel
-            className="w-full text-gray-500 text-right border border-gray-300 rounded-lg bg-slate-200"
-            header="Option 1"
-            key="1"
-          >
-            {["طراحی سایت", "برنامه‌نویسی", "دوره طراحی UX"].map((opt) => (
-              <Checkbox
-                key={opt}
-                className="px-4 py-2 w-full hover:bg-gray-200 cursor-pointer rounded-lg transition-all duration-300 border border-slate-200 mt-2"
-              >
-                {opt}
-              </Checkbox>
-            ))}
-          </Panel>
-        </Collapse> */}
-          <AccordionTabs
+          <AccordionTab
             options={categories}
-            onSelectionChange={handleSelectionChange}
-            labelTitle={"دسته"}
+            onSelectionChange={(optionId) => handleSelectionChange(optionId)}
+            labelTitle={"دسته بلاگ"}
           />
-          {/* {isCategoryDropdownOpen && (
-          <div className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-1">
-            {["طراحی سایت", "برنامه‌نویسی", "دوره طراحی UX"].map((cat) => (
-              <div
-                key={cat}
-                onClick={() => handleCategorySelect(cat)}
-                className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
-              >
-                {cat}
-              </div>
-            ))}
-          </div>
-        )} */}
         </div>
 
         {/* Event Dates */}
@@ -418,32 +395,12 @@ const BlogsFilter = () => {
                   دسته بندی
                 </label>
               </div>
-              {/* <button
-              onClick={() =>
-                setIsCategoryDropdownOpen(!isCategoryDropdownOpen)
-              }
-              className="w-full text-gray-500 text-right border border-gray-300 rounded-lg py-2 px-4 bg-slate-200"
-            >
-              {category ? category : "دسته مورد نظر را انتخاب کنید"}
-            </button>
-            {isCategoryDropdownOpen && (
-              <div className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-1">
-                {["طراحی سایت", "برنامه‌نویسی", "دوره طراحی UX"].map(
-                  (cat) => (
-                    <div
-                      key={cat}
-                      onClick={() => handleCategorySelect(cat)}
-                      className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
-                    >
-                      {cat}
-                    </div>
-                  )
-                )}
-              </div>
-            )} */}
-              <AccordionTabs
-                options={catOptions}
-                onSelectionChange={handleSelectionChange}
+              <AccordionTab
+                options={categories}
+                onSelectionChange={(optionId) =>
+                  handleSelectionChange(optionId)
+                }
+                labelTitle={"دسته بلاگ"}
               />
             </div>
 

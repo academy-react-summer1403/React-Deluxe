@@ -1,6 +1,20 @@
-import React from "react";
+import { Field, Form, Formik } from "formik";
+import {
+  CommentRemove01Icon,
+  MailReply02Icon,
+  MessagePreview02Icon,
+  SentIcon,
+  SmileIcon,
+} from "hugeicons-react";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import Pic from "../../../assets/logo (3)highQ.png";
+import { DatePersianizer } from "./../../../core/utils/DatePersianizer";
+import { digitsEnToFa } from "@persian-tools/persian-tools";
 
-const CourseCommentsModal = ({ isOpen, onClose }) => {
+const CourseCommentsModal = ({ isOpen, onClose, courseComments, dataBlog }) => {
+  // const [commentId, setCommentId] = useState([]);
+
   const commentsData = [
     {
       id: 1,
@@ -12,144 +26,118 @@ const CourseCommentsModal = ({ isOpen, onClose }) => {
         "واقعاً مفید بود. هم اساتیدش و هم کلاس‌ها منظم برگزار شدن و اصلاً از ساعت عقب نیفتادم و تونستم به مقدار زیادی پیشرفت کنم توی کنوانسیون جاوا اسکریپت.",
       likes: 29,
       replies: [
-        {
-          id: 2,
-          user: "امیرحسین سپهریان",
-          avatar: "https://via.placeholder.com/40",
-          date: "۱۳ مهر ۱۴۰۳",
-          comment: "خوب بود ولی نبود",
-          description:
-            "دوره منظم بود، ولی هم کلاس‌ها منظم برگزار شدن و اصلاً از ساعت عقب نمی‌افتادم و تونستم به مقدار زیادی پیشرفت کنم توی کنوانسیون جاوا اسکریپت.",
-          likes: 18,
-        },
+        // {
+        //   id: 2,
+        //   user: "امیرحسین سپهریان",
+        //   avatar: "https://via.placeholder.com/40",
+        //   date: "۱۳ مهر ۱۴۰۳",
+        //   comment: "خوب بود ولی نبود",
+        //   description:
+        //     "دوره منظم بود، ولی هم کلاس‌ها منظم برگزار شدن و اصلاً از ساعت عقب نمی‌افتادم و تونستم به مقدار زیادی پیشرفت کنم توی کنوانسیون جاوا اسکریپت.",
+        //   likes: 18,
+        // },
       ],
     },
   ];
 
   if (!isOpen) return null;
 
-  //   return (
-  //     <div className="fixed inset-0 flex items-center justify-center z-50">
-  //       <div
-  //         className="absolute inset-0 bg-black opacity-50"
-  //         onClick={onClose}
-  //       ></div>
-  //       <div className="relative w-full max-w-2xl p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
-  //         {/* Header */}
-  //         <div className="flex justify-between items-center mb-4">
-  //           <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-  //             نظرات دانشجو ها و اساتید (فیگما یا ادوبی ایکس‌دی؟)
-  //           </h2>
-  //           <button
-  //             className="text-gray-400 hover:text-gray-600 dark:hover:text-white"
-  //             onClick={onClose}
-  //           >
-  //             ✕
-  //           </button>
-  //         </div>
+  const [isCommentOpen, setIsCommentOpen] = useState(false);
+  const [isReplyOpen, setIsReplyOpen] = useState(false);
+  const [isReplyReplyOpen, setIsReplyReplyOpen] = useState(false);
+  const [isCourseComment, setIsCourseComment] = useState();
+  const { pathname } = useLocation();
 
-  //         {/* Comments Section */}
-  //         <div className="space-y-6">
-  //           {commentsData.map((comment) => (
-  //             <div key={comment.id} className="space-y-2">
-  //               {/* Main Comment */}
-  //               <div className="flex items-center space-x-2">
-  //                 <img
-  //                   src={comment.avatar}
-  //                   alt="avatar"
-  //                   className="w-10 h-10 rounded-full"
-  //                 />
-  //                 <div>
-  //                   <p className="text-sm font-semibold text-gray-900 dark:text-white">
-  //                     {comment.user}
-  //                   </p>
-  //                   <p className="text-xs text-gray-500 dark:text-gray-400">
-  //                     {comment.date}
-  //                   </p>
-  //                 </div>
-  //               </div>
-  //               <div className="ml-12">
-  //                 <p className="text-gray-800 dark:text-gray-200">
-  //                   {comment.comment}
-  //                 </p>
-  //                 <p className="text-gray-600 dark:text-gray-400">
-  //                   {comment.description}
-  //                 </p>
-  //                 <div className="flex space-x-4 text-sm text-gray-500 dark:text-gray-400 mt-2">
-  //                   <button className="hover:text-blue-500">پاسخ دادن</button>
-  //                   <button className="hover:text-green-500">
-  //                     👍 {comment.likes}
-  //                   </button>
-  //                 </div>
-  //               </div>
+  useEffect(() => {
+    {
+      pathname.includes("courseDetails")
+        ? setIsCourseComment(true)
+        : setIsCourseComment(false);
+    }
+  }, []);
 
-  //               {/* Replies */}
-  //               {comment.replies && comment.replies.length > 0 && (
-  //                 <div className="ml-12 mt-4 space-y-2">
-  //                   {comment.replies.map((reply) => (
-  //                     <div key={reply.id} className="space-y-2 mr-6">
-  //                       <div className="flex items-center space-x-2">
-  //                         <img
-  //                           src={reply.avatar}
-  //                           alt="avatar"
-  //                           className="w-10 h-10 rounded-full"
-  //                         />
-  //                         <div>
-  //                           <p className="text-sm font-semibold text-gray-900 dark:text-white">
-  //                             {reply.user}
-  //                           </p>
-  //                           <p className="text-xs text-gray-500 dark:text-gray-400">
-  //                             {reply.date}
-  //                           </p>
-  //                         </div>
-  //                       </div>
-  //                       <div className="ml-12">
-  //                         <p className="text-gray-800 dark:text-gray-200">
-  //                           {reply.comment}
-  //                         </p>
-  //                         <p className="text-gray-600 dark:text-gray-400">
-  //                           {reply.description}
-  //                         </p>
-  //                         <div className="flex space-x-4 text-sm text-gray-500 dark:text-gray-400 mt-2">
-  //                           <button className="hover:text-blue-500">
-  //                             پاسخ دادن
-  //                           </button>
-  //                           <button className="hover:text-green-500">
-  //                             👍 {reply.likes}
-  //                           </button>
-  //                         </div>
-  //                       </div>
-  //                     </div>
-  //                   ))}
-  //                 </div>
-  //               )}
-  //             </div>
-  //           ))}
-  //         </div>
+  // {
+  //   pathname.includes("courseDetails")
+  //     ? setIsCourseComment(true)
+  //     : setIsCourseComment(false);
+  // }
+  console.log(isCourseComment);
 
-  //         {/* Input Section */}
-  //         <div className="mt-6">
-  //           <textarea
-  //             className="w-full p-3 border rounded-lg dark:bg-gray-700 dark:text-white border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-  //             placeholder="نظر خود را بنویسید"
-  //           ></textarea>
-  //           <div className="mt-4 flex justify-end">
-  //             <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
-  //               ارسال نظر
-  //             </button>
-  //           </div>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   );
+  const handleComment = () => {
+    setIsCommentOpen(!isCommentOpen);
+    {
+      isReplyOpen ? setIsReplyOpen(!isReplyOpen) : "";
+    }
+    {
+      isReplyReplyOpen ? setIsReplyReplyOpen(!isReplyReplyOpen) : "";
+    }
+  };
 
+  const handleReply = () => {
+    setIsReplyOpen(!isReplyOpen);
+    {
+      isCommentOpen ? setIsCommentOpen(!isCommentOpen) : "";
+    }
+    {
+      isReplyReplyOpen ? setIsReplyReplyOpen(!isReplyReplyOpen) : "";
+    }
+  };
+
+  const handleReplyReply = () => {
+    setIsReplyReplyOpen(!isReplyReplyOpen);
+    {
+      isCommentOpen ? setIsCommentOpen(!isCommentOpen) : "";
+    }
+    {
+      isReplyOpen ? setIsReplyOpen(!isReplyOpen) : "";
+    }
+  };
+
+  console.log(courseComments);
+
+  const addComment = (style) => {
+    return (
+      <Formik
+        initialValues={{ title: "", describe: "" }}
+        onSubmit={(value) => addComment(value)}
+      >
+        <Form
+          className={`w-full border border-[#3772FF] rounded-[24px] h-[72px] flex gap-4 px-4 ${style} items-center`}
+        >
+          <button
+            type="submit"
+            className="size-10 min-w-10 min-h-10 bg-[#3772FF] rounded-full flex justify-center items-center"
+          >
+            <SentIcon className="size-5 text-white" />
+          </button>
+          <button className="size-10 min-w-10 min-h-10 border border-[#F1F1F1] rounded-full flex justify-center items-center">
+            <SmileIcon className="size-5 text-blue-500" />
+          </button>
+
+          <div className="w-full flex flex-col justify-between">
+            <Field
+              name="title"
+              placeholder="عنوان نظر خود را بنویسید"
+              className="outline-none w-full bg-transparent"
+            />
+            <div className="w-full border"></div>
+            <Field
+              name="describe"
+              placeholder="متن نظر خود را بنویسید"
+              className="outline-none w-full bg-transparent"
+            />
+          </div>
+        </Form>
+      </Formik>
+    );
+  };
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50">
+    <div className="fixed inset-0 flex justify-center z-50">
       <div
         className="absolute inset-0 bg-black opacity-50"
         onClick={onClose}
       ></div>
-      <div className="relative w-full max-w-3xl p-8 bg-white dark:bg-gray-800 rounded-[2rem] shadow-lg">
+      <div className="relative w-full max-w-3xl p-8 bg-white dark:bg-gray-800 rounded-[2rem] shadow-lg overflow-y-scroll">
         {/* Header */}
         <div className="flex justify-between items-center mb-2 pb-2">
           <div className="font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
@@ -166,70 +154,88 @@ const CourseCommentsModal = ({ isOpen, onClose }) => {
           </button>
         </div>
 
-        <button
-          className="text-white bg-[#3772FF] rounded-full py-2 px-4 mb-4 flex gap-2 items-center"
-          onClick={onClose}
-        >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+        {isCommentOpen ? (
+          <button
+            className="text-white bg-[#ff5555] rounded-full py-2 px-4 mb-4 flex gap-2 items-center"
+            onClick={handleComment}
           >
-            <path
-              d="M14 6H22M18 2V10"
-              stroke="#FCFCFC"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+            <CommentRemove01Icon
+              size={24}
+              color={"#ffffff"}
+              variant={"stroke"}
             />
-            <path
-              d="M6.09881 19.5C4.7987 19.3721 3.82475 18.9816 3.17157 18.3284C2 17.1569 2 15.2712 2 11.5V11C2 7.22876 2 5.34315 3.17157 4.17157C4.34315 3 6.22876 3 10 3H11.5M6.5 18C6.29454 19.0019 5.37769 21.1665 6.31569 21.8651C6.806 22.2218 7.58729 21.8408 9.14987 21.0789C10.2465 20.5441 11.3562 19.9309 12.5546 19.655C12.9931 19.5551 13.4395 19.5125 14 19.5C17.7712 19.5 19.6569 19.5 20.8284 18.3284C21.947 17.2098 21.9976 15.4403 21.9999 12"
-              stroke="#FCFCFC"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
-            <path
-              d="M8 14H14M8 9H11"
-              stroke="#FCFCFC"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          نظر شما
-        </button>
+            بستن
+          </button>
+        ) : (
+          <button
+            className="text-white bg-[#3772FF] rounded-full py-2 px-4 mb-4 flex gap-2 items-center"
+            onClick={handleComment}
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M14 6H22M18 2V10"
+                stroke="#FCFCFC"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M6.09881 19.5C4.7987 19.3721 3.82475 18.9816 3.17157 18.3284C2 17.1569 2 15.2712 2 11.5V11C2 7.22876 2 5.34315 3.17157 4.17157C4.34315 3 6.22876 3 10 3H11.5M6.5 18C6.29454 19.0019 5.37769 21.1665 6.31569 21.8651C6.806 22.2218 7.58729 21.8408 9.14987 21.0789C10.2465 20.5441 11.3562 19.9309 12.5546 19.655C12.9931 19.5551 13.4395 19.5125 14 19.5C17.7712 19.5 19.6569 19.5 20.8284 18.3284C21.947 17.2098 21.9976 15.4403 21.9999 12"
+                stroke="#FCFCFC"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+              <path
+                d="M8 14H14M8 9H11"
+                stroke="#FCFCFC"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            نظر شما
+          </button>
+        )}
 
         {/* Comments Section */}
         <div className="space-y-6">
-          {commentsData.map((comment) => (
-            <div key={comment.id} className="space-y-4">
+          {(isCourseComment ? courseComments : dataBlog)?.map((comment, id) => (
+            <div key={id} className="space-y-4">
               {/* Main Comment */}
               <div className="flex items-start space-x-2">
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
                     <div className="flex mb-2 gap-2">
                       <img
-                        src={comment.avatar}
+                        src={comment.pictureAddress ?? Pic}
                         alt="avatar"
                         className="w-12 h-12 rounded-full"
                       />
                       <div className="flex flex-col gap-1 justify-center">
                         <div className="text-sm font-semibold text-gray-900 dark:text-white">
-                          {comment.user}
+                          {isCourseComment ? comment.author : comment.autor}
                         </div>
                         <div className="text-xs text-gray-500 dark:text-gray-400">
-                          {comment.date}
+                          {DatePersianizer(
+                            isCourseComment
+                              ? comment.insertDate
+                              : comment.inserDate
+                          )}
                         </div>
                       </div>
                     </div>
                   </div>
                   <h1 className="mt-1 text-lg font-bold text-gray-900 dark:text-gray-300">
-                    {comment.comment}
+                    {comment.title}
                   </h1>
                   <p className="text-sm font-medium text-gray-800 dark:text-gray-400">
-                    {comment.description}
+                    {comment.describe}
                   </p>
                   <div className="flex gap-3 space-x-2">
                     <div className="text-sm text-black hover:text-green-500 dark:text-gray-400 dark:hover:text-green-400 flex items-center gap-1">
@@ -255,7 +261,7 @@ const CourseCommentsModal = ({ isOpen, onClose }) => {
                           strokeLinejoin="round"
                         />
                       </svg>
-                      {comment.likes}
+                      {digitsEnToFa(comment.likeCount)}
                     </div>
                     <div className="text-sm text-black hover:text-green-500 dark:text-gray-400 dark:hover:text-green-400 flex items-center gap-1">
                       <svg
@@ -280,20 +286,70 @@ const CourseCommentsModal = ({ isOpen, onClose }) => {
                           strokeLinejoin="round"
                         />
                       </svg>
-                      {comment.likes}
+                      {digitsEnToFa(
+                        isCourseComment
+                          ? comment.disslikeCount
+                          : comment.dissLikeCount
+                      )}
                     </div>
-                    <button
-                      className="text-[#3772FF] border border-[#3772FF] rounded-full py-2 px-3"
-                      onClick={onClose}
-                    >
-                      جواب دادن
-                    </button>
+                    {isReplyOpen ? (
+                      <>
+                        {addComment()}
+                        <button
+                          className="text-white bg-[#ff5555] rounded-3xl py-3 px-1 mb-4 flex flex-col gap-2 items-center"
+                          onClick={handleReply}
+                        >
+                          <CommentRemove01Icon
+                            size={24}
+                            color={"#ffffff"}
+                            variant={"stroke"}
+                          />
+                          بستن
+                        </button>
+                      </>
+                    ) : (
+                      <div className="flex gap-4">
+                        {/* <button
+                          className="text-[#3772FF] border border-[#3772FF] rounded-full py-2 px-3 flex gap-1"
+                          onClick={handleReply}
+                        >
+                          <MailReply02Icon
+                            size={20}
+                            color={"#3772ff"}
+                            variant={"stroke"}
+                          />
+                          جواب دادن
+                        </button> */}
+                        <label htmlFor={comment.id}>جواب دادن</label>
+                        <input
+                          // onClick={() => {setCommentId()}}
+                          id={comment.id}
+                          type="radio"
+                          name="reply"
+                          className="peer hidden"
+                        />
+                        <div className="h-0 w-[400px] overflow-hidden peer-checked:h-20">
+                          {addComment()}
+                        </div>
+                        {/* <button
+                          className="text-[#3772FF] border border-[#3772FF] rounded-full py-2 px-3 flex gap-1"
+                          onClick={handleReply}
+                        >
+                          <MessagePreview02Icon
+                            size={20}
+                            color={"#3772ff"}
+                            variant={"stroke"}
+                          />
+                          مشاهده جواب ها
+                        </button> */}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
 
               {/* Replies */}
-              {comment.replies && comment.replies.length > 0 && (
+              {/* {comment.replies && comment.replies.length > 0 && (
                 <div className="mt-4 space-y-4 flex gap-4">
                   <div className="bg-[#3772FF] h-auto w-2 rounded-full py-8"></div>
                   {comment.replies.map((reply) => (
@@ -373,34 +429,40 @@ const CourseCommentsModal = ({ isOpen, onClose }) => {
                             </svg>
                             {comment.likes}
                           </div>
-                          <button
-                            className="text-[#3772FF] border border-[#3772FF] rounded-full py-2 px-3"
-                            onClick={onClose}
-                          >
-                            جواب دادن
-                          </button>
+                          {isReplyReplyOpen ? (
+                            <>
+                              {addComment()}
+                              <button
+                                className="text-white bg-[#ff5555] rounded-3xl py-3 px-1 mb-4 flex flex-col gap-2 items-center"
+                                onClick={handleReplyReply}
+                              >
+                                <CommentRemove01Icon
+                                  size={24}
+                                  color={"#ffffff"}
+                                  variant={"stroke"}
+                                />
+                                بستن
+                              </button>
+                            </>
+                          ) : (
+                            <button
+                              className="text-[#3772FF] border border-[#3772FF] rounded-full py-2 px-3"
+                              onClick={handleReplyReply}
+                            >
+                              جواب دادن
+                            </button>
+                          )}
                         </div>
                       </div>
                     </div>
                   ))}
                 </div>
-              )}
+              )} */}
             </div>
           ))}
         </div>
 
-        {/* Input Section */}
-        {/* <div className="mt-6">
-          <textarea
-            className="w-full p-2 border rounded-lg dark:bg-gray-700 dark:text-white border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="نظر خود را بنویسید"
-          ></textarea>
-          <div className="mt-4 flex justify-end">
-            <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
-              ارسال نظر
-            </button>
-          </div>
-        </div> */}
+        {isCommentOpen && addComment("mt-4")}
       </div>
     </div>
   );

@@ -26,7 +26,7 @@ const coursesData = [
 
 const MyCourses = () => {
   return (
-    <div className="bg-gray-50 dark:bg-indigo-950 dark:text-white shadow-md p-2 rounded-3xl w-full  lg:w-4/5 ">
+    <div className="bg-gray-50 dark:bg-indigo-950 dark:text-white shadow-md p-2 rounded-3xl w-full lg:w-4/5 ">
       <div className="flex flex-row px-4 justify-between">
         <h2 className="text-base font-semibold">دوره من</h2>
         <Link to={"/MyCourse"}>
@@ -60,7 +60,7 @@ const MyCourses = () => {
         <li className="mr-2 ">تاریخ برگزاری</li>
         <li className="hidden  md:block">سطح</li>
       </ul>
-      <div className="mt-4 mx-5 space-y-4">
+      <div className="my-2 mx-5 space-y-4 max-h-[9rem] overflow-y-scroll">
         {coursesData.map((course, index) => (
           <div
             key={index}

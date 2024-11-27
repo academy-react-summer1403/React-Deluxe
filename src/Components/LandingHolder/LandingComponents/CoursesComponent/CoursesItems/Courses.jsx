@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { Carousel } from "antd";
 import { GetTopCoursesByPg } from "../../../../../core/services/api/Landing.api";
 import { getRandomColor } from "../../../../Common/ColorGenerator";
+import { digitsEnToFa, addCommas } from "@persian-tools/persian-tools";
+import { formatCost } from "./../../../../../core/utils/CostEntoFa+Commas+Split.utils";
+import Logo from "../../../../../assets/logo (3)highQ.png";
 
 const contentStyle = {
   height: "",
@@ -65,7 +68,7 @@ const CoursesItems = () => {
 
       setTopCourses(result);
 
-      console.log(TopCourses);
+      console.log("TopCourses", TopCourses);
     } catch (error) {
       console.log(error);
     }
@@ -77,12 +80,12 @@ const CoursesItems = () => {
   return (
     <div
       data-aos="flip-up"
-      className="hidden md:flex flex-wrap justify-center gap-8"
+      className="hidden md:flex flex-wrap justify-center gap-4"
     >
       {TopCourses.map((course, index) => (
         <div
           key={index}
-          className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-950 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
+          className="p-4 bg-sky-50 flex flex-col dark:bg-indigo-950 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
         >
           <Link
             onClick={() => {
@@ -94,7 +97,13 @@ const CoursesItems = () => {
               className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${getRandomColor()}`}
             >
               <img
-                src={course.tumbImageAddress}
+                // src={course.tumbImageAddress ?? Logo}
+                src={
+                  course.tumbImageAddress !== null &&
+                  course.tumbImageAddress !== "null"
+                    ? course.tumbImageAddress
+                    : Logo
+                }
                 alt={""}
                 className={`size-48 `}
               />
@@ -116,7 +125,7 @@ const CoursesItems = () => {
               {course.teacherName}
             </p>
             <span className="text-gray-500 dark:text-white text-sm font-semibold mb-4">
-              {course.cost}
+              {formatCost(course.cost)}
             </span>
           </div>
           <div className="mt-4">

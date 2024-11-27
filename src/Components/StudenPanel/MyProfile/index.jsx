@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Pic1 from "../../../assets/pic.png";
 import Pic2 from "../../../assets/pic2.png";
 import Pic3 from "../../../assets/pic3.png";
@@ -100,17 +100,17 @@ const Profile = () => {
 
   return (
     <div className="bg-gray-950 px-5  pb-11  h-full">
-      <div className="bg-white dark:bg-[#041124] dark:text-white rounded-3xl py-12 px-3">
-        <div className="flex flex-col">
+      <div className="bg-white dark:bg-[#041124] dark:text-white rounded-3xl py-5 px-3 h-full">
+        <div className="flex flex-col h-full justify-between">
           <div className="flex">
             <div className="w-[200px]    ml-5 px-4">
               <h2 className="text-2xl pb-4 font-bold mb-4 ">پروفایل من</h2>
-              <ul className=" border-l h-[707px] space-y-4 text-sm">
+              <ul className=" border-l h-full space-y-4 text-sm">
                 <li>
                   <a
                     href="#"
                     onClick={() => handleSectionClick("profile")}
-                    className={` ${
+                    className={`${
                       activeSection === "profile"
                         ? "text-blue-500 font-semibold bg-gray-100 py-1.5 px-3 rounded-3xl"
                         : "text-gray-500 dark:text-white px-3"
@@ -158,134 +158,201 @@ const Profile = () => {
                     لینک ها
                   </a>
                 </li>
+                <li>
+                  <a
+                    href="#"
+                    onClick={() => handleSectionClick("security")}
+                    className={`${
+                      activeSection === "security"
+                        ? "text-blue-500 font-semibold bg-gray-100 py-1.5 px-3 rounded-3xl"
+                        : "text-gray-500 dark:text-white px-3"
+                    }`}
+                  >
+                    امنیت
+                  </a>
+                </li>
               </ul>
             </div>
 
             <div className="w-3/5 pl-6">
               {activeSection === "profile" && (
-                <form className="flex flex-col mt-14 gap-1">
-                  <div className="mb-4 flex flex-col md:flex-row space-x-4 gap-10 rounded-xl">
-                    <div className="md:w-1/2">
-                      <label className="block text-sm font-bold mb-2">
-                        {" "}
-                        نام
-                      </label>
-                      <input
-                        type="text"
-                        className="w-full px-3 py-2 border dark:border-gray-700 dark:bg-indigo-950 border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="نام خود را وارد کنید"
-                      />
-                    </div>
-                    <div className="md:w-1/2">
-                      <label className="block text-sm font-bold mb-2">
-                        {" "}
-                        نام خانوادگی
-                      </label>
-                      <input
-                        type="text"
-                        className="w-full px-3 py-2 border dark:border-gray-700 dark:bg-indigo-950 border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="نام خانوادگی خود را وارد کنید"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="mb-4">
-                    <label className="block text-sm font-bold mb-2">
-                      درباره من
-                    </label>
-                    <textarea
-                      className="w-full h-40 px-3 py-2 border dark:border-gray-700 dark:bg-indigo-950 border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="چند کلمه در مورد خودتان بنویسید"
-                    />
-                  </div>
-
-                  <div className="mb-4 flex flex-col md:flex-row space-x-4 gap-10 rounded-xl">
-                    <div className="md:w-1/2">
-                      <label className="block text-sm font-bold mb-2">
-                        شماره همراه
-                      </label>
-                      <input
-                        type="text"
-                        className="w-full px-3 py-2 border dark:border-gray-700 dark:bg-indigo-950 border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="شماره خود را وارد کنید"
-                      />
-                    </div>
-                    <div className="md:w-1/2">
-                      <label className="block text-sm font-bold mb-2">
-                        کد ملی
-                      </label>
-                      <input
-                        type="text"
-                        className="w-full px-3 py-2 border dark:border-gray-700 dark:bg-indigo-950 border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="کد ملی خود را وارد کنید"
-                      />
-                    </div>
-                  </div>
-                  <div className="flex flex-col md:flex-row gap-10 w-full">
-                    <div className="mb-4 w-1/2 ">
-                      <label className="block text-sm font-bold mb-2">
-                        تاریخ تولد
-                      </label>
-                      <input
-                        type="date"
-                        className="w-full px-3 py-2 border dark:border-gray-700 dark:bg-indigo-950 border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      />
-                    </div>
-
-                    <div className="mb-4">
-                      <label className="block text-sm font-bold mb-2">
-                        جنسیت
-                      </label>
-                      <div className="flex items-center h-10 gap-10 space-x-4">
-                        <label className="inline-flex items-center">
-                          <span className="ml-2">مرد</span>
-                          <input
-                            type="radio"
-                            name="gender"
-                            value="male"
-                            className="form-radio  text-blue-500"
+                <Formik
+                  enableReinitialize
+                  innerRef={formikRef}
+                  initialValues={{
+                    FName: data?.fName,
+                    LName: data?.lName,
+                    UserAbout: data?.userAbout,
+                    // phoneNumber: data?.phoneNumber,
+                    NationalCode: data?.nationalCode,
+                    BirthDay: data?.birthDay.slice(0, 10),
+                    Gender: data?.gender,
+                    // email: data?.email,
+                    HomeAdderess: data?.homeAdderess,
+                  }}
+                  validationSchema={validationSchema}
+                  onSubmit={handleFormikSubmit}
+                >
+                  {({ handleSubmit }) => (
+                    <Form
+                      onSubmit={handleSubmit}
+                      className="flex flex-col mt-14 gap-1 max-h-[30rem] overflow-y-scroll"
+                    >
+                      <div className="mb-4 flex flex-col md:flex-row space-x-4 gap-10 rounded-xl">
+                        <div className="md:w-1/2">
+                          <label className="block text-sm font-bold mb-2">
+                            نام
+                          </label>
+                          <Field
+                            type="text"
+                            name="FName"
+                            className="w-full px-3 py-2 border dark:border-gray-700 dark:bg-indigo-950 border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="نام خود را وارد کنید"
                           />
-                        </label>
-                        <label className="inline-flex items-center">
-                          <span className="ml-2">زن</span>
-                          <input
-                            type="radio"
-                            name="gender"
-                            value="female"
-                            className="form-radio text-blue-500"
+                          <ErrorMessage
+                            name="FName"
+                            component="div"
+                            className="text-red-500 text-xs"
                           />
-                        </label>
-                        <span className="hidden sm:block text-blue-500 w-20">
-                          انتخاب کنید
-                        </span>
+                        </div>
+
+                        <div className="md:w-1/2">
+                          <label className="block text-sm font-bold mb-2">
+                            نام خانوادگی
+                          </label>
+                          <Field
+                            type="text"
+                            name="LName"
+                            className="w-full px-3 py-2 border dark:border-gray-700 dark:bg-indigo-950 border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="نام خانوادگی خود را وارد کنید"
+                          />
+                          <ErrorMessage
+                            name="LName"
+                            component="div"
+                            className="text-red-500 text-xs"
+                          />
+                        </div>
                       </div>
-                    </div>
-                  </div>
 
-                  <div className="mb-4">
-                    <label className="block text-sm font-bold mb-2">
-                      ایمیل
-                    </label>
-                    <input
-                      type="email"
-                      className="w-full px-3 py-2 border dark:border-gray-700 dark:bg-indigo-950 border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="ایمیل خود را وارد کنید"
-                    />
-                  </div>
+                      <div className="mb-4">
+                        <label className="block text-sm font-bold mb-2">
+                          درباره من
+                        </label>
+                        <Field
+                          as="textarea"
+                          name="UserAbout"
+                          className="w-full h-40 px-3 py-2 border dark:border-gray-700 dark:bg-indigo-950 border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          placeholder="چند کلمه در مورد خودتان بنویسید"
+                        />
+                      </div>
 
-                  <div className="mb-4">
-                    <label className="block text-sm font-bold mb-2">
-                      آدرس سکونت
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full px-3 py-2 border dark:border-gray-700 dark:bg-indigo-950 border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="آدرس خود را وارد کنید"
-                    />
-                  </div>
-                </form>
+                      <div className="mb-4 flex flex-col md:flex-row space-x-4 gap-10 rounded-xl">
+                        {/* <div className="md:w-1/2">
+                          <label className="block text-sm font-bold mb-2">
+                            شماره همراه
+                          </label>
+                          <Field
+                            type="text"
+                            name="phoneNumber"
+                            className="w-full px-3 py-2 border dark:border-gray-700 dark:bg-indigo-950 border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="شماره خود را وارد کنید"
+                          />
+                        </div> */}
+
+                        <div className="md:w-1/2">
+                          <label className="block text-sm font-bold mb-2">
+                            کد ملی
+                          </label>
+                          <Field
+                            type="text"
+                            name="NationalCode"
+                            className="w-full px-3 py-2 border dark:border-gray-700 dark:bg-indigo-950 border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="کد ملی خود را وارد کنید"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="flex flex-col md:flex-row gap-10 w-full">
+                        <div className="mb-4 w-1/2">
+                          <label className="block text-sm font-bold mb-2">
+                            تاریخ تولد
+                          </label>
+                          <Field
+                            type="date"
+                            name="BirthDay"
+                            className="w-full px-3 py-2 border dark:border-gray-700 dark:bg-indigo-950 border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          />
+                        </div>
+
+                        <div className="mb-4">
+                          <label className="block text-sm font-bold mb-2">
+                            جنسیت
+                          </label>
+                          <div className="flex items-center h-10 gap-10 space-x-4">
+                            <label className="inline-flex items-center">
+                              <span className="ml-2">مرد</span>
+                              <Field
+                                type="radio"
+                                name="Gender"
+                                value="true"
+                                className="form-radio text-blue-500"
+                              />
+                            </label>
+                            <label className="inline-flex items-center">
+                              <span className="ml-2">زن</span>
+                              <Field
+                                type="radio"
+                                name="Gender"
+                                value="false"
+                                className="form-radio text-blue-500"
+                              />
+                            </label>
+                            <span className="hidden sm:block text-blue-500 w-20">
+                              انتخاب کنید
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* <div className="mb-4">
+                        <label className="block text-sm font-bold mb-2">
+                          ایمیل
+                        </label>
+                        <Field
+                          type="email"
+                          name="email"
+                          className="w-full px-3 py-2 border dark:border-gray-700 dark:bg-indigo-950 border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          placeholder="ایمیل خود را وارد کنید"
+                        />
+                        <ErrorMessage
+                          name="email"
+                          component="div"
+                          className="text-red-500 text-xs"
+                        />
+                      </div> */}
+
+                      <div className="mb-4">
+                        <label className="block text-sm font-bold mb-2">
+                          آدرس سکونت
+                        </label>
+                        <Field
+                          type="text"
+                          name="HomeAdderess"
+                          className="w-full px-3 py-2 border dark:border-gray-700 dark:bg-indigo-950 border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          placeholder="آدرس خود را وارد کنید"
+                        />
+                      </div>
+
+                      {/* <button
+                        type="submit"
+                        className="bg-blue-500 text-white rounded-3xl px-4 py-2 mt-4"
+                      >
+                        ارسال
+                      </button> */}
+                    </Form>
+                  )}
+                </Formik>
               )}
-
               {/* بخش عکس‌ها */}
               {activeSection === "photos" && (
                 <div className="flex flex-col">
@@ -339,10 +406,9 @@ const Profile = () => {
                   </div>
                 </div>
               )}
-
               {/* بخش محل سکونت */}
               {activeSection === "location" && (
-                <div className="h-[700px] mt-14 ">
+                <div className=" mt-14 ">
                   <p className=" text-sm text-blue-600 text-right mt-4">
                     داخل نقشه موقعیت مکان محل سکونت خود را انتخاب کنید
                   </p>
@@ -351,10 +417,9 @@ const Profile = () => {
                   </div>
                 </div>
               )}
-
               {/* بخش لینک‌ها */}
               {activeSection === "links" && (
-                <div className="h-[700px] mt-14">
+                <div className="mt-14">
                   <div className="mb-4 mt-4">
                     <label className="block text-sm font-bold mb-2">
                       تلگرام
@@ -376,16 +441,22 @@ const Profile = () => {
                     />
                   </div>
                 </div>
-              )}
+              )}{" "}
+              {/* بخش امنیت */}
+              {activeSection === "security" && <Security />}
             </div>
           </div>
-          <div className="flex justify-start mr-56">
+          <div className="flex justify-start mr-56 mt-4">
+            {/* {({ isSubmitting }) => ( */}
             <button
-              type="submit"
+              type="button"
+              onClick={() => formikRef.current?.submitForm()}
+              disabled={mutation.isPending}
               className="ml-52 px-6 py-2 bg-blue-500 text-white font-bold rounded-3xl hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              اعمال تغییرات
+              {mutation.isPending ? "اعمالینگ..." : "اعمال تغییرات"}
             </button>
+            {/* )} */}
           </div>
         </div>
       </div>

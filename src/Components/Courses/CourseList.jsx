@@ -1,10 +1,13 @@
-import { ConfigProvider, Modal, Pagination } from "antd";
+import { ConfigProvider, Flex, Modal, Pagination, Radio } from "antd";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { GetAllCoursesByPg } from "../../core/services/api/Courses.api";
 import Pic from "../../assets/react.png";
 import Logo from "../../assets/logo (3).png";
+import { useQueryShortcut } from "./../../core/services/api/ReactQuery/useQueryShortcut";
 import { getRandomColor } from "../Common/ColorGenerator";
+import { formatCost } from "./../../core/utils/CostEntoFa+Commas+Split.utils";
+import { digitsEnToFa } from "@persian-tools/persian-tools";
 
 // const coursesData = [
 //   {
@@ -117,18 +120,54 @@ import { getRandomColor } from "../Common/ColorGenerator";
 //   },
 // ];
 
-const CourseList = () => {
+const CourseList = ({
+  searchTerm,
+  selectedOptionId,
+  levelsOptionId,
+  teachersOptionId,
+  priceRange,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [courses, setCourses] = useState([]);
 
-  console.log(courses);
+  const [selectedSort, setSelectedSort] = useState({});
+  const [selectedId, setSelectedId] = useState();
+  // console.log(selectedSort);
+  const [currentPg, setCurrentPg] = useState(1);
+  console.log("currentPg", currentPg);
+  const [currentPgSize, setCurrentPgSize] = useState(10);
+  console.log("currentPgSize", currentPgSize);
+  const [totalCourseCount, setTotalCourseCount] = useState();
 
-  const getAllCourse = async () => {
+  const courseData = useQueryShortcut("GetCoursesByPG");
+
+  // const data = useQueryShortcut("BlogDetailById");
+
+  const getAllCourse = async (
+    searchTerm,
+    selectedOptionId,
+    levelsOptionId,
+    teachersOptionId,
+    priceRange,
+    selectedSort,
+    currentPg,
+    currentPgSize
+  ) => {
     try {
-      const result = await GetAllCoursesByPg();
+      const result = await GetAllCoursesByPg(
+        searchTerm,
+        selectedOptionId,
+        levelsOptionId,
+        teachersOptionId,
+        priceRange,
+        selectedSort,
+        currentPg,
+        currentPgSize
+      );
 
       setCourses(result.courseFilterDtos);
+      setTotalCourseCount(result.totalCount);
 
       // console.log("result", result);
     } catch (error) {
@@ -137,8 +176,26 @@ const CourseList = () => {
   };
 
   useEffect(() => {
-    getAllCourse();
-  }, []);
+    getAllCourse(
+      searchTerm,
+      selectedOptionId,
+      levelsOptionId,
+      teachersOptionId,
+      priceRange,
+      selectedSort,
+      currentPg,
+      currentPgSize
+    );
+  }, [
+    searchTerm,
+    selectedOptionId,
+    levelsOptionId,
+    teachersOptionId,
+    priceRange,
+    selectedSort,
+    currentPg,
+    currentPgSize,
+  ]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -156,22 +213,47 @@ const CourseList = () => {
     }, 300); // Match the transition duration (300ms)
   };
 
+  const options = [
+    { id: 1, label: "گران ترین", value: { key: "cost", order: "DESC" } },
+    { id: 2, label: "ارزان ترین", value: { key: "cost", order: "ASC" } },
+    { id: 3, label: "محبوب ترین", value: { key: "likeCount", order: "DESC" } },
+    { id: 4, label: "جدید ترین", value: { key: "lastUpdate", order: "DESC" } },
+  ];
+
+  const handleOptionChange = (value, id) => {
+    setSelectedSort(value);
+    setSelectedId(id);
+  };
+
+  const onChangePg = (page, pageSize) => {
+    setCurrentPg(page);
+    setCurrentPgSize(pageSize);
+  };
+
   return (
-    <div className="mb-8 w-[72rem]">
-      <div className="hidden lg:flex justify-start items-center gap-2 mb-4 mr-7">
-        <span className="text-xl ml-2 dark:text-white">ترتیب </span>
-        <button className=" text-white bg-red-500 py-2 px-4 rounded-full">
-          جدیدترین
-        </button>
-        <button className="text-red-500 border border-red-500 py-2 px-4 rounded-full">
-          محبوب‌ترین
-        </button>
-        <button className="text-red-500 border border-red-500 py-2 px-4 rounded-full">
-          گران ترین
-        </button>
-        <button className="text-red-500 border border-red-500 py-2 px-4 rounded-full">
-          ارزان‌ترین
-        </button>
+    <div className="mb-8 w-[72rem] flex flex-col gap-6">
+      <div className="hidden lg:flex justify-start items-center gap-2 mr-7">
+        <span className="text-xl ml-2 dark:text-white">ترتیب</span>
+        {options.map((option) => (
+          <label
+            key={option.id}
+            className={`py-2 px-4 rounded-full cursor-pointer ${
+              selectedId === option.id
+                ? "bg-red-500 text-white"
+                : "border border-red-500 text-red-500"
+            }`}
+          >
+            <input
+              type="radio"
+              name="sortOption"
+              value={option.id}
+              checked={selectedId === option.id}
+              onChange={() => handleOptionChange(option.value, option.id)}
+              className="hidden"
+            />
+            {option.label}
+          </label>
+        ))}
       </div>
 
       {/* On smaller screens, we show a single button to trigger the modal */}
@@ -252,53 +334,61 @@ const CourseList = () => {
                 ✕ بستن
               </button>
             </div>
-            <div className="flex flex-col justify-center items-center gap-1 mb-4 ">
-              <button className=" text-red-500 border border-red-500 py-2 px-4 rounded-full  dark:text-white dark:border-white">
-                جدیدترین
-              </button>
-              <button className="text-gray-800 border border-gray-800 py-2 px-3 rounded-full  dark:text-white dark:border-white">
-                محبوب‌ترین
-              </button>
-              <button className="text-gray-800 border border-gray-800 py-2 px-4 rounded-full  dark:text-white dark:border-white">
-                ارزان ترین
-              </button>{" "}
-              <button className="text-gray-800 border border-gray-800 py-2 px-4 rounded-full  dark:text-white dark:border-white">
-                گران ترین
-              </button>
+            <div className="flex justify-center flex-wrap items-center gap-1 mb-4 ">
+              {options.map((option) => (
+                <label
+                  key={option.id}
+                  className={`py-2 px-4 rounded-full cursor-pointer text-lg ${
+                    selectedId === option.id
+                      ? "bg-red-500 text-white"
+                      : "border border-red-500 text-red-500"
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="sortOption"
+                    value={option.id}
+                    checked={selectedId === option.id}
+                    onChange={() => handleOptionChange(option.value, option.id)}
+                    className="hidden"
+                  />
+                  {option.label}
+                </label>
+              ))}
             </div>
           </div>
         </div>
       )}
 
-      <div className="flex flex-wrap justify-center gap-8 ">
-        {courses.map((course, index) => (
+      <div className="flex flex-wrap justify-center gap-4 ">
+        {/* {courseData?.courseFilterDtos.map((course, index) => ( */}
+        {courses?.map((course, index) => (
           <div
             key={index}
-            className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-950 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
+            className="p-6 bg-sky-50 flex flex-col dark:bg-indigo-950 relative rounded-3xl justify-center items-center flex-1 min-w-[300px] max-w-[350px] "
           >
-            <Link to={"/courseDetails"}>
+            <Link className="w-full" to={`/courseDetails/${course.courseId}`}>
               <div
                 className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${getRandomColor()}`}
               >
                 <img
                   src={course.tumbImageAddress ?? Logo}
                   alt={""}
-                  className={`size-48 `}
+                  className={`size-full rounded-3xl`}
                 />
               </div>
-            </Link>
 
-            <Link to={"/courseDetails"}>
-              <h3 className="flex text-xl dark:text-white font-semibold mb-2 ">
+              <h3 className="flex text-xl dark:text-white font-semibold mb-2">
                 {course.title}
               </h3>
             </Link>
-            <div className="flex flex-nowrap gap-7">
+            <div className="flex flex-nowrap gap-7 w-full justify-between">
               <p className=" text-gray-400 dark:text-white text-xs items-center ">
                 {course.teacherName}
               </p>
               <span className="text-gray-500 dark:text-white text-sm font-semibold mb-4">
-                {course.cost}
+                {formatCost(course.cost)}
+                <span className="text-[0.6rem] mr-0.5">تومان</span>
               </span>
             </div>
             <div className="mt-4">
@@ -312,8 +402,23 @@ const CourseList = () => {
           </div>
         ))}
       </div>
-      <ConfigProvider direction="rtl">
-        <Pagination align="center" defaultCurrent={1} total={50} />
+      <ConfigProvider direction="rtl" theme={{ token: {} }}>
+        <Pagination
+          align="center"
+          defaultCurrent={1}
+          defaultPageSize={10}
+          current={currentPg}
+          onChange={onChangePg}
+          total={totalCourseCount}
+          showTotal={(total, range) =>
+            `${digitsEnToFa(range[0])} تا ${digitsEnToFa(
+              range[1]
+            )} از ${digitsEnToFa(total)} دوره`
+          }
+          showSizeChanger
+          pageSizeOptions={[10, 20, 50, 75, 100]}
+          responsive
+        />
       </ConfigProvider>
     </div>
   );

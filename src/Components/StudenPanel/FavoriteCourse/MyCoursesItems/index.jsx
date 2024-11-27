@@ -6,6 +6,8 @@ import { TbBookDownload } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import { favoriteCourseDto } from "../../../../core/services/api/StudentPanel/FavoriteCourses.api";
 import { getRandomColor } from "../../../Common/ColorGenerator";
+import { DatePersianizer } from "./../../../../core/utils/DatePersianizer";
+import Logo from "../../../../assets/logo (3)highQ.png";
 
 const index = () => {
   const [CoursesData, setCoursesData] = useState([]);
@@ -21,11 +23,12 @@ const index = () => {
       console.log(error);
     }
   };
+  // console.log("CoursesData", CoursesData);
   useEffect(() => {
     getCoursesData();
   }, []);
   return (
-    <div className="bg-gray-50 dark:bg-indigo-950  flex flex-col gap-96 p-2 rounded-3xl    ">
+    <div className="bg-gray-50 dark:bg-indigo-950  flex flex-col p-2 rounded-3xl    ">
       <div>
         <ul className="flex p-2 rounded-xl text-sm text-gray-500  m-5 dark:bg-[#041124] dark:text-white  bg-gray-100 gap-24 justify-start">
           <li className="hidden md:block ">#</li>
@@ -35,19 +38,19 @@ const index = () => {
           <li className="mr-2 ">نوع برگزاری</li>
           <li className="hidden sm:block">سطح</li>
         </ul>
-        <div className="mt-4 mx-5 space-y-4">
-          {CoursesData.map((course, index) => (
+        <div className="mt-4 mx-5 space-y-4 max-h-[20rem] overflow-y-scroll">
+          {CoursesData?.map((course, index) => (
             <div
               key={index}
               className="  flex flex-row  relative  items-center rounded-3xl justify-start gap-8    "
             >
               <div
-                className={`h-12 hidden md:flex justify-center items-center rounded-xl w-20  mb-4 ${getRandomColor()}`}
+                className={`h-12 hidden md:flex justify-center items-center rounded-2xl w-20  mb-4 ${getRandomColor()}`}
               >
                 <img
-                  src={course.tumbImageAddress}
+                  src={course.tumbImageAddress ?? Logo}
                   alt={""}
-                  className={`size-8 `}
+                  className={`size-full rounded-2xl`}
                 />
               </div>
               <h3 className=" text-xl dark:text-white font-semibold mb-2  truncate w-[111px]">
@@ -59,7 +62,7 @@ const index = () => {
               <span
                 className={`hidden lg:inline-flex items-center w-[125px] dark:text-white `}
               >
-                {course.lastUpdate.slice(0, 10)}
+                {DatePersianizer(course.lastUpdate)}
               </span>
               <span
                 className={`inline-flex items-center  lg:w-[125px] dark:text-white `}
@@ -78,7 +81,7 @@ const index = () => {
                 {course.levelName}
               </span>{" "}
               <div className="flex gap-2">
-                <Link to={"/courseDetails"}>
+                <Link to={`/courseDetails/${course.courseId}`}>
                   <BsEye className="text-base" />
                 </Link>
                 <TbBookDownload />

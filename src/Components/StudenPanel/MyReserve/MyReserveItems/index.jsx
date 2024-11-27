@@ -4,7 +4,7 @@ import { BsEye } from "react-icons/bs";
 import { RxCross1 } from "react-icons/rx";
 import { myReserve } from "../../../../core/services/api/StudentPanel/MyReserve.api";
 import { Link } from "react-router-dom";
-import Logo from "../../../../assets/logo (3).png";
+import Logo from "../../../../assets/logo (3)highQ.png";
 import { getRandomColor } from "../../../Common/ColorGenerator";
 import { DatePersianizer } from "./../../../../core/utils/DatePersianizer";
 
@@ -26,7 +26,7 @@ const index = () => {
     getMyReserve();
   }, []);
   return (
-    <div className="bg-gray-50 dark:bg-indigo-950  h-[900px] p-2 rounded-3xl flex flex-col gap-24  justify-between flex-1">
+    <div className="bg-gray-50 dark:bg-indigo-950 p-2 rounded-3xl flex flex-col justify-between">
       <div>
         <ul className="flex p-2 rounded-xl text-sm text-gray-500  m-5 dark:bg-[#041124] dark:text-white  bg-gray-100 gap-14 sm:gap-20 md:gap-24 lg:gap-24 justify-start">
           <li className="hidden md:block">#</li>
@@ -35,19 +35,19 @@ const index = () => {
           <li className="mr-2 hidden lg:block">تاریخ اتمام</li>
           <li>تایید</li>
         </ul>
-        <div className="mt-4 mx-5 space-y-4">
+        <div className="mt-4 mx-5 space-y-4 max-h-[20rem] overflow-y-scroll">
           {reserveData?.map((Reserve, index) => (
             <div
               key={index}
               className="  flex flex-row  relative  items-center rounded-3xl justify-start gap-9    "
             >
               <div
-                className={`h-12 hidden md:flex justify-center items-center rounded-xl w-20  mb-4 ${getRandomColor()}`}
+                className={`h-12 hidden md:flex justify-center items-center rounded-2xl w-20  mb-4 ${getRandomColor()}`}
               >
                 <img
                   src={Reserve.icon ?? Logo}
                   alt={""}
-                  className={`size-8 `}
+                  className={`size-full rounded-2xl`}
                 />
               </div>
 
@@ -58,7 +58,7 @@ const index = () => {
               <span
                 className={`hidden sm:inline-flex items-center w-[127px] dark:text-white `}
               >
-                {Reserve.reserverDate.slice(0, 10)}
+                {DatePersianizer(Reserve.reserverDate)}
               </span>
 
               <span
@@ -78,7 +78,7 @@ const index = () => {
                 )}
               </span>
               <div className="flex gap-2">
-                <Link to={"/courseDetails"}>
+                <Link to={`/courseDetails/${Reserve.courseId}`}>
                   <BsEye className="text-base" />
                 </Link>
 
@@ -90,7 +90,6 @@ const index = () => {
       </div>
       <div className="">
         <ConfigProvider direction="rtl" className="mt-10">
-          {" "}
           {reserveData.length > 8 && (
             <Pagination align="center" defaultCurrent={1} total={50} />
           )}

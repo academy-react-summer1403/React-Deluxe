@@ -1,11 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useQueryShortcut } from "../../../../core/services/api/ReactQuery/useQueryShortcut";
+import { Progress } from "antd";
+import { digitsEnToFa } from "@persian-tools/persian-tools";
 
 const UserProgress = ({ percentage }) => {
   const progress = percentage || 75;
 
+  const twoColors = {
+    "0%": "#ff0000",
+    "50%": "#fde047",
+    "100%": "#00ff10",
+  };
+
+  const data = useQueryShortcut("ProfileInfo");
+
+  // const persianpercent = digitsEnToFa(`${data?.profileCompletionPercentage}`);
+
   return (
-    <div className="lg:flex flex-col hidden  justify-between py-3 w-72 h-72  bg-gray-50 shadow-md dark:bg-indigo-950 dark:text-white rounded-3xl px-4 ">
+    <div className="lg:flex flex-col hidden  justify-between py-3 w-72 h-64 bg-gray-50 shadow-md dark:bg-indigo-950 dark:text-white rounded-3xl px-4 ">
       <div className="flex-row flex justify-between gap-1">
         <p className="text-sm ">وضعیت اطلاعات حساب کاربری</p>
         <Link to={"/myprofile"}>
@@ -33,7 +46,7 @@ const UserProgress = ({ percentage }) => {
         </Link>
       </div>
       <div className="relative flex justify-center items-center">
-        <svg
+        {/* <svg
           className="w-32 h-32 transform rotate-180"
           viewBox="0 0 100 100"
           fill="none"
@@ -51,12 +64,22 @@ const UserProgress = ({ percentage }) => {
             strokeLinecap="round"
             transform="rotate(90 50 50)"
           />
-        </svg>
-        <div className="absolute text-center">
-          <span className="text-3xl font-medium">{progress}%</span>
-        </div>
+        </svg> */}
+        {/* <div className="absolute text-center">
+          <span className="text-3xl font-medium">
+            {data.profileCompletionPercentage}%
+          </span>
+        </div> */}
+        <Progress
+          type="circle"
+          // percent={persianpercent}
+          percent={data?.profileCompletionPercentage}
+          strokeColor={twoColors}
+          size={150}
+          strokeLinecap="round"
+        />
       </div>
-      <div className="mt-4 text-center">
+      <div className="mt-2 text-center">
         <p className="text-gray-500 dark:text-gray-50 text-[12px] w-full">
           اطلاعات حساب کاربری شما کامل نیست
         </p>

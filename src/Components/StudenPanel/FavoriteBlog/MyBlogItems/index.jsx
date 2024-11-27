@@ -6,6 +6,10 @@ import { Link } from "react-router-dom";
 import { favoriteNews } from "../../../../core/services/api/StudentPanel/FavoriteNews.api";
 import { getRandomColor } from "../../../Common/ColorGenerator";
 import { SlLike } from "react-icons/sl";
+import { DatePersianizer } from "./../../../../core/utils/DatePersianizer";
+import { digitsEnToFa } from "@persian-tools/persian-tools";
+import Logo from "../../../../assets/logo (3)highQ.png";
+
 // const coursesData = [
 //   {
 //     title: " فیگما",
@@ -89,12 +93,13 @@ const index = () => {
       console.log(error);
     }
   };
+  // console.log("newsData", newsData);
   useEffect(() => {
     getNewsData();
   }, []);
 
   return (
-    <div className="bg-gray-50 dark:bg-indigo-950 flex h-[40rem] justify-between flex-col gap-24 p-2 rounded-3xl    ">
+    <div className="bg-gray-50 dark:bg-indigo-950 flex justify-between flex-col p-2 rounded-3xl">
       <div>
         <ul className="flex p-2 rounded-xl text-sm text-gray-500  m-5 dark:bg-[#041124] dark:text-white  bg-gray-100 gap-24 justify-start">
           <li className="hidden md:block ">#</li>
@@ -102,21 +107,21 @@ const index = () => {
           <li className="w-[50px] hidden sm:block">امتیاز</li>
           <li className="mr-2 ">تاریخ </li>
           <li className="mr-2 hidden sm:block">تعداد بازدید </li>
-          <li className="hidden lg:block">تداد لایک</li>
+          <li className="hidden lg:block">تعداد لایک</li>
         </ul>
-        <div className="mt-4 mx-5 space-y-4">
+        <div className="mt-4 mx-5 space-y-4 max-h-[20rem] overflow-y-scroll">
           {newsData.map((news, index) => (
             <div
               key={index}
               className="  flex flex-row  relative  items-center rounded-3xl justify-start gap-9    "
             >
               <div
-                className={`h-12 hidden md:flex justify-center items-center rounded-xl w-20  mb-4 ${getRandomColor()}`}
+                className={`h-12 hidden md:flex justify-center items-center rounded-2xl w-20  mb-4 ${getRandomColor()}`}
               >
                 <img
-                  src={news.currentImageAddressTumb}
+                  src={news.currentImageAddressTumb ?? Logo}
                   alt={""}
-                  className={`size-8 `}
+                  className={`size-full rounded-2xl`}
                 />
               </div>
               <h3 className=" text-xl dark:text-white font-semibold mb-2  truncate w-[151px]">
@@ -128,19 +133,19 @@ const index = () => {
               <span
                 className={`inline-flex items-center w-[110px] dark:text-white `}
               >
-                {news.updateDate.slice(0, 10)}
+                {DatePersianizer(news.updateDate)}
               </span>
               <span
                 className={`hidden lg:inline-flex gap-2 items-center  dark:text-white `}
               >
                 <BsEye />
-                {news.currentView}
+                {digitsEnToFa(news.currentView)}
               </span>
               <span className=" py-0 text-base  hidden sm:inline-flex    gap-2  text-black rounded-full">
-                <SlLike /> {news.currentLikeCount}
+                <SlLike /> {digitsEnToFa(news.currentLikeCount)}
               </span>
               <div className="flex gap-2">
-                <Link to={"/blogDetails"}>
+                <Link to={`/BlogDetails/${news.favoriteId}`}>
                   <BsEye className="text-base" />
                 </Link>
 

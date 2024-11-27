@@ -2,11 +2,7 @@ import React from "react";
 import MyReserve from "../../Components/StudenPanel/MyReserve";
 
 const index = () => {
-  return (
-    <div>
-      <MyReserve />
-    </div>
-  );
+  return <MyReserve />;
 };
 
 export default index;

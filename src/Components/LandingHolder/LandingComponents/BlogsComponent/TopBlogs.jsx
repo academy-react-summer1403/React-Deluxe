@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { Carousel } from "antd";
 import { GetTopBlogsByPg } from "../../../../core/services/api/TopBlogs.api";
 import { getRandomColor } from "../../../Common/ColorGenerator";
+import { digitsEnToFa } from "@persian-tools/persian-tools";
+import { DatePersianizer } from "../../../../core/utils/DatePersianizer";
 
 const contentStyle = {
   height: "",
@@ -237,12 +239,12 @@ const TopBlogs = () => {
         </h2>
         <div
           data-aos="flip-down"
-          className="md:flex hidden  md:flex-wrap justify-center gap-8 mx-2"
+          className="md:flex hidden  md:flex-wrap justify-center gap-8 mx-2 "
         >
           {TopBlog.slice(0, 3).map((blog, index) => (
             <div
               key={index}
-              className=" bg-gray-50 dark:bg-indigo-950 rounded-3xl  flex-1 "
+              className="dark:bg-indigo-950 rounded-3xl  flex-1 bg-sky-50 "
             >
               <Link
                 onClick={() => {
@@ -251,12 +253,12 @@ const TopBlogs = () => {
                 to={"/blogdetails"}
               >
                 <div
-                  className={`h-72 mx-auto flex justify-center items-center mb-4 rounded-xl ${blog.color}`}
+                  className={`h-72 mx-auto flex justify-center items-center mb-4 rounded-2xl ${blog.color}`}
                 >
                   <img
-                    src={blog.currentImageAddressTumb}
+                    src={blog.addUserProfileImage}
                     alt={""}
-                    className={`size-48 `}
+                    className={`size-full rounded-2xl`}
                   />
                 </div>
 
@@ -272,11 +274,13 @@ const TopBlogs = () => {
                   <span
                     className={`inline-flex items-center dark:text-white text-xs gap-2 w-32 `}
                   >
-                    <i /> {blog.insertDate}
+                    <i />
+                    {/* {blog.insertDate.toString().slice(0, 10)} */}
+                    <div>{DatePersianizer(blog?.insertDate)}</div>
                     <BsCalendar4Week />
                   </span>
                   <span className="inline-flex items-center dark:text-white text-xs gap-2">
-                    <i /> {blog.currentView} <BsEye />
+                    <i /> {digitsEnToFa(blog?.currentView)} <BsEye />
                   </span>
                 </div>
               </div>

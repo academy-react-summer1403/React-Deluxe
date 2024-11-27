@@ -9,10 +9,14 @@ import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 function App() {
   // const [isLoggedIn, setIsLoggedIn] = useState();
   const publicRoutes = commonRoutes;
+
+  const queryClient = new QueryClient();
 
   useEffect(() => {
     Aos.init({
@@ -24,10 +28,13 @@ function App() {
   }, []);
 
   return (
-    <ErrorBoundary>
-      <RouterProvider router={publicRoutes} />
-      <ToastContainer />
-    </ErrorBoundary>
+    <QueryClientProvider client={queryClient}>
+      <ErrorBoundary>
+        <RouterProvider router={publicRoutes} />
+        <ToastContainer />
+        <ReactQueryDevtools />
+      </ErrorBoundary>
+    </QueryClientProvider>
   );
 }
 

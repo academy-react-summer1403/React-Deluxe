@@ -5,8 +5,15 @@ import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import { AiOutlineLike } from "react-icons/ai";
 import { AiOutlineDislike } from "react-icons/ai";
 import { CourseCommentsModal } from "./CourseCommentsModal";
+import { useQueryShortcut } from "../../../core/services/api/ReactQuery/useQueryShortcut";
+import { useLocation } from "react-router-dom";
+import { ThumbsDownIcon, ThumbsUpIcon } from "hugeicons-react";
+import { DatePersianizer } from "./../../../core/utils/DatePersianizer";
+import { digitsEnToFa } from "@persian-tools/persian-tools";
 
-const CourseComment = () => {
+const CourseComment = ({ dataBlog }) => {
+  const { pathname } = useLocation();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const commentsData = [
@@ -42,6 +49,13 @@ const CourseComment = () => {
     },
   ];
 
+  const courseComments = useQueryShortcut("CourseCommentsById");
+  const data = courseComments?.slice(0, 3);
+  console.log("Comments DATAAAAAAH", data ? data : "");
+
+  const blogComments = dataBlog?.slice(0, 3);
+  console.log("dataBlog for Comments", dataBlog);
+
   const Comment = ({
     title,
     comment,
@@ -61,21 +75,21 @@ const CourseComment = () => {
         {/* Right Section - User Info */}
         <div className="flex items-center">
           {/* Avatar */}
-          <div className="w-10 h-10 rounded-full bg-fuchsia-700">
+          <div className="w-10 h-10 rounded-full bg-blue-500">
             {/* Placeholder for avatar, you can replace with img tag */}
             <img
               src={profilePic}
               alt="Avatar"
-              className="object-cover w-full h-full rounded-full"
+              className="object-cover w-10 h-10 max-w-none rounded-full"
             />
           </div>
           {/* User Name and Date */}
           <div className="flex flex-col gap-1 mr-2">
-            <span className="text-xs font-bold text-gray-700 dark:text-gray-300">
+            <span className="text-sm font-bold text-gray-700 dark:text-gray-300">
               {name}
             </span>
-            <span className="text-xs text-gray-500 dark:text-gray-400 lg:text-[0.5rem]/[0.5rem]">
-              {date}
+            <span className="text-xs text-gray-500 dark:text-gray-400 lg:text-[0.65rem]/[0.5rem]">
+              {DatePersianizer(date)}
             </span>
           </div>
         </div>
@@ -84,14 +98,16 @@ const CourseComment = () => {
         <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
           {/* Like Button */}
           <div className="flex items-center gap-1 text-lg">
-            <AiOutlineLike className="text-xl cursor-pointer" />
-            <span className="text-xs font-medium">{likes}</span>
+            <ThumbsUpIcon size={20} color={"#374151"} variant={"stroke"} />{" "}
+            <span className="text-xs font-medium">{digitsEnToFa(likes)}</span>
           </div>
 
           {/* Dislike Button */}
           <div className="flex items-center gap-1 text-lg">
-            <AiOutlineDislike className="text-xl cursor-pointer" />
-            <span className="text-xs font-medium">{dislikes}</span>
+            <ThumbsDownIcon size={20} color={"#374151"} variant={"stroke"} />{" "}
+            <span className="text-xs font-medium">
+              {digitsEnToFa(dislikes)}
+            </span>
           </div>
         </div>
       </div>
@@ -113,18 +129,31 @@ const CourseComment = () => {
             برای نظر دادن کلیک کنید
           </p>
         </div>
-        {commentsData.map((item, index) => (
-          <Comment
-            key={index}
-            title={item.title}
-            comment={item.comment}
-            profilePic={item.profilePic}
-            name={item.name}
-            date={item.date}
-            likes={item.likes}
-            dislikes={item.dislikes}
-          />
-        ))}
+        {pathname.includes("courseDetails")
+          ? data?.map((item, index) => (
+              <Comment
+                key={index}
+                title={item.title}
+                comment={item.describe}
+                profilePic={item.pictureAddress}
+                name={item.author}
+                date={item.insertDate.toString().slice(0, 10)}
+                likes={item.likeCount}
+                dislikes={item.disslikeCount}
+              />
+            ))
+          : blogComments?.map((item, id) => (
+              <Comment
+                key={id}
+                title={item.title}
+                comment={item.describe}
+                profilePic={item.pictureAddress}
+                name={item.autor}
+                date={item.inserDate.toString().slice(0, 10)}
+                likes={item.likeCount}
+                dislikes={item.dissLikeCount}
+              />
+            ))}
       </div>
       <div className="flex justify-center">
         <button
@@ -137,6 +166,8 @@ const CourseComment = () => {
       <CourseCommentsModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
+        courseComments={courseComments}
+        dataBlog={dataBlog}
       />
     </div>
   );

@@ -1,11 +1,17 @@
 // CourseDescription.jsx
+import { useMutation } from "@tanstack/react-query";
 import { Rate } from "antd";
 import React, { useEffect, useState } from "react";
 import { IoIosLink } from "react-icons/io";
 import { useLocation } from "react-router-dom";
+import { RateCourse } from "../../../core/services/api/Courses/RateCourse.api";
+import { toast } from "react-toastify";
+import { RateBlog } from "../../../core/services/api/Blogs/Rate/RateBlog.api";
 
 const CopyLink = () => {
   const [copied, setCopied] = useState(false);
+
+  const { pathname } = useLocation();
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(window.location.href);
@@ -37,8 +43,49 @@ const CopyLink = () => {
   );
 };
 
-const CourseDesc = () => {
+const CourseDesc = ({ data }) => {
   const { pathname } = useLocation();
+
+  const mutation = useMutation({
+    mutationKey: ["CourseRating"],
+    mutationFn: RateCourse,
+    onSuccess: () => {
+      toast.success("امتیاز با موفقیت ثبت شد!", {
+        position: "top-center",
+      });
+    },
+    onError: (error) => {
+      toast.error(error.response.data.ErrorMessage[0], {
+        position: "top-center",
+      });
+    },
+  });
+
+  const blogMutation = useMutation({
+    mutationKey: ["BlogRating"],
+    mutationFn: RateBlog,
+    onSuccess: () => {
+      toast.success("امتیاز با موفقیت ثبت شد!", {
+        position: "top-center",
+      });
+    },
+    onError: (error) => {
+      toast.error(error.response.data.ErrorMessage[0], {
+        position: "top-center",
+      });
+    },
+  });
+
+  const handleRate = async (Rate) => {
+    // console.log(data.courseId);
+    {
+      pathname.includes("courseDetails")
+        ? await mutation.mutateAsync({ Rate: Rate, courseId: data.courseId })
+        : await blogMutation.mutateAsync({ Rate: Rate, blogId: data.id });
+    }
+  };
+
+  console.log("data", data);
 
   return (
     <div className="p-6 mb-6 bg-white rounded-lg dark:bg-[#041124]">
@@ -46,47 +93,31 @@ const CourseDesc = () => {
         توضیحات دوره
       </h3>
       <p className="leading-relaxed text-gray-800 dark:text-gray-200">
-        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده
-        از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و
-        سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای
-        متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه
-        درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با
-        نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان
-        خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید
-        داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان
-        رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات
-        پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+        {data?.miniDescribe}
         <br />
         <br />
-        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده
-        از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و
-        سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای
-        متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه
-        درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با
-        نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان
-        خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید
-        داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان
-        رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات
-        پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-        <br />
-        <br />
-        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده
-        از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و
-        سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای
-        متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه
-        درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با
-        نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان
-        خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید
-        داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان
-        رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات
-        پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+        {data?.describe}
         <br />
         <br />
       </p>
       <div className="flex flex-col justify-start gap-3 mt-5 lg:flex-row">
         <div className="mb-6 lg:mb-0">
           <span className="text-[#3772FF] dark:text-white">امتیاز بدید</span>
-          <Rate className="mr-4" defaultValue={3} />
+          {data && (
+            <Rate
+              className="mr-4"
+              defaultValue={
+                data?.currentUserSetRate == true
+                  ? data?.currentUserRateNumber
+                  : 0
+              }
+              onChange={handleRate}
+
+              // value={
+              //   data?.currentUserSetRate == true ? data?.currentUserRateNumber : 0
+              // }
+            />
+          )}
         </div>
         {pathname.includes("courseDetails") ? <CopyLink /> : ""}
       </div>

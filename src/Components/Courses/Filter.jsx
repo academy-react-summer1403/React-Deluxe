@@ -6,8 +6,19 @@ import { GetCoursesCategory } from "../../core/services/api/Courses/CoursesCateg
 import { GetCoursesLevels } from "../../core/services/api/Courses/CoursesCategory/GetCoursesLevels";
 import { GetCoursesTeachers } from "../../core/services/api/Courses/CoursesCategory/GetCoursesTeachers";
 
-const Filter = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+const Filter = ({
+  categorySelResult,
+  searchTerm,
+  setSearchTerm,
+  selectedOptionId,
+  setSelectedOptionId,
+  levelsOptionId,
+  setLevelsOptionId,
+  teachersOptionId,
+  setTeacherOptionId,
+  priceRange,
+  setPriceRange,
+}) => {
   const [category, setCategory] = useState("");
   const [level, setLevel] = useState("");
   const [teacher, setTeacher] = useState("");
@@ -20,6 +31,7 @@ const Filter = () => {
   const [levels, setLevels] = useState([]);
   const [teachers, setTeachers] = useState([]);
 
+  console.log(searchTerm);
   const { Panel } = Collapse;
 
   const handleSearch = () => {
@@ -106,8 +118,38 @@ const Filter = () => {
   ];
 
   // Mock API call handler when selections change
-  const handleSelectionChange = (selectedOptions) => {
-    console.log("Selected options:", selectedOptions);
+  const handleSelectionChange = (optionId) => {
+    console.log(optionId);
+    setSelectedOptionId((prev) => {
+      const selectedId = prev.includes(optionId)
+        ? prev.filter((item) => item !== optionId)
+        : [...prev, optionId];
+
+      return selectedId;
+    });
+    // console.log("Selected options:", selectedOptionId);
+    // Insert API call logic here
+  };
+  // categorySelResult(selectedOptionId);
+
+  const handleLevelChange = (optionId) => {
+    // console.log(optionId);
+    setLevelsOptionId(optionId);
+    // console.log("Selected options:", selectedOptionId);
+    // Insert API call logic here
+  };
+
+  const handleTeacherChange = (optionId) => {
+    // console.log(optionId);
+    // setTeacherOptionId((prev) => {
+    //   const selectedId = prev.includes(optionId)
+    //     ? prev.filter((item) => item !== optionId)
+    //     : [...prev, optionId];
+
+    //   return selectedId;
+    // });
+    setTeacherOptionId(optionId);
+    // console.log("Selected options:", selectedOptionId);
     // Insert API call logic here
   };
 
@@ -243,46 +285,11 @@ const Filter = () => {
               دسته بندی
             </label>
           </div>
-          {/* <button
-            onClick={() => setIsCategoryDropdownOpen(!isCategoryDropdownOpen)}
-            className="w-full text-gray-500 text-right border border-gray-300 rounded-lg py-2 px-4 bg-slate-200"
-          >
-            {category ? category : "دسته مورد نظر را انتخاب کنید"}
-          </button>
-          <Collapse accordion>
-            <Panel
-              className="w-full text-gray-500 text-right border border-gray-300 rounded-lg bg-slate-200"
-              header="Option 1"
-              key="1"
-            >
-              {["طراحی سایت", "برنامه‌نویسی", "دوره طراحی UX"].map((opt) => (
-                <Checkbox
-                  key={opt}
-                  className="px-4 py-2 w-full hover:bg-gray-200 cursor-pointer rounded-lg transition-all duration-300 border border-slate-200 mt-2"
-                >
-                  {opt}
-                </Checkbox>
-              ))}
-            </Panel>
-          </Collapse> */}
           <AccordionTab
             options={categories}
-            onSelectionChange={handleSelectionChange}
+            onSelectionChange={(optionId) => handleSelectionChange(optionId)}
             labelTitle={"دسته"}
           />
-          {/* {isCategoryDropdownOpen && (
-            <div className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-1">
-              {["طراحی سایت", "برنامه‌نویسی", "دوره طراحی UX"].map((cat) => (
-                <div
-                  key={cat}
-                  onClick={() => handleCategorySelect(cat)}
-                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
-                >
-                  {cat}
-                </div>
-              ))}
-            </div>
-          )} */}
         </div>
 
         {/* Level Dropdown */}
@@ -321,29 +328,9 @@ const Filter = () => {
               سطح آموزشی
             </label>
           </div>
-
-          {/* <button
-            onClick={() => setIsLevelDropdownOpen(!isLevelDropdownOpen)}
-            className="w-full text-right  text-gray-500 border border-gray-300 rounded-lg py-2 px-4  bg-slate-200"
-          >
-            {level ? level : "سطح مورد نظر را انتخاب کنید"}
-          </button>
-          {isLevelDropdownOpen && (
-            <div className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-1">
-              {["مقدماتی", "پیشرفته"].map((lvl) => (
-                <div
-                  key={lvl}
-                  onClick={() => handleLevelSelect(lvl)}
-                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
-                >
-                  {lvl}
-                </div>
-              ))}
-            </div>
-          )} */}
           <AccordionTab
             options={levels}
-            onSelectionChange={handleSelectionChange}
+            onSelectionChange={(optionId) => handleLevelChange(optionId)}
             labelTitle={"سطح"}
           />
         </div>
@@ -390,34 +377,9 @@ const Filter = () => {
               اساتید
             </label>
           </div>
-
-          {/* <button
-            onClick={() => setIsTeacherDropdownOpen(!isTeacherDropdownOpen)}
-            className="w-full text-right  text-gray-500 border border-gray-300 rounded-lg py-2 px-4  bg-slate-200"
-          >
-            {teacher ? teacher : "استاد مورد نظر را انتخاب کنید"}
-          </button>
-          {isTeacherDropdownOpen && (
-            <div className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-1">
-              {[
-                "محمدحسین",
-                "محمدامین شالبیافر",
-                "محمدحسین خیراندیش",
-                "فاطمه نیکوکار",
-              ].map((tchr) => (
-                <div
-                  key={tchr}
-                  onClick={() => handleTeacherSelect(tchr)}
-                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
-                >
-                  {tchr}
-                </div>
-              ))}
-            </div>
-          )} */}
           <AccordionTab
             options={teachers}
-            onSelectionChange={handleSelectionChange}
+            onSelectionChange={(optionId) => handleTeacherChange(optionId)}
             labelTitle={"اساتید"}
           />
         </div>
@@ -462,9 +424,7 @@ const Filter = () => {
               قیمت
             </label>
           </div>
-
-          {/* <input type="range" className="w-full" min="10000" max="1000000" /> */}
-          <PricePicker />
+          <PricePicker priceRange={priceRange} setPriceRange={setPriceRange} />
         </div>
 
         {/* Event Dates */}
@@ -643,32 +603,12 @@ const Filter = () => {
                   دسته بندی
                 </label>
               </div>
-              {/* <button
-                onClick={() =>
-                  setIsCategoryDropdownOpen(!isCategoryDropdownOpen)
-                }
-                className="w-full text-gray-500 text-right border border-gray-300 rounded-lg py-2 px-4 bg-slate-200"
-              >
-                {category ? category : "دسته مورد نظر را انتخاب کنید"}
-              </button>
-              {isCategoryDropdownOpen && (
-                <div className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-1">
-                  {["طراحی سایت", "برنامه‌نویسی", "دوره طراحی UX"].map(
-                    (cat) => (
-                      <div
-                        key={cat}
-                        onClick={() => handleCategorySelect(cat)}
-                        className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
-                      >
-                        {cat}
-                      </div>
-                    )
-                  )}
-                </div>
-              )} */}
               <AccordionTab
-                options={catOptions}
-                onSelectionChange={handleSelectionChange}
+                options={categories}
+                onSelectionChange={(optionId) =>
+                  handleSelectionChange(optionId)
+                }
+                labelTitle={"دسته"}
               />
             </div>
 
@@ -677,28 +617,10 @@ const Filter = () => {
               <label className="text-gray-700 mb-2 block dark:text-white">
                 سطح آموزشی
               </label>
-              {/* <button
-                onClick={() => setIsLevelDropdownOpen(!isLevelDropdownOpen)}
-                className="w-full text-right  text-gray-500 border border-gray-300 rounded-lg py-2 px-4  bg-slate-200"
-              >
-                {level ? level : "سطح مورد نظر را انتخاب کنید"}
-              </button>
-              {isLevelDropdownOpen && (
-                <div className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-1">
-                  {["مقدماتی", "پیشرفته"].map((lvl) => (
-                    <div
-                      key={lvl}
-                      onClick={() => handleLevelSelect(lvl)}
-                      className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
-                    >
-                      {lvl}
-                    </div>
-                  ))}
-                </div>
-              )} */}
               <AccordionTab
-                options={catOptions}
-                onSelectionChange={handleSelectionChange}
+                options={levels}
+                onSelectionChange={(optionId) => handleLevelChange(optionId)}
+                labelTitle={"سطح"}
               />
             </div>
 
@@ -707,33 +629,11 @@ const Filter = () => {
               <label className="text-gray-700 mb-2 block dark:text-white">
                 اساتید
               </label>
-              {/* <button
-                onClick={() => setIsTeacherDropdownOpen(!isTeacherDropdownOpen)}
-                className="w-full text-right border  text-gray-500 border-gray-300 rounded-lg py-2 px-4  bg-slate-200"
-              >
-                {teacher ? teacher : "استاد مورد نظر را انتخاب کنید"}
-              </button>
-              {isTeacherDropdownOpen && (
-                <div className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-1">
-                  {[
-                    "محمدحسین",
-                    "محمدامین شالبیافر",
-                    "محمدحسین خیراندیش",
-                    "فاطمه نیکوکار",
-                  ].map((tchr) => (
-                    <div
-                      key={tchr}
-                      onClick={() => handleTeacherSelect(tchr)}
-                      className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
-                    >
-                      {tchr}
-                    </div>
-                  ))}
-                </div>
-              )} */}
+
               <AccordionTab
-                options={catOptions}
-                onSelectionChange={handleSelectionChange}
+                options={teachers}
+                onSelectionChange={(optionId) => handleTeacherChange(optionId)}
+                labelTitle={"اساتید"}
               />
             </div>
             {/* Price */}
@@ -741,12 +641,10 @@ const Filter = () => {
               <label className="text-gray-700 mb-2 block dark:text-white">
                 قیمت
               </label>
-              {/* <div className="flex items-center justify-between text-sm text-gray-500 mb-2 dark:text-white">
-                <span>از 10,000</span>
-                <span>تا 1,000,000</span>
-              </div>
-              <input type="range" className="w-full min="10000" max="1000000" /> */}
-              <PricePicker />
+              <PricePicker
+                priceRange={priceRange}
+                setPriceRange={setPriceRange}
+              />{" "}
             </div>
 
             {/* Event Dates */}
