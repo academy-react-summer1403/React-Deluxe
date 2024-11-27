@@ -20,13 +20,16 @@ const GetCoordinates = ({ setCoords, setCortinate }) => {
   return null;
 };
 
-const MapWithCoordinates = ({ setCortinate }) => {
-  const [coords, setCoords] = useState({ lat: null, lng: null });
+const MapWithCoordinates = ({ setCortinate, data }) => {
+  const [coords, setCoords] = useState({
+    lat: data?.latitude,
+    lng: data?.longitude,
+  });
 
   return (
     <div>
       <MapContainer
-        center={[51.505, -0.09]}
+        center={coords}
         zoom={13}
         style={{ height: "400px", width: "100%" }}
       >

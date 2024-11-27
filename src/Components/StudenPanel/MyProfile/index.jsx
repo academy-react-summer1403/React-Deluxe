@@ -12,6 +12,7 @@ import http from "../../../core/services/interceptor";
 import { toast } from "react-toastify";
 import { UpdateProfileInfo } from "./../../../core/services/api/StudentPanel/UpdateProfileInfo.api";
 import MyMap from "./Map";
+import Security from "./Security";
 
 const Profile = () => {
   const [activeSection, setActiveSection] = useState("profile");
@@ -91,7 +92,7 @@ const Profile = () => {
 
     formData.append("latitude", cordinate.lat);
     formData.append("longitude", cordinate.lng);
-
+    console.log(cordinate);
     await mutation.mutateAsync(formData, {
       onSuccess: () => setSubmitting(false),
       onError: () => setSubmitting(false),
@@ -413,7 +414,7 @@ const Profile = () => {
                     داخل نقشه موقعیت مکان محل سکونت خود را انتخاب کنید
                   </p>
                   <div className="w-full h-64 rounded-lg shadow-lg dark:border-gray-700 dark:bg-indigo-950 bg-gray-200">
-                    <MyMap setCortinate={setCortinate} />
+                    <MyMap setCortinate={setCortinate} data={data} />
                   </div>
                 </div>
               )}
