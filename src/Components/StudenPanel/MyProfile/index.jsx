@@ -11,6 +11,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import http from "../../../core/services/interceptor";
 import { toast } from "react-toastify";
 import { UpdateProfileInfo } from "./../../../core/services/api/StudentPanel/UpdateProfileInfo.api";
+import Security from "./Security";
 
 const Profile = () => {
   const [activeSection, setActiveSection] = useState("profile");
@@ -152,132 +153,24 @@ const Profile = () => {
                     لینک ها
                   </a>
                 </li>
+                <li>
+                  <a
+                    href="#"
+                    onClick={() => handleSectionClick("security")}
+                    className={`${
+                      activeSection === "security"
+                        ? "text-blue-500 font-semibold bg-gray-100 py-1.5 px-3 rounded-3xl"
+                        : "text-gray-500 dark:text-white px-3"
+                    }`}
+                  >
+                    امنیت
+                  </a>
+                </li>
               </ul>
             </div>
 
             <div className="w-3/5 pl-6">
               {activeSection === "profile" && (
-                // <form className="flex flex-col mt-14 gap-1">
-                //   <div className="mb-4 flex flex-col md:flex-row space-x-4 gap-10 rounded-xl">
-                //     <div className="md:w-1/2">
-                //       <label className="block text-sm font-bold mb-2">
-                //         {" "}
-                //         نام
-                //       </label>
-                //       <input
-                //         type="text"
-                //         className="w-full px-3 py-2 border dark:border-gray-700 dark:bg-indigo-950 border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-                //         placeholder="نام خود را وارد کنید"
-                //       />
-                //     </div>
-                //     <div className="md:w-1/2">
-                //       <label className="block text-sm font-bold mb-2">
-                //         {" "}
-                //         نام خانوادگی
-                //       </label>
-                //       <input
-                //         type="text"
-                //         className="w-full px-3 py-2 border dark:border-gray-700 dark:bg-indigo-950 border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-                //         placeholder="نام خانوادگی خود را وارد کنید"
-                //       />
-                //     </div>
-                //   </div>
-
-                //   <div className="mb-4">
-                //     <label className="block text-sm font-bold mb-2">
-                //       درباره من
-                //     </label>
-                //     <textarea
-                //       className="w-full h-40 px-3 py-2 border dark:border-gray-700 dark:bg-indigo-950 border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-                //       placeholder="چند کلمه در مورد خودتان بنویسید"
-                //     />
-                //   </div>
-
-                //   <div className="mb-4 flex flex-col md:flex-row space-x-4 gap-10 rounded-xl">
-                //     <div className="md:w-1/2">
-                //       <label className="block text-sm font-bold mb-2">
-                //         شماره همراه
-                //       </label>
-                //       <input
-                //         type="text"
-                //         className="w-full px-3 py-2 border dark:border-gray-700 dark:bg-indigo-950 border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-                //         placeholder="شماره خود را وارد کنید"
-                //       />
-                //     </div>
-                //     <div className="md:w-1/2">
-                //       <label className="block text-sm font-bold mb-2">
-                //         کد ملی
-                //       </label>
-                //       <input
-                //         type="text"
-                //         className="w-full px-3 py-2 border dark:border-gray-700 dark:bg-indigo-950 border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-                //         placeholder="کد ملی خود را وارد کنید"
-                //       />
-                //     </div>
-                //   </div>
-                //   <div className="flex flex-col md:flex-row gap-10 w-full">
-                //     <div className="mb-4 w-1/2 ">
-                //       <label className="block text-sm font-bold mb-2">
-                //         تاریخ تولد
-                //       </label>
-                //       <input
-                //         type="date"
-                //         className="w-full px-3 py-2 border dark:border-gray-700 dark:bg-indigo-950 border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-                //       />
-                //     </div>
-
-                //     <div className="mb-4">
-                //       <label className="block text-sm font-bold mb-2">
-                //         جنسیت
-                //       </label>
-                //       <div className="flex items-center h-10 gap-10 space-x-4">
-                //         <label className="inline-flex items-center">
-                //           <span className="ml-2">مرد</span>
-                //           <input
-                //             type="radio"
-                //             name="gender"
-                //             value="male"
-                //             className="form-radio  text-blue-500"
-                //           />
-                //         </label>
-                //         <label className="inline-flex items-center">
-                //           <span className="ml-2">زن</span>
-                //           <input
-                //             type="radio"
-                //             name="gender"
-                //             value="female"
-                //             className="form-radio text-blue-500"
-                //           />
-                //         </label>
-                //         <span className="hidden sm:block text-blue-500 w-20">
-                //           انتخاب کنید
-                //         </span>
-                //       </div>
-                //     </div>
-                //   </div>
-
-                //   <div className="mb-4">
-                //     <label className="block text-sm font-bold mb-2">
-                //       ایمیل
-                //     </label>
-                //     <input
-                //       type="email"
-                //       className="w-full px-3 py-2 border dark:border-gray-700 dark:bg-indigo-950 border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-                //       placeholder="ایمیل خود را وارد کنید"
-                //     />
-                //   </div>
-
-                //   <div className="mb-4">
-                //     <label className="block text-sm font-bold mb-2">
-                //       آدرس سکونت
-                //     </label>
-                //     <input
-                //       type="text"
-                //       className="w-full px-3 py-2 border dark:border-gray-700 dark:bg-indigo-950 border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-                //       placeholder="آدرس خود را وارد کنید"
-                //     />
-                //   </div>
-                // </form>
                 <Formik
                   enableReinitialize
                   innerRef={formikRef}
@@ -455,7 +348,6 @@ const Profile = () => {
                   )}
                 </Formik>
               )}
-
               {/* بخش عکس‌ها */}
               {activeSection === "photos" && (
                 <div className="flex flex-col">
@@ -509,7 +401,6 @@ const Profile = () => {
                   </div>
                 </div>
               )}
-
               {/* بخش محل سکونت */}
               {activeSection === "location" && (
                 <div className=" mt-14 ">
@@ -519,7 +410,6 @@ const Profile = () => {
                   <div className="w-full h-64 rounded-lg shadow-lg dark:border-gray-700 dark:bg-indigo-950 bg-gray-200"></div>
                 </div>
               )}
-
               {/* بخش لینک‌ها */}
               {activeSection === "links" && (
                 <div className="mt-14">
@@ -544,7 +434,9 @@ const Profile = () => {
                     />
                   </div>
                 </div>
-              )}
+              )}{" "}
+              {/* بخش امنیت */}
+              {activeSection === "security" && <Security />}
             </div>
           </div>
           <div className="flex justify-start mr-56 mt-4">
