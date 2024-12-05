@@ -4,16 +4,28 @@ import {
   updateTwoStepAuth,
 } from "../../../core/services/api/StudentPanel/TwoAuthEnable";
 
+// Custom hook to fetch security info
 const useSecurityInfo = () => {
-  return useQuery(["securityInfo"], getSecurityInfo);
+  return useQuery({
+    queryKey: ["securityInfo"], // Unique query key
+    queryFn: getSecurityInfo, // Fetch function
+    onSuccess: (data) => {
+      console.log("Security Info Data:", data); // Log data for debugging
+    },
+    onError: (error) => {
+      console.error("Error fetching security information:", error.message);
+    },
+  });
 };
 
+// Custom hook to update two-step authentication status
 const useUpdateTwoStepAuth = () => {
   const queryClient = useQueryClient();
 
-  return useMutation(updateTwoStepAuth, {
+  return useMutation({
+    mutationFn: updateTwoStepAuth, // The mutation function
     onSuccess: () => {
-      // Invalidate and refetch the security info query
+      // Invalidate and refetch the security info query to get updated data
       queryClient.invalidateQueries(["securityInfo"]);
     },
     onError: (error) => {
@@ -21,13 +33,16 @@ const useUpdateTwoStepAuth = () => {
     },
   });
 };
-
 const Security = () => {
-  const { data, isLoading: isFetching, error } = useSecurityInfo();
-  const { mutate, isLoading: isMutating } = useUpdateTwoStepAuth();
+  const { data, isLoading: isFetching, error } = useSecurityInfo(); // Hook used inside component
+  const { mutate, isLoading: isMutating } = useUpdateTwoStepAuth(); // Hook used inside component
+
+  // Further logic...
 
   const handleToggle = () => {
-    const newStatus = !data?.twoStepAuth; // Toggle the status
+    if (!data) return; // Prevent toggle if data is undefined
+
+    const newStatus = !data.twoStepAuth; // Toggle the status based on the current value of twoStepAuth
     mutate(newStatus, {
       onSuccess: () => {
         alert(
@@ -44,6 +59,10 @@ const Security = () => {
 
   if (isFetching) return <p>Loading...</p>;
   if (error) return <p className="text-red-500">Error: {error.message}</p>;
+
+  // If data is undefined or null, show a message instead of rendering the toggle button
+  if (!data)
+    return <p className="text-red-500">No security information available.</p>;
 
   return (
     <div className="p-4">

@@ -16,33 +16,6 @@ const contentStyle = {
   background: "",
 };
 
-// const blogsData = [
-//   {
-//     title: "زبان جاوا اسکریپت در چه حوزه ای به کار میرود؟",
-//     icon: "https://s3-alpha-sig.figma.com/img/6405/b314/68db8ea561a27064e67d06d024404030?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=WIX7f3Fe52-Shpu4td9BYj9RSTp2IA1E0Ig9oPqYFRFWiJ7g0HTF~RRI69jh1bUhXqb3EDOX0KA~rvdKjK6D4-rfZBJpyGvLwsvRUeJkZiqHOZO7KizDbHpWaSFJYN-lbTC763Mccoy0-C2Bl4y8qlVbAPfdu4m8RJp1RjNQbpT0VsiF0Nusk7g3WoRjyL7FsPsiqp9aCh9yaXRBkMLn1WPh1DJvFKCLIHwrA9C8ocPV5gfLmGIID4nz4O9b4CcVANBTgs210laNfHaHY7ImPr5tBv~d-Qj-3ig5ji9v~~2mbtJBQBZfcKkfxQD25FavfcJPUVvoMpTJX3EMsv6hgA__",
-//     author: "محمدحسین بحرالعلومی",
-//     date: "۲۳ فروردین ۱۴۰۳",
-//     views: "۳۰۴",
-//     color: "bg-yellow-300",
-//   },
-//   {
-//     title: "فیگما یا ادوبی ایکس‌دی؟",
-//     icon: "https://s3-alpha-sig.figma.com/img/72eb/0bda/c649ce20dfb0409d36134908c7d16a53?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=NTX-nRHg93a6TXcuTScT80hAeNu0VZeV5vMYLG-0~urRRr6LsSKNMlWdAfodQmm6J0dq-TPtvE4niMqkf1pnoxTPlAVpyNu-aF58-0c5TvDG4AuxLXAEGG0TYthmYSa5LkylYkEeL2XQcHJpMYtVE79UeBqc7cb~1bHuB-yWirNlcqqrWu0Nv8MXrUylDCPfgavysRxSoqODwqfBLBjri-TfAcrDqobkE-H30st5~ulh3PJjh~Wld46oa968aC6uj~vflXQPEeIDmEDXf~aT~DDTeqJPu68sD00W7MHbI3nVSz423ftucwaLNZlv4zKBZINmKv0TjeB-ZZgnmPmLZQ__",
-//     author: "محمدحسین خلیل پور",
-//     date: "۳۰ اردیبهشت ۱۴۰۳",
-//     views: "۲۴۰",
-//     color: "bg-red-400",
-//   },
-//   {
-//     title: "فرق ری‌اکت با نکست جی‌اس چیست؟",
-//     icon: "https://s3-alpha-sig.figma.com/img/e186/5b86/bca1c8cd3132e2639f0ded1c76c11d46?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ZpF7verSM~Wu9RNqd6hHA12IbI~LIx0FgOIbjEJ1VWHoFByPXm~I35f~hNBNQaRdeTzriYNSU5G0ZBRk~OdTp5AYbDVLbBVr-uELXIrqJ7qL5uwtJHsPoWAY4ezQFG8rQ-LdULqFnxFTniNE5jVzE7~rpHETIA1o2GIyx8AMsDEN92z1Z26hhXLoHvIIUW3wi6b0DkT179r81dYvmxs6GJy1VS5UIdfUYgiWvPJJJJo25PjCzBHLQk2npBWFV4xWDrtkZvxb~0aqJlk1ZBy-kgkQ0h-7g-7GJh~KAryZtkvoUJMQEWtt2mYD53c6RG478pyeiEK-M6JRMIG8zZUbLA__",
-//     author: "محسن اسفندیاری",
-//     date: "۲۷ اردیبهشت ۱۴۰۳",
-//     views: "۳۱۲",
-//     color: "bg-cyan-200",
-//   },
-// ];
-
 const BlogsCarsoual = () => {
   const [TopBlogSlice, setTopBlogs] = useState([]);
 
@@ -71,7 +44,7 @@ const BlogsCarsoual = () => {
                 key={index}
                 className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-950 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
               >
-                <Link to={"/blogDetails"}>
+                <Link to={`/BlogDetails/${blog.id}`}>
                   <div
                     className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 `}
                   >
@@ -81,9 +54,7 @@ const BlogsCarsoual = () => {
                       className={`size-48 `}
                     />
                   </div>
-                </Link>
 
-                <Link to={"/blogDetails"}>
                   <h3 className="flex text-xl dark:text-white truncate w-[350px] font-semibold mb-2 ">
                     {blog.title}
                   </h3>
@@ -250,7 +221,7 @@ const TopBlogs = () => {
                 onClick={() => {
                   scrollTop();
                 }}
-                to={"/blogdetails"}
+                to={`/BlogDetails/${blog.id}`}
               >
                 <div
                   className={`h-72 mx-auto flex justify-center items-center mb-4 rounded-2xl ${blog.color}`}

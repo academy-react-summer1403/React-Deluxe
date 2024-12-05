@@ -91,7 +91,7 @@ const CoursesItems = () => {
             onClick={() => {
               scrollTop();
             }}
-            to={"/courseDetails"}
+            to={`/courseDetails/${course.courseId}`}
           >
             <div
               className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${getRandomColor()}`}
@@ -168,7 +168,7 @@ const CoursesCarsoual = () => {
                 key={index}
                 className="p-6 bg-gray-50 flex flex-col dark:bg-indigo-950 relative   rounded-3xl justify-center items-center flex-1  min-w-[250px] max-w-[350px]"
               >
-                <Link to={"/courseDetails"}>
+                <Link to={`/courseDetails/${course.courseId}`}>
                   <div
                     className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${getRandomColor()}`}
                   >

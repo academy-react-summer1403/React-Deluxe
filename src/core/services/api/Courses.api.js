@@ -19,7 +19,7 @@ export const GetAllCoursesByPg = async (
       queryParams.ListTech = selectedOptionId?.join(",");
       queryParams.TechCount = selectedOptionId.length;
     }
-    console.log(selectedOptionId);
+    // console.log(selectedOptionId);
     if (levelsOptionId !== "" && levelsOptionId !== null) {
       queryParams.courseLevelId = levelsOptionId;
     }
@@ -43,10 +43,10 @@ export const GetAllCoursesByPg = async (
     const res = await http.get("/Home/GetCoursesWithPagination", {
       params: queryParams,
     });
-    console.log("Query", queryParams);
+    // console.log("Query", queryParams);
     return res;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return error;
   }
 };

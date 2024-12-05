@@ -31,7 +31,7 @@ const Filter = ({
   const [levels, setLevels] = useState([]);
   const [teachers, setTeachers] = useState([]);
 
-  console.log(searchTerm);
+  // console.log(searchTerm);
   const { Panel } = Collapse;
 
   const handleSearch = () => {
@@ -41,7 +41,7 @@ const Filter = ({
       level,
       teacher,
     };
-    console.log("Searching with filters:", filters);
+    // console.log("Searching with filters:", filters);
     setIsModalOpen(false); // Close modal after search
   };
 
@@ -77,30 +77,30 @@ const Filter = ({
   const GetCategory = async () => {
     try {
       const res = await GetCoursesCategory();
-      console.log(res);
+      // console.log(res);
       setCategories(res);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
   const GetLevel = async () => {
     try {
       const res = await GetCoursesLevels();
-      console.log(res);
+      // console.log(res);
       setLevels(res);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
   const GetTeacher = async () => {
     try {
       const res = await GetCoursesTeachers();
-      console.log(res);
+      // console.log(res);
       setTeachers(res);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -119,7 +119,7 @@ const Filter = ({
 
   // Mock API call handler when selections change
   const handleSelectionChange = (optionId) => {
-    console.log(optionId);
+    // console.log(optionId);
     setSelectedOptionId((prev) => {
       const selectedId = prev.includes(optionId)
         ? prev.filter((item) => item !== optionId)

@@ -9,10 +9,10 @@ import { getQuery } from "../../../core/services/api/ReactQuery/getQuery";
 const index = () => {
   getQuery("ProfileInfo", "/SharePanel/GetProfileInfo");
   return (
-    <div className="bg-white xl:h-full overflow-hidden  xl:mr-0 mr-3 dark:bg-[#041124] p-3 rounded-3xl ">
+    <div className="bg-white xl:h-full overflow-hidden flex-col gap-5 flex xl:mr-0 mr-3 dark:bg-[#041124] p-3 rounded-3xl ">
       <WelcomeHeader />
 
-      <div className="flex flex-row justify-between gap-4 mb-6">
+      <div className="flex flex-row justify-between gap-4 ">
         <MyCourses />
         <UserProgress />
       </div>

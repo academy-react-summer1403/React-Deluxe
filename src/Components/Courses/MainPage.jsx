@@ -2,8 +2,9 @@ import { Filter } from "./Filter";
 import { CourseList } from "./CourseList";
 import { CourseHolder } from "./CoursesComponents/CourseHolder/CourseHolder";
 import { getQuery } from "../../core/services/api/ReactQuery/getQuery";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
+import SlideModal from "./SlideModal";
 
 const MainPage = () => {
   const [categoryValue, setCategoryValue] = useState([]);
@@ -15,7 +16,7 @@ const MainPage = () => {
   const [teachersOptionId, setTeacherOptionId] = useState("");
   const [priceRange, setPriceRange] = useState([0, 1000000000]); // Initial values for range
 
-  console.log("TeacherOption", teachersOptionId);
+  // console.log("TeacherOption", teachersOptionId);
 
   const categoryList = (value) => {
     setCategoryValue(value);
@@ -30,6 +31,8 @@ const MainPage = () => {
   return (
     <>
       <CourseHolder />
+      <SlideModal />
+
       <div className="flex justify-evenly">
         <Filter
           categorySelResult={categoryList}
