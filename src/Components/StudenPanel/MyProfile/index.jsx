@@ -76,20 +76,22 @@ const Profile = () => {
   });
   // console.log(mutation.isPending);
 
-  const handleFormikSubmit = async (values, { setSubmitting }, cordinate) => {
+  const handleFormikSubmit = async (values) => {
     // await mutation.mutateAsync(values);
-    console.log("Raw Formik Values", values);
     const formData = new FormData();
-    formData.append("FName", values.FName);
-    formData.append("LName", values.LName);
-    formData.append("UserAbout", values.UserAbout);
-    // formData.append("PhoneNumber", values.PhoneNumber);
-    formData.append("NationalCode", values.NationalCode);
-    formData.append("BirthDay", values.BirthDay);
-    formData.append("Gender", values.Gender);
-    // formData.append("Email", values.Email);
-    formData.append("HomeAdderess", values.HomeAdderess);
-
+    {
+      values &&
+        // console.log("Raw Formik Values", values)
+        (formData.append("FName", values.FName),
+        formData.append("LName", values.LName),
+        formData.append("UserAbout", values.UserAbout),
+        // formData.append("PhoneNumber", values.PhoneNumber);
+        formData.append("NationalCode", values.NationalCode),
+        formData.append("BirthDay", values.BirthDay),
+        formData.append("Gender", values.Gender),
+        // formData.append("Email", values.Email);
+        formData.append("HomeAdderess", values.HomeAdderess));
+    }
     formData.append("latitude", cordinate.lat);
     formData.append("longitude", cordinate.lng);
     console.log(cordinate);
@@ -451,7 +453,9 @@ const Profile = () => {
             {/* {({ isSubmitting }) => ( */}
             <button
               type="button"
-              onClick={() => formikRef.current?.submitForm()}
+              onClick={() => {
+                formikRef.current?.submitForm(); handleFormikSubmit();
+              }}
               disabled={mutation.isPending}
               className="ml-52 px-6 py-2 bg-blue-500 text-white font-bold rounded-3xl hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
