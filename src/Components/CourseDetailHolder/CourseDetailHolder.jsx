@@ -37,7 +37,6 @@ const CourseDetailHolder = () => {
   // const { data: unSlicedComments } = useQuery({
   //   queryKey: ["CourseCommentsById"],
   // });
-  console.log("Course DATAAAAAAAAAAAAAAAH", data);
 
   return (
     <>

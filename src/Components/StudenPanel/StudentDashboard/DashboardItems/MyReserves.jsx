@@ -6,6 +6,7 @@ import { getQuery } from "../../../../core/services/api/ReactQuery/getQuery";
 import { useQueryShortcut } from "./../../../../core/services/api/ReactQuery/useQueryShortcut";
 import { DatePersianizer } from "./../../../../core/utils/DatePersianizer";
 import PerfectScrollbar from "react-perfect-scrollbar";
+import Logo from "../../../../assets/logo (3)highQ.png";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
 const ReserveData = [
@@ -70,7 +71,11 @@ const MyReserves = () => {
               <div
                 className={`h-12 lg:flex hidden justify-center items-center rounded-xl w-24  mb-4 ${Reserve.color}`}
               >
-                <img src={Reserve.icon} alt={""} className={`size-8 `} />
+                <img
+                  src={Reserve.icon ?? Logo}
+                  alt={""}
+                  className={`size-8 `}
+                />
               </div>
 
               <h3 className=" text-xl  dark:text-white font-semibold mb-2  truncate w-24 ">

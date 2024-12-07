@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { BsEye } from "react-icons/bs";
 import { getQuery } from "../../../../core/services/api/ReactQuery/getQuery";
 import { useQueryShortcut } from "../../../../core/services/api/ReactQuery/useQueryShortcut";
+import Logo from "../../../../assets/logo (3)highQ.png";
 import { DatePersianizer } from "../../../../core/utils/DatePersianizer";
 const coursesData = [
   {
@@ -74,7 +75,11 @@ const MyCourses = () => {
             <div
               className={`h-12 hidden lg:flex justify-center items-center rounded-xl w-16  mb-4 ${course.color}`}
             >
-              <img src={course.icon} alt={""} className={`size-8 `} />
+              <img
+                src={course.tumbImageAddress ?? Logo}
+                alt={""}
+                className={`size-8 `}
+              />
             </div>
 
             <h3 className=" text-xl dark:text-white font-semibold mb-2  truncate w-[111px]">

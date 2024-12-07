@@ -13,33 +13,6 @@ import { DatePersianizer } from "./../../../core/utils/DatePersianizer";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
 
 const CourseCommentsModal = ({ isOpen, onClose, courseComments, dataBlog }) => {
-  // const [commentId, setCommentId] = useState([]);
-
-  const commentsData = [
-    {
-      id: 1,
-      user: "مهرداد علیزاده",
-      avatar: "https://via.placeholder.com/40",
-      date: "۱۳ مهر ۱۴۰۳",
-      comment: "دوره خیلی خوبی بود واقعا لذت بردم",
-      description:
-        "واقعاً مفید بود. هم اساتیدش و هم کلاس‌ها منظم برگزار شدن و اصلاً از ساعت عقب نیفتادم و تونستم به مقدار زیادی پیشرفت کنم توی کنوانسیون جاوا اسکریپت.",
-      likes: 29,
-      replies: [
-        // {
-        //   id: 2,
-        //   user: "امیرحسین سپهریان",
-        //   avatar: "https://via.placeholder.com/40",
-        //   date: "۱۳ مهر ۱۴۰۳",
-        //   comment: "خوب بود ولی نبود",
-        //   description:
-        //     "دوره منظم بود، ولی هم کلاس‌ها منظم برگزار شدن و اصلاً از ساعت عقب نمی‌افتادم و تونستم به مقدار زیادی پیشرفت کنم توی کنوانسیون جاوا اسکریپت.",
-        //   likes: 18,
-        // },
-      ],
-    },
-  ];
-
   if (!isOpen) return null;
 
   const [isCommentOpen, setIsCommentOpen] = useState(false);
@@ -55,13 +28,6 @@ const CourseCommentsModal = ({ isOpen, onClose, courseComments, dataBlog }) => {
         : setIsCourseComment(false);
     }
   }, []);
-
-  // {
-  //   pathname.includes("courseDetails")
-  //     ? setIsCourseComment(true)
-  //     : setIsCourseComment(false);
-  // }
-  console.log(isCourseComment);
 
   const handleComment = () => {
     setIsCommentOpen(!isCommentOpen);
@@ -309,17 +275,6 @@ const CourseCommentsModal = ({ isOpen, onClose, courseComments, dataBlog }) => {
                       </>
                     ) : (
                       <div className="flex gap-4">
-                        {/* <button
-                          className="text-[#3772FF] border border-[#3772FF] rounded-full py-2 px-3 flex gap-1"
-                          onClick={handleReply}
-                        >
-                          <MailReply02Icon
-                            size={20}
-                            color={"#3772ff"}
-                            variant={"stroke"}
-                          />
-                          جواب دادن
-                        </button> */}
                         <label htmlFor={comment.id}>جواب دادن</label>
                         <input
                           // onClick={() => {setCommentId()}}
@@ -331,17 +286,6 @@ const CourseCommentsModal = ({ isOpen, onClose, courseComments, dataBlog }) => {
                         <div className="h-0 w-[400px] overflow-hidden peer-checked:h-20">
                           {addComment()}
                         </div>
-                        {/* <button
-                          className="text-[#3772FF] border border-[#3772FF] rounded-full py-2 px-3 flex gap-1"
-                          onClick={handleReply}
-                        >
-                          <MessagePreview02Icon
-                            size={20}
-                            color={"#3772ff"}
-                            variant={"stroke"}
-                          />
-                          مشاهده جواب ها
-                        </button> */}
                       </div>
                     )}
                   </div>
