@@ -19,6 +19,7 @@ import FavoriteBlog from "../../Screens/FavoriteBlog";
 import Blogs from "../../Screens/Blogs";
 import BlogDetails from "../../Screens/BlogDetails";
 import { AboutsUs } from "../../Screens/AboutUs";
+import Calendar from './../../Screens/Calendar/Calendar';
 
 // routes that are available both as public and auth
 export const commonRoutes = createBrowserRouter([
@@ -105,6 +106,10 @@ export const commonRoutes = createBrowserRouter([
       {
         path: "/MyProfile",
         element: <MyProfile />,
+      },
+      {
+        path: "/Calendar",
+        element: <Calendar />,
       },
     ],
   },
