@@ -297,9 +297,16 @@ const StudentMenu = () => {
 
             <span className="text-lg pr-1">پروفایل</span>
           </NavLink>
-          <a
+          <NavLink
+            to={"/Calendar"}
             href="#"
-            className="flex items-center space-x-3 hover:text-blue-300"
+            className={({ isActive, isPending }) =>
+              isPending
+                ? "pending"
+                : isActive
+                ? "underline flex"
+                : "flex hover:text-blue-300 "
+            }
           >
             <svg
               width="24"
@@ -342,8 +349,8 @@ const StudentMenu = () => {
               />
             </svg>
 
-            <span className="text-lg pr-1">پرداخت ها</span>
-          </a>
+            <span className="text-lg pr-1">تقویم آموزشی</span>
+            </NavLink>
         </nav>
       </div>
 

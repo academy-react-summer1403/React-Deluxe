@@ -49,7 +49,7 @@ const StudentHeader = () => {
       <div className="hidden lg:flex gap-2 pl-8">
         <div className="flex items-center  space-x-4">
           {/* Notification Bell */}
-          <div className="relative hidden sm:block">
+          <div className="relative hidden">
             <button className="bg-gray-700 dark:text-black dark:bg-white  p-2 rounded-full hover:bg-gray-600">
               <HiOutlineBell className="text-xl font-bold dark:text-black  text-white" />
             </button>

@@ -32,7 +32,7 @@ function App() {
       <ErrorBoundary>
         <RouterProvider router={publicRoutes} />
         <ToastContainer />
-        <ReactQueryDevtools />
+        {/* <ReactQueryDevtools /> */}
       </ErrorBoundary>
     </QueryClientProvider>
   );
