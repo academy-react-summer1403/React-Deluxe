@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { BsEye } from "react-icons/bs";
+import { getQuery } from "../../../../core/services/api/ReactQuery/getQuery";
+import { useQueryShortcut } from "../../../../core/services/api/ReactQuery/useQueryShortcut";
+import { DatePersianizer } from "../../../../core/utils/DatePersianizer";
 const coursesData = [
   {
     title: " فیگما",
@@ -25,6 +28,8 @@ const coursesData = [
 ];
 
 const MyCourses = () => {
+  getQuery("GetMyCourses", "/SharePanel/GetMyCourses");
+  const data = useQueryShortcut("GetMyCourses");
   return (
     <div className="bg-gray-50 dark:bg-indigo-950 dark:text-white shadow-md p-2 rounded-3xl w-full lg:w-4/5 ">
       <div className="flex flex-row px-4 justify-between">
@@ -61,7 +66,7 @@ const MyCourses = () => {
         <li className="hidden  md:block">سطح</li>
       </ul>
       <div className="my-2 mx-5 space-y-4 max-h-[9rem] overflow-y-scroll">
-        {coursesData.map((course, index) => (
+        {data?.listOfMyCourses.map((course, index) => (
           <div
             key={index}
             className="  flex flex-row  relative  items-center rounded-3xl justify-start gap-10    "
@@ -73,22 +78,23 @@ const MyCourses = () => {
             </div>
 
             <h3 className=" text-xl dark:text-white font-semibold mb-2  truncate w-[111px]">
-              {course.title}
+              {course.courseTitle}
             </h3>
 
             <p className="  dark:text-white hidden sm:block text-[11px] lg:inline-flex  font-bold items-center w-[125px]  ">
-              {course.teacher}
+              {course.fullName}
             </p>
             <span
               className={`inline-flex text-sm w-28 items-center dark:text-white `}
             >
-              {course.date}
+              {DatePersianizer(course.lastUpdate)}
             </span>
             <span className="px-2 py-0 text-base  hidden md:block bg-[#FF37F5] text-white rounded-full">
-              {course.tag2}
+              {course.levelName}
             </span>
-            <Link to={"/courseDetails"}>
-              <BsEye className="text-base dark:text-white" />
+
+            <Link to={`/courseDetails/${course.courseId}`}>
+              <BsEye className="text-base" />
             </Link>
           </div>
         ))}

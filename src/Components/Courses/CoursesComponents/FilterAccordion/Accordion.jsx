@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 
 export const AccordionTab = ({ options, onSelectionChange, labelTitle }) => {
-  const [isOpen, setIsOpen] = useState(false); // Controls the accordion open/close
+  const [isOpen, setIsOpen] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]); // Tracks selected options
-  const contentRef = useRef(null); // Ref to measure content height
+  const contentRef = useRef(null);
 
-  // Toggles option selection and updates the parent component
+  // Toggles option selection
   const handleOptionToggle = (optionId, optionTitle) => {
     //
     {
@@ -22,10 +22,9 @@ export const AccordionTab = ({ options, onSelectionChange, labelTitle }) => {
 
     onSelectionChange(optionId);
   };
-  // Toggles the accordion open/close
+  // Toggles accordion open/close
   const toggleAccordion = () => setIsOpen(!isOpen);
 
-  // Set content height based on isOpen state
   const contentHeight = isOpen ? contentRef.current.scrollHeight : 0;
 
   // console.log(options);

@@ -7,6 +7,7 @@ import { GetTopBlogsByPg } from "../../../../core/services/api/TopBlogs.api";
 import { getRandomColor } from "../../../Common/ColorGenerator";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
 import { DatePersianizer } from "../../../../core/utils/DatePersianizer";
+import Logo from "../../../../assets/logo (3)highQ.png";
 
 const contentStyle = {
   height: "",
@@ -49,7 +50,12 @@ const BlogsCarsoual = () => {
                     className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 `}
                   >
                     <img
-                      src={blog.currentImageAddressTumb}
+                      src={
+                        blog.addUserProfileImage !== null &&
+                        blog.addUserProfileImage !== "null"
+                          ? blog.addUserProfileImage
+                          : Logo
+                      }
                       alt={""}
                       className={`size-48 `}
                     />
@@ -60,7 +66,7 @@ const BlogsCarsoual = () => {
                   </h3>
                 </Link>
                 <div className="flex flex-col items-center justify-between  px-2 text-gray-500 space-x-2 rtl:space-x-reverse ">
-                  <p className="flex text-gray-400 dark:text-white text-sm items-center ">
+                  <p className="flex text-gray-400 dark:text-white truncate w-56 text-sm items-center ">
                     {blog.keyword}
                   </p>
                   <div className=" mt-0 pt-0">
@@ -94,7 +100,7 @@ const BlogsCarsoual = () => {
                     className={`h-56 flex justify-center items-center ${getRandomColor()} rounded-3xl w-64 mx-auto mb-4 `}
                   >
                     <img
-                      src={blog.currentImageAddressTumb}
+                      src={blog.addUserProfileImage}
                       alt={""}
                       className={`size-48 `}
                     />
@@ -141,7 +147,7 @@ const BlogsCarsoual = () => {
                     className={`h-56 flex justify-center items-center rounded-3xl w-64 mx-auto mb-4 ${getRandomColor()}`}
                   >
                     <img
-                      src={blog.currentImageAddressTumb}
+                      src={blog.addUserProfileImage}
                       alt={""}
                       className={`size-48 `}
                     />
@@ -210,12 +216,12 @@ const TopBlogs = () => {
         </h2>
         <div
           data-aos="flip-down"
-          className="md:flex hidden  md:flex-wrap justify-center gap-8 mx-2 "
+          className="md:flex hidden   md:flex-wrap justify-center gap-8 mx-2 "
         >
           {TopBlog.slice(0, 3).map((blog, index) => (
             <div
               key={index}
-              className="dark:bg-indigo-950 rounded-3xl  flex-1 bg-sky-50 "
+              className="dark:bg-indigo-950 rounded-3xl w-1/3 flex-1 bg-sky-50 "
             >
               <Link
                 onClick={() => {
@@ -238,7 +244,7 @@ const TopBlogs = () => {
                 </h3>
               </Link>
               <div className="flex justify-between mt-4 px-2 text-gray-500 space-x-2 rtl:space-x-reverse mb-2">
-                <p className="flex text-gray-400 dark:text-white text-sm items-center ">
+                <p className="flex text-gray-400 dark:text-white w-56 truncate text-sm items-center ">
                   {blog.keyword}
                 </p>
                 <div>

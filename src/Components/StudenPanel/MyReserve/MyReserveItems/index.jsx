@@ -32,8 +32,7 @@ const index = () => {
           <li className="hidden md:block">#</li>
           <li className="w-[121px] md:w-[131px] lg:w-[231px]"> نام دوره</li>
           <li className="mr-2 hidden sm:block">تاریخ برگزاری</li>
-          <li className="mr-2 hidden lg:block">تاریخ اتمام</li>
-          <li>تایید</li>
+          <li className="md:mr-4">تایید</li>
         </ul>
         <div className="mt-4 mx-5 space-y-4 max-h-[20rem] overflow-y-scroll">
           {reserveData?.map((Reserve, index) => (
@@ -61,11 +60,6 @@ const index = () => {
                 {DatePersianizer(Reserve.reserverDate)}
               </span>
 
-              <span
-                className={`hidden lg:inline-flex items-center w-[125px] dark:text-white `}
-              >
-                {Reserve.enddate}
-              </span>
               <span
                 className={`md:px-3 py-0 text-sm sm:text-base ${
                   Reserve.accept === false ? "bg-red-500" : "bg-blue-500"

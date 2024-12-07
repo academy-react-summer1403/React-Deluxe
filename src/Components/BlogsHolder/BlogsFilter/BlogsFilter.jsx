@@ -24,7 +24,7 @@ const BlogsFilter = ({
       category,
     };
     console.log("Searching with filters:", filters);
-    setIsModalOpen(false); // Close modal after search
+    setIsModalOpen(false);
   };
 
   const toggleModal = () => {
@@ -32,7 +32,7 @@ const BlogsFilter = ({
       setIsAnimating(false);
       setTimeout(() => {
         setIsModalOpen(false);
-      }, 300); // Match the duration of the slide-down transition
+      }, 300);
     } else {
       setIsModalOpen(true);
       setTimeout(() => {
@@ -77,12 +77,11 @@ const BlogsFilter = ({
       return selectedId;
     });
     // console.log("Selected options:", selectedOptionId);
-    // Insert API call logic here
   };
 
   return (
     <div className="absolute right-12 lg:right-0 lg:relative w-[128px] flex lg:w-[20rem]">
-      {/* Button to show filters only on small screens */}
+      {/* filters on small screens */}
       <div className="mb-4 lg:hidden">
         <button
           onClick={toggleModal}
@@ -220,7 +219,7 @@ const BlogsFilter = ({
         </div>
 
         {/* Event Dates */}
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <div className="flex flex-row gap-1">
             <svg
               width="24"
@@ -265,20 +264,20 @@ const BlogsFilter = ({
           <p className="text-sm text-gray-500 mt-3 bg-gray-200 py-2 px-4 rounded-lg">
             ۲۹ اردیبهشت ۱۴۰۳ - ۵ خرداد ۱۴۰۳
           </p>
-        </div>
+        </div> */}
       </div>
 
       {/* Modal for filters */}
       {isModalOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-end z-50"
-          onClick={toggleModal} // Close modal when background is clicked
+          onClick={toggleModal}
         >
           <div
             className={`w-full bg-white dark:bg-[#041124] px-8 pb-8 pt-4 rounded-t-3xl transition-transform duration-300 flex flex-col ${
               isAnimating ? "translate-y-0" : "translate-y-full"
             }`}
-            onClick={(e) => e.stopPropagation()} // Prevent closing modal when clicking inside it
+            onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-center">
               <div className="bg-gray-300 rounded-3xl w-16 h-2 mb-6"></div>

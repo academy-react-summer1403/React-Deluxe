@@ -34,7 +34,7 @@ const StudentHeader = () => {
 
       {/* Center Links */}
       <nav className="sm:flex justify-evenly sm:w-[500px] text-lg">
-        <Link className=" pr-5 " to={"/"}>
+        <Link className=" pr-56 sm:pr-4" to={"/"}>
           صفحه اصلی
         </Link>
         <a className="hidden sm:flex" href="">
@@ -47,7 +47,6 @@ const StudentHeader = () => {
       </nav>
 
       <div className="hidden lg:flex gap-2 pl-8">
-        {/* Left Icons (Dark Mode and Notifications) */}
         <div className="flex items-center  space-x-4">
           {/* Notification Bell */}
           <div className="relative hidden sm:block">

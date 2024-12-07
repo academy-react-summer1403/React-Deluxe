@@ -210,7 +210,7 @@ const LoginPage = () => {
               className="mt-7 rounded-3xl h-12 text-lg w-full bg-white text-black px-4 py-2 border border-gray-300 dark:text-white"
               placeholder="کد دو مرحله‌ای خود را وارد کنید"
             />
-            <Link to={"/dashboard"}>
+            <Link to={"/"}>
               <button className="dark:text-white mt-5 text-lg flex items-center justify-center text-center h-12 bg-blue-500 text-white rounded-3xl w-full font-bold">
                 ورود به حساب
               </button>

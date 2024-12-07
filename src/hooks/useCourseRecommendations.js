@@ -1,82 +1,7 @@
 import { useState, useEffect } from "react";
-
-// Local JSON data
-const allCourses = [
-  { id: 1, title: "React Basics", technologyList: ["React", "JavaScript"] },
-  {
-    id: 2,
-    title: "Advanced JavaScript",
-    technologyList: ["JavaScript", "ES6"],
-  },
-  {
-    id: 3,
-    title: "Node.js Fundamentals",
-    technologyList: ["Node.js", "Backend"],
-  },
-  { id: 4, title: "CSS Mastery", technologyList: ["CSS", "Design"] },
-  { id: 5, title: "HTML for Beginners", technologyList: ["HTML", "Web"] },
-  {
-    id: 6,
-    title: "TypeScript in Depth",
-    technologyList: ["TypeScript", "JavaScript"],
-  },
-  { id: 7, title: "Python Basics", technologyList: ["Python", "Backend"] },
-  { id: 8, title: "Django Fundamentals", technologyList: ["Django", "Python"] },
-  {
-    id: 9,
-    title: "Data Analysis with Pandas",
-    technologyList: ["Python", "Pandas"],
-  },
-  {
-    id: 10,
-    title: "Vue.js Essentials",
-    technologyList: ["Vue.js", "JavaScript"],
-  },
-  {
-    id: 11,
-    title: "Angular for Professionals",
-    technologyList: ["Angular", "JavaScript"],
-  },
-  {
-    id: 12,
-    title: "Kubernetes Basics",
-    technologyList: ["Kubernetes", "DevOps"],
-  },
-  { id: 13, title: "Docker in Practice", technologyList: ["Docker", "DevOps"] },
-  {
-    id: 14,
-    title: "Linux Administration",
-    technologyList: ["Linux", "SysAdmin"],
-  },
-  { id: 15, title: "AWS Cloud Practitioner", technologyList: ["AWS", "Cloud"] },
-  {
-    id: 16,
-    title: "Machine Learning with Python",
-    technologyList: ["Python", "Machine Learning"],
-  },
-  { id: 17, title: "AI for Beginners", technologyList: ["AI", "Python"] },
-  {
-    id: 18,
-    title: "Cybersecurity Fundamentals",
-    technologyList: ["Security", "Networking"],
-  },
-  { id: 19, title: "Golang Essentials", technologyList: ["Go", "Backend"] },
-  { id: 20, title: "Ruby on Rails Basics", technologyList: ["Ruby", "Web"] },
-];
-
-const myCourses = [
-  { courseTitle: "Linux Administration" },
-  { courseTitle: "Kubernetes Basics" },
-  { courseTitle: "Angular for Professionals" },
-];
-
-const reservedCourses = [
-  { courseName: "Cybersecurity Fundamentals" },
-  { courseName: "Golang Essentials" },
-];
-
-// Helper: Fetch embeddings in batches
 import { HfInference } from "@huggingface/inference";
+import { allOfCourse, myCoursesAi } from "../core/services/api/AllCoursesAi";
+import { myReserve } from "../core/services/api/StudentPanel/MyReserve.api";
 
 const hf = new HfInference("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");
 
@@ -98,7 +23,6 @@ const getEmbedding = async (texts, batchSize = 10) => {
   }
 };
 
-// Cosine Similarity Calculation
 const cosineSimilarity = (a, b) => {
   const dotProduct = a.reduce((sum, ai, i) => sum + ai * b[i], 0);
   const magnitudeA = Math.sqrt(a.reduce((sum, ai) => sum + ai * ai, 0));
@@ -107,53 +31,81 @@ const cosineSimilarity = (a, b) => {
 };
 
 const useCourseRecommendations = () => {
+  const [allCourses, setAllCourses] = useState([]);
+  const [myCourses, setMyCourses] = useState([]);
+  const [reservedCourses, setReservedCourses] = useState([]);
   const [recommendations, setRecommendations] = useState([]);
+
+  console.log("tesssting", allCourses, myCourses, reservedCourses);
+  const getAllCourses = async () => {
+    const res = await allOfCourse();
+    // console.log("tesssting", res);
+
+    const normalizedCourses = res.courseFilterDtos.map((course) => ({
+      ...course,
+      technologyList: course.technologyList
+        ? course.technologyList.split(",").map((tech) => tech.trim())
+        : [],
+    }));
+
+    setAllCourses(normalizedCourses);
+  };
+  const getMyCoursesAi = async () => {
+    const res = await myCoursesAi();
+    // console.log("tesssting", res);
+
+    setMyCourses(res.listOfMyCourses);
+  };
+  const getReserve = async () => {
+    const res = await myReserve();
+    // console.log("tesssting", res);
+
+    setReservedCourses(res);
+  };
+
+  useEffect(() => {
+    getAllCourses();
+    getMyCoursesAi();
+    getReserve();
+  }, []);
 
   useEffect(() => {
     const recommendCourses = async () => {
-      // Extract course names from user and reserved courses
       const userCourseNames = [
         ...myCourses.map((course) => course.courseTitle),
         ...reservedCourses.map((course) => course.courseName),
       ];
 
-      // Match user/reserved course names with allCourses
       const matchedCourses = allCourses.filter((course) =>
         userCourseNames.includes(course.title)
       );
 
       if (!matchedCourses.length) {
-        console.warn(
-          "No matching courses found in allCourses for user/reserved courses."
-        );
+        console.warn("No matching courses found.");
         return;
       }
 
-      // Get technology lists for matched courses
       const technologyLists = matchedCourses.flatMap(
         (course) => course.technologyList || []
       );
 
       if (!technologyLists.length) {
-        console.warn("No technology lists found for matched courses.");
+        console.warn("No technologies found for matched courses.");
         return;
       }
 
-      // Fetch embeddings for technology lists of matched courses
-      const userEmbeddings = await getEmbedding(technologyLists, 5);
+      const userEmbeddings = await getEmbedding(technologyLists, 10);
 
-      // Fetch embeddings for technology lists of all courses
       const allCourseEmbeddings = await getEmbedding(
-        allCourses.map((course) => course.technologyList?.join(", ") || ""),
+        allCourses.map((course) => (course.technologyList || []).join(", ")),
         5
       );
 
       if (!userEmbeddings.length || !allCourseEmbeddings.length) {
-        console.error("Embeddings could not be generated for recommendations.");
+        console.error("Failed to generate embeddings.");
         return;
       }
 
-      // Generate recommendations
       const recommendations = allCourses
         .map((course, index) => {
           const isUserCourse = myCourses.some(
@@ -174,15 +126,15 @@ const useCourseRecommendations = () => {
 
           return { ...course, similarity: averageSimilarity };
         })
-        .filter((rec) => rec) // Remove nulls
-        .sort((a, b) => b.similarity - a.similarity) // Sort by similarity
-        .slice(0, 5); // Limit to top 10 recommendations
+        .filter((rec) => rec)
+        .sort((a, b) => b.similarity - a.similarity)
+        .slice(0, 5);
 
       setRecommendations(recommendations);
     };
 
     recommendCourses();
-  }, []);
+  }, [allCourses, myCourses, reservedCourses]);
 
   return { recommendations };
 };

@@ -17,7 +17,7 @@ const BlogsCards = ({ searchTerm, selectedCategoryBlog }) => {
   console.log(selectedSort);
   const [currentPg, setCurrentPg] = useState(1);
   console.log("currentPg", currentPg);
-  const [currentPgSize, setCurrentPgSize] = useState(10);
+  const [currentPgSize, setCurrentPgSize] = useState(4);
   console.log("currentPgSize", currentPgSize);
   const [totalBlogCount, setTotalBlogCount] = useState();
 
@@ -238,7 +238,7 @@ const BlogsCards = ({ searchTerm, selectedCategoryBlog }) => {
                     className={`size-full rounded-[2rem]`}
                   />
                 </div>
-                <h3 className="text-2xl font-bold mb-2 dark:text-slate-300">
+                <h3 className="text-2xl font-bold mb-2 truncate w-96 dark:text-slate-300">
                   {card.title}
                 </h3>
               </Link>
@@ -322,7 +322,7 @@ const BlogsCards = ({ searchTerm, selectedCategoryBlog }) => {
         <Pagination
           align="center"
           defaultCurrent={1}
-          defaultPageSize={10}
+          defaultPageSize={4}
           current={currentPg}
           onChange={onChangePg}
           total={totalBlogCount}
@@ -332,7 +332,7 @@ const BlogsCards = ({ searchTerm, selectedCategoryBlog }) => {
             )} از ${digitsEnToFa(total)} دوره`
           }
           showSizeChanger
-          pageSizeOptions={[5, 10, 20, 50, 75, 100]}
+          pageSizeOptions={[4, 8, 16, 32, 64, 128]}
           responsive
         />
       </ConfigProvider>

@@ -14,8 +14,7 @@ const MainPage = () => {
   const [selectedOptionId, setSelectedOptionId] = useState("");
   const [levelsOptionId, setLevelsOptionId] = useState("");
   const [teachersOptionId, setTeacherOptionId] = useState("");
-  const [priceRange, setPriceRange] = useState([0, 1000000000]); // Initial values for range
-
+  const [priceRange, setPriceRange] = useState([0, 1000000000]);
   // console.log("TeacherOption", teachersOptionId);
 
   const categoryList = (value) => {

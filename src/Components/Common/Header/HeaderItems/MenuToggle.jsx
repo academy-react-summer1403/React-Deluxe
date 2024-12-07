@@ -7,7 +7,6 @@ import { PiTelegramLogoThin } from "react-icons/pi";
 import { PiInstagramLogoLight } from "react-icons/pi";
 import { Link } from "react-router-dom";
 const MenuWithToggle = () => {
-  // State to manage menu visibility
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
   // Toggle menu visibility
@@ -27,10 +26,7 @@ const MenuWithToggle = () => {
 
       {isMenuVisible && (
         <div className="absolute top-0 z-10 left-0 mt-2 w-full bg-gray-800 shadow-lg rounded-md">
-          {/* Close Button */}
           <div className="w-full flex justify-between">
-            {" "}
-            {/* Logo */}
             <div className="flex flex-nowrap justify-start w-full mb-6">
               <img
                 src="https://s3-alpha-sig.figma.com/img/8978/2e65/1551396a2baebe523401d4b33d0ab02a?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=KQ~dcIIM~JdW9LpmW5k993TDj8dn8ZkN1Qtttuy0-aSHkPk1sIyxi2ojMCsPG8vcb2~g8uXnxbCULxQJadpQ2JwI7Dwwxpp4Wm-8hhU8GpNvno0ez-2K9VQGnYe~CrZ98sZ5XUYXmAXY7jDzgH7HPYtrW9G5L7F~9KM9PKI~bFmNq5CdwiOSQV5h5afOc2RATwQZFEMpzuDfiLxh2Jo5A-IJcbTalKpbonbw~-ujm7ivgBYsdWTqgrvF6PRGappVjgHwdWZlhcLcfWHliNwBwEGJrafUpFwxFPrl1S6XiWrCc6uvAP8O7OVF9rTsLeuddKBVEjlCZKSpz8HWAImLkw__"

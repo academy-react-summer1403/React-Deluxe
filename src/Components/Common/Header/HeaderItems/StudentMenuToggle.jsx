@@ -7,7 +7,6 @@ import { PiTelegramLogoThin } from "react-icons/pi";
 import { PiInstagramLogoLight } from "react-icons/pi";
 import { Link, NavLink } from "react-router-dom";
 const StudentMenuWithToggle = () => {
-  // State to manage menu visibility
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
   // Toggle menu visibility
@@ -28,7 +27,6 @@ const StudentMenuWithToggle = () => {
       {isMenuVisible && (
         <div className="w-fit h-fit bg-gray-950 absolute z-50 text-white xl:flex flex-col justify-between">
           <div>
-            {/* Logo Section */}
             <div className="px-6 py-4">
               <h1 className="text-xl font-bold text-blue-400">
                 آکادمی کد نویسی بحر

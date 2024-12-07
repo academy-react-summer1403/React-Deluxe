@@ -88,8 +88,8 @@ const MyReserves = () => {
                 {Reserve.accept ? "تایید شد" : "تایید نشد"}
               </span>
               <div className="flex flex-row gap-2">
-                <Link to={"/courseDetails"}>
-                  <BsEye className="text-base dark:text-white" />
+                <Link to={`/courseDetails/${Reserve.courseId}`}>
+                  <BsEye className="text-base" />
                 </Link>
 
                 <RxCross1 className="text-red-500" />

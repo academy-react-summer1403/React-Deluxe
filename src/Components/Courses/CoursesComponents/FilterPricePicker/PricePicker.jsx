@@ -9,21 +9,21 @@ export const PricePicker = ({ priceRange, setPriceRange }) => {
       theme={{
         components: {
           Slider: {
-            controlSize: 12, // Overall height of the slider
+            controlSize: 12,
             dotActiveBorderColor: "#4a90e2",
             dotBorderColor: "#d9d9d9",
-            dotSize: 8, // Size of dots on the track
-            handleActiveColor: "#1976d2", // Border color when handle is active
-            handleActiveOutlineColor: "rgba(25, 118, 210, 0.2)", // Outline color when active
-            handleColor: "#2196f3", // Handle color
-            handleLineWidth: 3, // Width of handle border
+            dotSize: 8,
+            handleActiveColor: "#1976d2",
+            handleActiveOutlineColor: "rgba(25, 118, 210, 0.2)",
+            handleColor: "#2196f3",
+            handleLineWidth: 3,
             handleLineWidthHover: 4,
             handleSize: 12,
             handleSizeHover: 14,
-            railBg: "#b0bec5", // Background color of rail
+            railBg: "#b0bec5",
             railHoverBg: "#90a4ae",
-            railSize: 4, // Thickness of rail
-            trackBg: "#42a5f5", // Background color of the selected track
+            railSize: 4,
+            trackBg: "#42a5f5",
             trackBgDisabled: "#cfd8dc",
             trackHoverBg: "#1e88e5",
           },

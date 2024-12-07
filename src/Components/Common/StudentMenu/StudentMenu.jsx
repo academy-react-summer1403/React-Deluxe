@@ -3,10 +3,13 @@ import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
 const StudentMenu = () => {
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/auth/signin";
+  };
   return (
     <div className="w-full h-full bg-gray-950 hidden text-white xl:flex flex-col justify-between">
       <div>
-        {/* Logo Section */}
         <div className="px-6 py-4">
           <h1 className="text-xl font-bold text-blue-400">
             آکادمی کد نویسی بحر
@@ -346,9 +349,8 @@ const StudentMenu = () => {
 
       {/* Logout Section */}
       <div className="px-6 pb-4">
-        <Link
-          to={"/auth/signin"}
-          href="#"
+        <button
+          onClick={handleLogout}
           className="flex items-center space-x-3 text-red-500 border border-red-500 px-4 py-2 rounded-3xl hover:bg-red-500 hover:text-white"
         >
           <svg
@@ -374,7 +376,7 @@ const StudentMenu = () => {
           </svg>
 
           <span className="text-lg pr-1">خروج از حساب کاربری</span>
-        </Link>
+        </button>
       </div>
     </div>
   );

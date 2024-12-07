@@ -12,16 +12,16 @@ const SlideModalWithRibbon = () => {
     <div className="relative">
       {/* Sliding Modal */}
       <div
-        className={`fixed top-0 right-0 h-screen w-64 bg-white shadow-lg transform ${
+        className={`fixed top-0 right-0 h-screen w-64 dark:bg-[#041124] bg-white shadow-lg transform ${
           isOpen ? "translate-x-0" : "translate-x-full"
         } transition-transform duration-300 z-40`}
       >
         {/* Modal Content */}
         <div className="p-4">
-          <h2 className="text-lg font-bold text-gray-800">
+          <h2 className="text-lg font-bold dark:text-white text-gray-800">
             دوره های پیشنهادی ما مخصوص شما
           </h2>
-          <p className="text-sm text-gray-600 mt-10">
+          <p className="text-sm text-gray-600 mt-1">
             <Recommendations />
           </p>
         </div>

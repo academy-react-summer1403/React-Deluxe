@@ -101,13 +101,13 @@ const index = () => {
   return (
     <div className="bg-gray-50 dark:bg-indigo-950 flex justify-between flex-col p-2 rounded-3xl">
       <div>
-        <ul className="flex p-2 rounded-xl text-sm text-gray-500  m-5 dark:bg-[#041124] dark:text-white  bg-gray-100 gap-24 justify-start">
+        <ul className="flex p-2 rounded-xl text-sm text-gray-500  m-5 dark:bg-[#041124] dark:text-white  bg-gray-100 gap-20 justify-start">
           <li className="hidden md:block ">#</li>
-          <li> نام دوره</li>
-          <li className="w-[50px] hidden sm:block">امتیاز</li>
-          <li className="mr-2 ">تاریخ </li>
-          <li className="mr-2 hidden sm:block">تعداد بازدید </li>
-          <li className="hidden lg:block">تعداد لایک</li>
+          <li className="w-[100px]"> نام دوره</li>
+          <li className="w-[50px] hidden mr-16 sm:block">امتیاز</li>
+          <li className="md:mr-10 ">تاریخ </li>
+          <li className="mr-3 hidden sm:block"> بازدید </li>
+          <li className="hidden lg:block"> لایک</li>
         </ul>
         <div className="mt-4 mx-5 space-y-4 max-h-[20rem] overflow-y-scroll">
           {newsData.map((news, index) => (
@@ -145,7 +145,7 @@ const index = () => {
                 <SlLike /> {digitsEnToFa(news.currentLikeCount)}
               </span>
               <div className="flex gap-2">
-                <Link to={`/BlogDetails/${news.favoriteId}`}>
+                <Link to={`/BlogDetails/${news.newsId}`}>
                   <BsEye className="text-base" />
                 </Link>
 

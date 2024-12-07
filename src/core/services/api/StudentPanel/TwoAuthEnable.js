@@ -1,40 +1,34 @@
+import axios from "axios";
 import http from "../../interceptor";
 
-// Fetch security information
+// Get Two-Step Authentication Status
 export const getSecurityInfo = async () => {
   try {
-    const response = await http.get(
-      "https://classapi.sepehracademy.ir/api/SharePanel/GetSecurityInfo"
-    );
-    if (!response.ok) {
-      throw new Error("Failed to fetch security information.");
-    }
-    return response.json(); // Returning the response data
+    const response = await http.get(`/GetSecurityInfo`);
+    return response.data;
   } catch (error) {
-    throw new Error(
-      error.message || "An error occurred while fetching security info."
+    console.error(
+      "Error fetching security info:",
+      error.response?.data || error.message
     );
+    throw error;
   }
 };
 
-// Update two-step authentication status
-export const updateTwoStepAuth = async (twoStepAuth) => {
+// Enable/Disable Two-Step Authentication
+export const updateTwoStepAuth = async (isEnabled) => {
   try {
-    const response = await http.post(
-      "https://classapi.sepehracademy.ir/api/SharePanel/EditSecurity",
-      {
-        method: "POST",
-        body: JSON.stringify({ twoStepAuth }),
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error("Failed to update two-step authentication.");
-    }
-    return response.json(); // Returning the updated response data
+    const response = await http.put(`/SharePanel/EditSecurity`, {
+      twoStepAuth: isEnabled,
+      recoveryEmail: "azimhs95@gmail.com",
+      baseUrl: "https://classapi.sepehracademy.ir/api",
+    });
+    return response;
   } catch (error) {
-    throw new Error(
-      error.message || "An error occurred while updating authentication."
+    console.error(
+      "Error updating two-step authentication:",
+      error.response?.data || error.message
     );
+    throw error;
   }
 };

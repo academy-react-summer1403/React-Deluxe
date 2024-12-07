@@ -25,8 +25,8 @@ const Filter = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false);
-  const [isLevelDropdownOpen, setIsLevelDropdownOpen] = useState(false); // State for level dropdown
-  const [isTeacherDropdownOpen, setIsTeacherDropdownOpen] = useState(false); // State for teacher dropdown
+  const [isLevelDropdownOpen, setIsLevelDropdownOpen] = useState(false);
+  const [isTeacherDropdownOpen, setIsTeacherDropdownOpen] = useState(false);
   const [categories, setCategories] = useState([]);
   const [levels, setLevels] = useState([]);
   const [teachers, setTeachers] = useState([]);
@@ -42,7 +42,7 @@ const Filter = ({
       teacher,
     };
     // console.log("Searching with filters:", filters);
-    setIsModalOpen(false); // Close modal after search
+    setIsModalOpen(false);
   };
 
   const toggleModal = () => {
@@ -50,12 +50,12 @@ const Filter = ({
       setIsAnimating(false);
       setTimeout(() => {
         setIsModalOpen(false);
-      }, 300); // Match the duration of the slide-down transition
+      }, 300);
     } else {
       setIsModalOpen(true);
       setTimeout(() => {
         setIsAnimating(true);
-      }, 10); // Delay to allow transition to trigger properly
+      }, 10);
     }
   };
 
@@ -117,7 +117,6 @@ const Filter = ({
     "برنامه‌نویسی",
   ];
 
-  // Mock API call handler when selections change
   const handleSelectionChange = (optionId) => {
     // console.log(optionId);
     setSelectedOptionId((prev) => {
@@ -128,7 +127,6 @@ const Filter = ({
       return selectedId;
     });
     // console.log("Selected options:", selectedOptionId);
-    // Insert API call logic here
   };
   // categorySelResult(selectedOptionId);
 
@@ -428,7 +426,7 @@ const Filter = ({
         </div>
 
         {/* Event Dates */}
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <div className="flex flex-row gap-1">
             <svg
               width="24"
@@ -473,20 +471,20 @@ const Filter = ({
           <p className="text-sm text-gray-500 mt-3 bg-gray-200 py-2 px-4 rounded-lg">
             ۲۹ اردیبهشت ۱۴۰۳ - ۵ خرداد ۱۴۰۳
           </p>
-        </div>
+        </div> */}
       </div>
 
       {/* Modal for filters */}
       {isModalOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-end z-50"
-          onClick={toggleModal} // Close modal when background is clicked
+          onClick={toggleModal}
         >
           <div
             className={`w-full bg-white dark:bg-[#041124] px-8 pb-8 pt-4 rounded-t-3xl transition-transform duration-300 flex flex-col ${
               isAnimating ? "translate-y-0" : "translate-y-full"
             }`}
-            onClick={(e) => e.stopPropagation()} // Prevent closing modal when clicking inside it
+            onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-center">
               <div className="bg-gray-300 rounded-3xl w-16 h-2 mb-6"></div>

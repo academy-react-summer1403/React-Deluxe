@@ -88,18 +88,17 @@ const CourseList = ({
 
   const openModal = () => {
     setIsModalOpen(true);
-    // Add a slight delay before triggering the slide-up animation
     setTimeout(() => {
       setIsAnimating(true);
-    }, 10); // Delay for the transition to trigger properly
+    }, 10);
   };
 
   const closeModal = () => {
     setIsAnimating(false);
-    // Delay closing modal until the slide-down animation finishes
+
     setTimeout(() => {
       setIsModalOpen(false);
-    }, 300); // Match the transition duration (300ms)
+    }, 300);
   };
 
   const options = [
@@ -145,7 +144,6 @@ const CourseList = ({
         ))}
       </div>
 
-      {/* On smaller screens, we show a single button to trigger the modal */}
       <div className="lg:hidden flex justify-end items-center gap-2 mb-4 ml-12">
         <button
           className="text-white bg-black py-3 px-4 rounded-full flex gap-2"

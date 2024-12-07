@@ -12,12 +12,12 @@ import http from "../../../core/services/interceptor";
 import { toast } from "react-toastify";
 import { UpdateProfileInfo } from "./../../../core/services/api/StudentPanel/UpdateProfileInfo.api";
 import MyMap from "./Map";
-import Security from "./Security";
+import { Security } from "./Security";
+import UserImagesWithSelect from "./selectImage";
 
 const Profile = () => {
   const [activeSection, setActiveSection] = useState("profile");
   const [cordinate, setCortinate] = useState();
-  console.log(cordinate);
 
   const handleSectionClick = (section) => {
     setActiveSection(section);
@@ -192,6 +192,8 @@ const Profile = () => {
                     Gender: data?.gender,
                     // email: data?.email,
                     HomeAdderess: data?.homeAdderess,
+                    Telegram: data?.telegramLink,
+                    LinkedIn: data?.linkdinProfile,
                   }}
                   validationSchema={validationSchema}
                   onSubmit={handleFormikSubmit}
@@ -393,18 +395,11 @@ const Profile = () => {
                     اضافه کردن عکس
                   </button>
                   <div className="flex flex-row flex-wrap gap-2 mt-5  h-[400px]">
-                    {/* تصاویر در گالری */}
-                    <div className="flex flex-row w-32 h-32">
-                      <img src={Pic1} className="rounded-lg shadow-md" />
-                    </div>
-                    <div className="flex flex-row w-32 h-32">
-                      <img src={Pic2} className="rounded-lg shadow-md" />
-                    </div>
-                    <div className="flex flex-row w-32 h-32">
-                      <img src={Pic3} className="rounded-lg shadow-md" />
-                    </div>
-                    <div className="flex flex-row w-32 h-32">
-                      <img src={Pic4} className="rounded-lg shadow-md" />
+                    <div>
+                      <UserImagesWithSelect
+                        userImages={data?.userImage}
+                        currentPictureAddress={data?.currentPictureAddress}
+                      />
                     </div>
                   </div>
                 </div>
@@ -454,7 +449,8 @@ const Profile = () => {
             <button
               type="button"
               onClick={() => {
-                formikRef.current?.submitForm(); handleFormikSubmit();
+                formikRef.current?.submitForm();
+                handleFormikSubmit();
               }}
               disabled={mutation.isPending}
               className="ml-52 px-6 py-2 bg-blue-500 text-white font-bold rounded-3xl hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"

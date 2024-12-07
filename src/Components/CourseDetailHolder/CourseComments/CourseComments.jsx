@@ -76,7 +76,6 @@ const CourseComment = ({ dataBlog }) => {
         <div className="flex items-center">
           {/* Avatar */}
           <div className="w-10 h-10 rounded-full bg-blue-500">
-            {/* Placeholder for avatar, you can replace with img tag */}
             <img
               src={profilePic}
               alt="Avatar"
@@ -94,7 +93,6 @@ const CourseComment = ({ dataBlog }) => {
           </div>
         </div>
 
-        {/* Left Section - Like/Dislike Buttons */}
         <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
           {/* Like Button */}
           <div className="flex items-center gap-1 text-lg">

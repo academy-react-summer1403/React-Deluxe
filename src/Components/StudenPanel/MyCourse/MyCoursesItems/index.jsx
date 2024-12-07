@@ -19,7 +19,7 @@ const index = () => {
           <li> نام دوره</li>
           <li className="hidden sm:block w-[50px]">مدرس</li>
           <li className="mr-6 lg:mr-8">تاریخ برگزاری</li>
-          <li className="mr-2 hidden lg:block">تاریخ اتمام</li>
+          <li className="mr-2 hidden lg:block">کلاس</li>
           <li className="hidden">سطح</li>
         </ul>
         <div className="mt-4 mx-1 space-y-4 max-h-[20rem] overflow-y-scroll">
@@ -54,13 +54,13 @@ const index = () => {
               <span
                 className={`lg:inline-flex hidden items-center w-[105px] dark:text-white `}
               >
-                {course.enddate}
+                {course.classRoomName}
               </span>
               <span className="px-3 py-0 text-base  hidden   bg-[#FF37F5] text-white rounded-full">
                 {course.levelName}
               </span>
 
-              <Link to={"/courseDetails"}>
+              <Link to={`/courseDetails/${course.courseId}`}>
                 <BsEye className="text-base" />
               </Link>
             </div>

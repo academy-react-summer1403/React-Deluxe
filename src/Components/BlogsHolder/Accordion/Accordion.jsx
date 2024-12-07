@@ -1,32 +1,31 @@
-import  { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export const AccordionTabs = ({ options, onSelectionChange, labelTitle }) => {
-  const [isOpen, setIsOpen] = useState(false); // Controls the accordion open/close
-  const [selectedOptions, setSelectedOptions] = useState([]); // Tracks selected options
-  const contentRef = useRef(null); // Ref to measure content height
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedOptions, setSelectedOptions] = useState([]);
+  const contentRef = useRef(null);
 
-  // Toggles option selection and updates the parent component
+  // Toggles option selection and updates
   const handleOptionToggle = (option) => {
     setSelectedOptions((prev) => {
       const newSelected = prev.includes(option)
         ? prev.filter((item) => item !== option)
         : [...prev, option];
 
-      onSelectionChange(newSelected); // External callback for API calls
+      onSelectionChange(newSelected);
       return newSelected;
     });
   };
-  // Toggles the accordion open/close
+  // Toggles accordion open/close
   const toggleAccordion = () => setIsOpen(!isOpen);
 
-  // Set content height based on isOpen state
   const contentHeight = isOpen ? contentRef.current.scrollHeight : 0;
 
   // console.log(options);
 
   return (
     <div className="accordion border border-gray-300 px-2 rounded-md w-full bg-slate-200 dark:bg-gray-700">
-      {/* Accordion header displaying selected options */}
+      {/* Accordion header */}
       <div
         className="header cursor-pointer bg-slate-200 p-2 rounded-md text-gray-500 text-right"
         onClick={toggleAccordion}
@@ -36,7 +35,7 @@ export const AccordionTabs = ({ options, onSelectionChange, labelTitle }) => {
           : labelTitle + " مورد نظر را انتخاب کنید"}
       </div>
 
-      {/* Accordion content with animated height */}
+      {/* Accordion content  */}
       <div
         ref={contentRef}
         className="content overflow-hidden transition-all duration-300 max-h-[8.3rem] overflow-y-auto"
@@ -51,24 +50,16 @@ export const AccordionTabs = ({ options, onSelectionChange, labelTitle }) => {
               <input
                 type="checkbox"
                 checked={selectedOptions.includes(
-                  labelTitle === "دسته"
-                    ? option.techName
-                    
-                    : option
+                  labelTitle === "دسته" ? option.techName : option
                 )}
                 onChange={() =>
                   handleOptionToggle(
-                    labelTitle === "دسته"
-                      ? option.techName
-                      
-                      : option
+                    labelTitle === "دسته" ? option.techName : option
                   )
                 }
                 className="mr-2"
               />
-              {labelTitle === "دسته"
-                ? option.techName
-                : option}
+              {labelTitle === "دسته" ? option.techName : option}
             </label>
           ))}
         </div>
