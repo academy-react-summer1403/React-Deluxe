@@ -21,7 +21,7 @@ const SlideModalWithRibbon = () => {
           <h2 className="text-lg font-bold dark:text-white text-gray-800">
             دوره های پیشنهادی ما مخصوص شما
           </h2>
-          <p className="text-sm text-gray-600 mt-1">
+          <p className="text-sm text-gray-600 mt-1 overflow-y-scroll max-h-[700px]">
             <Recommendations />
           </p>
         </div>
