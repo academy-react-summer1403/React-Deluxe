@@ -18,7 +18,7 @@ const TopCourses = () => {
         </div>
 
         <Link to={"courses"}>
-          <button className="bg-gray-900   dark:bg-blue-500 text-white px-5 py-1.5 rounded-full mt-8">
+          <button className="bg-gray-900 dark:bg-blue-500 text-white px-5 py-1.5 rounded-full mt-8">
             مشاهده بیشتر
           </button>
         </Link>

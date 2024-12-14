@@ -278,11 +278,11 @@ const CourseList = ({
                 <span className="text-[0.6rem] mr-0.5">تومان</span>
               </span>
             </div>
-            <div className="mt-4">
-              <span className="px-3 py-0  text-xs absolute top-8 right-28 md:right-32 bg-blue-500 text-white rounded-full">
+            <div className="mt-4 flex flex-row-reverse gap-2 absolute top-4 right-14 md:right-14">
+              <span className="px-3 py-0  text-xs bg-blue-500 text-white rounded-full">
                 {course.statusName}
               </span>
-              <span className="px-3 py-0 text-xs  absolute top-8 right-10 md:right-14 bg-pink-500 text-white rounded-full">
+              <span className="px-3 py-0 text-xs bg-pink-500 text-white rounded-full">
                 {course.levelName}
               </span>
             </div>
