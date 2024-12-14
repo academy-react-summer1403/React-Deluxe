@@ -72,16 +72,9 @@ const CoursesItems = () => {
             </div>
           </Link>
 
-          <Link
-            onClick={() => {
-              scrollTop();
-            }}
-            to={"/courseDetails"}
-          >
             <h3 className="flex text-xl dark:text-white font-semibold mb-2 ">
               {course.title}
             </h3>
-          </Link>
           <div className="flex flex-nowrap gap-7">
             <p className=" text-gray-400 dark:text-white text-xs items-center ">
               {course.teacherName}
@@ -90,14 +83,14 @@ const CoursesItems = () => {
               {formatCost(course.cost)}
             </span>
           </div>
-          <div className="mt-4">
-            <span className="px-3 py-0  text-xs absolute top-8 right-28 md:right-32 bg-blue-500 text-white rounded-full">
-              {course.statusName}
-            </span>
-            <span className="px-3 py-0 text-xs  absolute top-8 right-10 md:right-14 bg-pink-500 text-white rounded-full">
-              {course.levelName}
-            </span>
-          </div>
+          <div className="mt-4 flex flex-row-reverse gap-2 absolute top-4 right-14 md:right-14">
+              <span className="px-3 py-0  text-xs bg-blue-500 text-white rounded-full">
+                {course.statusName}
+              </span>
+              <span className="px-3 py-0 text-xs bg-pink-500 text-white rounded-full">
+                {course.levelName}
+              </span>
+            </div>
         </div>
       ))}
     </div>

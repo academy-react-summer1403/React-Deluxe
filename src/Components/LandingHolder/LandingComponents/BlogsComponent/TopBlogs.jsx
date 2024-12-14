@@ -235,7 +235,7 @@ const TopBlogs = () => {
                   <img
                     src={blog.addUserProfileImage}
                     alt={""}
-                    className={`size-full rounded-2xl`}
+                    className={`size-60 rounded-2xl`}
                   />
                 </div>
 
