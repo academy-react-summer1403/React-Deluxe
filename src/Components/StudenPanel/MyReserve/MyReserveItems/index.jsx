@@ -83,11 +83,11 @@ const index = () => {
         </div>
       </div>
       <div className="">
-        <ConfigProvider direction="rtl" className="mt-10">
+        {/* <ConfigProvider direction="rtl" className="mt-10">
           {reserveData.length > 8 && (
             <Pagination align="center" defaultCurrent={1} total={50} />
           )}
-        </ConfigProvider>
+        </ConfigProvider> */}
       </div>
     </div>
   );
